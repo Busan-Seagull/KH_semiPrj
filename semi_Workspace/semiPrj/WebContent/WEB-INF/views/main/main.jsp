@@ -8,14 +8,14 @@
 <style>
 	#main-baner-box{
 		height: 400px;
-		position: relative;
+		/* position: relative; */
 	}
 
 	#main-search-box{
-		position: absolute;
+		position: relative;
 		height: 70px;
 		width: 680px;
-		bottom: -35px;
+		bottom: -365px;
 		left: 50%;
 		transform: translateX(-50%);
 	}

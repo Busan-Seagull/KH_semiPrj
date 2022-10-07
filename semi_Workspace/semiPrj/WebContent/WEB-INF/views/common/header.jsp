@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
     /* 영역확인용 */
-    /* html * {
+    html * {
 		box-sizing: border-box;
 		border: 1px solid red;
-	} */
+	}
 
     html{
         scroll-behavior: smooth;
@@ -55,6 +55,12 @@
         display: flex;
         justify-content: flex-end;
         gap: 40px;
+    }
+
+    #header-quick-box a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     #header-quick-box .img, #header-quick-box .img-notLogin{ 
@@ -223,7 +229,7 @@
     <header id="header-main-box">
         <div id="header-logo-box">
             <img src="/dobby/resources/img/로고.png" alt="" id="header-logo">
-            <%if(loginMember != null){%>
+            <%if(loginMember == null){%>
             	<div id="header-quick-box">
 	                <a href=""><div class="img"></div><p>MyPage</p></a>
 	                <a href=""><div class="img"></div><p>Favorites</p></a>

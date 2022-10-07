@@ -33,7 +33,7 @@
 </style>
 
 <aside class="shadow-box">
-    <%if(loginMember != null){%>
+    <%if(loginMember == null){%>
         <a href=""><span class="material-symbols-outlined" style="font-size: 35px;">person_filled</span></a>
         <a href=""><span class="material-symbols-outlined" style="font-size: 30px;">favorite</span></a>
         <a href=""><span class="material-symbols-outlined" style="font-size: 30px;">notifications</span></a>
