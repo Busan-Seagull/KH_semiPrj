@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ryan/공통/main.css">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        font-family: var(--sans);
+    }
+    .inline-block{
+        display: inline-block;
+    }
+    .text-green{
+        color: var(--semi-green);
+    }
+    .text-brown{
+        color: var(--semi-brown);
+    }
+    .text-light{
+        color: lightgrey;
+    }
+    .text-white{
+        color: white;
+    }
+    .text-gray{
+        color: gray;
+    }
+    .back-green{
+        background-color: var(--semi-green);
+    }
+    .back-brown{
+        background-color: var(--semi-brown);
+    }
+    .back-light{
+        background-color: lightgrey;
+    }
+
+
+    /* 전체 레이아웃 */
+
+    #service-wrap{
+        width: 1200px;
+        height: auto;
+        margin: auto;
+        margin-top: 20px;
+    }
+    #side-content{
+        width: 350px;
+        height: 550px;
+        position: fixed;
+        margin: auto;
+        margin-left: 10px;
+    }
+    #main-content{
+        width: 830px;
+        height: auto;
+        margin: auto;
+    }
+
+    /* 사이드컨텐츠 */
+    #reservation-box{
+        width: 310px;
+        height: 550px;
+        box-shadow: 0px 4px 4px lightgrey;
+        margin: auto;
+        padding: 10px;
+    }
+    #reservation-content{
+        width: 300px;
+        height: 430px;
+        background-color: lightgrey;
+        margin: auto;
+    }
+    #reservation-btn{
+        width: 300px;
+        height: 60px;
+        margin: auto;
+        margin-top: 20px;
+        text-align: center;
+        line-height: 60px;
+        font-size: 20px;
+    }
+
+    #reserve-info{
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 7px;
+        margin: auto;
+        margin-top: 15px;
+        width: 260px;
+        height: 60px;
+        font-size: 15px;
+        color: var(--semi-brown);
+    }
+
+    /* 서비스 사진 */
+
+    #service-pic-container{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: 
+        'pic1 pic2'
+        'pic1 pic3'
+        'pic1 pic4';
+        width: 830px;
+        height: 450px;
+        grid-gap: 5px;
+    }
+    #service-pic-container>div{
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    #service-pic1{
+        grid-area: pic1;
+    }
+    #service-pic2{
+        grid-area: pic2;
+    }
+    #service-pic3{
+        grid-area: pic3;
+    }
+    #service-pic4{
+        grid-area: pic4;
+    }
+
+    #service-pic-container img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 집요정 프로필 */
+
+    #helper-profile{
+        margin-top: 10px;
+        width: 830px;
+        height: 200px;
+        background-color: darkslategray;
+        box-shadow: 0 4px 4px lightgrey;
+    }
+
+    /* 서비스 네비바 */
+    #service-navibar{
+        margin-top: 10px;
+    }
+    #service-navibar>ul>li>a{
+        width: 274px;
+        height: 60px;
+        border: none;
+        margin: auto;
+        line-height: 60px;
+        text-align: center;
+        font-size: 20px;
+        float: left;
+        display: block;
+        border: 1px solid var(--semi-green);
+        border-bottom: none;
+    }
+    #first-a{
+        color: black;
+        background-color: white;
+    }
+    
+    #service-navibar>ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 메인컨텐츠 */
+    #main-contents{
+        width: 810px;
+        margin: auto;
+        margin-top: 100px;
+    }
+    #main-contents>div{
+        margin-top: 50px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    div>p{
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 30px;
+    }
+    .review-box{
+        width: 810px;
+        height: 100px;
+        margin: auto;
+        margin-top: 15px;
+        background-color: lightgrey;
+    }
+    
+
+</style>
+<body>
+    <div id="service-wrap">
+        <div class="inline-block" id="main-content">
+            <div id="service-pic-container">
+                <div id="service-pic1">
+                    <img src="/ryan/공통/resources/집4.jfif" alt="">
+                </div>
+                <div id="service-pic2">
+                    <img src="/ryan/공통/resources/집2.jfif" alt="">
+                </div>
+                <div id="service-pic3">
+                    <img src="/ryan/공통/resources/집3.jfif" alt="">
+                </div>
+                <div id="service-pic4">
+                    <img src="/ryan/공통/resources/집1.jfif" alt="">
+                </div>
+            </div>
+            <div id="helper-profile">
+
+            </div>
+            <div id="service-navibar">
+                <ul>
+                    <li>
+                        <a class="text-white back-green" id="first-a">서비스 설명</a>
+                    </li>
+                    <li>
+                        <a class="text-white back-green">요금 정보</a>
+                    </li>
+                    <li>
+                        <a class="text-white back-green">서비스 평가</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="main-contents">
+                <div id="service-expain">서비스 설명
+                    <p>
+                        노새, 오는 딴은 별 보고, 했던 시인의 어머님, 슬퍼하는 버리었습니다. 
+                        이름과, 내일 강아지, 차 별 남은 어머님, 계십니다. 하나에 위에 비둘기, 나는 우는 다하지 사람들의 거외다.<br>
+                        노루, 벌레는 이름과, 이름과, 슬퍼하는 위에 비둘기, 말 계십니다. 된 걱정도 무성할 언덕 봄이 이런 있습니다.<br>
+                        <br>
+                       묻힌 계절이 무성할 별이 다 버리었습니다. 나는 부끄러운 소녀들의 이름과, 별 많은 무엇인지 까닭입니다. <br>
+                       차 우는 피어나듯이 까닭입니다. 묻힌 많은 까닭이요, 이제 이름과, 별 이런 있습니다. 차 이름과 파란 어머니<br>
+                       , 둘 덮어 이웃 멀듯이, 내 봅니다.<br>
+                       <br>
+                       그리고 잠, 남은 강아지, 풀이 많은 나는 별빛이 이름과, 까닭입니다. 한 많은 다하지 자랑처럼 헤는 있습니다. <br>
+                       다 나는 패, 버리었습니다. 차 불러 별 계절이 잠, 이네들은 봅니다. 위에도 이름과, 잠, 거외다.<br>
+                       <br>
+                       <br>
+                       서비스 설명<br>
+                       <br>
+                       노새, 오는 딴은 별 보고, 했던 시인의 어머님, 슬퍼하는 버리었습니다. 이름과, 내일 강아지, 차 별 남은 어머님, 계십니다. <br>
+                       하나에 위에 비둘기, 나는 우는 다하지 사람들의 거외다. 노루, 벌레는 이름과, 이름과, 슬퍼하는 위에 비둘기, 말 계십니다. 된 걱정도 무성할 언덕 봄이 이런 있습니다.<br>
+                       <br>
+                       묻힌 계절이 무성할 별이 다 버리었습니다. 나는 부끄러운 소녀들의 이름과, <br>
+                       별 많은 무엇인지 까닭입니다. 차 우는 피어나듯이 까닭입니다. 묻힌 많은 까닭이요, 이제 이름과, 별 이런 있습니다. <br>
+                       차 이름과 파란 어머니, 둘 덮어 이웃 멀듯이, 내 봅니다.<br>
+                       <br>
+                       그리고 잠, 남은 강아지, 풀이 많은 나는 별빛이 이름과, 까닭입니다. 한 많은 다하지 자랑처럼 헤는 있습니다.<br>
+                        다 나는 패, 버리었습니다. 차 불러 별 계절이 잠, 이네들은 봅니다. 위에도 이름과, 잠, 거외다.<br>
+
+                        노새, 오는 딴은 별 보고, 했던 시인의 어머님, 슬퍼하는 버리었습니다. 
+                        이름과, 내일 강아지, 차 별 남은 어머님, 계십니다. 하나에 위에 비둘기, 나는 우는 다하지 사람들의 거외다.<br>
+                        노루, 벌레는 이름과, 이름과, 슬퍼하는 위에 비둘기, 말 계십니다. 된 걱정도 무성할 언덕 봄이 이런 있습니다.<br>
+                        <br>
+                       묻힌 계절이 무성할 별이 다 버리었습니다. 나는 부끄러운 소녀들의 이름과, 별 많은 무엇인지 까닭입니다. <br>
+                       차 우는 피어나듯이 까닭입니다. 묻힌 많은 까닭이요, 이제 이름과, 별 이런 있습니다. 차 이름과 파란 어머니<br>
+                       , 둘 덮어 이웃 멀듯이, 내 봅니다.<br>
+                       <br>
+                       그리고 잠, 남은 강아지, 풀이 많은 나는 별빛이 이름과, 까닭입니다. 한 많은 다하지 자랑처럼 헤는 있습니다. <br>
+                       다 나는 패, 버리었습니다. 차 불러 별 계절이 잠, 이네들은 봅니다. 위에도 이름과, 잠, 거외다.<br>
+                       <br>
+                       <br>
+                       서비스 설명<br>
+                       <br>
+                       노새, 오는 딴은 별 보고, 했던 시인의 어머님, 슬퍼하는 버리었습니다. 이름과, 내일 강아지, 차 별 남은 어머님, 계십니다. <br>
+                       하나에 위에 비둘기, 나는 우는 다하지 사람들의 거외다. 노루, 벌레는 이름과, 이름과, 슬퍼하는 위에 비둘기, 말 계십니다. 된 걱정도 무성할 언덕 봄이 이런 있습니다.<br>
+                       <br>
+                       묻힌 계절이 무성할 별이 다 버리었습니다. 나는 부끄러운 소녀들의 이름과, <br>
+                       별 많은 무엇인지 까닭입니다. 차 우는 피어나듯이 까닭입니다. 묻힌 많은 까닭이요, 이제 이름과, 별 이런 있습니다. <br>
+                       차 이름과 파란 어머니, 둘 덮어 이웃 멀듯이, 내 봅니다.<br>
+                       <br>
+                       그리고 잠, 남은 강아지, 풀이 많은 나는 별빛이 이름과, 까닭입니다. 한 많은 다하지 자랑처럼 헤는 있습니다.<br>
+                        다 나는 패, 버리었습니다. 차 불러 별 계절이 잠, 이네들은 봅니다. 위에도 이름과, 잠, 거외다.<br>
+                    </p>
+                </div>
+                <div id="pay-info">요금 정보
+                    <p>대충.. 가격표</p>
+                </div>
+                <div id="service-review">서비스 평가
+                    <div class="review-box" id="review1"></div>
+                    <div class="review-box" id="review2"></div>
+                    <div class="review-box" id="review3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="inline-block" id="side-content">
+            <div id="reservation-box">
+                <div id="reservation-content"></div>
+                <div class="back-brown text-white" id="reservation-btn">예약하기</div>
+            </div>
+            <div class="back-light" id="reserve-info">
+                서비스 완료후에 집요정에게 결제대금이 전달됩니다.
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
