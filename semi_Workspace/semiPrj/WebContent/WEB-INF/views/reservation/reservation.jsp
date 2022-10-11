@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
-    <form id="r-main-container" action="" method="" class="flex-col">
+    <form id="r-main-container" action="/dobby/reservation/success" method="post" class="flex-col">
         <div id="r-title">
             <span class="material-symbols-outlined"> magic_button </span>
             <p>예약하기</p>
@@ -109,7 +109,7 @@
             </div>
         </div>
         <div id="r-coment" class="border-g">
-            <div class="flex-center">
+            <div class="flex-center" style="margin: 15px 0 5px 0;">
                 <span class="material-symbols-outlined"> magic_button </span>
                 <p>요구사항 작성</p>
             </div>

@@ -228,6 +228,24 @@
 		justify-content: center;
     }
 
+    .btn{
+        border: none;
+        font-size: 1.5em;
+        font-weight: 500;
+        font-family: var(--sans);
+        background: none;
+        width: 150px;
+        height: 60px;
+        border-radius: 10px;
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .btn:hover{
+        background-color: var(--semi-green);
+        color: white;
+    }
+
     #notice-num{
         position: absolute;
         right: 0;
