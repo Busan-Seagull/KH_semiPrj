@@ -13,7 +13,7 @@
         align-items: center;
         padding: 10px;
         gap: 10px;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.8);
     }
     aside a{
         display: flex;
@@ -32,7 +32,7 @@
     }
 </style>
 
-<aside class="shadow-box">
+<aside class="shadow-box" style="z-index: 99;">
     <%if(loginMember == null){%>
         <a href=""><span class="material-symbols-outlined" style="font-size: 35px;">person_filled</span></a>
         <a href=""><span class="material-symbols-outlined" style="font-size: 30px;">favorite</span></a>
