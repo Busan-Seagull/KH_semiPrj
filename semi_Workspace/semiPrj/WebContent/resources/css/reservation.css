@@ -1,0 +1,273 @@
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.border-g{
+    border: 1px solid var(--semi-green);
+    border-radius: 10px;
+}
+
+#r-main-container{
+    width: 1200px;
+    margin: auto;
+}
+
+/* 타이틀 */
+#r-title{
+    margin: 20px 0 10px 0  ;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: var(--serif);
+    gap: 10px;
+}
+
+#r-title span{
+    color: var(--semi-green);
+    font-size: 40px;
+}
+
+#r-title p{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+/* 서비스정보 */
+#r-service-info.flex-col{
+    margin: 10px 0;
+    padding: 30px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+#r-service-info h1{
+    font-weight: 600;
+    font-size: 3em;
+}
+
+/* 날짜 선택 */
+#r-select-date{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: center;
+    justify-items: center;
+    padding: 20px;
+}
+
+.grid-c14{grid-column: 1/4;}
+.grid-c23{grid-column: 2/3;}
+
+.grid-r12{grid-row: 1/2;}
+.grid-r23{grid-row: 2/3;}
+.grid-r34{grid-row: 3/4;}
+.grid-r45{grid-row: 4/5;}
+
+#r-select-date > div > span{
+    font-variation-settings:'wght' 500;
+}
+
+#r-select-date + div > p{
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+#r-date > p{
+    margin: 10px;
+    font-size: 1.7em;
+    font-weight: 900;
+    font-family: var(--serif);
+}
+
+#r-back-btn, #r-next-btn{
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+}
+
+#r-back-btn span, #r-next-btn span{ 
+    font-size: 50px;
+}
+
+#date-container{
+    margin: 10px 0;
+}
+
+#date-container span{
+    width: 110px;
+    height: 60px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 400;
+}
+
+#date-container span label{
+    width: 100%;
+    height: 100%;
+}
+
+#date-container span label p{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#date-container span label input[type=radio]{
+    display: none;
+}
+
+#date-container span label input[type=radio]:checked ~ p{
+    color: white;
+    background-color: var(--semi-green);
+}
+
+#date-container span label:hover p{
+    box-sizing: border-box;
+    border: 1px solid var(--semi-green);
+}
+
+.not-month{
+    pointer-events: none;
+}
+
+.not-month p{
+    color: lightgray;
+}
+
+#row-1{
+    border-bottom: 2px solid var(--semi-green);
+}
+
+.col-1{
+    color: rgb(200, 0, 0);
+}
+
+.col-7{
+    color: rgb(0, 0, 200);
+}
+
+#btn-select-date{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    margin: 10px 0px 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--semi-green);
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+#btn-select-date:hover{
+    background-color: var(--semi-green);
+    color: white;
+}
+
+#select-check{
+    display: none;
+}
+
+#select-check:checked ~ #r-date-container #r-select-date{
+    display: none;
+}
+
+#select-check:checked ~ #r-date-container{
+    height: 30px;
+    align-items: flex-start;
+    
+}
+
+#select-check:checked  ~ #r-date-container #r-slect-date-B{
+    display: flex;
+    gap: 10px;
+}
+
+#select-check:checked  ~ #r-date-container #btn-select-date{
+    position: absolute;
+    margin: 10px 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+#r-date-container{
+    height: 650px;
+    padding: 10px;
+    transition: 0.5s;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#r-slect-date-B{
+    display: none;
+}
+
+#select-check:checked ~ #r-coment{
+    opacity: 100;
+    height: 450px;
+}
+
+#r-coment{
+    transition: 0.5s;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#r-coment div.flex-center{
+    width: 90%;
+    justify-content: start;
+    gap: 5px;
+}
+
+#r-coment input{
+    border: none;
+    font-size: 1.5em;
+    font-weight: 500;
+    font-family: var(--sans);
+    background: none;
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    margin: 10px 0 20px 0;
+}
+
+#r-coment input:hover{
+    background-color: var(--semi-green);
+    color: white;
+}
+
+#r-coment textarea{
+    width: 90%;
+    height: 60%;
+    border: 1px solid lightgray;
+    resize: none;
+    outline: none;
+}

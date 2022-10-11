@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
     /* 영역확인용 */
-    /* html * {
-		box-sizing: border-box;
-		border: 1px solid red;
-	} */
+    html * {
+		/* box-sizing: border-box; */
+		/* border: 1px solid red; */
+	}
 
     html{
         scroll-behavior: smooth;
@@ -20,6 +20,10 @@
 
     body{
         font-family: var(--sans);
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
     }
 
     a{
@@ -58,6 +62,7 @@
     }
 
     #header-quick-box a{
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -209,8 +214,28 @@
         box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
     }
 
+    #header-service a,#header-help a{
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
     .shadow-box{
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .flex-center{
+        display: flex;
+		align-items: center;
+		justify-content: center;
+    }
+
+    #notice-num{
+        position: absolute;
+        right: 0;
+        top: 0;
+        color: var(--semi-green);
+        font-size: 1.5em;
+        font-weight: 600;
+        text-shadow: 2px 0px 0px white, 0 2px 0px white,  -2px 0 0px white,  0 -2px 0px white,  0 0 2px white;
     }
 </style>
 
@@ -233,7 +258,7 @@
             	<div id="header-quick-box">
 	                <a href=""><div class="img"></div><p>MyPage</p></a>
 	                <a href=""><div class="img"></div><p>Favorites</p></a>
-	                <a href=""><div class="img"></div><p>Notice</p></a>
+	                <a href=""><p id="notice-num">100</p><div class="img"></div><p>Notice</p></a>
 	                <a href=""><div class="img"></div><p>Logout</p></a>
 	            </div>
             <%}else{%>
@@ -244,7 +269,7 @@
             <%} %>
         </div>
     </header>
-    <nav>
+    <nav style="z-index: 100;">
         <div id="header-nav-box">
             <div class="img"></div>
             <div id="header-service">
