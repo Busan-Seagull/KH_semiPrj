@@ -261,7 +261,7 @@
         document.addEventListener('scroll', () => {
             // console.log(window.scrollY);
             const nav = document.querySelector('nav');
-            if(window.scrollY >= 200){
+            if(window.scrollY >= 150){
                 nav.classList.add('sticky');
             }else{
                 nav.classList.remove('sticky');

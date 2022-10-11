@@ -833,19 +833,23 @@
 	
 	let slPage = 0;
 
-	slBack.addEventListener('click', function(){
-		if(slPage>0){
-			slPage--;
-			serviceContain.style.left = -(slPage * 100) +'%';
-		}
-	});
+	if(slBack!=null){
+		slBack.addEventListener('click', function(){
+			if(slPage>0){
+				slPage--;
+				serviceContain.style.left = -(slPage * 100) +'%';
+			}
+		});
+	}
 
-	slNext.addEventListener('click', function(){
-		if(slPage<slSize-1){
-			slPage++;
-			serviceContain.style.left = -(slPage * 100) +'%';
-		}
-	});
+	if(slNext!=null){
+		slNext.addEventListener('click', function(){
+			if(slPage<slSize-1){
+				slPage++;
+				serviceContain.style.left = -(slPage * 100) +'%';
+			}
+		});
+	}
 
 	const pdNext = document.querySelector('#pd-next');
 	const pdBack = document.querySelector('#pd-back');
