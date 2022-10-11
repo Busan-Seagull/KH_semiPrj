@@ -1,0 +1,150 @@
+/* box 사이즈 */
+#rh-contain{
+    width: 1200px;
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    gap: 10px;
+}
+
+#rh-aside{
+    width: 300px;
+    height: 1500px;
+    background-color: gray;
+}
+
+#rh-main{
+    width: 850px;
+    padding: 10px 20px;
+}
+
+/* 헤더 */
+#rh-main-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* title */
+#r-title{
+    margin: 20px 0 10px 0  ;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: var(--serif);
+    gap: 10px;
+}
+
+#r-title span{
+    color: var(--semi-green);
+    font-size: 40px;
+}
+
+#r-title p{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+/* list box */
+br{
+    height: 10px;
+}
+
+#rh-main-list{
+    border: 1px solid red;
+    padding: 15px;
+}
+
+.rh-item{
+    padding: 20px 35px;
+    border: 1px solid var(--semi-green);
+    border-radius: 10px;
+}
+
+.rh-i-header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rh-i-header > div:nth-of-type(1){
+    width: 45%;
+}
+
+.rh-i-header > div:nth-of-type(2){
+    height: 60px;
+    width: 1px;
+    background-color: var(--semi-brown);
+    margin: 0 10px;
+}
+
+.rh-i-header > div:nth-of-type(3){
+    flex-grow: 1;
+}
+
+.rh-i-header h1{
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.rh-i-h-btn{
+    border: 1px solid var(--semi-green);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75em;
+    padding: 2px 7px;
+    margin: 5px;
+}
+
+.rh-i-h-btn:hover{
+    background-color: var(--semi-green);
+    color: white;
+}
+
+.rh-i-status{
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.rh-i-status-text{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.rh-i-status-text p{
+    width: 80px;
+    font-size: 0.75em;
+    text-align: center;
+}
+
+.pointer{
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    flex-shrink: 0;
+}
+
+.line{
+    height: 1px;
+    width: 165px;
+    background-color: red;
+    margin: 10px 0;
+}
+
+.none{
+    background-color: gray;
+}
+
+.stay{
+    border: 3px solid var(--semi-green);
+    background-color: white;
+}
