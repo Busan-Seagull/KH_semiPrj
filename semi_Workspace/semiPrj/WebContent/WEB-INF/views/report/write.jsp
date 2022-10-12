@@ -53,7 +53,7 @@ pageEncoding="UTF-8"%>
 }
 .h, #l{height: 45px;}
 
-#f,  #j{
+#f, #j{
 	display: flex;
 	text-align: center;
 	line-height: 45px;
@@ -103,14 +103,8 @@ border:none;
 border-bottom: 3px solid black;
 overflow:auto;
 }
-#reply{
-	width:100px;
-	display:flex;
-	position:relative;
-	left: 590px;
-	
-	
-}
+
+
 
 </style>
 </head>
@@ -146,20 +140,11 @@ overflow:auto;
 		<div id="l">신고내용</div>
 		<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
 	</div>
-	
-	
-	
 </div>
 
 <div id="i">
-	<div class="i1"><a href=""></a>삭제</div>
-	<div class="i1"><a href=""></a>수정</div>
 	<div class="i1"><a href=""></a>글목록</div>
-</div>
-
-<div id="reply">
-	<div>댓글</div>
-	<div>0</div>
+	<div class="i1"><a href=""></a>확인</div>
 </div>
 
 

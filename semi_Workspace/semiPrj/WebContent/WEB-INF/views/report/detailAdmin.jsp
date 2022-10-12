@@ -5,6 +5,11 @@ pageEncoding="UTF-8"%>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function openPop(){
+    var popup = window.open('http://www.naver.com', '네이버팝업', 'width=700px,height=400px,scrollbars=yes');
+}
+</script>
 
 <style type="text/css">
 
@@ -152,14 +157,15 @@ overflow:auto;
 </div>
 
 <div id="i">
+	<div class="i1"><a href=""></a>승인</div>
+	<div class="i1"><a href=""></a>반려</div>
 	<div class="i1"><a href=""></a>삭제</div>
 	<div class="i1"><a href=""></a>수정</div>
 	<div class="i1"><a href=""></a>글목록</div>
 </div>
 
 <div id="reply">
-	<div>댓글</div>
-	<div>0</div>
+	<div><a href="#none" target="_blank" onclick="openPop()">댓글쓰기</a></div>
 </div>
 
 

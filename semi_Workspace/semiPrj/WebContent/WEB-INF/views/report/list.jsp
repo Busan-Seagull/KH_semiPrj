@@ -9,15 +9,15 @@ pageEncoding="UTF-8"%>
 
 #main{
 	width: 960px;
-	height: 456px;
+	height: 505px;
 	border: 1px solid black;
 	border-left: none;
 	border-right: none;
 	margin: 0 auto;
 	position: relative;
-	top: 80px;
+	top: 30px;
 	border-bottom: 3px solid black;
-	border-top: 3px solid black;
+	border-top: none;
 	
 
 
@@ -25,8 +25,9 @@ pageEncoding="UTF-8"%>
 }
 .d1{
 	
-	height: 56px;
-	border-bottom: 1px solid black;
+	height: 45px;
+	border-bottom: 1px solid lightgray;
+	
 	
 
 	
@@ -36,11 +37,11 @@ pageEncoding="UTF-8"%>
 	background-color: #004412;
 	color: white;
 	margin: 0 auto;
-	border: 1px solid black;
+	
 	border-bottom: 3px solid black;
 	display: flex;
 	text-align: center;
-	line-height: 56px;
+	line-height: 45px;
 
 	
 }
@@ -48,16 +49,16 @@ pageEncoding="UTF-8"%>
 .d1{
 	display: flex;
 	text-align: center;
-	line-height: 56px;
+	line-height: 45px;
 }
 #c{
 	width: 100px;
 	height: 40px;
-	border: 1px solid black;
+	box-shadow:2px 2px lightgray;
 	background-color: #EAE0D4;
 	position: relative;
-	left: 420px;
-	top: 100px;
+	left: 425px;
+	bottom:40px;
 	text-align: center;
 	margin: 0 auto;
 	line-height :40px;
@@ -72,33 +73,47 @@ pageEncoding="UTF-8"%>
 	height: 25px;
 	background-color: black;
 	border: 1px solid black;
-	left: 220px;
-	top: 50px;
+	left: 600px;
+	top: 35px;
 }
 #b{
 	width: 200px;
 	height: 30px;
 	bottom: 80px;
-	left: 230px;
-	top: 25px;
+	left: 620px;
+	top: 10px;
 	font-weight: 500;
 	font-size: larger;
 
 }
 #t1{
 	width: 96px;
-	height: 56px;
+	height: 45px;
 }
 #t2{
 	width: 576px;
-	height: 56px;
+	height: 45px;
 }
 #t3{
 	width: 288px;
-	height: 56px;
+	height: 45px;
 }
 #page-area{
+	width:200px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	position: relative;
+	left:970px;
+	top: 50px;
 	
+	
+}
+.btn{
+	width:5px;
+	height:5px;
+	background-color:#004412;
+	color:white;
 }
 </style>
 </head>
@@ -156,12 +171,38 @@ pageEncoding="UTF-8"%>
 		<div class="content"></div>
 		<div class="content"></div>
 	</div>
+	<div class="d1">
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	<div class="d1">
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	<div class="d1">
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	
 	
 </div>
 
-<div id="page-area">1 2 3 4 5</div>
+<div id="page-area">
+	<div class="btn"><a>1</a></div> 
+	<div class="btn"><a>2</a></div> 
+	<div class="btn"><a>3</a></div> 
+	<div class="btn"><a>4</a></div> 
+	<div class="btn"><a>5</a></div> 
+</div>
 
 <div id="c"><a href=""></a>글쓰기</div>
+
+
+
+
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
