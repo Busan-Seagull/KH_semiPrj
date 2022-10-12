@@ -15,7 +15,7 @@ pageEncoding="UTF-8"%>
 	margin: 0 auto;
 	position: relative;
 	top: 30px;
-	
+	border-top: 3px solid #004412;
 	
 
 }
@@ -45,35 +45,35 @@ pageEncoding="UTF-8"%>
 
 }
 
-#f,#l, #t9, #t11{
-	background-color:  #004412;
-	color: white;
-	
 
-}
 .h, #l{height: 45px;}
 
 #f, #j{
 	display: flex;
 	text-align: center;
 	line-height: 45px;
-	border-bottom: 3px solid black;
+	
+}
+#f,#l{
+	border-bottom: 5px solid #004412;
+
+}
+#j{
+border-bottom: none;
 }
 
-#t4{width: 80px;}
-#t5{width: 160px;}
-#t6{width: 160px;}
-#t7{width: 480px;}
-#t8{width: 160px;}
-#t9{width: 144px; height: 46px;}
-#t10{width: 336px;}
-#t11{width: 144px;height: 46px;}
-#t12{width: 336px;}
-#t13{ width: 80px;}
-#t14{ width: 160px;}
-#t15{ width: 160px;}
-#t16{ width: 480px;}
-#t17{ width: 158px;}
+
+#t23{width: 96px;}
+#t24{width: 96px;}
+#t25{width: 528px;}
+#t26{width: 192px;}
+#t27{width: 144px;}
+#t28{width: 96px; height: 46px;}
+#t29{width: 96px;}
+#t30{width: 528px;height: 46px;}
+#t31{width: 192px;}
+#t32{ width: 144px;}
+
 
 .i1{
 	width: 100px;
@@ -96,11 +96,14 @@ pageEncoding="UTF-8"%>
 }
 #l{
 text-align:center;
-line-height:45px;}
+line-height:45px;
+background-color:#004412;
+color:white;
+}
 
 textarea{
 border:none;
-border-bottom: 3px solid black;
+border-bottom: 5px solid #004412;
 overflow:auto;
 }
 
@@ -119,25 +122,25 @@ overflow:auto;
 
 
 <div id="a"></div>
-<div id="b">신고게시판</div>
+<div id="b">리뷰게시판</div>
 
 <div id="main">
 	<div id="f">
-		<div class="h" id="t4">번호</div>
-		<div class="h" id="t5">신고할 회원</div>
-		<div class="h" id="t6">신고할 서비스</div>
-		<div class="h" id="t7">제목</div>
-		<div class="h" id="t8">작성자</div>
+		<div class="h" id="t23">번호</div>
+		<div class="h" id="t24">서비스 번호</div>
+		<div class="h" id="t25">제목</div>
+		<div class="h" id="t26">작성자</div>
+		<div class="h" id="t27">평점</div>
 	</div>
 	<div id="j">
-		<div class="h" id="t13"></div>
-		<div class="h" id="t14"></div>
-		<div class="h" id="t15"></div>
-		<div class="h" id="t16"></div>
-		<div class="h" id="t17"></div>
+		<div class="h" id="t28"></div>
+		<div class="h" id="t29"></div>
+		<div class="h" id="t30"></div>
+		<div class="h" id="t31"></div>
+		<div class="h" id="t32"></div>
 	</div>
 	<div>
-		<div id="l">신고내용</div>
+		<div id="l">내용</div>
 		<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
 	</div>
 </div>

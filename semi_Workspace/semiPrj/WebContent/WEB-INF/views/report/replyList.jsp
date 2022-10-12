@@ -7,10 +7,23 @@
 <title>Insert title here</title>
 <style type="text/css">
 #reply-main{
-	width:600px;
+	width:900px;
 	height:300px;
 	display:flex;
+	text-align:center;
+	line-height:100px;
 	
+}
+#top{
+	width:100px;
+	height:100px;
+	background-color:  #004412;
+	color: white;
+}
+#bottom{
+	width: 800px;
+	height:100px;
+	background-color: #EAE0D4;
 }
 </style>
 </head>
