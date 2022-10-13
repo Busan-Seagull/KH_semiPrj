@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberLoginController extends HttpServlet  {
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
 	}
 
 }
