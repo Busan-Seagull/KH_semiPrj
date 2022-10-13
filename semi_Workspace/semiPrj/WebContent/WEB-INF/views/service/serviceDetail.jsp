@@ -1,14 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/ryan/공통/집요정상세보기.css">
-    <link rel="stylesheet" href="/ryan/공통/main.css">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/dobby/resources/css/main.css">
+<link rel="stylesheet" href="/dobby/resources/css/serviceDetail.css">
 </head>
 <body>
+<%@include file="/WEB-INF/views/common/header.jsp"%>
     <div id="service-wrap">
         <div id="main-content">
             <div id="service-pic-container">
@@ -191,8 +192,7 @@
         </div>
         
     </div>
+    <%@include file="/WEB-INF/views/common/footer.jsp"%>
     
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
