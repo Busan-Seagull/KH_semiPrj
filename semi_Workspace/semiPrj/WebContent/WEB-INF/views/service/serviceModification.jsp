@@ -1,203 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/ryan/공통/main.css">
-<title>Document</title>
-<style>
-    *{
-        font-family: var(--sans);
-    }
-    div{
-        vertical-align: middle;
-    }
-    input{
-        height: 30px;
-        width: 90%;
-        border: 1px solid lightgrey;
-    }
-        #service-registration-wrap{
-        width: 900px;
-        height: 1300px;
-        border-radius: 10px;
-        border: 1px solid var(--semi-green);
-        margin: auto;
-        padding: 40px;
-        margin-top: 50px;
-        box-shadow: 0 5px 3px darkgreen;
-    }
-    #registration-title{
-        font-size: 25px;
-        color: var(--semi-green);
-        font-weight: 700;
-        margin-bottom: 70px;
-
-    }
-    #registration-form1{
-        display: grid;
-        grid-template-areas: 
-        'a b b c d'
-        'e f g h i'
-        'e f j k i'
-        'l m m m m'
-        'n o o p q'
-        'r s s t u';
-        grid-template-columns: 0.6fr 0.5fr 0.5fr 1fr 1fr;
-        grid-template-rows: repeat(27px, 5) 3fr;
-        grid-row-gap: 20px;
-    }
-    #registration-form1>div{
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--semi-green);
-
-        
-        
-    }
-    #service-name{
-        grid-area: a;
-    }
-    #service-name-input{
-        grid-area: b;
-    }
-    #service-category{
-        grid-area: c;
-        margin-left: 10px;
-    }
-    #service-category-input{
-        grid-area: d;
-    }
-    #profile-pic{
-        grid-area: e;
-        line-height: 70px;
-    }
-    #profile-pic-input{
-        grid-area: f;
-        border: 1px solid lightgrey;
-        width: 120px;
-        height: 120px;
-    }
-    #payment-unit{
-        grid-area: g;
-        margin-left: 20px;
-    }
-    #payment-unit-input{
-        grid-area: h;
-    }
-    #payment{
-        grid-area: j;
-        margin-left: 20px;
-    }
-    #payment-input{
-        grid-area: k;
-    }
-    #payment-method{
-        grid-area: i;
-        margin-left: 50px;
-    }
-    #introduction{
-        grid-area: l;
-    }
-    #introduction-input{
-        grid-area: m;
-    }
-    #introduction-input>input{
-        width: 96.5%;
-    }
-    #open-time{
-        grid-area: n;
-    }
-    #open-time-input{
-        grid-area: o;
-    }
-    #close-time{
-        grid-area: p;
-        margin-left: 10px;
-    }
-    #close-time-input{
-        grid-area: q;
-    }
-    #career-years{
-        grid-area: r;
-    }
-    #career-years-input{
-        grid-area: s;
-    }
-    #region{
-        grid-area: t;
-        margin-left: 10px;
-    }
-    #region-input{
-        grid-area: u;
-    }
-    #region-input>select{
-        width: 210px;
-    }
-    #service-pic-wrap{
-        margin-top: 20px;
-    }
-    #service-pic-wrap>div:not(:first-child){
-        display: inline-block;
-        border: 1px solid lightgrey;
-    }
-    .service-pic-input{
-        height: 120px;
-        width: 120px;
-    }
-    #service-pic-detail{
-        height: 120px;
-        width: 220px;
-    }
-    
-    #registration-button-div{
-        width: 400px;
-        margin: auto;
-        margin-top: 20px;
-    }
-    #registration-button{
-        background-color: var(--semi-green);
-        width: 400px;
-        height: 42px;
-        color: white;
-    }
-    .textarea-div{
-        display: inline-block;
-        width: 665px;
-        height: 230px;
-    }
-    .registration-t2{
-        width: 145px;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--semi-green);
-        display: inline-block;
-
-    }
-    textarea{
-        height: 220px;
-        width: 728px;
-        text-align: top;
-        border: 1px solid lightgrey;
-        resize: none;
-    }
-    #service-detail-wrap{
-        margin-top: 20px;
-    }
-    #payment-detail-wrap{
-        margin-top: 20px;
-    }
-    #registration-button{
-        border-radius: 5px;
-    }
-
-
-</style>
+<title>Insert title here</title>
+<link rel="stylesheet" href="/dobby/resources/css/main.css">
+<link rel="stylesheet" href="/dobby/resources/css/serviceModification.css">
 </head>
 <body>
+<%@include file="/WEB-INF/views/common/header.jsp"%>
     <div id="service-registration-wrap">
-        <div id="registration-title">서비스 등록하기</div>
+        <div id="registration-title">서비스 수정하기</div>
         <form action="">
             <div id="registration-form1">
                 <div id="service-name">서비스명</div>
@@ -206,7 +20,7 @@
                 </div>
                 <div id="service-category">서비스 카테고리</div>            
                 <div id="service-category-input">
-                    <input type="text">
+                    <input type="text" disabled>
                 </div>
                 <div id="profile-pic">프로필 사진</div>
                 <div id="profile-pic-input">
@@ -306,14 +120,11 @@
                 </div>
             </div>
             <div id="registration-button-div">
-                <input type="submit" value="등록하기" id="registration-button">
+                <input type="submit" value="수정하기" id="revise-button">
             </div>
-
-            
-            
-
         </form>
     </div>
+    <%@include file="/WEB-INF/views/common/footer.jsp"%>
     
 </body>
 </html>

@@ -5,208 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../ryan/공통/main.css">
+    <link rel="stylesheet" href="/ryan/공통/집요정리스트.css">
     <title>service-main</title>
-<style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-
-	#main-baner-box{
-		height: 200px;
-		/* position: relative; */
-        background-color: var(--semi-brown);
-        box-shadow: 0px 4px 5px grey ;
-       
-	}
-
-	main{
-		display: flex;
-		flex-direction: row;
-		width: 1200px;
-        margin: auto;
-        
-	}
-
-    #service-category{
-        width: 330px;
-        height: 500px;
-        margin-top: 30px;
-    }
-
-	#main-bottom{
-		height: 600px;
-	}
-
-    #service-category-h1{
-        height: 100px;
-        line-height: 100px;
-        font-size: 30px;
-        font-weight: 700;
-        border-bottom: 4px solid var(--semi-green);
-        color: black;
-    }
-    #service-category>ul>li{
-        list-style-type: none;
-        font-size: 20px;
-        line-height: 60px;
-        color: grey;
-    }
-    #service-main{
-        padding: 0px 20px;
-        margin-top: 30px;
-        width: 830px;
-        height: 1800px;
-    }
-    #service-main-category{
-        line-height: 60px;
-        color: grey;
-    }
-    #service-main-nav{
-        background-color: white;
-        height: 35px;
-        width: 870px;
-    }
-    .nav-select{
-        float: left;
-        border-radius: 5px;
-        color: grey;
-        border: 1px solid grey;
-        height: 35px;
-        line-height: 35px;
-        text-align: center;
-        font-size: 15px;
-    }
-    #select-region,  #select-date{
-        width: 120px;
-        margin-right: 10px;
-    }
-    
-    
-    #helper-number{
-        margin-top: 15px;
-        height: 40px;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 40px;
-    }
-    #helper-service-profile{
-        box-sizing: border-box;
-        display: grid;
-    }
-    #helper-search>form>input{
-        align-items: center;
-        align-content: center;
-    }
-
-    #search-img{
-        width: 30px;
-    }
-    
-    .helper-list-flex{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    #helper-search{
-        float: left;
-        margin-left: 210px;
-        width: 350px;
-    }
-    
-    #textbox-wrap{
-        float: left;
-        margin-left: 10px;
-        width: 270px;
-    }
-    #search-textbox{
-        height: 30px;
-        width: 270px;
-        border: none;
-        margin-left: 0;
-        ;
-    }
-    
-    #search-button-wrap{
-        float: left;
-        width: 40px;
-    }
-    #search-button{
-        width: 40px;
-        height: 30px;
-        border-left: 1px solid grey;
-        border-top: none;
-        border-bottom: none;
-        border-right: none;
-        font-size: 15px;
-        text-align: left;
-        padding: 3px;
-        color: grey;
-        background-color: white;        
-    }
-    #search-img{
-        float: left;
-        width: 20px;
-    }
-    
-    .helper-list-outline{
-        width: 830px;
-        height: 130px;
-        border-bottom: 1px solid lightgrey;
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-    .helper-list{
-        border: 1px solid lightgrey;
-        border-radius: 10px;
-        width: 830px;
-        height: 130px;
-        box-shadow: 0 4px 5px lightgrey;
-        display: grid;
-        grid-template-columns: 140px 90px 40px 40px 350px 170px;
-        grid-template-rows: 40px 50px 40px;
-        
-    }
-    .helper-profile1{
-        grid-row: 1/4;
-        grid-column: 1/2;
-    }
-    .helper-profile2{
-        grid-row: 1/2;
-        grid-column: 2/-2;
-    }
-    .helper-profile3{
-        grid-row: 1/2;
-        grid-column: -2/-1;
-    }
-    .helper-profile4{
-        grid-row: 2/3;
-        grid-column: 2/-2;
-    }
-    .helper-profile5{
-        grid-row: 2/4;
-        grid-column: -2/-1 ;
-    }
-    .helper-profile6{
-        grid-row: 3/4;
-        grid-column: 2/3;
-    }
-    .helper-profile7{
-        grid-row: 3/4;
-        grid-column: 3/4;
-    }
-    .helper-profile8{
-        grid-row: 3/4;
-        grid-column: 4/5;
-    }
-    .helpoer-profile9{
-        grid-row: 3/4;
-        grid-column: 5/6;
-    }
-
-    
-</style>
 </head>
 <body>
     <div id="main-baner-box">
@@ -224,9 +24,6 @@
                 <li>카테고리6</li>
             </ul>
 		</div>
-
-
-
 		<div id="service-main">
             <div id="service-main-category">카테고리1</div>
             <div id="service-main-nav">
@@ -247,83 +44,144 @@
             <div class= "helper-list-flex">
                 <div class="helper-list-outline">
                     <div class="helper-list">
-                        <div class="helper-profile1">집요정 프로필 이미지</div>
-                        <div class="helper-profile2">집고치는 집요정 | 집요정</div>
-                        <div class="helper-profile3">하트이미지</div>
-                        <div class="helper-profile4">모든집수리 다합니다 ~모든집수리 다합니다 ~</div>
-                        <div class="helper-profile5">평당 15,000원</div>
-                        <div class="helper-profile6">별이미지</div>
-                        <div class="helper-profile7">5</div>
-                        <div class="helper-profile8">(255개)</div>
-                        <div class="helper-profile9">"이 집 청소 잘하네요 ~"</div>
+                        <div class="helper-pic">
+                            <img src="/ryan/공통/resources/이상해씨.jpg" alt="">
+                        </div>
+                        <div class="helper-contents">
+                            <div>
+                                <h2>집고치는 집요정 | 집요정</h2>
+                                <p>모든 집 수리 다 합니다<br>
+                                    모든 집 수리 다해요 ~
+                                </p>
+                            </div>
+                            <div>
+                                <span class="starrr">★★★★★</span>
+                                <span class="star-num">5</span>
+                                <span class="comment">"이 집 청소 잘하네요~"</span>
+                            </div>
+                        </div>
+                        <div class="helper-contents2">
+                            <div class="favorite-btn-div">
+                                <button class="favorite-btn">
+                                    ♥찜하기
+                                </button>
+                            </div>
+                            <div class="service-pay">평당 15,000원</div>
+                        </div>
                     </div>                
                 </div>
                 <div class="helper-list-outline">
                     <div class="helper-list">
-                        <div class="helper-profile1"></div>
-                        <div class="helper-profile2"></div>
-                        <div class="helper-profile3"></div>
-                        <div class="helper-profile4"></div>
-                        <div class="helper-profile5"></div>
-                        <div class="helper-profile6"></div>
-                        <div class="helper-profile7"></div>
-                        <div class="helper-profile8"></div>
-                        <div class="helper-profile9"></div>
-                    </div>
+                        <div class="helper-pic">
+                            <img src="/ryan/공통/resources/이상해씨.jpg" alt="">
+                        </div>
+                        <div class="helper-contents">
+                            <div>
+                                <h2>집고치는 집요정 | 집요정</h2>
+                                <p>모든 집 수리 다 합니다<br>
+                                    모든 집 수리 다해요 ~
+                                </p>
+                            </div>
+                            <div>
+                                <span class="starrr">★★★★★</span>
+                                <span class="star-num">5</span>
+                                <span class="comment">"이 집 청소 잘하네요~"</span>
+                            </div>
+                        </div>
+                        <div class="helper-contents2">
+                            <div class="favorite-btn-div">
+                                <button class="favorite-btn">
+                                    ♥찜하기
+                                </button>
+                            </div>
+                            <div class="service-pay">평당 15,000원</div>
+                        </div>
+                    </div>                
                 </div>
                 <div class="helper-list-outline">
                     <div class="helper-list">
-                        <div class="helper-profile1"></div>
-                        <div class="helper-profile2"></div>
-                        <div class="helper-profile3"></div>
-                        <div class="helper-profile4"></div>
-                        <div class="helper-profile5"></div>
-                        <div class="helper-profile6"></div>
-                        <div class="helper-profile7"></div>
-                        <div class="helper-profile8"></div>
-                        <div class="helper-profile9"></div>
-                    </div>
+                        <div class="helper-pic">
+                            <img src="/ryan/공통/resources/이상해씨.jpg" alt="">
+                        </div>
+                        <div class="helper-contents">
+                            <div>
+                                <h2>집고치는 집요정 | 집요정</h2>
+                                <p>모든 집 수리 다 합니다<br>
+                                    모든 집 수리 다해요 ~
+                                </p>
+                            </div>
+                            <div>
+                                <span class="starrr">★★★★★</span>
+                                <span class="star-num">5</span>
+                                <span class="comment">"이 집 청소 잘하네요~"</span>
+                            </div>
+                        </div>
+                        <div class="helper-contents2">
+                            <div class="favorite-btn-div">
+                                <button class="favorite-btn">
+                                    ♥찜하기
+                                </button>
+                            </div>
+                            <div class="service-pay">평당 15,000원</div>
+                        </div>
+                    </div>                
                 </div>
                 <div class="helper-list-outline">
                     <div class="helper-list">
-                        <div class="helper-profile1"></div>
-                        <div class="helper-profile2"></div>
-                        <div class="helper-profile3"></div>
-                        <div class="helper-profile4"></div>
-                        <div class="helper-profile5"></div>
-                        <div class="helper-profile6"></div>
-                        <div class="helper-profile7"></div>
-                        <div class="helper-profile8"></div>
-                        <div class="helper-profile9"></div>
-                    </div>
+                        <div class="helper-pic">
+                            <img src="/ryan/공통/resources/이상해씨.jpg" alt="">
+                        </div>
+                        <div class="helper-contents">
+                            <div>
+                                <h2>집고치는 집요정 | 집요정</h2>
+                                <p>모든 집 수리 다 합니다<br>
+                                    모든 집 수리 다해요 ~
+                                </p>
+                            </div>
+                            <div>
+                                <span class="starrr">★★★★★</span>
+                                <span class="star-num">5</span>
+                                <span class="comment">"이 집 청소 잘하네요~"</span>
+                            </div>
+                        </div>
+                        <div class="helper-contents2">
+                            <div class="favorite-btn-div">
+                                <button class="favorite-btn">
+                                    ♥찜하기
+                                </button>
+                            </div>
+                            <div class="service-pay">평당 15,000원</div>
+                        </div>
+                    </div>                
                 </div>
                 <div class="helper-list-outline">
                     <div class="helper-list">
-                        <div class="helper-profile1"></div>
-                        <div class="helper-profile2"></div>
-                        <div class="helper-profile3"></div>
-                        <div class="helper-profile4"></div>
-                        <div class="helper-profile5"></div>
-                        <div class="helper-profile6"></div>
-                        <div class="helper-profile7"></div>
-                        <div class="helper-profile8"></div>
-                        <div class="helper-profile9"></div>
-                    </div>
+                        <div class="helper-pic">
+                            <img src="/ryan/공통/resources/이상해씨.jpg" alt="">
+                        </div>
+                        <div class="helper-contents">
+                            <div>
+                                <h2>집고치는 집요정 | 집요정</h2>
+                                <p>모든 집 수리 다 합니다<br>
+                                    모든 집 수리 다해요 ~
+                                </p>
+                            </div>
+                            <div>
+                                <span class="starrr">★★★★★</span>
+                                <span class="star-num">5</span>
+                                <span class="comment">"이 집 청소 잘하네요~"</span>
+                            </div>
+                        </div>
+                        <div class="helper-contents2">
+                            <div class="favorite-btn-div">
+                                <button class="favorite-btn">
+                                    ♥찜하기
+                                </button>
+                            </div>
+                            <div class="service-pay">평당 15,000원</div>
+                        </div>
+                    </div>                
                 </div>
-                <div class="helper-list-outline">
-                    <div class="helper-list">
-                        <div class="helper-profile1"></div>
-                        <div class="helper-profile2"></div>
-                        <div class="helper-profile3"></div>
-                        <div class="helper-profile4"></div>
-                        <div class="helper-profile5"></div>
-                        <div class="helper-profile6"></div>
-                        <div class="helper-profile7"></div>
-                        <div class="helper-profile8"></div>
-                        <div class="helper-profile9"></div>
-                    </div>  
-                </div>
-
             </div>
 		</div>
 
