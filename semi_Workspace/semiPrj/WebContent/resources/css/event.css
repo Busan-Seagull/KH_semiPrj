@@ -4,8 +4,8 @@
 }
 
 #main-container *{
-    box-sizing: border-box;
-    border: 1px solid red;
+    /* box-sizing: border-box;
+    border: 1px solid red; */
 }
 
 /* 보이기클래스 */
@@ -48,7 +48,8 @@
 #game-box,
 #game-title,
 #btn-box,
-#main-page, #game-page, #history-page, #ranck-page
+#main-page, #game-page, #history-page, #ranck-page,
+#difficulty-page
 {
     position: relative;
     display: flex;
@@ -59,7 +60,7 @@
     margin: 20px auto;
 }
 
-#main-page, #game-page, #history-page, #ranck-page{
+#main-page, #game-page, #history-page, #ranck-page, #difficulty-page{
     position: absolute;
 }
 
@@ -78,7 +79,10 @@
 }
 
 /* 버튼 */
-#btn-box > .btn{
+.e-btn{
+    margin: 5px;
+    padding: 10px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,12 +101,12 @@
     cursor: pointer;
 }
 
-#btn-box > .btn:hover{
+.e-btn:hover{
     background-color: rgba(255, 255, 255, 1);
 }
 
-#btn-box > .btn:hover::after,
-#btn-box > .btn:hover::before
+.e-btn:hover::after,
+.e-btn:hover::before
 {
     content: '';
     position: absolute;
@@ -113,11 +117,11 @@
     background-color: red;
 }
 
-#btn-box > .btn:hover::after{
+.e-btn:hover::after{
     left: -50px;
 }
 
-#btn-box > .btn:hover::before{
+.e-btn:hover::before{
     right: -50px;
 }
 
@@ -132,13 +136,11 @@
     width: 80%;
     height: 80%;
     align-items: flex-start;
+    padding: 20px;
 }
 
 #history-title{
     grid-column: 1/3;
-    font-size: 1.5em;
-    font-family: var(--ghana);
-    color: var(--semi-green);
     margin-top: 20px;
 }
 
@@ -147,7 +149,6 @@
 }
 
 #history-best{
-    border: 1px solid var(--semi-green);
     padding: 20px;
 }
 
@@ -167,4 +168,174 @@
     font-size: 3em;
     font-family: var(--ghana);
     padding: 10px;
+}
+
+#list-title{
+    border-bottom: 1px solid  var(--semi-green);
+    display: grid;
+    grid-template-columns: 1fr 2fr 4fr 2fr 2fr;
+
+    text-align: center;
+    padding: 5px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 0.8em;
+}
+
+.history-item{
+    display: grid;
+    grid-template-columns: 1fr 2fr 4fr 2fr 2fr;
+    text-align: center;
+    padding: 5px;
+    height: 35px;
+    align-items: center;
+    font-weight: 300;
+    font-size: 0.8em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+#ranck-title.flex-center, #history-title.flex-center{
+    gap: 10px;
+    font-size: 2em;
+    font-family: var(--ghana);
+    color: var(--semi-green);
+}
+
+
+/*랭킹 */
+#ranck-page{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 5fr;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 10px;
+
+    width: 80%;
+    height: 80%;
+
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#ranck-list{
+    align-self: flex-start;
+}
+
+
+#r-list-title{
+    align-self: flex-start;
+    border-bottom: 1px solid  var(--semi-green);
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 3fr 2fr 2fr;
+
+    text-align: center;
+    padding: 5px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 0.8em;
+}
+
+#ranck-title span{
+    font-size: 1.2em;
+}
+
+.ranck-item{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 3fr 2fr 2fr;
+    text-align: center;
+    padding: 5px;
+    align-items: center;
+    font-weight: 300;
+    height: 35px;
+    font-size: 0.8em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+#ranck-list > div:nth-of-type(2)::after,
+#ranck-list > div:nth-of-type(3)::after,
+#ranck-list > div:nth-of-type(4)::after
+{
+    content: '';
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+#ranck-list > div:nth-of-type(2),
+#ranck-list > div:nth-of-type(3),
+#ranck-list > div:nth-of-type(4)
+{
+    font-weight: 500;
+}
+
+#ranck-list > div:nth-of-type(2)::after{
+    background: url(/dobby/resources/img/event/001.png);
+    background-size: cover;
+}
+
+#ranck-list > div:nth-of-type(3)::after{
+    background: url(/dobby/resources/img/event/002.png);
+    background-size: cover;
+}
+
+#ranck-list > div:nth-of-type(4)::after{
+    background: url(/dobby/resources/img/event/003.png);
+    background-size: cover;
+}
+
+/* 난이도 */
+#eazy:hover{
+    box-shadow: 0px 0px 10px 3px rgba(15, 136, 15, 1);
+}
+
+#normal:hover{
+    box-shadow: 0px 0px 10px 3px rgba(227, 227, 21, 1);
+}
+
+#hard:hover{
+    box-shadow: 0px 0px 10px 3px rgba(230, 35, 35, 1);
+}
+
+/* 게임페이지 */
+#game-page{
+    width: 100%;
+    height: 100%;
+}
+#count-down{
+    position: absolute;
+    color: white;
+    font-family: var(--ghana);
+    font-size: 7em;
+}
+
+.e-count-down{
+    animation: count;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 3;
+}
+@keyframes count {
+    100%{
+        font-size: 0em;
+        opacity: 0;
+    }
+}
+
+.dust{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    /* left: 0;
+    top: 0; */
+    background-color: rebeccapurple;
+    background: url(/dobby/resources/img/event/dust2.png);
+    background-size: cover;
 }
