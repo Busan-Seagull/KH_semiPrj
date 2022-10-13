@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ryan/공통/main.css">
+    <title>Document</title>
+</head>
+<style>
+
+    /* 내 서비스 랩 */
+    #myservice-wrap{
+        width: 925px;
+        height: 1500px;
+        margin: auto;
+    }
+
+    /* 내 서비스 타이틀 */
+    #myservice-title{
+        border-bottom: 2px solid black;
+        width: 820px;
+        margin: auto;
+    }
+    #myservice-title h1{
+        /* font-size: 20px;
+        font-weight: 500; */
+        margin: 5px;
+    }
+
+
+    /* 집요정 프로필 */
+    .helper-list-outline{
+        margin: auto;
+        width: 820px;
+        height: 150px;
+        border-bottom: 1px solid lightgrey;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .helper-list{
+        border: 1px solid lightgrey;
+        border-radius: 10px;
+        width: 800px;
+        height: 130px;
+        box-shadow: 0 4px 5px lightgrey;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 10px;
+        justify-content: space-between;
+        
+    }
+    .helper-pic{
+        height: 130px;
+        width: 130px;
+        overflow: hidden;
+    }
+    .helper-pic>img{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+    .helper-contents{
+        margin-left: 10px;
+        width: 560px;
+        height: 130px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .helper-contents h2{
+        margin: 0;
+    }
+    .service-pay{
+        margin-top: 20px;
+    }
+    .starrr{
+        color: rgb(255, 219, 40);
+    }
+    .comment{
+        margin-left: 20px;
+        color: grey;
+        font-size: 12px;
+    }
+    .helper-contents p{
+        margin-top: 10px;
+    }
+    .helper-contents2{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100px;
+        width: 100px;
+        padding: 10px 0;
+    }
+    .helper-contents2 button{
+        border: none;
+        background-color: var(--semi-brown);
+        color: white;
+        width: 80px;
+        height: 23px;
+    }
+</style>
+<body>
+    <div id="myservice-wrap">
+
+        <div id="myservice-title">
+            <h1>내 서비스</h1>
+        </div>
+        
+        <div class= "helper-list-flex">
+            <div class="helper-list-outline">
+                <div class="helper-list">
+                    <div class="helper-pic">
+                        <img src="/ryan/공통/resources/이상해씨.jpg" alt="">
+                    </div>
+                    <div class="helper-contents">
+                        <div>
+                            <h2>집고치는 집요정 | 집요정</h2>
+                            <p>모든 집 수리 다 합니다<br>
+                                모든 집 수리 다해요 ~
+                            </p>
+                        </div>
+                        <div>
+                            <span class="starrr">★★★★★</span>
+                            <span class="star-num">5</span>
+                            <span class="comment">"이 집 청소 잘하네요~"</span>
+                        </div>
+                    </div>
+                    <div class="helper-contents2">
+                        <div id="btn1">
+                            <button>수정하기</button>
+                        </div>
+                        <div id="btn2">
+                            <button>삭제하기</button>
+                        </div>
+                        <div id="btn3">
+                            <button>리뷰보기</button>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
