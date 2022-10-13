@@ -9,15 +9,15 @@ pageEncoding="UTF-8"%>
 
 #main{
 	width: 960px;
-	height: 505px;
-	border: 1px solid black;
+	height: 507px;
+	
 	border-left: none;
 	border-right: none;
 	margin: 0 auto;
 	position: relative;
 	top: 30px;
-	border-bottom: 3px solid black;
-	border-top: none;
+	border-bottom: 3px solid #004412;
+	border-top: 3px solid #004412;
 	
 
 
@@ -33,17 +33,12 @@ pageEncoding="UTF-8"%>
 	
     }
 #e{
-	
-	background-color: #004412;
-	color: white;
 	margin: 0 auto;
-	
-	border-bottom: 3px solid black;
+	border-bottom: 5px solid #004412;
 	display: flex;
 	text-align: center;
 	line-height: 45px;
 
-	
 }
 
 .d1{
@@ -55,7 +50,8 @@ pageEncoding="UTF-8"%>
 	width: 100px;
 	height: 40px;
 	box-shadow:2px 2px lightgray;
-	background-color: #EAE0D4;
+	background-color: #004412;
+	color:white;
 	position: relative;
 	left: 425px;
 	bottom:40px;
@@ -86,16 +82,24 @@ pageEncoding="UTF-8"%>
 	font-size: larger;
 
 }
-#t1{
+#t18{
 	width: 96px;
 	height: 45px;
 }
-#t2{
-	width: 576px;
+#t19{
+	width: 96px;
 	height: 45px;
 }
-#t3{
-	width: 288px;
+#t20{
+	width: 528px;
+	height: 45px;
+}
+#t21{
+	width: 192px;
+	height: 45px;
+}
+#t22{
+	width: 144px;
 	height: 45px;
 }
 #page-area{
@@ -115,6 +119,17 @@ pageEncoding="UTF-8"%>
 	background-color:#004412;
 	color:white;
 }
+#op{
+	display:flex;
+	flex-direction:row-reverse;
+	position:relative;
+	right: 580px;
+	
+}
+select{
+	width:90px;
+	height:30px;
+}
 </style>
 </head>
 <body>
@@ -128,25 +143,27 @@ pageEncoding="UTF-8"%>
 
 
 <div id="a"></div>
-<div id="b">신고게시판</div>
+<div id="b">리뷰게시판</div>
 
+<div id="op">
+	<form action="">
+		<select>
+			<option>최신순</option>
+			<option>서비스순</option>
+		</select>
+	</form>
+</div>
 <div id="main">
 	<div id="e">
-		<div class="t" id="t1">번호</div>
-		<div class="t" id="t2">제목</div>
-		<div class="t" id="t3">작성자</div>
+		<div class="t" id="t18">번호</div>
+		<div class="t" id="t19">서비스 번호</div>
+		<div class="t" id="t20">제목</div>
+		<div class="t" id="t21">작성자</div>
+		<div class="t" id="t22">평점</div>
 	</div>
 	<div class="d1">
 		<div class="content"></div>
 		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
 		<div class="content"></div>
 		<div class="content"></div>
 		<div class="content"></div>
@@ -155,18 +172,12 @@ pageEncoding="UTF-8"%>
 		<div class="content"></div>
 		<div class="content"></div>
 		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
 		<div class="content"></div>
 		<div class="content"></div>
 	</div>
 	<div class="d1">
 		<div class="content"></div>
 		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
 		<div class="content"></div>
 		<div class="content"></div>
 		<div class="content"></div>
@@ -175,13 +186,47 @@ pageEncoding="UTF-8"%>
 		<div class="content"></div>
 		<div class="content"></div>
 		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	<div class="d1">
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
 	</div>
 	<div class="d1">
 		<div class="content"></div>
 		<div class="content"></div>
 		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
 	</div>
 	<div class="d1">
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	<div class="d1">
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	<div class="d1">
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	<div class="d1">
+		<div class="content"></div>
+		<div class="content"></div>
 		<div class="content"></div>
 		<div class="content"></div>
 		<div class="content"></div>
