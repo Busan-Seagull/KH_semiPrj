@@ -46,7 +46,7 @@
 
 </style>
 
-<div style="height: 300px;"></div>
+<div style="height: 50px;"></div>
 <footer>
     <img src="/dobby/resources/img/로고_흰색.png" alt="" id="footer-logo">
     <div id="footer-middle">
