@@ -1,0 +1,170 @@
+#main-container{
+    width: 1200px;
+    margin: auto;
+}
+
+#main-container *{
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+/* 보이기클래스 */
+.invisible{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+
+/* 타이틀 */
+#title{
+    margin: 20px 0 10px 0  ;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: var(--serif);
+    gap: 10px;
+}
+
+#title span{
+    color: var(--semi-green);
+    font-size: 40px;
+}
+
+#title p{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+/* 게임박스 */
+#game-box{
+    width: 80%;
+    height: 600px;
+    background-color: black;
+    padding: 30px;
+}
+
+#game-box,
+#game-title,
+#btn-box,
+#main-page, #game-page, #history-page, #ranck-page
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+}
+
+#main-page, #game-page, #history-page, #ranck-page{
+    position: absolute;
+}
+
+/* 게임타이틀 */
+#game-title > h1{
+    font-family: var(--ghana);
+    font-size: 5em;
+    color: white;
+}
+
+#game-title > p{
+    font-family: var(--serif);
+    font-size: 1.5em;
+    font-weight: 100;
+    color: white;
+}
+
+/* 버튼 */
+#btn-box > .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: var(--serif);
+    font-size: 2em;
+    font-weight: 900;
+
+    width: 500px;
+    height: 50px;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+
+    border-radius: 0;
+    cursor: pointer;
+}
+
+#btn-box > .btn:hover{
+    background-color: rgba(255, 255, 255, 1);
+}
+
+#btn-box > .btn:hover::after,
+#btn-box > .btn:hover::before
+{
+    content: '';
+    position: absolute;
+
+    width: 50px;
+    height: 50px;
+
+    background-color: red;
+}
+
+#btn-box > .btn:hover::after{
+    left: -50px;
+}
+
+#btn-box > .btn:hover::before{
+    right: -50px;
+}
+
+/* 히스토리페이지 */
+#history-page{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 10px;
+    width: 80%;
+    height: 80%;
+    align-items: flex-start;
+}
+
+#history-title{
+    grid-column: 1/3;
+    font-size: 1.5em;
+    font-family: var(--ghana);
+    color: var(--semi-green);
+    margin-top: 20px;
+}
+
+#history-list{
+    height: 400px;
+}
+
+#history-best{
+    border: 1px solid var(--semi-green);
+    padding: 20px;
+}
+
+#history-best > h2{
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--semi-green);
+}
+
+#history-best > h2,
+#history-best > div > div:nth-of-type(1){
+    font-weight: 700;
+    font-family: var(--serif);
+    margin-bottom: 10px;
+}
+
+#history-best > div > div:nth-of-type(2){
+    font-size: 3em;
+    font-family: var(--ghana);
+    padding: 10px;
+}

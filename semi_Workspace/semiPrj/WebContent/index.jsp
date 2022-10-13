@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/dobby/main">메인으로</a>
+
 </body>
 </html>
