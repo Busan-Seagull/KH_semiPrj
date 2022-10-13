@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     function addr_execDaumPostcode() {
         new daum.Postcode({
@@ -55,46 +57,209 @@
 
     }
 </script>
+
 <style>
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+
  #join-main{
     width: 600px;
-    height: 1150px;
+    height: auto;
     background: #FFFFFF;
     border: 1px solid #999999;
     border-radius: 18px;
     margin: 85px auto;
    }
 
-   form{
-      width: 100%;
-      height: 100%;
-     
-   }
+   
+   
 
    #join-area{
       width: 400px;
       height: 70%;
-      border: 1px solid red;
+      /* border: 1px solid red; */
       display: grid;
+      grid-template-rows: repeat(25, 45px);
       padding: 99px;
       margin: auto;
       justify-items: left;
+      position: relative;
+      
+   }
+
+   input,select{
+    border: 0.75px solid #DEDEDE;
+   
    }
 
    #right{
         width: 400px;
-        height: 43px;
+        height: 42px;
         background: rgba(0, 68, 18, 0.07);
         display: flex;
         justify-content: center;
+        align-content: center;
         align-items: center;
         margin: auto;
    }
 
-   #join-area>div{
-    width: 400px;
-
+   #join-title{
+    font-family: var(--sans);
+    font-weight: 500;
+    color: var(--semi-green);
+    font-size: 16pt;
    }
+   #join-title span{
+    margin-right: 10px;
+   }
+
+   #right label{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 10px;
+        
+   }
+   .text,#zip_right.text{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 5px;
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--semi-green);
+    height: 42px;
+   }
+
+   #id{
+    display: flex;
+    width: 400px;
+    height: 42px;
+    margin: 0;
+    padding: 0;
+   }
+
+
+   #id input:nth-child(1){
+    width: 296.5px;
+   }
+
+   #id input:nth-child(2){
+    width: 98px;
+   }
+
+   #pwd input,#nick input,#name input{
+    width: 400px;
+    height: 42px;
+   }
+
+   #phone, #email, #address,#addr-detail,#br_num{
+    display: flex;
+    width: 400px;
+    height: 42px;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+   }
+
+   #phone span{
+    width: 8px;
+    margin: 0 3px;
+   }
+
+   #phone select,#phone input, #email input,#br_num input{
+    width: 120px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0;
+   }
+
+
+   #email select{
+    box-sizing: border-box;
+    width: 256px;
+    height: 100%;
+    padding: 10px;
+    color: #999999;
+   }
+
+   #phone select,#account select{
+    padding: 10px;
+    color: #999999;
+   }
+
+   #address{
+    grid-row: span 2;
+   }
+
+   #addr{
+    width: 300px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    
+   }
+
+  
+
+    #address>input:nth-child(2){
+    width: 100px;
+    height: 100%;
+    box-sizing: border-box;
+    
+   }
+   #addr-detail{
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px;
+   }
+
+  
+   #zip_right{
+    /* display: none; */
+    grid-row: span 4;
+    
+   }
+
+   #account input{
+    box-sizing: border-box;
+    width: 290px;
+    height: 100%;
+    padding: 10px;
+    color: #999999;
+   }
+
+   
+
+   /*초록버튼들 */
+   input[type=button],input[type=submit]{
+    background-color:var(--semi-green);
+    color: white;
+   }
+
+   #sub-btn{
+    grid-row: span 2;
+    margin: auto;
+   }
+
+
+   #sub-btn input{
+    width: 400px;
+    height: 42px;
+
+    
+   }
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -106,37 +271,37 @@
     <form action="/dobby/member/join" method="post">
     
     <div id="join-area">
-            <div id="join-title">회원가입</div>
+            <div id="join-title"><span class="material-symbols-outlined">magic_button</span>회원가입</div>
             <div id="right">
                 <label> 일반 회원
                     <input type="radio" name="userRight" value="1">
                 </label>
 
                 <label> 집요정
-                    <input type="radio" name="userRight" value="2">
+                    <input type="radio" id="userRight" name="userRight" value="2">
                 </label> 
             </div>
 
-            <div>아이디</div>
-            <div>
+            <div class="text">아이디</div>
+            <div id="id">
                 <input type="text" name="memberId">
                 <input type="button" value="중복확인">
             </div>
 
-            <div>비밀번호</div>
-            <div><input type="password" name="memberPwd1"></div>
+            <div class="text">비밀번호</div>
+            <div id="pwd"><input type="password" name="memberPwd1"></div>
 
-            <div>비밀번호 확인</div>
-            <div><input type="password" name="memberPwd2"></div>
+            <div class="text">비밀번호 확인</div>
+            <div id="pwd"><input type="password" name="memberPwd2"></div>
 
-            <div>닉네임</div>
-            <div><input type="text" name="memberNick"></div>
+            <div class="text">닉네임</div>
+            <div id="nick"><input type="text" name="memberNick"></div>
 
-            <div>이름</div>
-            <div><input type="text" name="memberName"></div>
+            <div class="text">이름</div>
+            <div id="name"><input type="text" name="memberName"></div>
 
-            <div>휴대폰 번호</div>
-            <div>
+            <div class="text">휴대폰 번호</div>
+            <div id="phone">
                 <select name="phone1">
                     <option value=""selected>선택</option>
                       <!-- 직접입력 밸류 값 챙기셈 -->
@@ -144,15 +309,16 @@
                     <option value="010">010</option>
    
                    </select>
-                   -
+                   <span>-</span> 
                    <input type="text" name="phone2" size="4" />
-                   -
+                   <span>-</span> 
                    <input type="text" name="phone3" size="4" />
             </div>
 
-            <div>이메일</div>
-            <div>
-                <input type="text" name="Email1"/>@
+            <div class="text">이메일</div>
+            <div id="email">
+                <input type="text" name="Email1"/>
+                <span>@</span> 
                 <select name="Email2">
                     <option value=""selected>직접입력</option>
                     <!-- 직접입력 밸류 값 챙기셈 -->
@@ -161,15 +327,60 @@
                    </select>
             </div>
 
-            <div>주소</div>
-            <div>
-                <input type="text" id="addr" name="addr" placeholder="주소">
-                <input type="button" onclick="addr_execDaumPostcode()" value="주소 찾기"><br>
+            <div class="text">주소</div>
+            <div id="address">
+                <input type="text" id="addr" name="addr" placeholder="주소"><input type="button" onclick="addr_execDaumPostcode()" value="주소검색">
                 <input type="text" id="addr-detail" name="addr-detail" placeholder="상세주소">
             </div>
 
+            <div id="zip_right">
+                <div id="br_num_text" class="text">사업자 등록번호</div>
+                <div id="br_num">
+                    <input type="text" name="br_num1" size="3" />
+                    <span>-</span> 
+                    <input type="text" name="br_num2" size="2" />
+                    <span>-</span> 
+                    <input type="text" name="br_num3" size="5" />
+                </div>
+    
+                <div id="account_text" class="text">계좌번호</div>
+                <div id="account">
+                    <select name="account1">
+                        <option value=""selected>은행명</option>
+                          <!-- 직접입력 밸류 값 챙기셈 -->
+                        <option value="011">카카오뱅크</option>
+                        <option value="010">신한은행</option>
+                        <option value="010">우리은행</option>
+       
+                    </select>
+                       <input type="text" name="account2" size="14" />
+    
+                </div>
+            </div>
+           
+            <script>
+
+                    $('input:radio[name="userRight"]').click(function() {
+                        if ($(this).val() != 2 ) {
+                            $('#zip_right').css('display','none');
+                           
+                           
+                        }else if( $(this).val()==null){
+                            $('#zip_right').css('display','none');
+                        } else{
+                           
+                            $('#zip_right').css('display','');
+                           
+                        }
+                    });
+
+
+            </script>
             
-            <div><input type="submit" value="회원가입"></div>
+
+            
+            <div id="sub-btn"><input type="submit" value="회원가입"></div>
+
 
 
       

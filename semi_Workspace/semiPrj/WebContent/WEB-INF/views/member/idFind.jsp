@@ -18,7 +18,7 @@
    }
 
 
-   #login-area{
+   #findid-area{
         width: 400px;
         height: 70%;
         /* border: 1px solid red; */
@@ -37,16 +37,17 @@
 
    input,select{
     border: 0.75px solid #DEDEDE;
+
    
    }
 
-   #login-title{
+   #id-title{
     font-family: var(--sans);
     font-weight: 500;
     color: var(--semi-green);
     font-size: 16pt;
    }
-   #login-title span{
+   #id-title span{
     margin-right: 10px;
    }
 
@@ -60,9 +61,10 @@
     height: 42px;
    }
 
-   #pwd input,#id input{
-    width: 400px;
+   #phone input,#name input{
+    width: 380px;
     height: 42px;
+    padding:0 10px;
    }
 
     /*초록버튼들 */
@@ -85,7 +87,6 @@
 
    #join a,#find a{
     color: var(--semi-green);
-    
    }
 
 
@@ -95,39 +96,36 @@
 <body>
 <%@include file="/WEB-INF/views/common/header.jsp" %>
 
-	<div id = "member-box">
+<div id = "member-box">
  
              
-        <form action="/dobby/member/login" method="" >
+    <form action="/dobby/member/findid" method="" >
 
-            <div id="login-area">
-                <div id="login-title"><span class="material-symbols-outlined">magic_button</span>로그인</div>
-                <div class="text">아이디</div>
-                <div id="id">
-                    <input type="text" name="memberId">
-                </div>
-    
-                <div class="text">비밀번호</div>
-                <div id="pwd"><input type="password" name="memberPwd"></div>
-    
-                <div><input type="submit" value="로그인"></div>
+        <div id="findid-area">
+            <div id="id-title"><span class="material-symbols-outlined">magic_button</span>아이디 찾기</div>
+            <div class="text">가입 시 입력했던 이름을 입력해주세요</div>
+            <div id="name">
+                <input type="text" name="memberName" placeholder="이름">
             </div>
-            
 
-        </form>
+            <div class="text">가입 시 입력했던 휴대폰 번호를 입력해주세요</div>
+            <div id="phone"><input type="text" name="phone" placeholder="휴대폰 번호 - 생략"></div>
 
-
-        <div id="login-etc">
-            <div id="join">집요정에 가입하세요.&nbsp&nbsp&nbsp<a href="/dobby/member/join"> 회원가입</a></div>
-            <div id="find">계정을 잃어버리셨나요?&nbsp&nbsp&nbsp<a href="/dobby/member/findid">아이디 찾기</a>&nbsp|&nbsp<a href="/dobby/member/findpwd">비밀번호 찾기</a></div>
+            <div><input type="submit" value="아이디 찾기" onclick="window.open('http://127.0.0.1:8888/dobby/member/findidresult', '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no')"></div>
         </div>
+        
+
+    </form>
 
 
-       
-   
-           
-
+    <div id="login-etc">
+        <div id="join">집요정에 가입하세요.&nbsp&nbsp&nbsp<a href="/dobby/member/join"> 회원가입</a></div>
+        <div id="find">계정을 잃어버리셨나요?&nbsp&nbsp&nbsp<a href="/dobby/member/findid">아이디 찾기</a>&nbsp|&nbsp<a href="/dobby/member/findpwd">비밀번호 찾기</a></div>
     </div>
-    <%@include file="/WEB-INF/views/common/footer.jsp" %>
+
+
+</div>
+
+<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
