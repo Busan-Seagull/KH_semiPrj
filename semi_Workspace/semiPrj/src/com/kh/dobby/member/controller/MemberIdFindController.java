@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(urlPatterns = "/member/findid")
-public class memberIdFindController extends HttpServlet {
+public class MemberIdFindController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

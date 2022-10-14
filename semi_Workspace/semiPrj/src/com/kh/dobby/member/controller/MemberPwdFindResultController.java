@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(urlPatterns = "/member/findidresult")
-public class memberIdFindResultController extends HttpServlet {
+@WebServlet(urlPatterns = "/member/findpwdresult")
+public class MemberPwdFindResultController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/member/idFindResult.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/member/pwdFindResult.jsp").forward(req, resp);
     }
 
 }
