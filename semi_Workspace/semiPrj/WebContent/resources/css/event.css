@@ -41,7 +41,9 @@
 #game-box{
     width: 80%;
     height: 600px;
-    background-color: black;
+    /* background-color: black; */
+    background: url(/dobby/resources/img/event/easy.png);
+    background-size: cover;
     padding: 30px;
 }
 
@@ -49,7 +51,7 @@
 #game-title,
 #btn-box,
 #main-page, #game-page, #history-page, #ranck-page,
-#difficulty-page
+#difficulty-page, #end-page
 {
     position: relative;
     display: flex;
@@ -60,7 +62,7 @@
     margin: 20px auto;
 }
 
-#main-page, #game-page, #history-page, #ranck-page, #difficulty-page{
+#main-page, #game-page, #history-page, #ranck-page, #difficulty-page, #end-page{
     position: absolute;
 }
 
@@ -114,7 +116,8 @@
     width: 50px;
     height: 50px;
 
-    background-color: red;
+    background: url(/dobby/resources/img/dust2.png);
+    background-size: cover;
 }
 
 .e-btn:hover::after{
@@ -292,7 +295,7 @@
 }
 
 /* 난이도 */
-#eazy:hover{
+#easy:hover{
     box-shadow: 0px 0px 10px 3px rgba(15, 136, 15, 1);
 }
 
@@ -308,6 +311,8 @@
 #game-page{
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    cursor: none;
 }
 #count-down{
     position: absolute;
@@ -336,6 +341,92 @@
     /* left: 0;
     top: 0; */
     background-color: rebeccapurple;
-    background: url(/dobby/resources/img/event/dust2.png);
+    background: url(/dobby/resources/img/event/dust3.png);
     background-size: cover;
+}
+
+#cursor{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(/dobby/resources/img/event/마우스.png);
+    background-size: cover;
+}
+
+.point{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(/dobby/resources/img/event/point.gif);
+    background-size: contain;
+    background-repeat: none;
+}
+
+#score-box{
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    font-size: 2em;
+    top: 30px;
+    left: 700px;
+    color: white;
+    font-family: var(--ghana);
+}
+
+.normal-back{
+    background: url(/dobby/resources/img/event/normal.png);
+    background-size: cover;
+}
+
+.hard-back{
+    background: url(/dobby/resources/img/event/hard.png);
+    background-size: cover;
+}
+
+/* end 페이지 */
+#end-page{
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 10px;
+
+    width: 80%;
+    height: 80%;
+
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#end-page > h1{
+    width: 400px;
+    font-weight: 600;
+    font-family: var(--serif);
+    font-size: 2em;
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+#end-page > div:nth-of-type(1){
+    font-family: var(--ghana);
+    font-size: 5em;
+    margin-bottom: 60px;
+}
+
+#end-page > div:nth-of-type(2){
+    color: var(--semi-green);
+    font-size: 1.2em;
+    width: 400px;
+    justify-content: space-between;
+}
+
+#end-page > div:nth-of-type(2) > .btn{
+    border: 1px solid var(--semi-green);
 }

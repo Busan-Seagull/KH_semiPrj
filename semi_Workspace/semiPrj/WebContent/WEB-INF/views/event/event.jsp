@@ -19,7 +19,7 @@
         </div>
 		<div id="game-box">
 
-			<div id="main-page" class="invisible">
+			<div id="main-page">
 				<div id="game-title">
 					<h1>도비를 도와줘</h1>
 					<p>- H E L P D O B B Y -</p>
@@ -31,16 +31,31 @@
 				</div>
 			</div>
 
-			<div id="difficulty-page" class="">
-				<div id="eazy" class="e-btn">EAZY</div>
+			<div id="difficulty-page" class="invisible">
+				<div id="easy" class="e-btn">EAZY</div>
 				<div id="normal" class="e-btn">NORMAL</div>
 				<div id="hard" class="e-btn">HARD</div>
 			</div>
 
 			<div id="game-page" class="invisible">
+				<div id="score-box"><span>SCORE : </span><span id="score">0</span></div>
 				<div id="count-down">3</div>
+				<div id="cursor"></div>
 			</div>
 			
+			<div id="end-page" class="invisible">
+				<h1>나의 점수는</h1>
+				<div id="my-score">0</div>
+				<div class="flex-center">
+					<div>
+						획득 포인트 :
+						<span id="get-point">10</span><span>pt</span>
+					</div>
+					<div class="btn flex-center">확인</div>
+				</div>
+
+			</div>
+
 			<div id="history-page" class="invisible">
 				<div id="history-title" class="flex-center">
 					<span class="material-symbols-outlined">signal_cellular_alt</span>
