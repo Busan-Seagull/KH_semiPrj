@@ -3,6 +3,7 @@
     }
     #service-registration-wrap div{
         vertical-align: middle;
+        overflow:hidden;
     }
     #registration-form1 input{
         height: 30px;
@@ -171,7 +172,7 @@
     }
     textarea{
         height: 220px;
-        width: 728px;
+        width: 670px;
         text-align: top;
         border: 1px solid lightgrey;
         resize: none;
