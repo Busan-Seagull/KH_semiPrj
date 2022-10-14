@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 
 #first{
 	width: 960px;
-	height: 500px;
+	height: 750px;
 	margin: 0 auto;
 }
 
@@ -18,13 +18,15 @@ pageEncoding="UTF-8"%>
 #second{
 	display:flex;
 	margin: 0 auto;
+	position:relative;
+	top:30px;
 	
 	
 	
 }
 #a{
 	width: 2px;
-	height: 25px;
+	height: 20px;
 	background-color: black;
 	border: 1px solid black;
 	margin-right:5px;
@@ -86,8 +88,8 @@ pageEncoding="UTF-8"%>
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
-	top: 30px;
-	left: 300px;
+	top: 60px;
+	left: 290px;
 }
 #l{
 text-align:center;
@@ -98,18 +100,32 @@ border:none;
 border-bottom: 3px solid black;
 overflow:auto;
 }
-#reply{
-	width:100px;
-	display:flex;
-	margin-right:100px;
-	position:relative;
-	top:50px;
-	
-	
-}
+
 #main{
 	position:relative;
 	top: 50px;
+}
+
+#reply-main{
+	width:960px;
+	height:300px;
+	display:flex;
+	text-align:center;
+	line-height:100px;
+	position:relative;
+	top:100px;
+	
+}
+#top{
+	width:130px;
+	height:100px;
+	background-color:  #004412;
+	color: white;
+}
+#bottom{
+	width: 830px;
+	height:98px;
+	border: 1px solid #004412;
 }
 
 
@@ -153,16 +169,14 @@ overflow:auto;
 		<div class="i1"><a href=""></a>수정</div>
 		<div class="i1"><a href=""></a>글목록</div>
 	</div>
-	<div id="reply">
-		<div>댓글</div>
-		<div>0</div>
+	<div id="reply-main">
+		<div id="top">관리자</div>
+		<div id="bottom">댓글 내용</div>
 	</div>
 </div>
 
 
-
-
-
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 </body>
 </html>
