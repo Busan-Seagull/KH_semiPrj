@@ -163,7 +163,6 @@
     }
 
     #page-nation .num{
-       
         padding: 0;
         width: 30px;
         height: 30px;

@@ -256,6 +256,81 @@
         font-weight: 600;
         text-shadow: 2px 0px 0px white, 0 2px 0px white,  -2px 0 0px white,  0 -2px 0px white,  0 0 2px white;
     }
+    
+    /*페이징*/
+	#page-area{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        
+    }
+
+    #page-nation{
+        list-style: none;
+        display: inline-block;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    #page-nation li{
+        display: inline;
+        text-align: center;
+        margin:0 10px;
+      
+    }
+    
+    #page-nation li a{
+	    text-decoration: none;
+	    color: #999999;
+	    font-size: 15px;
+	    font-family: var(--sans);
+	}
+	
+	#page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
+	    color:var(--semi-green)
+	}
+
+    #page-nation .right.none-select:hover,  #page-nation .left.none-select:hover{
+	    color: #999999;
+	}
+	
+	
+	#page-nation a:active{
+	    cursor: default;
+	    color: white;
+	}
+	
+	#page-nation .num{
+	   
+	    padding: 0;
+	    width: 30px;
+	    height: 30px;
+	    display: inline-block;
+	    border-radius: 100%;
+	    line-height: 30px;
+	}
+	
+	#page-nation .num:hover{
+	    background-color: var(--semi-green);
+	    color: white;
+	}
+	
+	#page-nation .num:active{
+	    background-color: var(--semi-green);
+	    cursor: pointer;
+	}
+	
+	#page-nation .p-none{
+		visibility: hidden;
+	}
+	
+	#page-nation .current{
+		background-color: var(--semi-green);
+		color: white;
+	}
+	
 </style>
 
 <script>

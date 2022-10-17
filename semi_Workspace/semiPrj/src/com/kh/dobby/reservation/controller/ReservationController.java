@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.dobby.common.PageVo;
+
 @WebServlet(urlPatterns = "/reservation")
 public class ReservationController extends HttpServlet{
 
