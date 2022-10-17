@@ -1,5 +1,9 @@
+<%@page import="com.kh.dobby.common.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% PageVo pv = (PageVo)request.getAttribute("pv");%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,6 +147,58 @@
 						</form>
 					</div>
 				</div>
+
+				<!-- 페이징 -->
+				<div id="page-area">
+					<ul id="page-nation">
+						<li><a href="/dobby/reservation/history?pno=1" class="first"><<</a></li>
+						<li><a class="arrow left"><</a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="arrow right">></a></li>
+						<li><a href="/dobby/reservation/history?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
+					</ul>
+				</div>
+				<script>
+					const pageNation = document.querySelector('#page-nation');
+					const numArr = pageNation.querySelectorAll('.num');
+					const left = pageNation.querySelector('.arrow.left');
+					const right = pageNation.querySelector('.arrow.right');
+
+					<%if(pv.getStartPage() > 1){%>
+						left.href = '/dobby/reservation/history?pno=<%=pv.getStartPage()-1%>';
+					<%}else{%>
+						left.classList.add('none-select');
+					<%}%>
+
+					<%if(pv.getEndPage() != pv.getMaxPage()){%>
+						right.href = '/dobby/reservation/history?pno=<%=pv.getEndPage()+1%>';
+					<%}else{%>
+						right.classList.add('none-select');
+					<%}%>
+
+					let page = <%=pv.getStartPage()%>;
+
+					for (let i = 0; i < numArr.length; i++) {
+						const num = numArr[i];
+						
+						if(page==<%=pv.getCurrentPage()%>){
+							num.classList.add('current');
+						}
+						
+						if(page<1 || page><%=pv.getMaxPage()%>){
+							num.classList.add('p-none');
+						}else{
+							num.href = '/dobby/reservation/history?pno='+page;
+						}
+						num.innerHTML = page;
+						page++;
+					}
+				</script>
+
 			</div>
 		</div>
 	</div>
