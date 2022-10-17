@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
 <link rel="stylesheet" href="/dobby/resources/css/serviceList.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
@@ -39,9 +40,9 @@
 						<div id="search-button-wrap">
 							<input type="submit" value="검색" id="search-button">
 						</div>
-						<div id="search-img"><span class="material-symbols-outlined">
-							search
-							</span></div>
+						<div id="search-img">
+							<span class="material-symbols-outlined"> search </span>
+						</div>
 					</form>
 				</div>
 
@@ -173,6 +174,55 @@
 						</div>
 					</div>
 				</div>
+				<div id="page-area">
+					<ul id="page-nation">
+						<li><a href="#" class="first"><<</a></li>
+						<li><a href="#" class="arrow left"><</a></li>
+						<li><a href="#" class="num">1</a></li>
+						<li><a href="/" class="num">2</a></li>
+						<li><a href="/" class="num">3</a></li>
+						<li><a href="/" class="num">4</a></li>
+						<li><a href="/" class="num">5</a></li>
+						<li><a href="/" class="arrow right">></a></li>
+						<li><a href="/" class="last">>></a></li>
+					</ul>
+				</div>
+				<script>
+					const pageNation = document.querySelector('#page-nation');
+					const numArr = pageNation.querySelectorAll('.num');
+					const left = pageNation.querySelector('.arrow.left');
+					const right = pageNation.querySelector('.arrow.right');
+
+					<%if(pv.getStartPage() > 1){%>
+						left.href = '/dobby/reservation/history?pno=<%=pv.getStartPage()-1%>';
+					<%}else{%>
+						left.classList.add('none-select');
+					<%}%>
+
+					<%if(pv.getEndPage() != pv.getMaxPage()){%>
+						right.href = '/dobby/reservation/history?pno=<%=pv.getEndPage()+1%>';
+					<%}else{%>
+						right.classList.add('none-select');
+					<%}%>
+
+					let page = <%=pv.getStartPage()%>;
+
+					for (let i = 0; i < numArr.length; i++) {
+						const num = numArr[i];
+						
+						if(page==<%=pv.getCurrentPage()%>){
+							num.classList.add('current');
+						}
+						
+						if(page<1){
+							num.classList.add('p-none');
+						}else{
+							num.href = '/dobby/reservation/history?pno='+page;
+						}
+						num.innerHTML = page;
+						page++;
+					}
+				</script>
 			</div>
 		</div>
 
