@@ -1,5 +1,9 @@
+<%@page import="com.kh.dobby.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+String root=request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +79,7 @@
     margin: 30px auto ;
    }
 
-   #join,#find{
+   #join,#find,#loging{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,18 +91,24 @@
     color: var(--semi-green);
     
    }
+   
+   .loging{
+   grid-rows:span 7;
+   }
+   
+   
 
 
 
 </style>
 </head>
 <body>
+ 
 <%@include file="/WEB-INF/views/common/header.jsp" %>
 
 	<div id = "member-box">
- 
-             
-        <form action="/dobby/member/login" method="" >
+	<%if(loginMember == null){%>
+        <form action="/dobby/member/login" method="post" >
 
             <div id="login-area">
                 <div id="login-title"><span class="material-symbols-outlined">magic_button</span>로그인</div>
@@ -118,16 +128,21 @@
 
 
         <div id="login-etc">
-            <div id="join">집요정에 가입하세요.&nbsp&nbsp&nbsp<a href="/dobby/member/join"> 회원가입</a></div>
-            <div id="find">계정을 잃어버리셨나요?&nbsp&nbsp&nbsp<a href="/dobby/member/findid">아이디 찾기</a>&nbsp|&nbsp<a href="/dobby/member/findpwd">비밀번호 찾기</a></div>
+            <div id="join">집요정에 가입하세요.&nbsp&nbsp&nbsp<a href="<%=root%>/member/join"> 회원가입</a></div>
+            <div id="find">계정을 잃어버리셨나요?&nbsp&nbsp&nbsp<a href="<%=root%>/member/findid">아이디 찾기</a>&nbsp|&nbsp<a href="<%=root%>/member/findpwd">비밀번호 찾기</a></div>
         </div>
 
 
-       
-   
-           
+       <%}else{%>
+        <div id="login-area" class="loging">
+                  <div id="loging"><%=loginMember.getNick()%>님! 이미 로그인 중 입니다.</div> 
+                </div>
+       <%}%>
+  
+
 
     </div>
+    
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
