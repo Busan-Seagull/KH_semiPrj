@@ -9,15 +9,18 @@
 <style>
     #list-main{
         width: 1200px;
-        height: 70vh;
+        height: 75vh;
+        margin:auto;
     }
 
     #list-area{
-        margin-top: 25px;
+		
+       	margin-top:25px;
         width: 100%;
         height: 100%;
         display: grid;
-        grid-template-rows: 1fr 1fr 5fr 0.5fr;
+        justify-content: center;
+        grid-template-rows: 1fr 1fr 5fr 0.5fr 0.5fr;
         /* border: 1px solid red; */
     }
 
@@ -183,8 +186,25 @@
     }
 
 
+/* 글 작성하기 버튼 */
 
+#write{
+    display: flex;
+    flex-direction:row-reverse;
+}
 
+    input[type=button]{
+    width: 70px;
+    height: 24px;
+    margin-top: 10px;
+    border: 0.75px solid var(--semi-green);
+    border-radius: 100px;
+    background-color:white;
+    color:var(--semi-green);
+
+   
+   
+}
 
 
 
@@ -285,10 +305,11 @@
                <div>하이염</div>
                <div>2022/10/15</div>
                <div>12</div>
-
-
-
                
+            </div>
+
+            <div id="write">
+                <input type="button" value="작성하기" onclick="location.href='/dobby/commu/write';">
             </div>
 
             <div id="page-area">
