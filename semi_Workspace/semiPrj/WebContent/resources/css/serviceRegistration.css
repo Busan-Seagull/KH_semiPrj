@@ -5,7 +5,7 @@
         vertical-align: middle;
         overflow:hidden;
     }
-    #registration-form1 input{
+    #registration-form1 input[type=text]{
         height: 30px;
         width: 90%;
         border: 1px solid lightgrey;
@@ -44,6 +44,9 @@
         font-size: 1rem;
         font-weight: 600;
         color: var(--semi-green);
+    }
+    label{
+        font-size: 12px;
     }
     #service-name{
         grid-area: a;
@@ -159,7 +162,7 @@
     }
     .textarea-div{
         display: inline-block;
-        width: 665px;
+        width: 750px;
         height: 230px;
     }
     .registration-t2{
@@ -172,7 +175,7 @@
     }
     textarea{
         height: 220px;
-        width: 670px;
+        width: 720px;
         text-align: top;
         border: 1px solid lightgrey;
         resize: none;
@@ -185,4 +188,14 @@
     }
     #registration-button{
         border-radius: 5px;
+    }
+    #checkbox-div{
+        height: 100px;
+    }
+
+    input[type=checkbox]{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: 4px;
     }

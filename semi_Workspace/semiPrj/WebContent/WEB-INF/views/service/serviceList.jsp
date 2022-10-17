@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
 <link rel="stylesheet" href="/dobby/resources/css/serviceList.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
@@ -33,12 +34,14 @@
 				<div class="nav-select" id="helper-search">
 					<form action="">
 						<div id="textbox-wrap">
-							<input type="text" id="search-textbox" placeholder="서비스를 찾아보세요">
+							<input type="search" id="search-textbox" placeholder="서비스를 찾아보세요">
 						</div>
 						<div id="search-button-wrap">
 							<input type="submit" value="검색" id="search-button">
 						</div>
-						<div id="search-img">흠</div>
+						<div id="search-img"><span class="material-symbols-outlined">
+							search
+							</span></div>
 					</form>
 				</div>
 
