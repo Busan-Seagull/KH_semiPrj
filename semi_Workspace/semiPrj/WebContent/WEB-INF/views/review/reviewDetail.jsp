@@ -9,12 +9,11 @@ pageEncoding="UTF-8"%>
 <style type="text/css">
 
 #main{
-	width: 960px;
-	height: 450px;
+	
 	border:none;
 	margin: 0 auto;
 	position: relative;
-	top: 30px;
+	top: 50px;
 	border-top: 5px solid #004412;
 	
 
@@ -28,18 +27,15 @@ pageEncoding="UTF-8"%>
 }
 #a{
 	width: 2px;
-	height: 25px;
+	height: 20px;
 	background-color: black;
 	border: 1px solid black;
-	left: 600px;
-	top: 35px;
+	margin-right:5px;
+	
 }
 #b{
 	width: 200px;
 	height: 30px;
-	bottom: 80px;
-	left: 620px;
-	top: 10px;
 	font-weight: 500;
 	font-size: larger;
 
@@ -58,7 +54,6 @@ pageEncoding="UTF-8"%>
 	border-bottom: 5px solid #004412;
 
 }
-
 #f{
 	border-bottom: 3px solid #004412;
 }
@@ -90,12 +85,12 @@ border-bottom: none;
 	line-height :40px;
 }
 #i{
-	
+	width: 250px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
-	top: 30px;
+	top: 60px;
 	left: 430px;
 }
 #l{
@@ -110,15 +105,44 @@ border:none;
 border-bottom: 5px solid #004412;
 overflow:auto;
 }
-#reply{
-	width:100px;
+
+#first{
+	width: 960px;
+	height: 700px;
+	margin: 0 auto;
+}
+
+
+#second{
 	display:flex;
+	margin: 0 auto;
 	position:relative;
-	left: 590px;
+	top:30px;
+	
 	
 	
 }
-
+#reply-main{
+	width:960px;
+	height:300px;
+	display:flex;
+	text-align:center;
+	line-height:100px;
+	position:relative;
+	top:100px;
+	
+}
+#top{
+	width:130px;
+	height:100px;
+	background-color:  #004412;
+	color: white;
+}
+#bottom{
+	width: 830px;
+	height:98px;
+	border: 1px solid #004412;
+}
 
 </style>
 </head>
@@ -129,41 +153,41 @@ overflow:auto;
 
 
 
-
-
-
-<div id="a"></div>
-<div id="b">리뷰게시판</div>
-
-<div id="main">
-	<div id="f">
-		<div class="h" id="t23">번호</div>
-		<div class="h" id="t24">서비스 번호</div>
-		<div class="h" id="t25">제목</div>
-		<div class="h" id="t26">작성자</div>
-		<div class="h" id="t27">평점</div>
+<div id="first">
+	<div id="second">
+		<div id="a"></div>
+		<div id="b">리뷰게시판</div>
 	</div>
-	<div id="j">
-		<div class="h" id="t28"></div>
-		<div class="h" id="t29"></div>
-		<div class="h" id="t30"></div>
-		<div class="h" id="t31"></div>
-		<div class="h" id="t32"></div>
+	<div id="main">
+		<div id="f">
+			<div class="h" id="t23">번호</div>
+			<div class="h" id="t24">서비스 번호</div>
+			<div class="h" id="t25">제목</div>
+			<div class="h" id="t26">작성자</div>
+			<div class="h" id="t27">평점</div>
+		</div>
+		<div id="j">
+			<div class="h" id="t28"></div>
+			<div class="h" id="t29"></div>
+			<div class="h" id="t30"></div>
+			<div class="h" id="t31"></div>
+			<div class="h" id="t32"></div>
+		</div>
+		<div>
+			<div id="l">내용</div>
+			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+		</div>
 	</div>
-	<div>
-		<div id="l">내용</div>
-		<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+	<div id="i">
+		<div class="i1"><a href=""></a>글목록</div>
+	</div>
+	<div id="reply-main">
+		<div id="top">집요정</div>
+		<div id="bottom">댓글 내용</div>
 	</div>
 </div>
 
-<div id="i">
-	<div class="i1"><a href=""></a>글목록</div>
-</div>
 
-<div id="reply">
-	<div>댓글</div>
-	<div>0</div>
-</div>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

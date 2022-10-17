@@ -8,38 +8,35 @@ pageEncoding="UTF-8"%>
 
 <style type="text/css">
 
-#main{
+#first{
 	width: 960px;
-	height: 450px;
-	border:none;
+	height: 600px;
 	margin: 0 auto;
-	position: relative;
-	top: 30px;
-	
-	
-
 }
 
 
-#a, #b{
-	position: relative;
+#second{
+	display:flex;
+	margin: 0 auto;
+	position:relative;
+	top:30px;
+	
 	
 	
 }
 #a{
 	width: 2px;
-	height: 25px;
+	height: 20px;
 	background-color: black;
 	border: 1px solid black;
-	left: 600px;
-	top: 35px;
+	margin-right:5px;
+	
 }
 #b{
 	width: 200px;
 	height: 30px;
-	bottom: 80px;
-	left: 620px;
-	top: 10px;
+	
+
 	font-weight: 500;
 	font-size: larger;
 
@@ -53,7 +50,7 @@ pageEncoding="UTF-8"%>
 }
 .h, #l{height: 45px;}
 
-#f, #j{
+#f,  #j{
 	display: flex;
 	text-align: center;
 	line-height: 45px;
@@ -86,13 +83,13 @@ pageEncoding="UTF-8"%>
 	line-height :40px;
 }
 #i{
-	width: 250px;
+	width: 270px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
-	top: 30px;
-	left: 365px;
+	top: 60px;
+	left: 360px;
 }
 #l{
 text-align:center;
@@ -103,7 +100,20 @@ border:none;
 border-bottom: 3px solid black;
 overflow:auto;
 }
+#reply{
+	width:100px;
+	display:flex;
+	margin-right:100px;
+	position:relative;
+	top:20px;
 
+	
+	
+}
+#main{
+	position:relative;
+	top: 50px;
+}
 
 
 </style>
@@ -116,39 +126,39 @@ overflow:auto;
 
 
 
-
-
-<div id="a"></div>
-<div id="b">신고게시판</div>
-
-<div id="main">
-	<div id="f">
-		<div class="h" id="t4">번호</div>
-		<div class="h" id="t5">신고할 회원</div>
-		<div class="h" id="t6">신고할 서비스</div>
-		<div class="h" id="t7">제목</div>
-		<div class="h" id="t8">작성자</div>
+<div id="first">
+	<div id="second">
+		<div id="a"></div>
+		<div id="b">신고게시판</div>
 	</div>
-	<div id="j">
-		<div class="h" id="t13"></div>
-		<div class="h" id="t14"></div>
-		<div class="h" id="t15"></div>
-		<div class="h" id="t16"></div>
-		<div class="h" id="t17"></div>
+	<div id="main">
+		<div id="f">
+			<div class="h" id="t4">번호</div>
+			<div class="h" id="t5">신고할 회원</div>
+			<div class="h" id="t6">신고할 서비스</div>
+			<div class="h" id="t7">제목</div>
+			<div class="h" id="t8">작성자</div>
+		</div>
+		<div id="j">
+			<div class="h" id="t13"></div>
+			<div class="h" id="t14"></div>
+			<div class="h" id="t15"></div>
+			<div class="h" id="t16"></div>
+			<div class="h" id="t17"></div>
+		</div>
+		<div>
+			<div id="l">신고내용</div>
+			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+		</div>
 	</div>
-	<div>
-		<div id="l">신고내용</div>
-		<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+	<div id="i">
+		<div class="i1"><a href=""></a>글목록</div>
+		<div class="i1"><a href=""></a>확인</div>
 	</div>
 </div>
-
-<div id="i">
-	<div class="i1"><a href=""></a>글목록</div>
-	<div class="i1"><a href=""></a>확인</div>
-</div>
-
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 </body>
 </html>

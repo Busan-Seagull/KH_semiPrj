@@ -5,46 +5,39 @@ pageEncoding="UTF-8"%>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-function openPop(){
-    var popup = window.open('http://www.naver.com', '네이버팝업', 'width=1000px,height=400px,scrollbars=yes');
-}
-</script>
+
 
 <style type="text/css">
 
-#main{
+#first{
 	width: 960px;
-	height: 450px;
-	border:none;
+	height: 1000px;
 	margin: 0 auto;
-	position: relative;
-	top: 30px;
-	
-	
-
 }
 
 
-#a, #b{
-	position: relative;
+#second{
+	display:flex;
+	margin: 0 auto;
+	position:relative;
+	top:30px;
+	
 	
 	
 }
 #a{
 	width: 2px;
-	height: 25px;
+	height: 20px;
 	background-color: black;
 	border: 1px solid black;
-	left: 600px;
-	top: 35px;
+	margin-right:5px;
+	
 }
 #b{
 	width: 200px;
 	height: 30px;
-	bottom: 80px;
-	left: 620px;
-	top: 10px;
+	
+
 	font-weight: 500;
 	font-size: larger;
 
@@ -96,8 +89,8 @@ function openPop(){
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
-	top: 30px;
-	left: 190px;
+	top: 60px;
+	left: 180px;
 }
 #l{
 text-align:center;
@@ -108,12 +101,48 @@ border:none;
 border-bottom: 3px solid black;
 overflow:auto;
 }
-#reply{
-	width:100px;
-	display:flex;
+
+#main{
 	position:relative;
-	left: 590px;
+	top: 50px;
+}
+
+#reply-main{
+	width:960px;
+	height:300px;
+	display:flex;
+	flex-direction: column;
+	text-align:center;
+	line-height:50px;
+	margin-top:100px;
 	
+}
+#top1{
+	width:960px;
+	height:50px;
+	background-color:  #004412;
+	color: white;
+}
+#bottom1{
+	width: 960px;
+	height:300px;
+	
+}
+
+#r1{
+	width:100px;
+	height:40px;
+	background-color: #EAE0D4;
+	border:none;
+	box-shadow: 2px 2px lightgray;
+	
+	
+}
+#r2{
+	display:flex;
+	flex-direction:row-reverse;
+	position:relative;
+	top:20px;
 	
 }
 
@@ -128,45 +157,45 @@ overflow:auto;
 
 
 
-
-<div id="a"></div>
-<div id="b">신고게시판</div>
-
-<div id="main">
-	<div id="f">
-		<div class="h" id="t4">번호</div>
-		<div class="h" id="t5">신고할 회원</div>
-		<div class="h" id="t6">신고할 서비스</div>
-		<div class="h" id="t7">제목</div>
-		<div class="h" id="t8">작성자</div>
+<div id="first">
+	<div id="second">
+		<div id="a"></div>
+		<div id="b">신고게시판</div>
 	</div>
-	<div id="j">
-		<div class="h" id="t13"></div>
-		<div class="h" id="t14"></div>
-		<div class="h" id="t15"></div>
-		<div class="h" id="t16"></div>
-		<div class="h" id="t17"></div>
+	<div id="main">
+		<div id="f">
+			<div class="h" id="t4">번호</div>
+			<div class="h" id="t5">신고할 회원</div>
+			<div class="h" id="t6">신고할 서비스</div>
+			<div class="h" id="t7">제목</div>
+			<div class="h" id="t8">작성자</div>
+		</div>
+		<div id="j">
+			<div class="h" id="t13"></div>
+			<div class="h" id="t14"></div>
+			<div class="h" id="t15"></div>
+			<div class="h" id="t16"></div>
+			<div class="h" id="t17"></div>
+		</div>
+		<div>
+			<div id="l">신고내용</div>
+			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+		</div>
 	</div>
-	<div>
-		<div id="l">신고내용</div>
-		<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+	<div id="i">
+		<div class="i1"><a href=""></a>승인</div>
+		<div class="i1"><a href=""></a>반려</div>
+		<div class="i1"><a href=""></a>삭제</div>
+		<div class="i1"><a href=""></a>수정</div>
+		<div class="i1"><a href=""></a>글목록</div>
 	</div>
-	
-	
-	
+	<div id="reply-main">
+		<div id="top1">댓글 내용</div>
+		<textarea id="bottom1" rows="" cols=""></textarea>
+		<div id="r2"><input id="r1" type="submit" value="확인"></div> 
+	</div>	
 </div>
 
-<div id="i">
-	<div class="i1"><a href=""></a>승인</div>
-	<div class="i1"><a href=""></a>반려</div>
-	<div class="i1"><a href=""></a>삭제</div>
-	<div class="i1"><a href=""></a>수정</div>
-	<div class="i1"><a href=""></a>글목록</div>
-</div>
-
-<div id="reply">
-	<div><a href="#none" target="_blank" onclick="openPop()">댓글쓰기</a></div>
-</div>
 
 
 
