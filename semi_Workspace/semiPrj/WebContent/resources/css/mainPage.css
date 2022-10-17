@@ -1,0 +1,478 @@
+#main-baner-box{
+    height: 400px;
+    overflow: hidden;
+}
+
+#main-baner{
+    position: relative;
+    height: 100%;
+    display: flex;
+    transition: 0.7s;
+}
+
+#baner-back-btn, #baner-next-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    position: absolute;
+    width: 100px;
+    height: 400px;
+    cursor: pointer;
+}
+
+#baner-back-btn span, #baner-next-btn span{
+    font-size: 80px;
+}
+
+#baner-next-btn{
+    right: 0;
+}
+
+#baner-back-btn:hover, #baner-next-btn:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#main-baner-box a{
+    /* position: absolute; */
+    flex-shrink: 0;
+    height: 400px;
+    width: 100vW;
+    
+    /* 백그라운드이미지 각각 개별로 */
+    background: url(/dobby/resources/img/baner/메인배너_01.jfif);
+
+    /* 아래는 임시 설정 */
+    background-position: center center;
+    background-size: 100%;
+}
+
+#main-search-box{
+    background-color: var(--semi-green);
+    position: absolute;
+    height: 70px;
+    top: 570px;
+    width: 680px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    border-radius: 10px;
+}
+
+#main-search-box input[type=text]{
+    font-family: var(--sans);
+    font-size: 15px;
+    width: 580px;
+    height: 40px;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+#main-search-box input[type=submit]{
+    border: none;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+    background: url(/dobby/resources/img/검색.png);
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    margin: auto;
+}
+
+#main-category{
+    gap: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+}
+
+.category-box{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.category-box span{
+    font-size: 5.5em;
+}
+
+.category-box:hover, .category-box:hover span{
+    background-color: var(--semi-green);
+    color: white;
+}
+
+.category-item{
+    font-size: 0.7em;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#switching-sub{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    height: 300px;
+}
+
+.contain-header.flex-center{
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 600;
+
+    font-family: var(--serif);
+    margin: 5px;
+}
+
+.contain-header span{
+    color: var(--semi-green);
+    margin-right: 5px;
+}
+
+#switch-service-list{
+    position: relative;
+    transition: 1s;
+    justify-content: flex-start;
+    display: flex;
+}
+
+.service-list-item{
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    width: 200px;
+    height: 230px;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.sl-item-img{
+    width: 100%;
+    height: 60%;
+    background-color: gray;
+}
+
+.sl-item-like{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+.sl-item-like input[type=checkbox]{
+    display: none;
+}
+
+.sl-item-like label{
+    width: 50px;
+    height: 50px;
+}
+
+
+.sl-item-like span{
+    color: lightgray;
+    font-size: 50px;
+    font-variation-settings: 'FILL' 1;
+    -webkit-text-stroke: 4px rgb(255, 255, 255);
+}
+
+.sl-item-like label input[type=checkbox]:checked ~ span{
+    color: red;
+    -webkit-text-stroke: 4px rgb(255, 255, 255);
+}
+
+.item-grade, .item-grade span{
+    font-size: 15px;
+}
+
+.item-grade span{
+    color: gold;
+}
+
+.sl-item-title{
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.item-review{
+    gap: 3px;
+    font-size: 15px;
+}
+
+#popularity{
+    margin: 10px 0;
+    display: flex;
+    height: 350px;
+}
+
+#popularity > div{
+    width: 50%;
+    overflow: hidden;
+}
+
+#pd-contain, #ps-contain{
+    position: relative;
+    transition: 1s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+    
+}
+
+.item.flex-center{
+    flex-shrink: 0;
+    width: 90%;
+    height: 100px;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 5px 10px;
+}
+
+.item-img{
+    width: 30%;
+    height: 100%;
+    background-color: gray;
+}
+
+.item-title{
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.text-contain{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+#community{
+    height: 350px;
+    margin: 10px 0;
+}
+
+#comuunity-contain {
+    padding: 10px;
+}
+
+#comuunity-contain table{
+    width: 100%;
+    border-bottom: 2px solid var(--semi-green);
+}
+
+#table-header{
+    font-family: var(--serif);
+    color: var(--semi-green);
+    font-weight: 900;
+    border-bottom: 2px solid var(--semi-green);
+}
+
+#comuunity-contain table tr:not(#table-header){
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+}
+
+#comuunity-contain table *{
+    padding: 15px
+}
+
+#comuunity-contain table .t-1{
+    text-align: center;
+    width: 10%;
+}
+
+#comuunity-contain table .notice .t-1{
+    color: white;
+    background-color: var(--semi-green);
+    font-size: 1.5em;
+    border-radius: 40px;
+    transform: scale(60%);
+}
+
+#comuunity-contain table .notice .t-2{
+    color: var(--semi-green);
+    font-weight: 600;
+}
+
+#comuunity-contain table .t-2{
+    width: 60%;
+}
+
+#comuunity-contain table .t-3{
+    text-align: center;
+    width: 20%;
+}
+
+#comuunity-contain table .t-4{
+    text-align: center;
+    width: 10%;
+}
+
+#main-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 500px;
+    position: relative;
+    background: linear-gradient(to top, var(--semi-ivory), white);
+    padding: 200px;
+    gap: 20px;
+}
+
+#main-bottom a{
+    width: 200px;
+    height: 100px;
+    border-radius: 10px;
+    font-size: 2em;
+    font-family: var(--ghana);
+    color: var(--semi-green);
+    border: 1px solid var(--semi-green);
+    margin: 10px;
+    margin-right: 30px;
+}
+
+#main-bottom a:hover{
+    background-color: var(--semi-green);
+    color: white;
+    border: 1px solid var(--semi-green);
+}
+
+#main-bottom a:hover + span > .dust:nth-of-type(1){
+    animation: jump;
+    animation-duration: 0.2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#main-bottom a:hover + span > .dust:nth-of-type(2){
+    animation: jump;
+    animation-duration: 0.2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0.2s;
+}
+
+#main-bottom a:hover + span > #tool-img{
+    animation: jump;
+    animation-duration: 0.2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0.3s;
+}
+
+@keyframes jump{
+    0%{}
+    100%{
+        top: 0;
+    }
+}
+
+.dust{
+    position: relative;
+    left: 15px;
+    top: 17px;
+    width: 60px;
+    height: 60px;
+    background: url(/dobby/resources/img/dust.png);
+    background-size: cover;
+}
+
+#tool-img{
+    position: relative;
+    left: 15px;
+    top: 23px;
+    width: 40px;
+    height: 40px;
+    background: url(/dobby/resources/img/청소도구.png);
+    background-size: cover;
+}
+
+#bottom-contain{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+}
+
+#main-bottom > div > p{
+    position: relative;
+    margin: 30px;
+    font-family: var(--serif);
+    font-weight: 100;
+    font-size: 3em;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+#main-bottom > div > p > strong{
+    font-family: var(--ghana);
+    color: var(--semi-green)
+}
+
+/* 로그인안했을때 통계 */
+#nl-sub-container{
+    left: 0;
+    position: absolute;
+    height: 200px;
+    width: 100vw;
+    background-color: var(--semi-green);
+    padding: 50px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    color: white;
+}
+
+#nl-sub-container div{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+    color: #EAC785;
+}
+
+#nl-sub-container div h1{
+    font-size: 3em;
+    font-family: var(--serif);
+    font-weight: 900;
+}
+
+#nl-sub-container div span{
+    font-size: 6em;
+    color: white;
+}
+
+#nl-sub-container div h2{
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-family: var(--serif);
+    color: white;
+}

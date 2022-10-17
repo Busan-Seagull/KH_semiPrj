@@ -321,19 +321,6 @@
     font-size: 7em;
 }
 
-.e-count-down{
-    animation: count;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 3;
-}
-@keyframes count {
-    100%{
-        font-size: 0em;
-        opacity: 0;
-    }
-}
-
 .dust{
     position: absolute;
     width: 150px;
@@ -429,4 +416,10 @@
 
 #end-page > div:nth-of-type(2) > .btn{
     border: 1px solid var(--semi-green);
+}
+
+.back-btn{
+    position: absolute;
+    left: 20px;
+    top: 20px;
 }
