@@ -8,13 +8,8 @@
 <link rel="stylesheet" href="/dobby/resources/css/reset.css">
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<style>
-    /* 영역확인용 */
-    html * {
-		/* box-sizing: border-box; */
-		/* border: 1px solid red; */
-	}
 
+<style>
     html{
         scroll-behavior: smooth;
     }
@@ -303,7 +298,6 @@
 	}
 	
 	#page-nation .num{
-	   
 	    padding: 0;
 	    width: 30px;
 	    height: 30px;
@@ -334,15 +328,15 @@
 </style>
 
 <script>
-        document.addEventListener('scroll', () => {
-            // console.log(window.scrollY);
-            const nav = document.querySelector('nav');
-            if(window.scrollY >= 150){
-                nav.classList.add('sticky');
-            }else{
-                nav.classList.remove('sticky');
-            }
-        });
+    document.addEventListener('scroll', () => {
+        // console.log(window.scrollY);
+        const nav = document.querySelector('nav');
+        if(window.scrollY >= 150){
+            nav.classList.add('sticky');
+        }else{
+            nav.classList.remove('sticky');
+        }
+    });
 </script>
 
     <header id="header-main-box">

@@ -24,7 +24,6 @@ public class ReservationHistroyController extends HttpServlet{
 	        
 	        PageVo pv = new PageVo(100, currentPage, 5, 10);
 	        
-	        req.setAttribute("pv", pv);
 	        System.out.println(pv);
 		req.getRequestDispatcher("/WEB-INF/views/reservation/reservationHistory.jsp").forward(req, resp);
 	}
