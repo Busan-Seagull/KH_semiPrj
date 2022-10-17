@@ -1,7 +1,8 @@
+<%@page import="com.kh.dobby.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Object loginMember = session.getAttribute("loginMember");
+	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 %>
 
 <link rel="stylesheet" href="/dobby/resources/css/reset.css">
@@ -271,7 +272,7 @@
 
     <header id="header-main-box">
         <div id="header-logo-box">
-            <img src="/dobby/resources/img/로고.png" alt="" id="header-logo">
+            <img onclick="location.href='/dobby'" src="/dobby/resources/img/로고.png" alt="" id="header-logo">
             <%if(loginMember == null){%>
             	<div id="header-quick-box">
 	                <a href=""><div class="img"></div><p>MyPage</p></a>
@@ -305,7 +306,7 @@
             <div><a href=""><p>인기집요정</p></a></div>
             <div><a href=""><p>인기서비스</p></a></div>
             <div><a href=""><p>커뮤니티</p></a></div>
-            <div><a href=""><p>이벤트</p></a></div>
+            <div><a href="/dobby/event"><p>이벤트</p></a></div>
             <div id="header-help">
                 <article><p>고객센터</p></article>
                 <div>

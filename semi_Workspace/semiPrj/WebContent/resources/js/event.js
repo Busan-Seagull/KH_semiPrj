@@ -18,7 +18,7 @@ easyBtn.addEventListener('click', function(e){
 
     countDown();
 
-    setTimeout(() => {game(1000);}, 3500);
+    setTimeout(() => {game(1000);}, 2500);
 
 });
 
@@ -29,7 +29,7 @@ normalBtn.addEventListener('click', function(){
     gp.classList.remove('invisible');
 
     countDown();
-    setTimeout(() => {game(800);}, 3700);
+    setTimeout(() => {game(800);}, 2700);
     
 
 });
@@ -42,21 +42,39 @@ hardBtn.addEventListener('click', function(){
 
     countDown();
 
-    setTimeout(() => {game(400);}, 4100);
+    setTimeout(() => {game(400);}, 3100);
 
 });
 
 function countDown() {
     let i = 0;
-    count.classList.add('e-count-down')
+    // count.classList.add('e-count-down')
+    count.animate([
+        // keyframes
+        { 
+            fontSize: '7em',
+            opacity: '100%'
+        },
+        { 
+            fontSize: '0em',
+            opacity: '0'
+        }
+        ], {
+        // timing options
+        duration: 1000,
+        fill: "forwards",
+        iterations: 3
+        }); 
+    count.innerHTML = 3;
     let timer = setInterval(function(){
         count.innerHTML = count.innerHTML - 1; 
         i++;
         if(i==3){clearTimeout(timer);};
-    }, 1400);
+    }, 900);
 }
 
 function game(time) {
+    score = 0;
     let i = 0;
     let timer = setInterval(function(){
         const div = document.createElement('div');
@@ -152,8 +170,30 @@ function endGame(){
     gp.classList.add('invisible');
     ep.classList.remove('invisible');
     const myScore = document.querySelector('#my-score');
+    myScore.innerHTML = 0;
     let timer = setInterval(() => {
+        if(parseInt(myScore.innerHTML)==score){clearTimeout(timer);return;}
         myScore.innerHTML = parseInt(myScore.innerHTML) + 1;
-        if(parseInt(myScore.innerHTML)==score){clearTimeout(timer);}
-    }, 20);
+    }, 15);
 }
+
+const backBtnArr = document.querySelectorAll('.back-btn');
+backBtnArr.forEach(element => {
+    element.addEventListener('click', function(){
+        hp.classList.add('invisible');
+        rp.classList.add('invisible');
+        mp.classList.remove('invisible');
+    });
+});
+
+//게임마지막 확인버튼
+const endBtn = document.querySelector('#end-btn');
+endBtn.addEventListener('click', function(){
+    ep.classList.add('invisible');
+    mp.classList.remove('invisible');
+    gp.classList.remove('normal-back');
+    gp.classList.remove('hard-back');
+
+    score = 0;
+    scoreSpan.innerHTML = 0;
+});

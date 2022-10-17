@@ -51,12 +51,13 @@
 						획득 포인트 :
 						<span id="get-point">10</span><span>pt</span>
 					</div>
-					<div class="btn flex-center">확인</div>
+					<div id="end-btn" class="btn flex-center">확인</div>
 				</div>
 
 			</div>
 
 			<div id="history-page" class="invisible">
+				<div class="back-btn"><span class="material-symbols-outlined">arrow_back_ios</span></div>
 				<div id="history-title" class="flex-center">
 					<span class="material-symbols-outlined">signal_cellular_alt</span>
 					<h1>이전기록</h1>
@@ -87,6 +88,7 @@
 			</div>
 			
 			<div id="ranck-page" class="invisible">
+				<div class="back-btn"><span class="material-symbols-outlined">arrow_back_ios</span></div>
 				<div id="ranck-title" class="flex-center">
 					<span class="material-symbols-outlined"> workspace_premium </span>
 					<h1>랭킹</h1>
