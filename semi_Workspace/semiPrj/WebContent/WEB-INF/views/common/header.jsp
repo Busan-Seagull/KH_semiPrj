@@ -273,17 +273,17 @@
     <header id="header-main-box">
         <div id="header-logo-box">
             <img onclick="location.href='/dobby'" src="/dobby/resources/img/로고.png" alt="" id="header-logo">
-            <%if(loginMember == null){%>
+            <%if(loginMember != null){%>
             	<div id="header-quick-box">
-	                <a href=""><div class="img"></div><p>MyPage</p></a>
+	                <a href="/dobby/member/mypage"><div class="img"></div><p>MyPage</p></a>
 	                <a href=""><div class="img"></div><p>Favorites</p></a>
-	                <a href=""><p id="notice-num">100</p><div class="img"></div><p>Notice</p></a>
-	                <a href=""><div class="img"></div><p>Logout</p></a>
+	                <a href=""><p id="notice-num">100</p><div class="img"></div><p>Alarm</p></a>
+	                <a href="/dobby/member/logout"><div class="img"></div><p>Logout</p></a>
 	            </div>
             <%}else{%>
    	            <div id="header-quick-box">
-	                <a href=""><div class="img-notLogin"></div><p>Login</p></a>
-	                <a href=""><div class="img-notLogin"></div><p>join</p></a>
+	                <a href="/dobby/member/login"><div class="img-notLogin"></div><p>Login</p></a>
+	                <a href="/dobby/member/join"><div class="img-notLogin"></div><p>join</p></a>
 	            </div>
             <%} %>
         </div>
@@ -294,24 +294,24 @@
             <div id="header-service">
                 <article><p>서비스둘러보기</p></article>
                 <div>
-                    <a href=""><p>가사도우미</p></a>
-                    <a href=""><p>이사</p></a>
-                    <a href=""><p>인테리어</p></a>
-                    <a href=""><p>전기/수도/가스</p></a>
-                    <a href=""><p>가전설치</p></a>
-                    <a href=""><p>펫/식물</p></a>
+                    <a href="/dobby/service/list"><p>가사도우미</p></a>
+                    <a href="/dobby/service/list"><p>이사</p></a>
+                    <a href="/dobby/service/list"><p>인테리어</p></a>
+                    <a href="/dobby/service/list"><p>전기/수도/가스</p></a>
+                    <a href="/dobby/service/list"><p>가전설치</p></a>
+                    <a href="/dobby/service/list"><p>펫/식물</p></a>
                 </div>
             </div>
 
             <div><a href=""><p>인기집요정</p></a></div>
             <div><a href=""><p>인기서비스</p></a></div>
-            <div><a href=""><p>커뮤니티</p></a></div>
+            <div><a href="/dobby/commu/list"><p>커뮤니티</p></a></div>
             <div><a href="/dobby/event"><p>이벤트</p></a></div>
             <div id="header-help">
                 <article><p>고객센터</p></article>
                 <div>
                     <a href=""><p>문의하기</p></a>
-                    <a href=""><p>신고하기</p></a>
+                    <a href="/dobby/report"><p>신고하기</p></a>
                 </div>
             </div>
             <article id="header-nav-hover"></article>
