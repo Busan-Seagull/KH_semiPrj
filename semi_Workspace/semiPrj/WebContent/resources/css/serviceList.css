@@ -93,6 +93,8 @@ main{
 
 #search-img{
     width: 30px;
+    margin: auto;
+    margin-top: 5px;
 }
 
 .helper-list-flex{
@@ -192,6 +194,7 @@ main{
 }
 .service-pay{
     margin-top: 20px;
+    text-align: end;
 }
 .starrr{
     color: rgb(255, 219, 40);
@@ -210,4 +213,13 @@ main{
 }
 .helper-contents>div{
 	margin-bottom:10px;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 200,
+  'GRAD' 0,
+  'opsz' 24
 }

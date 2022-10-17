@@ -34,6 +34,16 @@
                 <div id="payment-input">
                     <input type="text">
                 </div>
+                <div id="payment-method">현장 결제수단
+					<div id="checkbox-div">
+						<input type="checkbox" name="" id="a" value="card"><label for="a">카드</label>
+						<br>
+						<input type="checkbox" name="" id="b" value="cash"><label for="b">현금</label>
+						<br>
+						<input type="checkbox" name="" id="c" value="cash2"><label for="c">계좌이체</label>
+						
+					</div>
+                </div>
                 <div id="payment-method">현장 결제수단</div>
                 <div id="introduction">한줄소개</div>
                 <div id="introduction-input">
