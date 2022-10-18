@@ -259,9 +259,7 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
 }
 
-#ranck-list > div:nth-of-type(2)::after,
-#ranck-list > div:nth-of-type(3)::after,
-#ranck-list > div:nth-of-type(4)::after
+#ranck-list > .ranck::after
 {
     content: '';
     width: 50px;
@@ -272,24 +270,22 @@
     transform: translate(0, -50%);
 }
 
-#ranck-list > div:nth-of-type(2),
-#ranck-list > div:nth-of-type(3),
-#ranck-list > div:nth-of-type(4)
+#ranck-list > .ranck
 {
     font-weight: 500;
 }
 
-#ranck-list > div:nth-of-type(2)::after{
+#ranck-list > .ranck:nth-of-type(2)::after{
     background: url(/dobby/resources/img/event/001.png);
     background-size: cover;
 }
 
-#ranck-list > div:nth-of-type(3)::after{
+#ranck-list > .ranck:nth-of-type(3)::after{
     background: url(/dobby/resources/img/event/002.png);
     background-size: cover;
 }
 
-#ranck-list > div:nth-of-type(4)::after{
+#ranck-list > .ranck:nth-of-type(4)::after{
     background: url(/dobby/resources/img/event/003.png);
     background-size: cover;
 }
@@ -422,4 +418,13 @@
     position: absolute;
     left: 20px;
     top: 20px;
+}
+
+#main-container #page-area{
+    margin-top: 20px;
+    width: 100%;
+}
+
+#main-container #page-nation{
+    margin: 0;
 }

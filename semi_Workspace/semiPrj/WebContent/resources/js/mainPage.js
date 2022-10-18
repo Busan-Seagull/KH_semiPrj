@@ -108,30 +108,33 @@ const dobby = document.querySelector('#dobby-count');
 const service = document.querySelector('#service-count');
 const reservation = document.querySelector('#reservation-count');
 
-document.addEventListener('scroll', counting());
+if(user!=null){
+    document.addEventListener('scroll', counting());
 
-function counting (){
-    let timer01 = setInterval(() => {
-        user.innerHTML = parseInt(user.innerHTML) + 1;
-        if(parseInt(user.innerHTML) == 1234){clearTimeout(timer01)};
-    }, 0.5);
-
-    let timer02 = setInterval(() => {
-        dobby.innerHTML = parseInt(dobby.innerHTML) + 1;
-        if(parseInt(dobby.innerHTML) == 1234){clearTimeout(timer02)};
-    }, 0.5);
-
-    let timer03 = setInterval(() => {
-        service.innerHTML = parseInt(service.innerHTML) + 1;
-        if(parseInt(service.innerHTML) == 1234){clearTimeout(timer03)};
-    }, 0.5);
-
-    let timer04 = setInterval(() => {
-        reservation.innerHTML = parseInt(reservation.innerHTML) + 1;
-        if(parseInt(reservation.innerHTML) == 1234){clearTimeout(timer04)};
-    }, 0.5);
-
-    if(window.scrollY >= 400){
-        document.removeEventListener('scroll', conting());
+    function counting (){
+        let timer01 = setInterval(() => {
+            user.innerHTML = parseInt(user.innerHTML) + 1;
+            if(parseInt(user.innerHTML) == 1234){clearTimeout(timer01)};
+        }, 0.5);
+    
+        let timer02 = setInterval(() => {
+            dobby.innerHTML = parseInt(dobby.innerHTML) + 1;
+            if(parseInt(dobby.innerHTML) == 1234){clearTimeout(timer02)};
+        }, 0.5);
+    
+        let timer03 = setInterval(() => {
+            service.innerHTML = parseInt(service.innerHTML) + 1;
+            if(parseInt(service.innerHTML) == 1234){clearTimeout(timer03)};
+        }, 0.5);
+    
+        let timer04 = setInterval(() => {
+            reservation.innerHTML = parseInt(reservation.innerHTML) + 1;
+            if(parseInt(reservation.innerHTML) == 1234){clearTimeout(timer04)};
+        }, 0.5);
+    
+        if(window.scrollY >= 400){
+            document.removeEventListener('scroll', conting());
+        }
     }
 }
+

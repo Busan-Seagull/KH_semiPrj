@@ -174,8 +174,8 @@
 						left.classList.add('none-select');
 					<%}%>
 
-					<%if(pv.getEndPage() != pv.getMaxPage()){%>
-						right.href = '/dobby/reservation/history?pno=<%=pv.getEndPage()+1%>';
+					<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
+						right.href = '/dobby/reservation/history?pno=<%=pv.getCurrentPage()+1%>';
 					<%}else{%>
 						right.classList.add('none-select');
 					<%}%>

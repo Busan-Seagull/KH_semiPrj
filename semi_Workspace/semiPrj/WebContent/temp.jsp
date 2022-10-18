@@ -18,7 +18,10 @@
 				if(xhr.status == 200){ // http 응답이 200 이면
 					//alert("OK : "+xhr.responseText)
 					document.querySelector('body').innerHTML =  xhr.responseText;
-					
+					const scriptArr = document.querySelector('body').querySelectorAll('script');
+					scriptArr.forEach(element => {
+						eval(element.innerText);
+					});
 				}
 			}
 		}
