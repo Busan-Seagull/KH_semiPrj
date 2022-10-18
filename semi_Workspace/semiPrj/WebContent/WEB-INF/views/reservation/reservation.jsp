@@ -1,5 +1,13 @@
+<%@page import="com.kh.dobby.reservation.vo.ReservationVo"%>
+<%@page import="com.kh.dobby.service.vo.ServiceVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% ServiceVo sv = (ServiceVo)request.getAttribute("sv"); %>
+<% 
+	ReservationVo rv = (ReservationVo)request.getAttribute("rv");
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,28 +17,46 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
-    <form id="r-main-container" action="/dobby/reservation/success" method="post" class="flex-col">
+	
+	<%if(rv!=null){ //결제로보내야함 %>
+		<script type="text/javascript">
+		
+		</script>
+    	<form id="r-main-container" action="/dobby/reservation" method="post" class="flex-col">
+    	<input type="hidden" name="rno" value="<%=rv.getReservation_no()%>">
+    <%}else{ %>
+			<form id="r-main-container" action="/dobby/reservation/success" method="post" class="flex-col">
+			<input type="hidden" name="sno" value="<%=sv.getServiceNo() %>">
+    <%} %>
         <div id="r-title">
             <span class="material-symbols-outlined"> magic_button </span>
+            <%if(rv!=null){%>
+            <p>견적예약</p>
+            <%}else{ %>
             <p>예약하기</p>
+            <%} %>
         </div>
         <div id="r-service-info" class="flex-col border-g">
             <div class="flex-between">
                 <h1>title</h1>
-                <p>카테고리 : 인테리어</p>
+                <p>카테고리 : <%=sv.getTypeNo() %></p>
             </div>
             <div class="flex-between">
-                <p>담당집요정 : 너굴맨</p>
-                <p>예약예정일 : 2222-02-02</p>
+                <p>담당집요정 : <%=sv.getHelperNo() %></p>
+                <%if(rv!=null){%>
+                <p>예약예정일 : <%=rv.getReservationDate() %></p>
+                <%} %>
             </div>
         </div>
         <input type="checkbox" id="select-check">
         <div id="r-date-container" class="border-g">
             <div id="r-select-date">
+            <%if(rv!=null){%>
                 <div id="rs-sc-notice" class="flex-col grid-c12 grid-r23" style="position: absolute; left: 50px;  top: 20px;">
 					<span class="material-symbols-outlined"> priority_high </span>
 					<p>견적예약은 예약일로부터 일주일 전부터 가능합니다.</p>
 				</div>
+			<%} %>
                 <div class="flex-center grid-c23 grid-r12">
                     <span class="material-symbols-outlined"> calendar_month </span>
                     <p>날짜 선택</p>
@@ -108,7 +134,12 @@
                     </div>
                 </div>
             </div>
-            <label id="btn-select-date" for="select-check">확인</label>
+            
+		<%if(rv!=null){ //예약없음 == 견적 or 일반예약 %>
+			<input id="btn-select-date" type="submit" value="확인">
+		<%}else{ //견적예약완료 결제로 보내야함 %>
+			<label id="btn-select-date" for="select-check">확인</label>
+		<%} %>
             <div id="r-slect-date-B" class="flex-center">
                 <span class="material-symbols-outlined"> calendar_month </span>
                 <p id="b-date"></p>
@@ -120,7 +151,11 @@
                 <p>요구사항 작성</p>
             </div>
             <textarea name="coment"></textarea>
-            <input type="submit" value="예약완료" class="shadow-box">
+			<%if(sv.getCharge() == 0){ //견적필요함 견적으로보내야함%>
+				<input type="submit" value="견적예약" class="shadow-box">
+			<%}else{ //바로 완료%>
+				<input type="submit" value="예약완료" class="shadow-box">
+			<%} %>
         </div>
     </form>
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
