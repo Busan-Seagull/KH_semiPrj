@@ -8,12 +8,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.dobby.member.vo.MemberVo;
+import com.kh.dobby.reservation.service.ReservationService;
+import com.kh.dobby.reservation.vo.ReservationVo;
+import com.kh.dobby.service.vo.ServiceVo;
+
 @WebServlet(urlPatterns = "/reservation/success")
 public class ReservationSuccessController extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/reservation/reservationSuccess.jsp").forward(req, resp);
+	    
+        resp.setContentType("text/html;charset=UTF-8");
+        
+        MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
+        
+        String sno = req.getParameter("sno");
+        String date = req.getParameter("date");
+        String commet = req.getParameter("coment");
+        
+        ServiceVo sv = new ServiceVo();
+        ReservationVo rv = new ReservationVo();
+        rv.setReservationDate(date);
+        rv.setComment(commet);
+        //임시번호
+        rv.setServiceNo("999");
+        rv.setUserNo(loginMember.getUserNo());
+        
+        String rvNo = new ReservationService().insertReservation(rv);
+        rv.setReservation_no(rvNo);
+        
+        req.setAttribute("sv", sv);
+        req.setAttribute("rv", rv);
+        
+        if(sv.getCharge()==0) {
+            req.getRequestDispatcher("/WEB-INF/views/reservation/reservation.jsp").forward(req, resp);            
+        }else {
+            req.getRequestDispatcher("/WEB-INF/views/reservation/reservationSuccess.jsp").forward(req, resp);	                    
+        }
+	    
 	}
 	
 }

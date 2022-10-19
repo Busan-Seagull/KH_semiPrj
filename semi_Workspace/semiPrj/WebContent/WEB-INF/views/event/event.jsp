@@ -49,11 +49,10 @@
 				<div class="flex-center">
 					<div>
 						획득 포인트 :
-						<span id="get-point">10</span><span>pt</span>
+						<span id="get-point"></span><span>pt</span>
 					</div>
 					<div id="end-btn" class="btn flex-center">확인</div>
 				</div>
-
 			</div>
 
 			<div id="history-page" class="invisible">
@@ -63,27 +62,8 @@
 					<h1>이전기록</h1>
 				</div>
 				<div id="history-list">
-					<div id="list-title">
-						<p>NO</p>
-						<p>DIFFICULTY</p>
-						<p>SCORE</p>
-						<p>GET POINT</p>
-						<p>DATE</p>
-					</div>
-					<div class="history-item">
-						<p>1</p>
-						<p>HARD</p>
-						<p>99</p>
-						<p>100</p>
-						<p>2022-10-13</p>
-					</div>
 				</div>
 				<div id="history-best" class="shadow-box">
-					<h2 class="flex-center">내 최고기록</h2>
-					<div>
-						<div>HARD</div>
-						<div class="flex-center">99</div>
-					</div>
 				</div>
 			</div>
 			
@@ -94,46 +74,6 @@
 					<h1>랭킹</h1>
 				</div>
 				<div id="ranck-list">
-					<div id="r-list-title">
-						<p>NO</p>
-						<p>DIFFICULTY</p>
-						<p>PLAYER</p>
-						<p>SCORE</p>
-						<p>GET POINT</p>
-						<p>DATE</p>
-					</div>
-					<div class="ranck-item">
-						<p>1</p>
-						<p>HARD</p>
-						<p>이름이름</p>
-						<p>99</p>
-						<p>100</p>
-						<p>2022-10-13</p>
-					</div>
-					<div class="ranck-item">
-						<p>2</p>
-						<p>HARD</p>
-						<p>이름이름</p>
-						<p>99</p>
-						<p>100</p>
-						<p>2022-10-13</p>
-					</div>
-					<div class="ranck-item">
-						<p>3</p>
-						<p>HARD</p>
-						<p>이름이름</p>
-						<p>99</p>
-						<p>100</p>
-						<p>2022-10-13</p>
-					</div>
-					<div class="ranck-item">
-						<p>3</p>
-						<p>HARD</p>
-						<p>이름이름</p>
-						<p>99</p>
-						<p>100</p>
-						<p>2022-10-13</p>
-					</div>
 				</div>
 			</div>
 

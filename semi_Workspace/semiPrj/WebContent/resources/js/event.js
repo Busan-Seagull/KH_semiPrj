@@ -1,4 +1,6 @@
 let score = 0;
+let point = 0;
+let difficult = 0;
 
 const count = document.querySelector('#count-down');
 
@@ -13,6 +15,7 @@ const scoreSpan = document.querySelector('#score');
 
 const easyBtn = document.querySelector('#easy');
 easyBtn.addEventListener('click', function(e){
+    difficult = 1;
     dp.classList.add('invisible');
     gp.classList.remove('invisible');
 
@@ -24,6 +27,7 @@ easyBtn.addEventListener('click', function(e){
 
 const normalBtn = document.querySelector('#normal');
 normalBtn.addEventListener('click', function(){
+    difficult = 2;
     dp.classList.add('invisible');
     gp.classList.add('normal-back')
     gp.classList.remove('invisible');
@@ -36,6 +40,7 @@ normalBtn.addEventListener('click', function(){
 
 const hardBtn = document.querySelector('#hard');
 hardBtn.addEventListener('click', function(){
+    difficult = 3;
     dp.classList.add('invisible');
     gp.classList.add('hard-back')
     gp.classList.remove('invisible');
@@ -157,12 +162,69 @@ startBtn.addEventListener('click',function(){
 historyBtn.addEventListener('click',function(){
     mp.classList.add('invisible');
     hp.classList.remove('invisible');
+
+    getListPost(1);
+    getMyRanck();
 });
+
+function getListPost(num) {  
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/dobby/event/list');
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                const historyList = document.querySelector('#history-list');
+                historyList.innerHTML = xhr.responseText;
+            }else{
+                alert("결과가 조회되지 않음.");
+            }
+        }
+    }
+    console.log(num);
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+    xhr.send(`pno=${num}`);
+}
+
+function getMyRanck() {  
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/dobby/event/myRanck');
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                const historyBest = document.querySelector('#history-best');
+                historyBest.innerHTML = xhr.responseText;
+            }else{
+                alert("결과가 조회되지 않음.");
+            }
+        }
+    }
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+    xhr.send();
+}
 
 ranckBtn.addEventListener('click',function(){
     mp.classList.add('invisible');
     rp.classList.remove('invisible');
+
+    getRanck(1);
 });
+
+function getRanck(num) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", `/dobby/event/list?pno=${num}`);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                const ranckList = document.querySelector('#ranck-list');
+                ranckList.innerHTML = xhr.responseText;
+            }else{
+                alert("결과가 조회되지 않음.");
+            }
+        }
+    }
+
+    xhr.send();
+}
 
 //게임종료
 
@@ -175,8 +237,27 @@ function endGame(){
         if(parseInt(myScore.innerHTML)==score){clearTimeout(timer);return;}
         myScore.innerHTML = parseInt(myScore.innerHTML) + 1;
     }, 15);
+
+    const pointSpan = document.querySelector('#get-point');
+    pointSpan.innerHTML = score * difficult;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/dobby/event');
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+
+            }else{
+                alert("결과가 저장되지 않음.");
+            }
+        }
+    }
+
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xhr.send(`score=${score}&difficult=${difficult}`);
 }
 
+//뒤로가기
 const backBtnArr = document.querySelectorAll('.back-btn');
 backBtnArr.forEach(element => {
     element.addEventListener('click', function(){
@@ -189,6 +270,7 @@ backBtnArr.forEach(element => {
 //게임마지막 확인버튼
 const endBtn = document.querySelector('#end-btn');
 endBtn.addEventListener('click', function(){
+
     ep.classList.add('invisible');
     mp.classList.remove('invisible');
     gp.classList.remove('normal-back');
@@ -196,4 +278,6 @@ endBtn.addEventListener('click', function(){
 
     score = 0;
     scoreSpan.innerHTML = 0;
+    difficult = 0;
+    point = 0;
 });
