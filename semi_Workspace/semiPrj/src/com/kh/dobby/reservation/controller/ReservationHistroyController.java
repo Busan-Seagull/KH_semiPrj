@@ -15,6 +15,7 @@ public class ReservationHistroyController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    
         String page = req.getParameter("pno");
         int currentPage = 1;
         
