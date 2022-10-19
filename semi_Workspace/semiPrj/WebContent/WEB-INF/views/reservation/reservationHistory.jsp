@@ -87,21 +87,14 @@
 						</div>
 					</div>
 				</div>
-				
-				<div class="rh-item">
+				<!-- ------------------------------------------------------------------------------------------ -->
+				<div class="rh-item shadow-box">
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
 							<h1>title이 길 수 있잖아</h1>
-							<!-- <p>집요정이름</p> -->
 						</div>
-						<!-- <div style="line-height:170%;">
-							<p>예약날짜 : <span>2022-05-05</span></p>
-							<p>견적날짜 : <span>2022-05-05</span></p>
-						</div> -->
 						<span class="btn-list">
 							<div class="rh-i-h-btn">신고하기</div>
-							<!-- <div class="rh-i-h-btn">문의하기</div>
-							<div class="rh-i-h-btn">리뷰하기</div> -->
 						</span>
 					</div>
 					<div class="rh-i-header2">
@@ -121,7 +114,6 @@
 						<form action="">
 							<h2>요구사항</h2>
 							<textarea name="" class="comment-text" readonly></textarea>
-							<input type="submit" value="수정">
 						</form>
 						<div class="rh-i-status-text">
 							<p>서비스신청</p>

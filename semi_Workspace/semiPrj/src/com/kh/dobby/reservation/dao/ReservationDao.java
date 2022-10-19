@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.reservation.vo.ReservationVo;
@@ -85,7 +87,37 @@ public class ReservationDao {
 
     public ReservationVo selectOne(Connection conn, String rno) {
         
-        String sql = "select RESERVATION_NO,SERVICE_NO,USER_NO,RESERVATION_DATE,CANCEL_DATE,RESERVATION_AMOUNT,RESERVATION_YN,\"COMMENT\",RE_COMMENT,ESTIMATE_DATE,NAME FROM RESERVATION join \"USER\" USING(USER_NO) WHERE RESERVATION_NO = ?";
+        String sql = "SELECT\r\n"
+                + "    RESERVATION_NO,\r\n"
+                + "    SERVICE_NO,\r\n"
+                + "    USER_NO,\r\n"
+                + "    RESERVATION_DATE,\r\n"
+                + "    CANCEL_DATE,\r\n"
+                + "    RESERVATION_AMOUNT,\r\n"
+                + "    RESERVATION_YN,\r\n"
+                + "    \"COMMENT\",\r\n"
+                + "    RE_COMMENT,\r\n"
+                + "    ESTIMATE_DATE,\r\n"
+                + "    NAME,\r\n"
+                + "    D_NAME,\r\n"
+                + "    S_NAME,\r\n"
+                + "    SERVICE_TITLE,\r\n"
+                + "    CHARGE,\r\n"
+                + "    CHARGE_UNIT\r\n"
+                + "FROM RESERVATION \r\n"
+                + "JOIN \"USER\" USING(USER_NO) \r\n"
+                + "JOIN \r\n"
+                + "(\r\n"
+                + "    SELECT\r\n"
+                + "    U.NAME AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
+                + "    FROM SERVICE_INFO\r\n"
+                + "    JOIN \"USER\" U USING(USER_NO)\r\n"
+                + "    JOIN \"SERVICE\" S USING(SERVICE_TYPE_NO) \r\n"
+                + "    JOIN CHARGE_UNIT USING(CHARGE_UNIT_NO)\r\n"
+                + ") USING(SERVICE_NO)\r\n"
+                + "WHERE RESERVATION_NO = ?\r\n"
+                + "AND CANCEL_DATE IS NULL\r\n";
+        
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         
@@ -111,6 +143,11 @@ public class ReservationDao {
                 rv.setServiceNo(rs.getString("SERVICE_NO"));
                 rv.setUserName(rs.getString("NAME"));
                 rv.setUserNo(rs.getString("USER_NO"));
+                rv.setsTitle(rs.getString("SERVICE_TITLE"));
+                rv.setsName(rs.getString("S_NAME"));
+                rv.setdName(rs.getString("D_NAME"));
+                rv.setCharge(rs.getString("CHARGE"));
+                rv.setChargeUnit(rs.getString("CHARGE_UNIT"));
             }
             
         } catch (SQLException e) {
@@ -121,6 +158,84 @@ public class ReservationDao {
         }
         
         return rv;
+    }
+
+    public List<ReservationVo> selectList(Connection conn, String userNo) {
+
+        String sql = "SELECT\r\n"
+                + "    RESERVATION_NO,\r\n"
+                + "    SERVICE_NO,\r\n"
+                + "    USER_NO,\r\n"
+                + "    RESERVATION_DATE,\r\n"
+                + "    CANCEL_DATE,\r\n"
+                + "    RESERVATION_AMOUNT,\r\n"
+                + "    RESERVATION_YN,\r\n"
+                + "    \"COMMENT\",\r\n"
+                + "    RE_COMMENT,\r\n"
+                + "    ESTIMATE_DATE,\r\n"
+                + "    NAME,\r\n"
+                + "    D_NAME,\r\n"
+                + "    S_NAME,\r\n"
+                + "    SERVICE_TITLE,\r\n"
+                + "    CHARGE,\r\n"
+                + "    CHARGE_UNIT\r\n"
+                + "FROM RESERVATION \r\n"
+                + "JOIN \"USER\" USING(USER_NO) \r\n"
+                + "JOIN \r\n"
+                + "(\r\n"
+                + "    SELECT\r\n"
+                + "    U.NAME AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
+                + "    FROM SERVICE_INFO\r\n"
+                + "    JOIN \"USER\" U USING(USER_NO)\r\n"
+                + "    JOIN \"SERVICE\" S USING(SERVICE_TYPE_NO) \r\n"
+                + "    JOIN CHARGE_UNIT USING(CHARGE_UNIT_NO)\r\n"
+                + ") USING(SERVICE_NO)\r\n"
+                + "WHERE USER_NO = ?\r\n"
+                + "AND CANCEL_DATE IS NULL\r\n"
+                + "ORDER BY RESERVATION_DATE DESC";
+        
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        List<ReservationVo> list = new ArrayList<>();
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userNo);
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                ReservationVo rv = new ReservationVo();
+                
+                rv.setCancelDate(rs.getString("CANCEL_DATE"));
+                rv.setComment(rs.getString("COMMENT"));
+                rv.setEstimateDate(rs.getString("ESTIMATE_DATE"));
+                rv.setReComment(rs.getString("RE_COMMENT"));
+                rv.setReservation_no(rs.getString("RESERVATION_NO"));
+                rv.setReservationAmount(rs.getString("RESERVATION_AMOUNT"));
+                rv.setReservationDate(rs.getString("RESERVATION_DATE"));
+                rv.setReservationYN(rs.getString("RESERVATION_YN"));
+                rv.setServiceNo(rs.getString("SERVICE_NO"));
+                rv.setUserName(rs.getString("NAME"));
+                rv.setUserNo(rs.getString("USER_NO"));
+                rv.setsTitle(rs.getString("SERVICE_TITLE"));
+                rv.setsName(rs.getString("S_NAME"));
+                rv.setdName(rs.getString("D_NAME"));
+                rv.setCharge(rs.getString("CHARGE"));
+                rv.setChargeUnit(rs.getString("CHARGE_UNIT"));
+                
+                list.add(rv);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+            JDBCTemplate.close(rs);
+        }
+        
+        return list;
     }
 
 }

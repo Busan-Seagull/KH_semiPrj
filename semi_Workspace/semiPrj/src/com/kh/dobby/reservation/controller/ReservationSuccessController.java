@@ -22,12 +22,16 @@ public class ReservationSuccessController extends HttpServlet{
         resp.setContentType("text/html;charset=UTF-8");
         
         MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
+        if(loginMember==null) {
+            return;
+        }
         
         String sno = req.getParameter("sno");
         String date = req.getParameter("date");
         String commet = req.getParameter("coment");
         
         ServiceVo sv = new ServiceVo();
+        
         ReservationVo rv = new ReservationVo();
         rv.setReservationDate(date);
         rv.setComment(commet);

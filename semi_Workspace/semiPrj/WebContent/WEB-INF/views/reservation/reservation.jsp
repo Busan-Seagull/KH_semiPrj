@@ -4,6 +4,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
        
 <!DOCTYPE html>
 <html>
@@ -43,7 +45,7 @@
         
         <div id="r-service-info" class="flex-col border-g">
             <div class="flex-between">
-                <h1>title</h1>
+                <h1>${sv.title}</h1>
                 <p>카테고리 : ${sv.typeNo}</p>
             </div>
             
@@ -54,6 +56,26 @@
                 </c:if>
             </div>
         </div>
+
+        <c:if test="${not empty sv.charge}">
+            <div id="r-pay" class="border-g">
+                <div class="flex-center">
+                    <span class="material-symbols-outlined"> payments </span>
+                    <h1>요금선택</h1>
+                </div>
+                <div class="flex-center">
+                    <input id="numberInput" type="number" min="1" value="1" onchange="updatePay();"></input>
+                    <p>(${sv.chargeUnit})</p>
+                    <p>&nbsp;X&nbsp;</p>
+                    <p><fmt:formatNumber value="${sv.charge}" pattern="#,###"/>&nbsp;원</p>
+                </div>
+                <div class="flex-center">
+                    <span class="material-symbols-outlined"> barcode </span>
+                    <h1>결제 예정 금액 :</h1>
+                    <h1"><input type="text" id="payInput" name="pay" readonly value=""></input>&nbsp;원</h1>
+                </div>
+            </div>
+        </c:if>
         
         <input type="checkbox" id="select-check">
         
@@ -271,20 +293,34 @@
         input.setAttribute('name', 'date');
         input.setAttribute('value', d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate());
 
-        if(d.getMonth()!=(month)){
-            label.classList.add('not-month');
-        }
-        
         <c:if test="${not empty rv}">
-	        if(d.getDate()>=${rv.reservationDate} || d.getDate()<${rv.reservationDate - 7}){
+            const reservDate = ${fn:substring(rv.reservationDate,8,10)}
+
+	        if(d.getDate() > reservDate || d.getDate() < reservDate-7){
 	        	label.classList.add('not-estimate');
 	        }  
 		</c:if>
+
+        if(d.getMonth()!=(month)){
+            label.classList.add('not-month');
+        }
 		
         label.appendChild(input);
         label.appendChild(p);
 
         temp.appendChild(label);
     }
+
+    const numInput = document.querySelector("#numberInput");    
+
+    updatePay();
+
+    function updatePay() {
+        const payInput = document.querySelector("#payInput");
+
+        const sumPay = numInput.value * ${sv.charge};
+        payInput.value = sumPay.toLocaleString('ko-KR');
+    }
+
 </script>
 </html>

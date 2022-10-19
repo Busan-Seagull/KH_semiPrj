@@ -1,6 +1,7 @@
 package com.kh.dobby.reservation.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.reservation.dao.ReservationDao;
@@ -44,7 +45,20 @@ public class ReservationService {
             JDBCTemplate.rollback(conn);
         }
         
+        JDBCTemplate.close(conn);
+        
         return rv;
+    }
+
+    public List<ReservationVo> selectList(String userNo) {
+        
+        Connection conn = JDBCTemplate.getConnection();
+        
+        List<ReservationVo> list = dao.selectList(conn, userNo);
+        
+        JDBCTemplate.close(conn);
+                
+        return list;
     }
 
 }

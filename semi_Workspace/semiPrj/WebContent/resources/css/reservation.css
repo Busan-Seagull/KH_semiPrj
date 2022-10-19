@@ -143,12 +143,21 @@
     border: 1px solid var(--semi-green);
 }
 
-.not-month{
+.not-estimate{
+    color: lightgray;
+    background-color: rgba(128, 128, 128, 0.7);
+}
+
+.not-month, .not-estimate{
     pointer-events: none;
 }
 
 .not-month p{
     color: lightgray;
+}
+
+.not-estimate.not-month{
+    background-color: white;
 }
 
 #row-1{
@@ -357,4 +366,37 @@
     align-self: flex-end;
     width: 200px;
     height: 50px;
+}
+
+#r-pay{
+    padding: 10px 30px;
+    display: flex;
+    gap: 100px;
+}
+
+#r-pay h1{
+    font-size: 1.2em;
+    font-weight: 400;
+    margin: 0 5px;
+}
+
+#r-pay input{
+    margin: 0 5px;
+    border: none;
+    background: none;
+    outline: none;
+    text-align: right;
+    font-size: 1em;
+    font-weight: 400;
+    width: 100px;
+}
+
+#r-pay input[type=number]{
+    border-bottom: 1px solid var(--semi-green);
+}
+
+#r-pay input[type=text]{
+    color: var(--semi-green);
+    font-size: 1.2em;
+    font-weight: 700;
 }
