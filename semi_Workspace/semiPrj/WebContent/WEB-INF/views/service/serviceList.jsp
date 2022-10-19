@@ -1,5 +1,7 @@
+<%@page import="com.kh.dobby.common.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% PageVo pv = (PageVo)request.getAttribute("pv");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,6 +189,7 @@
 						<li><a href="/" class="last">>></a></li>
 					</ul>
 				</div>
+				<%--
 				<script>
 					const pageNation = document.querySelector('#page-nation');
 					const numArr = pageNation.querySelectorAll('.num');
@@ -222,6 +225,7 @@
 						num.innerHTML = page;
 						page++;
 					}
+					--%>
 				</script>
 			</div>
 		</div>
