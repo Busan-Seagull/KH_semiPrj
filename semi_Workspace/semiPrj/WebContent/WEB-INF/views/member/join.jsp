@@ -81,10 +81,9 @@ button {
 
    #join-area{
       width: 400px;
-      height: 70%;
       /* border: 1px solid red; */
       display: grid;
-      grid-template-rows: repeat(25, 45px);
+      grid-template-rows: repeat(20, 45px);
       padding: 99px;
       margin: auto;
       justify-items: left;
@@ -221,10 +220,14 @@ button {
 
   
    #zip_right{
-    /* display: none; */
+    display: none;
     grid-row: span 4;
     
    }
+
+   /* #userRight:checked+#zip_right{
+    display: block;
+   } */
 
    #account input{
     box-sizing: border-box;
@@ -274,11 +277,11 @@ button {
             <div id="join-title"><span class="material-symbols-outlined">magic_button</span>회원가입</div>
             <div id="right">
                 <label> 일반 회원
-                    <input type="radio" name="userRight" value="1">
+                    <input type="radio" name="userRight" value="1" checked>
                 </label>
 
                 <label> 집요정
-                    <input type="radio" id="userRight" name="userRight" value="2">
+                    <input type="radio" id="userRight" name="userRight" value="2" >
                 </label> 
             </div>
 
@@ -303,10 +306,11 @@ button {
             <div class="text">휴대폰 번호</div>
             <div id="phone">
                 <select name="phone1">
-                    <option value=""selected>선택</option>
-                      <!-- 직접입력 밸류 값 챙기셈 -->
+                    <option value="010"selected>010</option>
                     <option value="011">011</option>
-                    <option value="010">010</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
    
                    </select>
                    <span>-</span> 
@@ -315,23 +319,47 @@ button {
                    <input type="text" name="phone3" size="4" />
             </div>
 
+            <script>
+                var phone1 = document.form.phone1.value;
+                var phone2 = document.form.phone2.value;
+                var phone3 = document.form.phone3.value;
+                var phone = phone1+phone2+phone3;
+                document.getElementById("phone").value = phone;
+            </script>
+
             <div class="text">이메일</div>
             <div id="email">
                 <input type="text" name="Email1"/>
                 <span>@</span> 
                 <select name="Email2">
-                    <option value=""selected>직접입력</option>
-                    <!-- 직접입력 밸류 값 챙기셈 -->
                     <option value="naver.com" >naver.com</option>
                     <option value="gmail.com">gmail.com</option>
+                    <option value="daum.net">daum.net</option>
+                    <option value="hanmail.net">hanmail.net</option>
+                    <option value="nate.com">nate.com</option>
+                    <option value="outlook.com">outlook.com</option>
                    </select>
             </div>
+
+            <script>
+                var Email1 = document.form.Email1.value;
+                var Email2 = document.form.Email2.value;
+                var email = Email1+"@"+Email2;
+                document.getElementById("email").value = email;
+            </script>
 
             <div class="text">주소</div>
             <div id="address">
                 <input type="text" id="addr" name="addr" placeholder="주소"><input type="button" onclick="addr_execDaumPostcode()" value="주소검색">
-                <input type="text" id="addr-detail" name="addr-detail" placeholder="상세주소">
+                <input type="text" id="addrdetail" name="addr-detail" placeholder="상세주소">
             </div>
+
+            <script>
+                var addr = document.form.addr.value;
+                var addrdetail = document.form.addr-detail.value;
+                var address = addr+","+addrdetail;
+                document.getElementById("address").value = address;
+            </script>
 
             <div id="zip_right">
                 <div id="br_num_text" class="text">사업자 등록번호</div>
@@ -342,6 +370,14 @@ button {
                     <span>-</span> 
                     <input type="text" name="br_num3" size="5" />
                 </div>
+
+                <script>
+                    var brnum1 = document.form.br_num1.value;
+                    var brnum2 = document.form.br_num2.value;
+                    var brnum3 = document.form.br_num3.value;
+                    var brnum = brnum1+brnum2+brnum3;
+                    document.getElementById("br_num").value = brnum;
+                </script>
     
                 <div id="account_text" class="text">계좌번호</div>
                 <div id="account">
@@ -356,25 +392,28 @@ button {
                        <input type="text" name="account2" size="14" />
     
                 </div>
+
+                <script>
+                    var account1 = document.form.br_num1.value;
+                    var account2 = document.form.br_num2.value;
+                    var account = account1+","+account2;
+                    document.getElementById("account").value = account;
+                </script>
+
             </div>
            
             <script>
 
-                    $('input:radio[name="userRight"]').click(function() {
-                        if ($(this).val() != 2 ) {
-                            $('#zip_right').css('display','none');
-                           
-                           
-                        }else if( $(this).val()==null){
-                            $('#zip_right').css('display','none');
-                        } else{
-                           
-                            $('#zip_right').css('display','');
-                           
-                        }
-                    });
+                $('input:radio[name="userRight"]').click(function() {
+                    if ($(this).val() == 2 ) {
+                        $('#zip_right').css('display','block');
 
+                    }else{
+                        $('#zip_right').css('display','none');
+                    }
+                });
 
+            
             </script>
             
 
