@@ -33,6 +33,7 @@
 			</div>
 			<div id="rh-main-list">
 				<!-- 여기서부터 바뀜 -->
+				
 				<div class="rh-item shadow-box">
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
@@ -54,6 +55,13 @@
 					<label class="down material-symbols-outlined" for="d-check01">arrow_drop_down</label>
 					<label class="down material-symbols-outlined" for="d-check01">arrow_drop_up</label>
 					<div class="rh-detail">
+					
+						<form action="">
+							<h2>요구사항</h2>
+							<textarea name="" class="comment-text" readonly></textarea>
+							<input type="submit" value="수정">
+						</form>
+					
 						<div class="rh-i-status-text">
 							<p>서비스신청</p>
 							<p>견적대기</p><!--견적승인대기 견적승인 견적반려 -->
@@ -72,12 +80,14 @@
 							<div class="line"></div>
 							<div class="pointer"></div>
 						</div>
+						
 						<div class="footer-btn-list flex-center">
 							<!-- <div class="rh-i-h-btn">결제하기</div> -->
 							<div class="rh-i-h-btn">예약취소</div>
 						</div>
 					</div>
 				</div>
+				
 				<div class="rh-item">
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
