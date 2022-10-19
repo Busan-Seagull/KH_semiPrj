@@ -6,95 +6,282 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
-<link rel="stylesheet" href="/dobby/resources/css/serviceRegistration.css">
+<link rel="stylesheet"
+	href="/dobby/resources/css/serviceRegistration.css">
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div id="service-registration-wrap">
 		<div id="registration-title">서비스 등록하기</div>
-		<form action="">
+		<form action="" method="post" enctype="multipart/form-data">
 			<div id="registration-form1">
 				<div id="service-name">서비스명</div>
 				<div id="service-name-input">
-					<input type="text">
+					<input type="text" name="service">
 				</div>
 				<div id="service-category">서비스 카테고리</div>
 				<div id="service-category-input">
-					<input type="text">
+					<select name="type-no" id="">
+						<option value="1">가사도우미</option>
+						<option value="2">이사</option>
+						<option value="3">인테리어</option>
+						<option value="4">전기/수도/가스</option>
+						<option value="5">가전설치</option>
+						<option value="6">펫/식물</option>
+					</select>
 				</div>
 				<div id="profile-pic">프로필 사진</div>
 				<div id="profile-pic-input">
-					<input type="file">
+					<input type="file" name="profile-img">
 				</div>
 				<div id="payment-unit">요금단위</div>
 				<div id="payment-unit-input">
-					<input type="text">
+					<select name="charge-unit" id="">
+						<option value="1">평당</option>
+						<option value="2">시간당</option>
+						<option value="3">회당</option>
+						<option value="4">무게..?</option>
+					</select>
 				</div>
 				<div id="payment">요금</div>
 				<div id="payment-input">
-					<input type="text">
+					<input type="number" name="charge" value="10000" id="number"> 원
 				</div>
-				<div id="payment-method">현장 결제수단
+				<div id="payment-method">
+					현장 결제수단
 					<div id="checkbox-div">
-						<input type="checkbox" name="" id="a" value="card"><label for="a">카드</label>
-						<br>
-						<input type="checkbox" name="" id="b" value="cash"><label for="b">현금</label>
-						<br>
-						<input type="checkbox" name="" id="c" value="cash2"><label for="c">계좌이체</label>
-						
+						<input type="checkbox" name="pay-type-no" id="a" value="6"><label
+							for="a">현금</label> <br> <input type="checkbox"
+							name="pay-type-no" id="b" value="5"><label for="b">카드</label>
+						<br> <input type="checkbox" name="pay-type-no" id="c"
+							value="2"><label for="c">계좌이체</label>
 					</div>
 				</div>
 				<div id="introduction">한줄소개</div>
 				<div id="introduction-input">
-					<input type="text">
+					<input type="text" name="service-intro">
 				</div>
 				<div id="open-time">운영시작시간</div>
 				<div id="open-time-input">
-					<input type="text">
+					<select name="open-time" id="">
+						<option value="1">01:00</option>
+						<option value="2">02:00</option>
+						<option value="3">03:00</option>
+						<option value="4">04:00</option>
+						<option value="5">05:00</option>
+						<option value="6">06:00</option>
+						<option value="7">07:00</option>
+						<option value="8">08:00</option>
+						<option value="9">09:00</option>
+						<option value="10">10:00</option>
+						<option value="11">11:00</option>
+						<option value="12">12:00</option>
+						<option value="13">13:00</option>
+						<option value="14">14:00</option>
+						<option value="15">15:00</option>
+						<option value="16">16:00</option>
+						<option value="17">17:00</option>
+						<option value="18">18:00</option>
+						<option value="19">19:00</option>
+						<option value="20">20:00</option>
+						<option value="21">21:00</option>
+						<option value="22">22:00</option>
+						<option value="23">23:00</option>
+						<option value="24">00:00</option>
+					</select>
 				</div>
 				<div id="close-time">운영종료시간</div>
 				<div id="close-time-input">
-					<input type="text">
+					<select name="close-time" id="">
+						<option value="1">01:00</option>
+						<option value="2">02:00</option>
+						<option value="3">03:00</option>
+						<option value="4">04:00</option>
+						<option value="5">05:00</option>
+						<option value="6">06:00</option>
+						<option value="7">07:00</option>
+						<option value="8">08:00</option>
+						<option value="9">09:00</option>
+						<option value="10">10:00</option>
+						<option value="11">11:00</option>
+						<option value="12">12:00</option>
+						<option value="13">13:00</option>
+						<option value="14">14:00</option>
+						<option value="15">15:00</option>
+						<option value="16">16:00</option>
+						<option value="17">17:00</option>
+						<option value="18">18:00</option>
+						<option value="19">19:00</option>
+						<option value="20">20:00</option>
+						<option value="21">21:00</option>
+						<option value="22">22:00</option>
+						<option value="23">23:00</option>
+						<option value="24">00:00</option>
+					</select>
 				</div>
 				<div id="career-years">경력</div>
 				<div id="career-years-input">
-					<input type="text">
+					<select name="helper-exp" id="">
+						<option value="1">1년 미만</option>
+						<option value="2">1년</option>
+						<option value="3">2년</option>
+						<option value="4">3년</option>
+						<option value="5">4년</option>
+						<option value="6">5년</option>
+						<option value="7">5년 이상</option>
+						<option value="8">10년 이상</option>
+					</select>
 				</div>
 				<div id="region">관할지역</div>
 				<div id="region-input">
 					<div id="region-input-1">
-						<select name="" id="">
+						<select name="area-no" id="">
 							<option value="0">지역을 선택해주세요</option>
-							<option value="1">서울</option>
-							<option value="2">부산</option>
+							<option value="1">도봉구</option>
+							<option value="2">노원구</option>
+							<option value="3">강북구</option>
+							<option value="4">은평구</option>
+							<option value="5">종로구</option>
+							<option value="6">성북구</option>
+							<option value="7">중랑구</option>
+							<option value="8">동대문구</option>
+							<option value="9">서대문구</option>
+							<option value="10">중구</option>
+							<option value="11">마포구</option>
+							<option value="12">용산구</option>
+							<option value="13">성동구</option>
+							<option value="14">광진구</option>
+							<option value="15">강서구</option>
+							<option value="16">양천구</option>
+							<option value="17">구로구</option>
+							<option value="18">영등포구</option>
+							<option value="19">금천구</option>
+							<option value="20">동작구</option>
+							<option value="21">관악구</option>
+							<option value="22">서초구</option>
+							<option value="23">강남구</option>
+							<option value="24">송파구</option>
+							<option value="25">강동구</option>
 						</select>
 					</div>
 					<div id="region-input-2">
-						<select name="" id="">
+						<select name="area-no" id="">
 							<option value="0">지역을 선택해주세요</option>
-							<option value="1">서울</option>
-							<option value="2">부산</option>
+							<option value="1">도봉구</option>
+							<option value="2">노원구</option>
+							<option value="3">강북구</option>
+							<option value="4">은평구</option>
+							<option value="5">종로구</option>
+							<option value="6">성북구</option>
+							<option value="7">중랑구</option>
+							<option value="8">동대문구</option>
+							<option value="9">서대문구</option>
+							<option value="10">중구</option>
+							<option value="11">마포구</option>
+							<option value="12">용산구</option>
+							<option value="13">성동구</option>
+							<option value="14">광진구</option>
+							<option value="15">강서구</option>
+							<option value="16">양천구</option>
+							<option value="17">구로구</option>
+							<option value="18">영등포구</option>
+							<option value="19">금천구</option>
+							<option value="20">동작구</option>
+							<option value="21">관악구</option>
+							<option value="22">서초구</option>
+							<option value="23">강남구</option>
+							<option value="24">송파구</option>
+							<option value="25">강동구</option>
 						</select>
 					</div>
 					<div id="region-input-3">
-						<select name="" id="">
+						<select name="area-no" id="">
 							<option value="0">지역을 선택해주세요</option>
-							<option value="1">서울</option>
-							<option value="2">부산</option>
+							<option value="1">도봉구</option>
+							<option value="2">노원구</option>
+							<option value="3">강북구</option>
+							<option value="4">은평구</option>
+							<option value="5">종로구</option>
+							<option value="6">성북구</option>
+							<option value="7">중랑구</option>
+							<option value="8">동대문구</option>
+							<option value="9">서대문구</option>
+							<option value="10">중구</option>
+							<option value="11">마포구</option>
+							<option value="12">용산구</option>
+							<option value="13">성동구</option>
+							<option value="14">광진구</option>
+							<option value="15">강서구</option>
+							<option value="16">양천구</option>
+							<option value="17">구로구</option>
+							<option value="18">영등포구</option>
+							<option value="19">금천구</option>
+							<option value="20">동작구</option>
+							<option value="21">관악구</option>
+							<option value="22">서초구</option>
+							<option value="23">강남구</option>
+							<option value="24">송파구</option>
+							<option value="25">강동구</option>
 						</select>
 					</div>
 					<div id="region-input-4">
-						<select name="" id="">
+						<select name="area-no" id="">
 							<option value="0">지역을 선택해주세요</option>
-							<option value="1">서울</option>
-							<option value="2">부산</option>
+							<option value="1">도봉구</option>
+							<option value="2">노원구</option>
+							<option value="3">강북구</option>
+							<option value="4">은평구</option>
+							<option value="5">종로구</option>
+							<option value="6">성북구</option>
+							<option value="7">중랑구</option>
+							<option value="8">동대문구</option>
+							<option value="9">서대문구</option>
+							<option value="10">중구</option>
+							<option value="11">마포구</option>
+							<option value="12">용산구</option>
+							<option value="13">성동구</option>
+							<option value="14">광진구</option>
+							<option value="15">강서구</option>
+							<option value="16">양천구</option>
+							<option value="17">구로구</option>
+							<option value="18">영등포구</option>
+							<option value="19">금천구</option>
+							<option value="20">동작구</option>
+							<option value="21">관악구</option>
+							<option value="22">서초구</option>
+							<option value="23">강남구</option>
+							<option value="24">송파구</option>
+							<option value="25">강동구</option>
 						</select>
 					</div>
 					<div id="region-input-5">
-						<select name="" id="">
-							<option value="0">지역을 선택해주세요</option>
-							<option value="1">서울</option>
-							<option value="2">부산</option>
+						<select name="area-no" id="">
+							<option value="">지역을 선택해주세요</option>
+							<option value="1">도봉구</option>
+							<option value="2">노원구</option>
+							<option value="3">강북구</option>
+							<option value="4">은평구</option>
+							<option value="5">종로구</option>
+							<option value="6">성북구</option>
+							<option value="7">중랑구</option>
+							<option value="8">동대문구</option>
+							<option value="9">서대문구</option>
+							<option value="10">중구</option>
+							<option value="11">마포구</option>
+							<option value="12">용산구</option>
+							<option value="13">성동구</option>
+							<option value="14">광진구</option>
+							<option value="15">강서구</option>
+							<option value="16">양천구</option>
+							<option value="17">구로구</option>
+							<option value="18">영등포구</option>
+							<option value="19">금천구</option>
+							<option value="20">동작구</option>
+							<option value="21">관악구</option>
+							<option value="22">서초구</option>
+							<option value="23">강남구</option>
+							<option value="24">송파구</option>
+							<option value="25">강동구</option>
 						</select>
 					</div>
 				</div>
@@ -102,30 +289,32 @@
 			<div id="service-pic-wrap">
 				<div id="service-pic" class="registration-t2">서비스 사진</div>
 				<div id="service-pic-input1" class="service-pic-input">
-					<input type="file">
+					<input type="file" name="service-img-1">
 				</div>
 				<div id="service-pic-input2" class="service-pic-input">
-					<input type="file">
+					<input type="file" name="service-img-2">
 				</div>
 				<div id="service-pic-input3" class="service-pic-input">
-					<input type="file">
+					<input type="file" name="service-img-3">
 				</div>
 				<div id="service-pic-input4" class="service-pic-input">
-					<input type="file">
+					<input type="file" name="service-img-4">
 				</div>
 				<div id="service-pic-detail">서비스를 나타내는 사진을 1장이상 등록해주세요</div>
 			</div>
 			<div id="service-detail-wrap">
 				<div id="service-detail-text" class="registration-t2">서비스 상세내용</div>
 				<div id="service-detail" class="textarea-div">
-					<textarea name="" id="" placeholder="서비스에 대한 상세내용을 작성해주세요"></textarea>
+					<textarea name="service-detail" id=""
+						placeholder="서비스에 대한 상세내용을 작성해주세요"></textarea>
 				</div>
 
 			</div>
 			<div id="payment-detail-wrap">
 				<div id="payment-detail-text" class="registration-t2">요금 상세 정보</div>
 				<div id="payment-detail" class="textarea-div">
-					<textarea name="" id="" placeholder="요금에 대한 상세내용을 작성해주세요"></textarea>
+					<textarea name="payment-detail" id=""
+						placeholder="요금에 대한 상세내용을 작성해주세요"></textarea>
 				</div>
 			</div>
 			<div id="registration-button-div">
@@ -135,6 +324,22 @@
 		</form>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+
+<%-- 천단위.. text타입만..
+	<script type="text/javascript">
+		const input = document.querySelector('#number');
+		input.addEventListener('keyup', function(e) {
+			let value = e.target.value;
+			value = Number(value.replaceAll(',', ''));
+			if (isNaN(value)) { //NaN인지 판별
+				input.value = 0;
+			} else { //NaN이 아닌 경우
+				const formatValue = value.toLocaleString('ko-KR');
+				input.value = formatValue;
+			}
+		})
+	</script>
+--%>
 
 </body>
 </html>
