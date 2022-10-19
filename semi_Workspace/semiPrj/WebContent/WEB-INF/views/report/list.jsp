@@ -1,5 +1,12 @@
+<%@page import="com.kh.dobby.common.PageVo"%>
+<%@page import="com.kh.dobby.report.vo.ReportVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+<%
+	//List<ReportVo> voList = (List<ReportVo>)request.getAttribute("voList");
+	PageVo pv = (PageVo)request.getAttribute("pv");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -10,25 +17,47 @@ pageEncoding="UTF-8"%>
 
 
 #first{
-	width:960px;
+	
+	width: 960px;
 	height: 700px;
-	display: flex;
-	flex-direction:row-reverse;
+	margin: 0 auto;
+	
+	
+	
+	
+
+}
+#second{
+	display:flex;
+	position:relative;
+	top:30px;
+	
 }
 #main{
-	width: 960px;
-	height: 585px;
+	width: 100%
+	height: 495px;
 	margin: 0 auto;
+	display:flex;
+	position:relative;
+	top:50px;
 	display:grid;
 	grid-template-columns: 1fr 5fr 2fr;
-	grid-template-rows:repeat(13, 45px);
-	align-content:center;
-	border-top:3px solid black;
+	grid-template-rows:repeat(11, 45px);
 	border-bottom: 3px solid black;
+	place-content:center;
+	
 
 }
 #main>div{
 	border-bottom: 1px solid lightgray;
+	display:flex;
+	justify-content:center;
+	line-height:45px;
+}	
+	
+.tm01{
+	background-color:  #004412;
+	color: white;
 }
 
 
@@ -37,22 +66,43 @@ pageEncoding="UTF-8"%>
 	height: 40px;
 	box-shadow:2px 2px lightgray;
 	background-color: #EAE0D4;
-	position: relative;
-	
-	text-align: center;
 	margin: 0 auto;
-	line-height :40px;
+	display:flex;
+	position: relative;
+	justify-content:center;
+	line-height:40px;
+	top:65px;
+	left:420px;
+	
+	}
+#a{
+	width: 2px;
+	height: 20px;
+	background-color: black;
+	border: 1px solid black;
+	margin-right:5px;
+	
+}
+#b{
+	width: 200px;
+	height: 30px;
+	font-weight: 500;
+	font-size: larger;
+	
+
 }
 
 
 
-
-    #page-area{
+   #page-area{
         width: 50%;
+        height: 15%
         display: flex;
         justify-content: center;
         align-items: center;
         margin: auto;
+        position:relative;
+        top:50px;
         
     }
 
@@ -105,7 +155,7 @@ pageEncoding="UTF-8"%>
     #page-nation .num:active{
         background-color: var(--semi-green);
         cursor: pointer;
-    }
+    } 
 
 
 </style>
@@ -120,17 +170,29 @@ pageEncoding="UTF-8"%>
 
 
 <div id="first">
+
+	<div id="c"><a href="/dobby/report/write"></a>글쓰기</div>
+
+	<%-- <%
+		if(loginMember != null){%>
+			<div id="c"><a href="/dobby/report/write"></a>글쓰기</div>
+		<%}
+	%> --%>
+	<div id="second">
+		<div id="a"></div>
+		<div id="b">신고게시판</div>
+	</div>
 	<div id="main">
-	<div id="d1">
-		<div>번호</div>
-		<div>제목</div>
-		<div>작성자</div>
-	</div>
-	<div>
-		<div class="1"></div>
-		<div class="정말 화나요"></div>
-		<div class="nick01"></div>
-	</div>
+		
+			<div class="tm01">번호</div>
+			<div class="tm01">제목</div>
+			<div class="tm01">작성자</div>
+		
+		
+			<div>1</div>
+			<div>정말 화나요</div>
+			<div>nick01</div>
+		
 		
 	
 	<%-- <%for(int i = 0; i < voList.size(); ++i){%>
@@ -141,63 +203,58 @@ pageEncoding="UTF-8"%>
 	 --%>
 	</div>
 
+
 	<!-- 페이징 -->
-				<div id="page-area">
-					<ul id="page-nation">
-						<li><a href="/dobby/reservation/history?pno=1" class="first"><<</a></li>
-						<li><a class="arrow left"><</a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="arrow right">></a></li>
-						<li><a href="/dobby/reservation/history?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
-					</ul>
-				</div>
-				<script>
-					const pageNation = document.querySelector('#page-nation');
-					const numArr = pageNation.querySelectorAll('.num');
-					const left = pageNation.querySelector('.arrow.left');
-					const right = pageNation.querySelector('.arrow.right');
+	<div id="page-area">
+		<ul id="page-nation">
+			<li><a href="/dobby/report?pno=1" class="first"><<</a></li>
+			<li><a class="arrow left"><</a></li>
+			<li><a class="num"></a></li>
+			<li><a class="num"></a></li>
+			<li><a class="num"></a></li>
+			<li><a class="num"></a></li>
+			<li><a class="num"></a></li>
+			<li><a class="arrow right">></a></li>
+			<li><a href="/dobby/dobby/report?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
+		</ul>
+	</div>
+	<script>
+		const pageNation = document.querySelector('#page-nation');
+		const numArr = pageNation.querySelectorAll('.num');
+		const left = pageNation.querySelector('.arrow.left');
+		const right = pageNation.querySelector('.arrow.right');
 
-					<%if(pv.getStartPage() > 1){%>
-						left.href = '/dobby/reservation/history?pno=<%=pv.getStartPage()-1%>';
-					<%}else{%>
-						left.classList.add('none-select');
-					<%}%>
+		<%if(pv.getStartPage() > 1){%>
+			left.href = '/dobby/report?pno=<%=pv.getStartPage()-1%>';
+		<%}else{%>
+			left.classList.add('none-select');
+		<%}%>
 
-					<%if(pv.getEndPage() != pv.getMaxPage()){%>
-						right.href = '/dobby/reservation/history?pno=<%=pv.getEndPage()+1%>';
-					<%}else{%>
-						right.classList.add('none-select');
-					<%}%>
+		<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
+			right.href = '/dobby/reservation/history?pno=<%=pv.getCurrentPage()+1%>';
+		<%}else{%>
+			right.classList.add('none-select');
+		<%}%>
 
-					let page = <%=pv.getStartPage()%>;
+		let page = <%=pv.getStartPage()%>;
 
-					for (let i = 0; i < numArr.length; i++) {
-						const num = numArr[i];
-						
-						if(page==<%=pv.getCurrentPage()%>){
-							num.classList.add('current');
-						}
-						
-						if(page<1 || page><%=pv.getMaxPage()%>){
-							num.classList.add('p-none');
-						}else{
-							num.href = '/dobby/reservation/history?pno='+page;
-						}
-						num.innerHTML = page;
-						page++;
-					}
-				</script>
+		for (let i = 0; i < numArr.length; i++) {
+			const num = numArr[i];
+			
+			if(page==<%=pv.getCurrentPage()%>){
+				num.classList.add('current');
+			}
+			
+			if(page<1 || page><%=pv.getMaxPage()%>){
+				num.classList.add('p-none');
+			}else{
+				num.href = '/dobby/dobby/report?pno='+page;
+			}
+			num.innerHTML = page;
+			page++;
+		}
+	</script>
 
-	<%
-		if(loginMember != null){%>
-			<div id="c"><a href="/dobby/report/write"></a>글쓰기</div>
-		<%}
-	%>
-	
 </div>
 
 
