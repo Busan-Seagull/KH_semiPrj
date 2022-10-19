@@ -9,7 +9,7 @@ public class ReportVo {
     public ReportVo() {
         super();
     }
-    public ReportVo(int postNo, int writer, String title, String content, Timestamp writeTime, String deleteYn,
+    public ReportVo(String postNo, String writer, String title, String content, Timestamp writeTime, String deleteYn,
             Timestamp modifyDate, String handleReportYn, String reportComment) {
         super();
         this.postNo = postNo;
@@ -22,8 +22,8 @@ public class ReportVo {
         this.handleReportYn = handleReportYn;
         this.reportComment = reportComment;
     }
-    private int postNo;
-    private int writer;
+    private String postNo;
+    private String writer;
     private String title;
     private String content;
     private Timestamp writeTime;
@@ -31,16 +31,16 @@ public class ReportVo {
     private Timestamp modifyDate;
     private String handleReportYn;
     private String reportComment;
-    public int getPostNo() {
+    public String getPostNo() {
         return postNo;
     }
-    public void setPostNo(int postNo) {
+    public void setPostNo(String postNo) {
         this.postNo = postNo;
     }
-    public int getWriter() {
+    public String getWriter() {
         return writer;
     }
-    public void setWriter(int writer) {
+    public void setWriter(String writer) {
         this.writer = writer;
     }
     public String getTitle() {

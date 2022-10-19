@@ -114,7 +114,20 @@ overflow:auto;
 	position:relative;
 	top: 50px;
 }
-
+input{
+	border:none;
+	height:30px;
+	
+}
+input:focus {outline: none;}
+#input-btn{
+ font-size:medium;
+ font-weight:500;
+ background-color:#EAE0D4;
+}
+input,textarea{
+	font-size:large;
+}
 
 </style>
 </head>
@@ -131,7 +144,8 @@ overflow:auto;
 		<div id="a"></div>
 		<div id="b">신고게시판</div>
 	</div>
-	<div id="main">
+	<form action="" method="post">
+		<div id="main">
 		<div id="f">
 			<div class="h" id="t4">번호</div>
 			<div class="h" id="t5">신고할 회원</div>
@@ -140,21 +154,23 @@ overflow:auto;
 			<div class="h" id="t8">작성자</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t13"></div>
-			<div class="h" id="t14"></div>
-			<div class="h" id="t15"></div>
-			<div class="h" id="t16"></div>
-			<div class="h" id="t17"></div>
+			<div class="h" id="t13"><input type="text" name="postNo"></div>
+			<div class="h" id="t14"><input type="text" name="userNo"></div>
+			<div class="h" id="t15"><input type="text" name="serviceNo"></div>
+			<div class="h" id="t16"><input type="text" name="title"></div>
+			<div class="h" id="t17"><input type="text" name="writer"></div>
 		</div>
 		<div>
 			<div id="l">신고내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="120" rows="18"></textarea>
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><a href=""></a>글목록</div>
-		<div class="i1"><a href=""></a>확인</div>
+		<div class="i1"><input id="input-btn" type="submit" value="확인"></div>
+		<div class="i1"><a href="/dobby/report/list.jsp"></a>글목록</div>
 	</div>
+	</form>
+	
 </div>
 
 

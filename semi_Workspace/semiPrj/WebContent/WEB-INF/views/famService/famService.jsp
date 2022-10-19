@@ -15,11 +15,23 @@ li{
 #main-main{
     width: 960px;
     height: 700px;
+    display: flex;
+    justify-content: flex-start;
+   
+    
+
+   
+}
+#main-second{
+    width: 960px;
+    height: 700px;
     position: relative;
     top: 100px;
-    left: 560px;
+    left: 550px;
     
-    
+   
+   
+   
 }
 
 .slide-wrapper{
@@ -28,6 +40,7 @@ li{
     margin: 0 auto;
     height: 500px;
     overflow: hidden;
+    
 }
 .slides{
     position: absolute;
@@ -37,7 +50,7 @@ li{
 }
 .slides li:not(:last-child){
     float: left;
-    margin-right: 20px;
+    margin-right: 30px;
 }
 .controls{
     text-align: center;
@@ -55,9 +68,9 @@ li{
 .controls span.next{left: calc(100%+50px);}
 
 li>div{
-    width: 300px;
-    height: 460px;
-    border: 3px solid #004412;;
+    width: 280px;
+    height: 440px;
+    border: 10px solid lightgray;
     margin-bottom: 50px;
 }
 #title{
@@ -83,38 +96,48 @@ li>div{
 .s1{
     font-size: x-large;
     position: relative;
-    top: 30px;
-    left: 25px;
+    top: 40px;
+    left: 15px;
 }
 .s2{
-    font-size: larger;
+    font-size: large;
     position: relative;
-    top: 70px;
-    left: 40px;
+    top: 60px;
+    left: 30px;
 }
 .s3{
     font-size: large;
     position: relative;
-    top: 100px;
-    left: 10px;
+    top:15px;
+    left: 16px;
+    color:gold;
 
 }
 .s4{
     position: relative;
-    top: 120px;
-    left: 50px;
+    top: 30px;
+    left: 40px;
 
 }
 .s5{
     font-size: large;
    position: relative;
-   top:140px;
-    left: 90px;
+   top:80px;
+    left: 80px;
 }
 .s6{
     position: relative;
-    top:50px;
-    left: 60px;
+    top:20px;
+    left: 55px;
+}
+.slides-li-div{
+    display: flex;
+    flex-direction: column;
+}
+.slides-div1{
+    width: 100%;
+    height: 80%;
+    border-bottom: 3px solid lightgray;
 }
 </style>
 	
@@ -127,98 +150,132 @@ li>div{
 	<%@ include file="/WEB-INF/views/common/side.jsp" %>
 	
     <div id="main-main">
-        <div id="title">
-            <div id="a"></div>
-            <div id="b">인기 서비스</div>
+        <div id="main-second">
+            <div id="title">
+                <div id="a"></div>
+                <div id="b">인기 서비스</div>
+            </div>
+            <div class="slide-wrapper">
+                <ul class="slides">
+                    <li>
+                        <div class="slides-li-div">
+                            <div class="slides-div1">
+                                <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
+                                <div class="s1">집고치는 집요정 | 집요정</div>
+                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
+                                <div class="s5">평당 15,000원</div>
+                            </div>
+                            <div class="slides-div2">
+                                <div class="s3">★★★★★ </div>
+                                <div class="s4">(255개)  "이 집 청소 엄청 잘해요!"</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slides-li-div">
+                            <div class="slides-div1">
+                                <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
+                                <div class="s1">집고치는 집요정 | 집요정</div>
+                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
+                                <div class="s5">평당 15,000원</div>
+                            </div>
+                            <div class="slides-div2">
+                                <div class="s3">★★★★★ </div>
+                                <div class="s4">(255개)  "이 집 청소 엄청 잘해요!"</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slides-li-div">
+                            <div class="slides-div1">
+                                <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
+                                <div class="s1">집고치는 집요정 | 집요정</div>
+                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
+                                <div class="s5">평당 15,000원</div>
+                            </div>
+                            <div class="slides-div2">
+                                <div class="s3">★★★★★ </div>
+                                <div class="s4">(255개)  "이 집 청소 엄청 잘해요!"</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slides-li-div">
+                            <div class="slides-div1">
+                                <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
+                                <div class="s1">집고치는 집요정 | 집요정</div>
+                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
+                                <div class="s5">평당 15,000원</div>
+                            </div>
+                            <div class="slides-div2">
+                                <div class="s3">★★★★★ </div>
+                                <div class="s4">(255개)  "이 집 청소 엄청 잘해요!"</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slides-li-div">
+                            <div class="slides-div1">
+                                <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
+                                <div class="s1">집고치는 집요정 | 집요정</div>
+                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
+                                <div class="s5">평당 15,000원</div>
+                            </div>
+                            <div class="slides-div2">
+                                <div class="s3">★★★★★ </div>
+                                <div class="s4">(255개)  "이 집 청소 엄청 잘해요!"</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slides-li-div">
+                            <div class="slides-div1">
+                                <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
+                                <div class="s1">집고치는 집요정 | 집요정</div>
+                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
+                                <div class="s5">평당 15,000원</div>
+                            </div>
+                            <div class="slides-div2">
+                                <div class="s3">★★★★★ </div>
+                                <div class="s4">(255개)  "이 집 청소 엄청 잘해요!"</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slides-li-div">
+                            <div class="slides-div1">
+                                <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
+                                <div class="s1">집고치는 집요정 | 집요정</div>
+                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
+                                <div class="s5">평당 15,000원</div>
+                            </div>
+                            <div class="slides-div2">
+                                <div class="s3">★★★★★ </div>
+                                <div class="s4">(255개)  "이 집 청소 엄청 잘해요!"</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slides-li-div">
+                            <div class="slides-div1">
+                                <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
+                                <div class="s1">집고치는 집요정 | 집요정</div>
+                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
+                                <div class="s5">평당 15,000원</div>
+                            </div>
+                            <div class="slides-div2">
+                                <div class="s3">★★★★★ </div>
+                                <div class="s4">(255개)  "이 집 청소 엄청 잘해요!"</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <p class="controls">
+                <span class="prev">prev</span>
+                <span class="next">next</span>
+            </p>
         </div>
-        <div class="slide-wrapper">
-            <ul class="slides">
-                <li>
-                    <div>
-                        <div class="s1">집고치는 집요정 | 집요정</div>
-                        <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
-                        <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
-                        <div class="s3">★★★★★ 5</div>
-                        <div class="s4">(255개)      "이 집 청소 엄청 잘해요!"</div>
-                        <div class="s5">평당 15,000원</div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="s1">집고치는 집요정 | 집요정</div>
-                        <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
-                        <div class="s2">모든 집수리1, 청소1, 청소2,<br>  청소3, 다 해요!</div>
-                        <div class="s3">★★★★★ 5</div>
-                        <div class="s4">(255개)      "이 집 청소 엄청 잘해요!"</div>
-                        <div class="s5">평당 15,000원</div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="s1">집고치는 집요정 | 집요정</div>
-                        <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
-                        <div class="s2">모든 집수리1, 청소1, 청소2, <br> 청소3, 다 해요!</div>
-                        <div class="s3">★★★★★ 5</div>
-                        <div class="s4">(255개)      "이 집 청소 엄청 잘해요!"</div>
-                        <div class="s5">평당 15,000원</div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="s1">집고치는 집요정 | 집요정</div>
-                        <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
-                        <div class="s2">모든 집수리1, 청소1, 청소2,<br>  청소3, 다 해요!</div>
-                        <div class="s3">★★★★★ 5</div>
-                        <div class="s4">(255개)      "이 집 청소 엄청 잘해요!"</div>
-                        <div class="s5">평당 15,000원</div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="s1">집고치는 집요정 | 집요정</div>
-                        <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
-                        <div class="s2">모든 집수리1, 청소1, 청소2,<br>  청소3, 다 해요!</div>
-                        <div class="s3">★★★★★ 5</div>
-                        <div class="s4">(255개)      "이 집 청소 엄청 잘해요!"</div>
-                        <div class="s5">평당 15,000원</div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="s1">집고치는 집요정 | 집요정</div>
-                        <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
-                        <div class="s2">모든 집수리1, 청소1, 청소2,<br>  청소3, 다 해요!</div>
-                        <div class="s3">★★★★★ 5</div>
-                        <div class="s4">(255개)      "이 집 청소 엄청 잘해요!"</div>
-                        <div class="s5">평당 15,000원</div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="s1">집고치는 집요정 | 집요정</div>
-                        <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
-                        <div class="s2">모든 집수리1, 청소1, 청소2,<br>  청소3, 다 해요!</div>
-                        <div class="s3">★★★★★ 5</div>
-                        <div class="s4">(255개)      "이 집 청소 엄청 잘해요!"</div>
-                        <div class="s5">평당 15,000원</div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="s1">집고치는 집요정 | 집요정</div>
-                        <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
-                        <div class="s2">모든 집수리1, 청소1, 청소2,<br>  청소3, 다 해요!</div>
-                        <div class="s3">★★★★★ 5</div>
-                        <div class="s4">(255개)      "이 집 청소 엄청 잘해요!"</div>
-                        <div class="s5">평당 15,000원</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <p class="controls">
-            <span class="prev">prev</span>
-            <span class="next">next</span>
-        </p>
     </div>
 	<script>
        var slides = document.querySelector('.slides'),
@@ -226,8 +283,8 @@ li>div{
             currentIdx=0,
             slideCount = slide.length,
             prevBtn = document.querySelector('.prev'),
-            slideWidth=300,
-            slideMargin=20,
+            slideWidth=280,
+            slideMargin=30,
             nextBtn= document.querySelector('.next');
 
             slides.style.width=(slideWidth+slideMargin)*slideCount-slideMargin +'px';
