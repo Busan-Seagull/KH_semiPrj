@@ -94,12 +94,15 @@
                     <p>날짜 선택</p>
                 </div>
                 
-                <div id="r-back-btn" class="grid-r34">
-                	<span class="material-symbols-outlined">chevron_left</span>
-               	</div>
-                <div id="r-next-btn" class="grid-r34">
-                	<span class="material-symbols-outlined">chevron_right</span>
-               	</div>
+                <c:if test="${not empty rv}">
+                    <div id="r-back-btn" class="grid-r34">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </div>
+                    <div id="r-next-btn" class="grid-r34">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </div>
+                </c:if>
+
                 <div id="r-date" class="flex-center grid-c23 grid-r23"><p id="r-year"></p><p>/</p><p id="r-month">9</p></div>
                 
                 <div id="date-container" class="grid-r34 grid-c23 flex-col">

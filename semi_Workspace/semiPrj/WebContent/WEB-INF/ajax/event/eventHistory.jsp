@@ -30,37 +30,44 @@
 <div id="page-area">
 	<ul id="page-nation">
 		<li><a onclick="getListPost(1);" class="first"><<</a></li>
+		
 		<%if(pv.getCurrentPage()==1){ %>
-		<li><a class="arrow left none-select"><</a></li>
+			<li><a class="arrow left none-select"><</a></li>
 		<%}else{ %>
-		<li><a onclick="getListPost(<%=pv.getCurrentPage()-1 %>);" class="arrow left"><</a></li>
+			<li><a onclick="getListPost(<%=pv.getCurrentPage()-1 %>);" class="arrow left"><</a></li>
 		<%} %>
+		
 		<%if(pv.getCurrentPage()-2<1){ %>
-		<li><a class="num p-none"></a></li>
+			<li><a class="num p-none"></a></li>
 		<%}else{ %>
-		<li><a onclick="getListPost(<%=pv.getCurrentPage()-2 %>);" class="num"><%=pv.getCurrentPage()-2 %></a></li>
+			<li><a onclick="getListPost(<%=pv.getCurrentPage()-2 %>);" class="num"><%=pv.getCurrentPage()-2 %></a></li>
 		<%} %>
+		
 		<%if(pv.getCurrentPage()-1<1){ %>
-		<li><a class="num p-none"></a></li>
+			<li><a class="num p-none"></a></li>
 		<%}else{ %>
-		<li><a onclick="getListPost(<%=pv.getCurrentPage()-1 %>);" class="num"><%=pv.getCurrentPage()-1 %></a></li>
+			<li><a onclick="getListPost(<%=pv.getCurrentPage()-1 %>);" class="num"><%=pv.getCurrentPage()-1 %></a></li>
 		<%} %>
+		
 		<li><a class="num"><%=pv.getCurrentPage() %></a></li>
 		<%if(pv.getCurrentPage()+1>pv.getMaxPage()){ %>
-		<li><a class="num p-none"></a></li>
+			<li><a class="num p-none"></a></li>
 		<%}else{ %>
-		<li><a onclick="getListPost(<%=pv.getCurrentPage()+1 %>);" class="num"><%=pv.getCurrentPage()+1 %></a></li>
+			<li><a onclick="getListPost(<%=pv.getCurrentPage()+1 %>);" class="num"><%=pv.getCurrentPage()+1 %></a></li>
 		<%} %>
+		
 		<%if(pv.getCurrentPage()+2>pv.getMaxPage()){ %>
-		<li><a class="num p-none"></a></li>
+			<li><a class="num p-none"></a></li>
 		<%}else{ %>
-		<li><a onclick="getListPost(<%=pv.getCurrentPage()+2 %>);" class="num"><%=pv.getCurrentPage()+2 %></a></li>
+			<li><a onclick="getListPost(<%=pv.getCurrentPage()+2 %>);" class="num"><%=pv.getCurrentPage()+2 %></a></li>
 		<%} %>
+		
 		<%if(pv.getCurrentPage()==pv.getMaxPage()){ %>
-		<li><a class="arrow right none-select">></a></li>
+			<li><a class="arrow right none-select">></a></li>
 		<%}else{ %>
-		<li><a onclick="getListPost(<%=pv.getCurrentPage()+1 %>);" class="arrow right">></a></li>
+			<li><a onclick="getListPost(<%=pv.getCurrentPage()+1 %>);" class="arrow right">></a></li>
 		<%} %>
+		
 		<li><a onclick="getListPost(<%=pv.getMaxPage() %>);" class="last">>></a></li>
 	</ul>
 </div>

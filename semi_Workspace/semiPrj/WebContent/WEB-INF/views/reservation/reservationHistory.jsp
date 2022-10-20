@@ -41,7 +41,7 @@
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
 							<h1>${rv.sTitle}</h1>
-							<p>${rv.dName} }</p>
+							<p>${rv.dName}</p>
 						</div>
 						<div></div>
 						<div style="line-height:170%;">
@@ -239,6 +239,8 @@
 				</c:forEach>
 				
 				<!-- ------------------------------------------------------------------------------------------ -->
+				<c:forEach items="${list}" var="rv">
+
 				<div class="rh-item shadow-box">
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
@@ -262,28 +264,159 @@
 					<label class="down material-symbols-outlined" for="d-check02">arrow_drop_down</label>
 					<label class="down material-symbols-outlined" for="d-check02">arrow_drop_up</label>
 					<div class="rh-detail">
+					
 						<form action="">
 							<h2>요구사항</h2>
 							<textarea name="" class="comment-text" readonly></textarea>
 						</form>
-						<div class="rh-i-status-text">
-							<p>서비스신청</p>
-							<p>견적대기</p><!--견적승인대기 견적승인 견적반려 -->
-							<p>예약대기</p><!--예약승인대기 예약승인 예약반려 -->
-							<p>결제대기</p><!--결제대기 결제완료 -->
-							<p></p><!--서비스예정 서비스완료 -->
-						</div>
-						<div class="rh-i-status">
-							<div class="pointer"></div>
-							<div class="line"></div>
-							<div class="pointer stay"></div>
-							<div class="line"></div>
-							<div class="pointer done"></div>
-							<div class="line"></div>
-							<div class="pointer"></div>
-							<div class="line"></div>
-							<div class="pointer"></div>
-						</div>
+						
+						<c:if test="${rv.status == 'EAW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적승인대기</p><!--견적승인대기 견적승인 견적반려 -->
+								<p></p><!--예약승인대기 예약승인 예약반려 -->
+								<p></p><!--결제대기 결제완료 -->
+								<p></p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'EW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적 확인중</p><!--견적승인대기 견적승인 견적반려 -->
+								<p></p><!--예약승인대기 예약승인 예약반려 -->
+								<p></p><!--결제대기 결제완료 -->
+								<p></p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'RAW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적완료</p><!--견적승인대기 견적승인 견적반려 -->
+								<p>예약 승인대기</p><!--예약승인대기 예약승인 예약반려 -->
+								<p></p><!--결제대기 결제완료 -->
+								<p></p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'PW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적완료</p><!--견적승인대기 견적승인 견적반려 -->
+								<p>예약완료</p><!--예약승인대기 예약승인 예약반려 -->
+								<p>결제대기</p><!--결제대기 결제완료 -->
+								<p></p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'SW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적완료</p><!--견적승인대기 견적승인 견적반려 -->
+								<p>예약완료</p><!--예약승인대기 예약승인 예약반려 -->
+								<p>결제완료</p><!--결제대기 결제완료 -->
+								<p>서비스 대기</p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'SC'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적완료</p><!--견적승인대기 견적승인 견적반려 -->
+								<p>예약완료</p><!--예약승인대기 예약승인 예약반려 -->
+								<p>결제완료</p><!--결제대기 결제완료 -->
+								<p>서비스완료</p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'C'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p></p><!--견적승인대기 견적승인 견적반려 -->
+								<p></p><!--예약승인대기 예약승인 예약반려 -->
+								<p></p><!--결제대기 결제완료 -->
+								<p>예약취소</p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+						</c:if>
+						
 						<form action="">
 							<div>
 								<h2>답변사항</h2>
@@ -300,6 +433,8 @@
 						</form>
 					</div>
 				</div>
+				
+				</c:forEach>
 
 				<!-- 페이징 -->
 				<div id="page-area">
