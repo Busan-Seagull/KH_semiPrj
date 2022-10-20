@@ -7,7 +7,9 @@ public class ServiceVo {
     private int serviceNo;
     private String title;
     private int typeNo;
+    private String serviceType;
     private int helperNo;
+    private String helper;
     private String serviceIntro;
     private String profileImg;
     private int charge;
@@ -31,18 +33,20 @@ public class ServiceVo {
     private int areaNo_5;
     
     public ServiceVo() {
+        
     }
-
-    public ServiceVo(int serviceNo, String title, int typeNo, int helperNo, String serviceIntro, String profileImg,
-            int charge, String chargeUnit, int helperExp, String openTime, String closeTime, String serviceDetail,
-            String paymentDetail, String servicePic_1, String servicePic_2, String servicePic_3, String servicePic_4,
-            int pTypeNo_1, int pTypeNo_2, int pTypeNo_3, int areaNo_1, int areaNo_2, int areaNo_3, int areaNo_4,
-            int areaNo_5) {
+    public ServiceVo(int serviceNo, String title, int typeNo, String serviceType, int helperNo, String helper,
+            String serviceIntro, String profileImg, int charge, String chargeUnit, int helperExp, String openTime,
+            String closeTime, String serviceDetail, String paymentDetail, String servicePic_1, String servicePic_2,
+            String servicePic_3, String servicePic_4, int pTypeNo_1, int pTypeNo_2, int pTypeNo_3, int areaNo_1,
+            int areaNo_2, int areaNo_3, int areaNo_4, int areaNo_5) {
         super();
         this.serviceNo = serviceNo;
         this.title = title;
         this.typeNo = typeNo;
+        this.serviceType = serviceType;
         this.helperNo = helperNo;
+        this.helper = helper;
         this.serviceIntro = serviceIntro;
         this.profileImg = profileImg;
         this.charge = charge;
@@ -64,6 +68,21 @@ public class ServiceVo {
         this.areaNo_3 = areaNo_3;
         this.areaNo_4 = areaNo_4;
         this.areaNo_5 = areaNo_5;
+    }
+
+
+    public String getServiceType() {
+        return serviceType;
+    }
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+    public String getHelper() {
+        return helper;
+    }
+
+    public void setHelper(String helper) {
+        this.helper = helper;
     }
 
     public int getServiceNo() {
@@ -268,14 +287,15 @@ public class ServiceVo {
 
     @Override
     public String toString() {
-        return "ServiceVo [serviceNo=" + serviceNo + ", title=" + title + ", typeNo=" + typeNo + ", helperNo="
-                + helperNo + ", serviceIntro=" + serviceIntro + ", profileImg=" + profileImg + ", charge=" + charge
-                + ", chargeUnit=" + chargeUnit + ", helperExp=" + helperExp + ", openTime=" + openTime + ", closeTime="
-                + closeTime + ", serviceDetail=" + serviceDetail + ", paymentDetail=" + paymentDetail
-                + ", servicePic_1=" + servicePic_1 + ", servicePic_2=" + servicePic_2 + ", servicePic_3=" + servicePic_3
-                + ", servicePic_4=" + servicePic_4 + ", pTypeNo_1=" + pTypeNo_1 + ", pTypeNo_2=" + pTypeNo_2
-                + ", pTypeNo_3=" + pTypeNo_3 + ", areaNo_1=" + areaNo_1 + ", areaNo_2=" + areaNo_2 + ", areaNo_3="
-                + areaNo_3 + ", areaNo_4=" + areaNo_4 + ", areaNo_5=" + areaNo_5 + "]";
+        return "ServiceVo [serviceNo=" + serviceNo + ", title=" + title + ", typeNo=" + typeNo + ", serviceType="
+                + serviceType + ", helperNo=" + helperNo + ", helper=" + helper + ", serviceIntro=" + serviceIntro
+                + ", profileImg=" + profileImg + ", charge=" + charge + ", chargeUnit=" + chargeUnit + ", helperExp="
+                + helperExp + ", openTime=" + openTime + ", closeTime=" + closeTime + ", serviceDetail=" + serviceDetail
+                + ", paymentDetail=" + paymentDetail + ", servicePic_1=" + servicePic_1 + ", servicePic_2="
+                + servicePic_2 + ", servicePic_3=" + servicePic_3 + ", servicePic_4=" + servicePic_4 + ", pTypeNo_1="
+                + pTypeNo_1 + ", pTypeNo_2=" + pTypeNo_2 + ", pTypeNo_3=" + pTypeNo_3 + ", areaNo_1=" + areaNo_1
+                + ", areaNo_2=" + areaNo_2 + ", areaNo_3=" + areaNo_3 + ", areaNo_4=" + areaNo_4 + ", areaNo_5="
+                + areaNo_5 + "]";
     }
 
     
