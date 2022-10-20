@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.member.vo.MemberVo;
+import com.kh.dobby.member.vo.RightVo;
 
 public class MemberDao {
 
@@ -70,6 +71,63 @@ public class MemberDao {
         
         
 
+    }
+
+    public int insertJoin(Connection conn, MemberVo vo) {
+        PreparedStatement pstmt=null;
+        int result=0;
+        
+        String sql="INSERT INTO \"USER\"(USER_NO,RIGHT_NO,ID,PWD,NAME,EMAIL,NICK,ADDRESS,PHONE) VALUES(SEQ_USER_NO.NEXTVAL,?,?,?,?,?,?,?,?)";
+        
+        try {
+            pstmt=conn.prepareStatement(sql);
+
+            pstmt.setString(1, vo.getRightNo());
+            pstmt.setString(2, vo.getId());
+            pstmt.setString(3, vo.getPwd());
+            pstmt.setString(4, vo.getName());
+            pstmt.setString(5, vo.getEmail());
+            pstmt.setString(6, vo.getNick());
+            pstmt.setString(7, vo.getAddress());
+            pstmt.setString(8, vo.getPhone());
+            
+            result=pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
+    }
+
+    public int insertJoinDobby(Connection conn, RightVo rightvo) {
+        String sql= "INSERT INTO DOBBY(USER_NO,BR_NUM,ACCOUNT) VALUES(SEQ_USER_NO.CURRVAL,?,?)";
+        PreparedStatement pstmt=null;
+        int result=0;
+        try {
+            pstmt=conn.prepareStatement(sql);
+            
+           
+            pstmt.setString(1,rightvo.getBr_num());
+            pstmt.setString(2,rightvo.getAccount());
+          
+            result=pstmt.executeUpdate();
+           
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+            
+        }finally {
+            JDBCTemplate.close(pstmt);
+            
+        }
+        
+        
+        return result;
+        
     }
 
 }

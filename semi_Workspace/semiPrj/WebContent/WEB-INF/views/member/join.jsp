@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+String alertMsg = (String)session.getAttribute("alertMsg");
+session.removeAttribute("alertMsg");
+String root=request.getContextPath();
+%>  
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +15,7 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 주소 API -->
 <script>
     function addr_execDaumPostcode() {
         new daum.Postcode({
@@ -42,16 +50,16 @@
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("addr-detail").value = extraAddr;
+                    document.getElementById("addrdetail").value = extraAddr;
                 
                 } else {
-                    document.getElementById("addr-detail").value = '';
+                    document.getElementById("addrdetail").value = '';
                 }
 
                 // 주소 정보를 상세주소 필드에 넣는다.
                 document.getElementById("addr").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("addr-detail").focus();
+                document.getElementById("addrdetail").focus();
             }
         }).open();
 
@@ -156,7 +164,7 @@ button {
     height: 42px;
    }
 
-   #phone, #email, #address,#addr-detail,#br_num{
+   #phone, #email, #address,#addrdetail,#br_num{
     display: flex;
     width: 400px;
     height: 42px;
@@ -212,7 +220,7 @@ button {
     box-sizing: border-box;
     
    }
-   #addr-detail{
+   #addrdetail{
     box-sizing: border-box;
     height: 100%;
     padding: 10px;
@@ -271,7 +279,7 @@ button {
 
 <div id="join-main">
     
-    <form action="/dobby/member/join" method="post">
+    <form action="/dobby/member/join" method="post" onsubmit="check();">
     
     <div id="join-area">
             <div id="join-title"><span class="material-symbols-outlined">magic_button</span>회원가입</div>
@@ -287,8 +295,9 @@ button {
 
             <div class="text">아이디</div>
             <div id="id">
-                <input type="text" name="memberId">
-                <input type="button" value="중복확인">
+                <input type="text" name="memberId" maxlength="16">
+                <input type="button" value="중복확인" onclick="window.open('http://127.0.0.1:8888/dobby/member/idCheck', '집요정 | 아이디 중복확인', 'width=650, height=700, scrollbars=no')">
+                <input type="hidden" name="idcheck" value="iduncheck">
             </div>
 
             <div class="text">비밀번호</div>
@@ -319,13 +328,7 @@ button {
                    <input type="text" name="phone3" size="4" />
             </div>
 
-            <script>
-                var phone1 = document.form.phone1.value;
-                var phone2 = document.form.phone2.value;
-                var phone3 = document.form.phone3.value;
-                var phone = phone1+phone2+phone3;
-                document.getElementById("phone").value = phone;
-            </script>
+           
 
             <div class="text">이메일</div>
             <div id="email">
@@ -341,12 +344,7 @@ button {
                    </select>
             </div>
 
-            <script>
-                var Email1 = document.form.Email1.value;
-                var Email2 = document.form.Email2.value;
-                var email = Email1+"@"+Email2;
-                document.getElementById("email").value = email;
-            </script>
+          
 
             <div class="text">주소</div>
             <div id="address">
@@ -354,12 +352,7 @@ button {
                 <input type="text" id="addrdetail" name="addr-detail" placeholder="상세주소">
             </div>
 
-            <script>
-                var addr = document.form.addr.value;
-                var addrdetail = document.form.addr-detail.value;
-                var address = addr+","+addrdetail;
-                document.getElementById("address").value = address;
-            </script>
+           
 
             <div id="zip_right">
                 <div id="br_num_text" class="text">사업자 등록번호</div>
@@ -371,37 +364,25 @@ button {
                     <input type="text" name="br_num3" size="5" />
                 </div>
 
-                <script>
-                    var brnum1 = document.form.br_num1.value;
-                    var brnum2 = document.form.br_num2.value;
-                    var brnum3 = document.form.br_num3.value;
-                    var brnum = brnum1+brnum2+brnum3;
-                    document.getElementById("br_num").value = brnum;
-                </script>
+            
     
                 <div id="account_text" class="text">계좌번호</div>
                 <div id="account">
                     <select name="account1">
-                        <option value=""selected>은행명</option>
-                          <!-- 직접입력 밸류 값 챙기셈 -->
-                        <option value="011">카카오뱅크</option>
-                        <option value="010">신한은행</option>
-                        <option value="010">우리은행</option>
+                        <option value="z"selected>은행명</option>
+                        <option value="카카오뱅크">카카오뱅크</option>
+                        <option value="신한은행">신한은행</option>
+                        <option value="우리은행">우리은행</option>
        
                     </select>
                        <input type="text" name="account2" size="14" />
     
                 </div>
 
-                <script>
-                    var account1 = document.form.br_num1.value;
-                    var account2 = document.form.br_num2.value;
-                    var account = account1+","+account2;
-                    document.getElementById("account").value = account;
-                </script>
 
             </div>
-           
+
+
             <script>
 
                 $('input:radio[name="userRight"]').click(function() {
@@ -417,7 +398,6 @@ button {
             </script>
             
 
-            
             <div id="sub-btn"><input type="submit" value="회원가입"></div>
 
 
@@ -425,6 +405,22 @@ button {
       
         </div>
     </form>
+
+    <script>
+        // 비밀번호 일치여부 체크
+        const pwd1 = document.querySelector("input[name=memberPwd1]");
+        const pwd2 = document.querySelector("input[name=memberPwd2]");
+     
+        function check(){
+              if(pwd1.value.length>0 &&pwd1.value==pwd2.value){
+                  return true;
+                }else{
+                  alert("비밀번호가 일치 하지 않습니다.");
+                  return false;
+                }
+        }
+        
+     </script>
 </div>
 <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
