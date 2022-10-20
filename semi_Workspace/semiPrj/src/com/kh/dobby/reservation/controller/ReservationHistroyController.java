@@ -24,7 +24,6 @@ public class ReservationHistroyController extends HttpServlet{
 //        if(loginMember==null) {
 //            return;
 //        }
-	    
         String page = req.getParameter("pno");
         int currentPage = 1;
         

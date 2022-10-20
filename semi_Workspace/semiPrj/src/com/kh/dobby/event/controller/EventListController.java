@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.dobby.common.PageVo;
 import com.kh.dobby.event.service.EventService;
 import com.kh.dobby.event.vo.EventVo;
@@ -29,6 +30,11 @@ public class EventListController extends HttpServlet {
         PageVo pv = new PageVo(es.selectCount(),Integer.parseInt(pno),5,7);
         
         List<EventVo> list = es.getRanckList(pv);
+        
+        Gson gson = new Gson();
+        
+//        String json = gson.toJson(list);
+//        resp.getWriter().write(json);
         
         req.setAttribute("list", list);
         req.setAttribute("pv", pv);

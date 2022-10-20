@@ -2,7 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<% PageVo pv = (PageVo)request.getAttribute("pv");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <!DOCTYPE html>
 <html>
@@ -34,16 +36,19 @@
 			<div id="rh-main-list">
 				<!-- 여기서부터 바뀜 -->
 				
+				<c:forEach items="${list}" var="rv">
 				<div class="rh-item shadow-box">
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
-							<h1>title이 길 수 있잖아</h1>
-							<p>집요정이름</p>
+							<h1>${rv.sTitle}</h1>
+							<p>${rv.dName} }</p>
 						</div>
 						<div></div>
 						<div style="line-height:170%;">
-							<p>예약날짜 : <span>2022-05-05</span></p>
-							<p>견적날짜 : <span>2022-05-05</span></p>
+							<p>예약날짜 : <span>${rv.reservationDate}</span></p>
+							<c:if test="${not empty rv.estimateDate}">
+								<p>견적날짜 : <span>${rv.estimateDate}</span></p>
+							</c:if>
 						</div>
 						<span class="btn-list">
 							<div class="rh-i-h-btn">신고하기</div>
@@ -58,35 +63,181 @@
 					
 						<form action="">
 							<h2>요구사항</h2>
-							<textarea name="" class="comment-text" readonly></textarea>
+							<textarea name="" class="comment-text" readonly>${rv.comment}</textarea>
 							<input type="submit" value="수정">
 						</form>
 					
-						<div class="rh-i-status-text">
-							<p>서비스신청</p>
-							<p>견적대기</p><!--견적승인대기 견적승인 견적반려 -->
-							<p>예약대기</p><!--예약승인대기 예약승인 예약반려 -->
-							<p>결제대기</p><!--결제대기 결제완료 -->
-							<p></p><!--서비스예정 서비스완료 -->
-						</div>
-						<div class="rh-i-status">
-							<div class="pointer"></div>
-							<div class="line"></div>
-							<div class="pointer stay"></div>
-							<div class="line"></div>
-							<div class="pointer done"></div>
-							<div class="line"></div>
-							<div class="pointer"></div>
-							<div class="line"></div>
-							<div class="pointer"></div>
-						</div>
+						<c:if test="${rv.status == 'EAW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적승인대기</p><!--견적승인대기 견적승인 견적반려 -->
+								<p></p><!--예약승인대기 예약승인 예약반려 -->
+								<p></p><!--결제대기 결제완료 -->
+								<p></p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+							<div class="footer-btn-list flex-center">
+								<div class="rh-i-h-btn">예약취소</div>
+							</div>
+						</c:if>
 						
-						<div class="footer-btn-list flex-center">
-							<!-- <div class="rh-i-h-btn">결제하기</div> -->
-							<div class="rh-i-h-btn">예약취소</div>
-						</div>
+						<c:if test="${rv.status == 'EW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적 확인중</p><!--견적승인대기 견적승인 견적반려 -->
+								<p></p><!--예약승인대기 예약승인 예약반려 -->
+								<p></p><!--결제대기 결제완료 -->
+								<p></p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+							<div class="footer-btn-list flex-center">
+								<div class="rh-i-h-btn">예약취소</div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'RAW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적완료</p><!--견적승인대기 견적승인 견적반려 -->
+								<p>예약 승인대기</p><!--예약승인대기 예약승인 예약반려 -->
+								<p></p><!--결제대기 결제완료 -->
+								<p></p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+							<div class="footer-btn-list flex-center">
+								<div class="rh-i-h-btn">예약취소</div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'PW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적완료</p><!--견적승인대기 견적승인 견적반려 -->
+								<p>예약완료</p><!--예약승인대기 예약승인 예약반려 -->
+								<p>결제대기</p><!--결제대기 결제완료 -->
+								<p></p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+							<div class="footer-btn-list flex-center">
+								<div class="rh-i-h-btn">결제하기</div>
+								<div class="rh-i-h-btn">예약취소</div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'SW'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적완료</p><!--견적승인대기 견적승인 견적반려 -->
+								<p>예약완료</p><!--예약승인대기 예약승인 예약반려 -->
+								<p>결제완료</p><!--결제대기 결제완료 -->
+								<p>서비스 대기</p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer stay"></div>
+							</div>
+							<div class="footer-btn-list flex-center">
+								<div class="rh-i-h-btn">예약취소</div>
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'SC'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p>견적완료</p><!--견적승인대기 견적승인 견적반려 -->
+								<p>예약완료</p><!--예약승인대기 예약승인 예약반려 -->
+								<p>결제완료</p><!--결제대기 결제완료 -->
+								<p>서비스완료</p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+								<div class="line done"></div>
+								<div class="pointer done"></div>
+							</div>
+							<div class="footer-btn-list flex-center">
+							</div>
+						</c:if>
+						
+						<c:if test="${rv.status == 'C'}">
+							<div class="rh-i-status-text">
+								<p>서비스신청</p>
+								<p></p><!--견적승인대기 견적승인 견적반려 -->
+								<p></p><!--예약승인대기 예약승인 예약반려 -->
+								<p></p><!--결제대기 결제완료 -->
+								<p>예약취소</p><!--서비스예정 서비스완료 -->
+							</div>
+							<div class="rh-i-status">
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+								<div class="line"></div>
+								<div class="pointer"></div>
+							</div>
+							<div class="footer-btn-list flex-center">
+							</div>
+						</c:if>
+						
 					</div>
 				</div>
+				</c:forEach>
+				
 				<!-- ------------------------------------------------------------------------------------------ -->
 				<div class="rh-item shadow-box">
 					<div class="rh-i-header">
@@ -161,7 +312,7 @@
 						<li><a class="num"></a></li>
 						<li><a class="num"></a></li>
 						<li><a class="arrow right">></a></li>
-						<li><a href="/dobby/reservation/history?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
+						<li><a href="/dobby/reservation/history?pno=${pv.maxPage}" class="last">>></a></li>
 					</ul>
 				</div>
 				<script>
@@ -170,28 +321,28 @@
 					const left = pageNation.querySelector('.arrow.left');
 					const right = pageNation.querySelector('.arrow.right');
 
-					<%if(pv.getStartPage() > 1){%>
-						left.href = '/dobby/reservation/history?pno=<%=pv.getStartPage()-1%>';
-					<%}else{%>
+					if(${pv.startPage} > 1){
+						left.href = '/dobby/reservation/history?pno=${pv.startPage}';
+					}else{
 						left.classList.add('none-select');
-					<%}%>
+					}
 
-					<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
-						right.href = '/dobby/reservation/history?pno=<%=pv.getCurrentPage()+1%>';
-					<%}else{%>
+					if(${pv.currentPage} != ${pv.maxPage}){
+						right.href = '/dobby/reservation/history?pno=${pv.currentPage + 1}';
+					}else{
 						right.classList.add('none-select');
-					<%}%>
+					}
 
-					let page = <%=pv.getStartPage()%>;
+					let page = ${pv.startPage};
 
 					for (let i = 0; i < numArr.length; i++) {
 						const num = numArr[i];
 						
-						if(page==<%=pv.getCurrentPage()%>){
+						if(page == ${pv.currentPage}){
 							num.classList.add('current');
 						}
 						
-						if(page<1 || page><%=pv.getMaxPage()%>){
+						if(page < 1 || page > ${pv.maxPage}){
 							num.classList.add('p-none');
 						}else{
 							num.href = '/dobby/reservation/history?pno='+page;

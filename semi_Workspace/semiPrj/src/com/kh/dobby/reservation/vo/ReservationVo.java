@@ -10,7 +10,7 @@ public class ReservationVo {
     public ReservationVo(String reservation_no, String serviceNo, String userNo, String userName,
             String reservationDate, String cancelDate, String reservationAmount, String reservationYN, String comment,
             String reComment, String estimateDate, String dName, String sName, String sTitle, String charge,
-            String chargeUnit) {
+            String chargeUnit, String payNo, String status) {
         super();
         this.reservation_no = reservation_no;
         this.serviceNo = serviceNo;
@@ -28,6 +28,8 @@ public class ReservationVo {
         this.sTitle = sTitle;
         this.charge = charge;
         this.chargeUnit = chargeUnit;
+        this.payNo = payNo;
+        this.status = status;
     }
 
     private String reservation_no;
@@ -47,6 +49,9 @@ public class ReservationVo {
     private String sTitle;
     private String charge;
     private String chargeUnit;
+
+    private String payNo;
+    private String status;
 
     public String getReservation_no() {
         return reservation_no;
@@ -176,13 +181,30 @@ public class ReservationVo {
         this.chargeUnit = chargeUnit;
     }
 
+    public String getPayNo() {
+        return payNo;
+    }
+
+    public void setPayNo(String payNo) {
+        this.payNo = payNo;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "ReservationVo [reservation_no=" + reservation_no + ", serviceNo=" + serviceNo + ", userNo=" + userNo
                 + ", userName=" + userName + ", reservationDate=" + reservationDate + ", cancelDate=" + cancelDate
                 + ", reservationAmount=" + reservationAmount + ", reservationYN=" + reservationYN + ", comment="
                 + comment + ", reComment=" + reComment + ", estimateDate=" + estimateDate + ", dName=" + dName
-                + ", sName=" + sName + ", sTitle=" + sTitle + ", charge=" + charge + ", chargeUnit=" + chargeUnit + "]";
+                + ", sName=" + sName + ", sTitle=" + sTitle + ", charge=" + charge + ", chargeUnit=" + chargeUnit
+                + ", payNo=" + payNo + ", status=" + status + "]";
     }
 
 }
