@@ -1,6 +1,7 @@
 package com.kh.dobby.report.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.dobby.common.PageVo;
+import com.kh.dobby.report.service.ReportService;
+import com.kh.dobby.report.vo.ReportVo;
 
 @WebServlet(urlPatterns = "/report")
 public class ListController extends HttpServlet {
@@ -27,6 +30,8 @@ public class ListController extends HttpServlet {
 
 	    req.setAttribute("pv", pv);
 	    
+	    List<ReportVo> x = new ReportService().selectList(pv);
+	    req.setAttribute("voList", x);
 	    req.getRequestDispatcher("/WEB-INF/views/report/list.jsp").forward(req, resp);
 	}
 	

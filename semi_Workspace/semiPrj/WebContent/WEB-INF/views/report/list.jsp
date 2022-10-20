@@ -1,10 +1,13 @@
+<%@page import="java.util.List"%>
 <%@page import="com.kh.dobby.common.PageVo"%>
 <%@page import="com.kh.dobby.report.vo.ReportVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
-	//List<ReportVo> voList = (List<ReportVo>)request.getAttribute("voList");
+	List<ReportVo> voList = (List<ReportVo>)request.getAttribute("voList");
 	PageVo pv = (PageVo)request.getAttribute("pv");
 %>
 
@@ -170,14 +173,9 @@ pageEncoding="UTF-8"%>
 
 
 <div id="first">
-
-	<div id="c"><a href="/dobby/report/write"></a>글쓰기</div>
-
-	<%-- <%
-		if(loginMember != null){%>
-			<div id="c"><a href="/dobby/report/write"></a>글쓰기</div>
-		<%}
-	%> --%>
+	<c:if test="${not empty loginMember}">
+		<div id="c"><a href="/dobby/report/write"></a>글쓰기</div>
+	</c:if>
 	<div id="second">
 		<div id="a"></div>
 		<div id="b">신고게시판</div>
@@ -195,12 +193,12 @@ pageEncoding="UTF-8"%>
 		
 		
 	
-	<%-- <%for(int i = 0; i < voList.size(); ++i){%>
-			<div><%= voList.get(i).getNo() %></div>
-	        <div><a href="/dobby/report/detail?bno=<%= voList.get(i).getNo() %>"><%= voList.get(i).getTitle() %></a></div>
+	<%for(int i = 0; i < voList.size(); ++i){%>
+			<div><%= voList.get(i).getPostNo() %></div>
+	        <div><a href="/dobby/report/detail?bno=<%= voList.get(i).getPostNo() %>"><%= voList.get(i).getTitle() %></a></div>
 	        <div><%= voList.get(i).getWriter() %></div>
 		<%}%>
-	 --%>
+	 
 	</div>
 
 
