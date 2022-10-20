@@ -1,10 +1,11 @@
 package com.kh.dobby.service.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.kh.dobby.common.JDBCTemplate;
+import com.kh.dobby.common.PageVo;
 import com.kh.dobby.service.dao.ServiceDao;
-import com.kh.dobby.service.vo.ServiceAttachmentVo;
 import com.kh.dobby.service.vo.ServiceVo;
 
 public class ServiceService {
@@ -36,4 +37,49 @@ public class ServiceService {
         return result;
     }
     
+    public List<ServiceVo> listService(PageVo pv){
+        
+        Connection conn = JDBCTemplate.getConnection();
+        
+        List<ServiceVo> x = sd.listService(conn, pv);
+        
+        JDBCTemplate.close(conn);
+
+        return x;
+    }
+
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

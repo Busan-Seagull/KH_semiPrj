@@ -1,7 +1,12 @@
+<%@page import="com.kh.dobby.service.vo.ServiceVo"%>
+<%@page import="java.util.List"%>
 <%@page import="com.kh.dobby.common.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<% PageVo pv = (PageVo)request.getAttribute("pv");%>
+<% 
+List<ServiceVo> svList = (List<ServiceVo>)request.getAttribute("svList");
+PageVo pv = (PageVo)request.getAttribute("pv");
+%>
 <!DOCTYPE html>
 <html>
 <head>
