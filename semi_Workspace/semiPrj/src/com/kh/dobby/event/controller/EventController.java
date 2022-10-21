@@ -31,6 +31,7 @@ public class EventController extends HttpServlet {
         EventVo vo = new EventVo();
         vo.setScore(score);
         vo.setDifficulty(difficult);
+        System.out.println(score);
         vo.setPoint(Integer.toString(Integer.parseInt(score)*Integer.parseInt(difficult)));
         vo.setUserNo(loginMember.getUserNo());
         

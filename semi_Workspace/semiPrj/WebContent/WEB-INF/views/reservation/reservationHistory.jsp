@@ -36,6 +36,7 @@
 			<div id="rh-main-list">
 				<!-- 여기서부터 바뀜 -->
 				
+				<c:if test="${sessionScope.loginMember.rightNo == 1}">
 				<c:forEach items="${list}" var="rv">
 				<div class="rh-item shadow-box">
 					<div class="rh-i-header">
@@ -64,7 +65,7 @@
 						<form action="">
 							<h2>요구사항</h2>
 							<textarea name="" class="comment-text" readonly>${rv.comment}</textarea>
-							<input type="submit" value="수정">
+							<button type="button" onclick="updateComment(this, ${rv.reservation_no})">수정</button>
 						</form>
 					
 						<c:if test="${rv.status == 'EAW'}">
@@ -87,7 +88,7 @@
 								<div class="pointer"></div>
 							</div>
 							<div class="footer-btn-list flex-center">
-								<div class="rh-i-h-btn">예약취소</div>
+								<div class="rh-i-h-btn" onclick="cancel('none', ${rv.reservation_no})">예약취소</div>
 							</div>
 						</c:if>
 						
@@ -111,7 +112,7 @@
 								<div class="pointer"></div>
 							</div>
 							<div class="footer-btn-list flex-center">
-								<div class="rh-i-h-btn">예약취소</div>
+								<div class="rh-i-h-btn" onclick="cancel('none', ${rv.reservation_no})">예약취소</div>
 							</div>
 						</c:if>
 						
@@ -135,7 +136,7 @@
 								<div class="pointer"></div>
 							</div>
 							<div class="footer-btn-list flex-center">
-								<div class="rh-i-h-btn">예약취소</div>
+								<div class="rh-i-h-btn" onclick="cancel('none', ${rv.reservation_no})">예약취소</div>
 							</div>
 						</c:if>
 						
@@ -160,7 +161,7 @@
 							</div>
 							<div class="footer-btn-list flex-center">
 								<div class="rh-i-h-btn">결제하기</div>
-								<div class="rh-i-h-btn">예약취소</div>
+								<div class="rh-i-h-btn" onclick="cancel('none', ${rv.reservation_no})">예약취소</div>
 							</div>
 						</c:if>
 						
@@ -184,7 +185,7 @@
 								<div class="pointer stay"></div>
 							</div>
 							<div class="footer-btn-list flex-center">
-								<div class="rh-i-h-btn">예약취소</div>
+								<div class="rh-i-h-btn" onclick="cancel('none', ${rv.reservation_no})">예약취소</div>
 							</div>
 						</c:if>
 						
@@ -237,10 +238,11 @@
 					</div>
 				</div>
 				</c:forEach>
-				
+				</c:if>
 				<!-- ------------------------------------------------------------------------------------------ -->
+				
+				<c:if test="${sessionScope.loginMember.rightNo == 2}">
 				<c:forEach items="${list}" var="rv">
-
 				<div class="rh-item shadow-box">
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
@@ -252,12 +254,14 @@
 					</div>
 					<div class="rh-i-header2">
 						<div style="line-height:170%;">
-							<p>예약자 : <span>홍길동</span></p>
-							<p>주소지 : <span>서울시 성북구 어쩌구 저쩌구길</span></p>
+							<p>예약자 : <span>${rv.userName}</span></p>
+							<p>주소지 : <span>${rv.address}</span></p>
 						</div>
 						<div style="line-height:170%;">
-							<p>예약날짜 : <span>2022-05-05</span></p>
-							<p>견적날짜 : <span>2022-05-05</span></p>
+							<p>예약날짜 : <span>${rv.reservationDate}</span></p>
+							<c:if test="${not empty rv.estimateDate }">
+								<p>견적날짜 : <span>${rv.estimateDate }</span></p>
+							</c:if>
 						</div>
 					</div>
 					<input type="checkbox" id="d-check02">
@@ -267,7 +271,7 @@
 					
 						<form action="">
 							<h2>요구사항</h2>
-							<textarea name="" class="comment-text" readonly></textarea>
+							<textarea name="" class="comment-text" readonly>${rv.comment }</textarea>
 						</form>
 						
 						<c:if test="${rv.status == 'EAW'}">
@@ -289,6 +293,16 @@
 								<div class="line"></div>
 								<div class="pointer"></div>
 							</div>
+							<form>
+								<div>
+									<h2>답변사항</h2>
+									<textarea name="" class="recomment-text"></textarea>
+								</div>
+								<div class="footer-btn-list flex-center">
+									<div class="rh-i-h-btn">예약승인</div>
+									<div class="rh-i-h-btn" onclick="cancel('none', ${rv.reservation_no})">예약취소</div>
+								</div>
+							</form>
 						</c:if>
 						
 						<c:if test="${rv.status == 'EW'}">
@@ -310,6 +324,18 @@
 								<div class="line"></div>
 								<div class="pointer"></div>
 							</div>
+							
+							<form>
+								<div>
+									<h2>견적금액</h2>
+									<input type="number" name="" class="pay-text">
+								</div>
+								<div class="footer-btn-list flex-center">
+									<div class="rh-i-h-btn" onclick="">견적완료</div>
+									<div class="rh-i-h-btn" onclick="">견적반려</div>
+								</div>
+							</form>
+							
 						</c:if>
 						
 						<c:if test="${rv.status == 'RAW'}">
@@ -331,6 +357,18 @@
 								<div class="line"></div>
 								<div class="pointer"></div>
 							</div>
+							
+							<form>
+								<div>
+									<h2>답변사항</h2>
+									<textarea name="" class="recomment-text"></textarea>
+								</div>
+								<div class="footer-btn-list flex-center">
+									<div class="rh-i-h-btn">예약승인</div>
+									<div class="rh-i-h-btn">예약반려</div>
+								</div>
+							</form>
+							
 						</c:if>
 						
 						<c:if test="${rv.status == 'PW'}">
@@ -352,6 +390,9 @@
 								<div class="line"></div>
 								<div class="pointer"></div>
 							</div>
+							<div class="footer-btn-list flex-center">
+								<div class="rh-i-h-btn">예약취소</div>
+							</div>
 						</c:if>
 						
 						<c:if test="${rv.status == 'SW'}">
@@ -372,6 +413,9 @@
 								<div class="pointer done"></div>
 								<div class="line done"></div>
 								<div class="pointer stay"></div>
+							</div>
+							<div class="footer-btn-list flex-center">
+								<div class="rh-i-h-btn">예약취소</div>
 							</div>
 						</c:if>
 						
@@ -416,26 +460,12 @@
 								<div class="pointer"></div>
 							</div>
 						</c:if>
-						
-						<form action="">
-							<div>
-								<h2>답변사항</h2>
-								<textarea name="" class="recomment-text"></textarea>
-							</div>
-							<div>
-								<h2>견적금액</h2>
-								<textarea name="" class="pay-text"></textarea>
-							</div>
-							<div class="footer-btn-list flex-center">
-								<!-- <div class="rh-i-h-btn">결제하기</div> -->
-								<div class="rh-i-h-btn">예약취소</div>
-							</div>
-						</form>
+			
 					</div>
 				</div>
-				
 				</c:forEach>
-
+				</c:if>
+				
 				<!-- 페이징 -->
 				<div id="page-area">
 					<ul id="page-nation">
@@ -485,6 +515,83 @@
 						num.innerHTML = page;
 						page++;
 					}
+					
+					function approval(object, pno) {
+					    var xhr = new XMLHttpRequest();
+					    xhr.open("POST", '/dobby/reservation/result');
+					    xhr.onreadystatechange = function(){
+					        if(xhr.readyState == 4){
+					            if(xhr.status == 200){
+
+					            }else{
+					                alert("결과가 저장되지 않음.");
+					            }
+					        }
+					    }
+
+						const recomment = object.form.querySelector('textarea').innerText;
+					    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+					    xhr.send(`pno=${pno}&recomment=${recomment}`);					
+					}
+
+					function updateAmount(object, pno) {
+					    var xhr = new XMLHttpRequest();
+					    xhr.open("GET", '/dobby/reservation/update');
+					    xhr.onreadystatechange = function(){
+					        if(xhr.readyState == 4){
+					            if(xhr.status == 200){
+
+					            }else{
+					                alert("결과가 저장되지 않음.");
+					            }
+					        }
+					    }
+
+						const Amount = object.form.querySelector('input[type=number]').innerText;
+					    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+					    xhr.send(`pno=${pno}&Amount=${Amount}`);				
+					}
+					
+					function cancel(object, pno) {
+					    var xhr = new XMLHttpRequest();
+					    xhr.open("GET", '/dobby/reservation/result');
+					    xhr.onreadystatechange = function(){
+					        if(xhr.readyState == 4){
+					            if(xhr.status == 200){
+
+					            }else{
+					                alert("결과가 저장되지 않음.");
+					            }
+					        }
+					    }
+
+					    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+						if(object!='none'){
+							const recomment = object.form.querySelector('textarea').innerText;
+							xhr.send(`pno=${pno}&recomment=${recomment}`);					
+						}else{
+							xhr.send(`pno=${pno}`);	
+						}
+					}
+
+					function updateComment(object, pno) {
+					    var xhr = new XMLHttpRequest();
+					    xhr.open("POST", '/dobby/reservation/update');
+					    xhr.onreadystatechange = function(){
+					        if(xhr.readyState == 4){
+					            if(xhr.status == 200){
+
+					            }else{
+					                alert("결과가 저장되지 않음.");
+					            }
+					        }
+					    }
+ 
+						const comment = object.form.querySelector('textarea').innerText;
+					    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+					    xhr.send(`pno=${pno}&comment=${comment}`);					
+					}
+
 				</script>
 
 			</div>

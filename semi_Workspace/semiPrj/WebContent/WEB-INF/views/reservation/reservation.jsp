@@ -94,7 +94,7 @@
                     <p>날짜 선택</p>
                 </div>
                 
-                <c:if test="${not empty rv}">
+                <c:if test="${empty rv}">
                     <div id="r-back-btn" class="grid-r34">
                         <span class="material-symbols-outlined">chevron_left</span>
                     </div>
@@ -216,7 +216,8 @@
     const back = document.querySelector('#r-back-btn');
     const next = document.querySelector('#r-next-btn');
 
-    back.addEventListener('click', function(){
+    if(back!=null){
+        back.addEventListener('click', function(){
         if(month>0){
             month--;
             inputDateContainer(year, month);
@@ -226,17 +227,20 @@
             inputDateContainer(year, month);
         }
     });
+    }
 
-    next.addEventListener('click', function(){
-        if(month<11){
-            month++;
-            inputDateContainer(year, month);
-        }else if(month==11){
-            year++;
-            month = 0;
-            inputDateContainer(year, month);
-        }
-    });
+    if(next!=null){
+        next.addEventListener('click', function(){
+            if(month<11){
+                month++;
+                inputDateContainer(year, month);
+            }else if(month==11){
+                year++;
+                month = 0;
+                inputDateContainer(year, month);
+            }
+        });
+    }
 
     const selectBtn = document.querySelector('#btn-select-date');
     selectBtn.addEventListener('click', function(){

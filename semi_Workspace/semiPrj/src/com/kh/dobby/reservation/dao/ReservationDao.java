@@ -174,24 +174,25 @@ public class ReservationDao {
                 + "    RE_COMMENT,\r\n"
                 + "    ESTIMATE_DATE,\r\n"
                 + "    NAME,\r\n"
+                + "    ADDRESS,\r\n"
                 + "    D_NAME,\r\n"
                 + "    S_NAME,\r\n"
                 + "    SERVICE_TITLE,\r\n"
                 + "    CHARGE,\r\n"
-                + "    CHARGE_UNIT\r\n"
+                + "    CHARGE_UNIT,\r\n"
+                + "    D_NO\r\n"
                 + "FROM RESERVATION \r\n"
                 + "JOIN \"USER\" USING(USER_NO) \r\n"
                 + "JOIN \r\n"
                 + "(\r\n"
                 + "    SELECT\r\n"
-                + "    U.NAME AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
+                + "    USER_NO AS D_NO, U.NAME AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
                 + "    FROM SERVICE_INFO\r\n"
                 + "    JOIN \"USER\" U USING(USER_NO)\r\n"
                 + "    JOIN \"SERVICE\" S USING(SERVICE_TYPE_NO) \r\n"
                 + "    JOIN CHARGE_UNIT USING(CHARGE_UNIT_NO)\r\n"
                 + ") USING(SERVICE_NO)\r\n"
                 + "WHERE USER_NO = ?\r\n"
-                + "AND CANCEL_DATE IS NULL\r\n"
                 + "ORDER BY RESERVATION_DATE DESC";
         
         PreparedStatement pstmt = null;
@@ -224,6 +225,8 @@ public class ReservationDao {
                 rv.setdName(rs.getString("D_NAME"));
                 rv.setCharge(rs.getString("CHARGE"));
                 rv.setChargeUnit(rs.getString("CHARGE_UNIT"));
+                rv.setdNo(rs.getString("D_NO"));
+                rv.setAddress(rs.getString("ADDRESS"));
                 
                 list.add(rv);
             }
@@ -236,6 +239,100 @@ public class ReservationDao {
         }
         
         return list;
+    }
+
+    public int updateReservationYN(Connection conn, String rno, String yn) {
+
+        String cancel = "";
+        if("N".equals(yn)) {
+            cancel = "CANCEL_DATE = SYSDATE,";
+        }
+        
+        String sql = "UPDATE RESERVATION SET "+cancel+" RESERVATION_YN = ? WHERE RESERVATION_NO = ?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, yn);
+            pstmt.setString(2, rno);
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
+        
+    }
+
+    public int updateRecomment(Connection conn, String rno, String recomment) {
+
+        String sql = "UPDATE RESERVATION SET RE_COMMENT = ? WHERE RESERVATION_NO = ?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, recomment);
+            pstmt.setString(2, rno);
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
+    }
+
+    public int updateComment(Connection conn, String rno, String comment) {
+
+        String sql = "UPDATE RESERVATION SET COMMENT = ? WHERE RESERVATION_NO = ?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, comment);
+            pstmt.setString(2, rno);
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
+    }
+
+    public int updateAmount(Connection conn, String rno, int amount) {
+
+        String sql = "UPDATE RESERVATION SET RESERVATION_AMOUNT = ? WHERE RESERVATION_NO = ?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, amount);
+            pstmt.setString(2, rno);
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
     }
 
 }

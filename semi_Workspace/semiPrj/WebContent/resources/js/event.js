@@ -142,8 +142,9 @@ function addPoint(Dleft, Dtop) {
 
 // 마우스이벤트
 const cursor = document.querySelector('#cursor');
-const gpSize = gp.getBoundingClientRect();
+
 document.addEventListener('mousemove', function(e){
+    const gpSize = gp.getBoundingClientRect();
     cursor.style.left = `${e.clientX-gpSize.left-35}px`;
     cursor.style.top = `${e.clientY-gpSize.top-20}px`;
 });
@@ -253,7 +254,7 @@ function endGame(){
         }
     }
 
-    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
     xhr.send(`score=${score}&difficult=${difficult}`);
 }
 

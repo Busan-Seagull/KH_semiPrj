@@ -1,6 +1,11 @@
 <%@page import="com.kh.dobby.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%
 	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 %>
@@ -324,20 +329,72 @@
 		background-color: var(--semi-green);
 		color: white;
 	}
+
+    #alarm-list{
+        position: absolute;
+        right: -265px;
+        top: 30px;
+        background-color: rgba(255, 255, 255, 0.7);
+        width: 280px;
+        /* height: 500px; */
+        max-height: 500px;
+        z-index: 999;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        align-items: center;
+        overflow-y: scroll;
+        gap: 5px;
+
+        display: none;
+    }
+
+    #header-alarm:hover #alarm-list,
+    #header-alarm:hover #alarm-list:hover{
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* width */
+    #alarm-list::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    .alarm-list-item{
+        width: 90%;
+        height: 30px;
+        border-bottom: 1px solid rgb(133, 133, 133);
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        opacity: 0.5;
+        position: relative;
+    }
+
+    .alarm-list-item > p{
+        align-self: flex-start;
+    }
+
+    .alarm-list-item > h3{
+        font-size: small;
+    }
+
+    .alarm-list-item:hover{
+        opacity: 100;
+    }
+
+    .alarm-list-item .left,
+    .alarm-list-item .right{
+        position: absolute;
+        background-color: red;
+        width: 50%;
+        height: 100%;
+    }
 	
 </style>
-
-<script>
-    document.addEventListener('scroll', () => {
-        // console.log(window.scrollY);
-        const nav = document.querySelector('nav');
-        if(window.scrollY >= 150){
-            nav.classList.add('sticky');
-        }else{
-            nav.classList.remove('sticky');
-        }
-    });
-</script>
 
     <header id="header-main-box">
         <div id="header-logo-box">
@@ -346,7 +403,19 @@
             	<div id="header-quick-box">
 	                <a href="/dobby/member/mypage"><div class="img"></div><p>MyPage</p></a>
 	                <a href=""><div class="img"></div><p>Favorites</p></a>
-	                <a href=""><p id="notice-num">100</p><div class="img"></div><p>Alarm</p></a>
+	                <a id="header-alarm">
+                        <p id="notice-num"></p>
+                        <div id="alarm-list">
+                            <div class="alarm-list-item">
+                                <p>123</p>
+                                <h3>123</h3>
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="img"></div>
+                        <p>Alarm</p>
+                    </a>
 	                <a href="/dobby/member/logout"><div class="img"></div><p>Logout</p></a>
 	            </div>
             <%}else{%>
@@ -385,4 +454,89 @@
             </div>
             <article id="header-nav-hover"></article>
         </div>
+       
     </nav>
+
+    <script defer>
+        document.addEventListener('scroll', () => {
+            // console.log(window.scrollY);
+            const nav = document.querySelector('nav');
+            if(window.scrollY >= 150){
+                nav.classList.add('sticky');
+            }else{
+                nav.classList.remove('sticky');
+            }
+        });
+        
+    	<c:if test="${not empty sessionScope.loginMember}">
+        	// getAlarm();
+		</c:if>
+
+        function getAlarm() {
+        	
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/dobby/alarm');
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+
+                        const result = JSON.parse(xhr.responseText);
+                        console.log(result);
+
+                        const noticeNum = document.querySelector('#notice-num');
+                        const list = document.querySelector('#alarm-list');
+
+                        if(result!=null || result!="flase" || result!=''){
+
+                            for (let index = 0; index < result.length; index++) {
+                                const element = result[index];
+                                
+                                const div = document.createElement('div');
+                                div.classList.add('alarm-list-item');
+
+                                const p = document.createElement('p');
+                                const h3 = document.createElement('h3');
+
+                                p.innerText = element.modifyDate;
+                                h3.innerText = element.content;
+
+                                div.appendChild(p);
+                                div.appendChild(h3);
+
+                                div.addEventListener('click', updateCheck(element.alarmNo));
+
+                                list.appendChild(div);
+                            }
+                            
+                            noticeNum.innerText = result.length;                              	
+                        }
+
+                    }else{
+                        alert("결과가 저장되지 않음.");
+                    }
+                }
+            }
+
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.send();	
+        }
+
+        function updateCheck(ano) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", '/dobby/alarm');
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+
+                    }else{
+                        alert("결과가 저장되지 않음.");
+                    }
+                }
+            }
+
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.send('ano='+ano);	
+
+            getAlarm();
+        }
+    </script>

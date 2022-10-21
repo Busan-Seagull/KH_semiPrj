@@ -106,4 +106,76 @@ public class ReservationService {
         return list;
     }
 
+    public int reservationResult(String rno, String yn) {
+        
+        Connection conn = JDBCTemplate.getConnection();
+
+        int result = dao.updateReservationYN(conn, rno, yn);
+
+        ReservationVo rv = null;
+        if (result == 1) {
+            JDBCTemplate.commit(conn);
+        } else {
+            JDBCTemplate.rollback(conn);
+        }
+
+        JDBCTemplate.close(conn);
+
+        return result;
+    }
+
+    public int updateRecomment(String rno, String recomment) {
+
+        Connection conn = JDBCTemplate.getConnection();
+
+        int result = dao.updateRecomment(conn, rno, recomment);
+
+        ReservationVo rv = null;
+        if (result == 1) {
+            JDBCTemplate.commit(conn);
+        } else {
+            JDBCTemplate.rollback(conn);
+        }
+
+        JDBCTemplate.close(conn);
+
+        return result;
+    }
+
+    public int updateComment(String rno, String comment) {
+
+        Connection conn = JDBCTemplate.getConnection();
+
+        int result = dao.updateComment(conn, rno, comment);
+
+        ReservationVo rv = null;
+        if (result == 1) {
+            JDBCTemplate.commit(conn);
+        } else {
+            JDBCTemplate.rollback(conn);
+        }
+
+        JDBCTemplate.close(conn);
+
+        return result;
+    }
+
+    public int updateAmount(String rno, int amount) {
+
+        Connection conn = JDBCTemplate.getConnection();
+
+        int result = dao.updateAmount(conn, rno, amount);
+
+        ReservationVo rv = null;
+        if (result == 1) {
+            JDBCTemplate.commit(conn);
+        } else {
+            JDBCTemplate.rollback(conn);
+        }
+
+        JDBCTemplate.close(conn);
+
+        return result;
+    }
+
 }
