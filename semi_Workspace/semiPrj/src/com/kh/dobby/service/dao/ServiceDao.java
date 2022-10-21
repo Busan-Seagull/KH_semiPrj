@@ -47,19 +47,13 @@ public class ServiceDao {
         return 0;
     }
 
-    public List<ServiceVo> listService(Connection conn, PageVo pv) {
-
-        String sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK,\r\n"
-                + "S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1, S.SERVICE_PIC_2\r\n"
-                + ", S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3\r\n"
-                + ", S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5\r\n"
-                + "FROM SERVICE_INFO S JOIN USER_ U\r\n"
-                + "                    ON S.USER_NO = U.USER_NO\r\n"
-                + "                    JOIN SERVICE_ SE\r\n"
-                + "                    ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO\r\n"
-                + "                    JOIN CHARGE_UNIT C\r\n"
-                + "                    ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO;\r\n";
-//                + "WHERE S.USER_NO = ?;";
+    public List<ServiceVo> listService(Connection conn, PageVo pv, String stn) {
+String sql = null;
+        if(stn == null) {
+        sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK, S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 FROM SERVICE_INFO S JOIN \"USER\" U ON S.USER_NO = U.USER_NO JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO";
+        }else {
+            sql ="SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK, S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 FROM SERVICE_INFO S JOIN \"USER\" U ON S.USER_NO = U.USER_NO JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO WHERE S.SERVICE_TYPE_NO ="+stn;
+        }
 
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -67,7 +61,7 @@ public class ServiceDao {
 
         try {
             pstmt = conn.prepareStatement(sql);
-            
+
 //            int start = (pv.getCurrentPage() - 1) * pv.getBoardLimit() + 1;
 //            int end = start + pv.getBoardLimit() - 1;
 
@@ -133,9 +127,9 @@ public class ServiceDao {
                 sv.setAreaNo_3(areaNo_3);
                 sv.setAreaNo_4(areaNo_4);
                 sv.setAreaNo_5(areaNo_5);
-               
 
                 svList.add(sv);
+
             }
 
         } catch (SQLException e) {
@@ -146,6 +140,89 @@ public class ServiceDao {
         }
 
         return svList;
+    }
+
+    public ServiceVo selectOne(Connection conn, String sno) {
+
+        String sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK, S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 FROM SERVICE_INFO S JOIN \"USER\" U ON S.USER_NO = U.USER_NO JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO WHERE S.SERVICE_NO = ?";
+
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ServiceVo sv = new ServiceVo();
+        int serviceNumber = Integer.parseInt(sno);
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, serviceNumber);
+
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) {
+            int serviceNo = rs.getInt("SERVICE_NO");
+            String title = rs.getString("SERVICE_TITLE");
+            int typeNo = rs.getInt("SERVICE_TYPE_NO");
+            String serviceType = rs.getString("NAME");
+            int helperNo = rs.getInt("USER_NO");
+            String helper = rs.getString("NICK");
+            String serviceIntro = rs.getString("SERVICE_INTRO");
+            String profileImg = rs.getString("IMAGE_LINK");
+            int charge = rs.getInt("CHARGE");
+            String chargeUnit = rs.getString("CHARGE_UNIT");
+            int helperExp = rs.getInt("EXP");
+            String openTime = rs.getString("OPEN_TIME");
+            String closeTime = rs.getString("CLOSE_TIME");
+            String serviceDetail = rs.getString("DETAIL");
+            String paymentDetail = rs.getString("PAYMENT_DETAIL");
+            String servicePic_1 = rs.getString("SERVICE_PIC_1");
+            String servicePic_2 = rs.getString("SERVICE_PIC_2");
+            String servicePic_3 = rs.getString("SERVICE_PIC_3");
+            String servicePic_4 = rs.getString("SERVICE_PIC_4");
+            int pTypeNo_1 = rs.getInt("PAYMENT_ABLE_1");
+            int pTypeNo_2 = rs.getInt("PAYMENT_ABLE_2");
+            int pTypeNo_3 = rs.getInt("PAYMENT_ABLE_3");
+            int areaNo_1 = rs.getInt("AREA_1");
+            int areaNo_2 = rs.getInt("AREA_2");
+            int areaNo_3 = rs.getInt("AREA_3");
+            int areaNo_4 = rs.getInt("AREA_4");
+            int areaNo_5 = rs.getInt("AREA_5");
+
+            sv.setServiceNo(serviceNo);
+            sv.setTitle(title);
+            sv.setTypeNo(typeNo);
+            sv.setServiceType(serviceType);
+            sv.setHelperNo(helperNo);
+            sv.setHelper(helper);
+            sv.setServiceIntro(serviceIntro);
+            sv.setProfileImg(profileImg);
+            sv.setCharge(charge);
+            sv.setChargeUnit(chargeUnit);
+            sv.setHelperExp(helperExp);
+            sv.setOpenTime(openTime);
+            sv.setCloseTime(closeTime);
+            sv.setServiceDetail(serviceDetail);
+            sv.setPaymentDetail(paymentDetail);
+            sv.setServicePic_1(servicePic_1);
+            sv.setServicePic_2(servicePic_2);
+            sv.setServicePic_3(servicePic_3);
+            sv.setServicePic_4(servicePic_4);
+            sv.setpTypeNo_1(pTypeNo_1);
+            sv.setpTypeNo_2(pTypeNo_2);
+            sv.setpTypeNo_3(pTypeNo_3);
+            sv.setAreaNo_1(areaNo_1);
+            sv.setAreaNo_2(areaNo_2);
+            sv.setAreaNo_3(areaNo_3);
+            sv.setAreaNo_4(areaNo_4);
+            sv.setAreaNo_5(areaNo_5);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+
+        return sv;
     }
 
 }

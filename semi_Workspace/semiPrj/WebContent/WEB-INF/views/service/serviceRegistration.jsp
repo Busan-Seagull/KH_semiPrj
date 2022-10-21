@@ -40,7 +40,7 @@
 						<option value="1">평당</option>
 						<option value="2">시간당</option>
 						<option value="3">회당</option>
-						<option value="4">무게..?</option>
+						<option value="4">견적필요</option>
 					</select>
 				</div>
 				<div id="payment">요금</div>

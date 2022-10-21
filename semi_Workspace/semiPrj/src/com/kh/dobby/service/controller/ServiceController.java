@@ -19,12 +19,10 @@ public class ServiceController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
-        
         PageVo pv = new PageVo();
-        
-        
+        String stn = req.getParameter("stn");
         //디비
-        List<ServiceVo> x = new ServiceService().listService(pv);
+        List<ServiceVo> x = new ServiceService().listService(pv, stn);
         
         req.setAttribute("svList", x);
         req.setAttribute("pv", pv);
