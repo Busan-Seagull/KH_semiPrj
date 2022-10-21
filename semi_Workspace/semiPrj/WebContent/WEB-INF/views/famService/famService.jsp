@@ -15,8 +15,7 @@ li{
 #main-main{
     width: 960px;
     height: 700px;
-    display: flex;
-    justify-content: flex-start;
+   
    
     
 
@@ -68,9 +67,9 @@ li{
 .controls span.next{left: calc(100%+50px);}
 
 li>div{
-    width: 280px;
+    width: 300px;
     height: 440px;
-    border: 10px solid lightgray;
+   
     margin-bottom: 50px;
 }
 #title{
@@ -97,14 +96,9 @@ li>div{
     font-size: x-large;
     position: relative;
     top: 40px;
-    left: 15px;
+    left: 25px;
 }
-.s2{
-    font-size: large;
-    position: relative;
-    top: 60px;
-    left: 30px;
-}
+
 .s3{
     font-size: large;
     position: relative;
@@ -117,18 +111,19 @@ li>div{
     position: relative;
     top: 30px;
     left: 40px;
+   
 
 }
 .s5{
     font-size: large;
    position: relative;
    top:80px;
-    left: 80px;
+    left: 90px;
 }
 .s6{
     position: relative;
     top:20px;
-    left: 55px;
+    left: 65px;
 }
 .slides-li-div{
     display: flex;
@@ -138,7 +133,17 @@ li>div{
     width: 100%;
     height: 80%;
     border-bottom: 3px solid lightgray;
+    background-color:#EAE0D4;
+    color:black;
+    box-shadow: 2px 2px lightgray;
 }
+
+.slides-div2{
+	height:20%;
+	border:3px solid lightgray;
+	
+}
+
 </style>
 	
 
@@ -162,7 +167,6 @@ li>div{
                             <div class="slides-div1">
                                 <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
                                 <div class="s1">집고치는 집요정 | 집요정</div>
-                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
                                 <div class="s5">평당 15,000원</div>
                             </div>
                             <div class="slides-div2">
@@ -176,7 +180,6 @@ li>div{
                             <div class="slides-div1">
                                 <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
                                 <div class="s1">집고치는 집요정 | 집요정</div>
-                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
                                 <div class="s5">평당 15,000원</div>
                             </div>
                             <div class="slides-div2">
@@ -190,7 +193,6 @@ li>div{
                             <div class="slides-div1">
                                 <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
                                 <div class="s1">집고치는 집요정 | 집요정</div>
-                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
                                 <div class="s5">평당 15,000원</div>
                             </div>
                             <div class="slides-div2">
@@ -204,7 +206,6 @@ li>div{
                             <div class="slides-div1">
                                 <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
                                 <div class="s1">집고치는 집요정 | 집요정</div>
-                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
                                 <div class="s5">평당 15,000원</div>
                             </div>
                             <div class="slides-div2">
@@ -218,7 +219,6 @@ li>div{
                             <div class="slides-div1">
                                 <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
                                 <div class="s1">집고치는 집요정 | 집요정</div>
-                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
                                 <div class="s5">평당 15,000원</div>
                             </div>
                             <div class="slides-div2">
@@ -232,7 +232,6 @@ li>div{
                             <div class="slides-div1">
                                 <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
                                 <div class="s1">집고치는 집요정 | 집요정</div>
-                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
                                 <div class="s5">평당 15,000원</div>
                             </div>
                             <div class="slides-div2">
@@ -246,7 +245,6 @@ li>div{
                             <div class="slides-div1">
                                 <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
                                 <div class="s1">집고치는 집요정 | 집요정</div>
-                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
                                 <div class="s5">평당 15,000원</div>
                             </div>
                             <div class="slides-div2">
@@ -260,7 +258,6 @@ li>div{
                             <div class="slides-div1">
                                 <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
                                 <div class="s1">집고치는 집요정 | 집요정</div>
-                                <div class="s2">모든 집수리1, 청소1, 청소2,<br> 청소3, 다 해요!</div>
                                 <div class="s5">평당 15,000원</div>
                             </div>
                             <div class="slides-div2">
@@ -283,7 +280,7 @@ li>div{
             currentIdx=0,
             slideCount = slide.length,
             prevBtn = document.querySelector('.prev'),
-            slideWidth=280,
+            slideWidth=300,
             slideMargin=30,
             nextBtn= document.querySelector('.next');
 

@@ -1,16 +1,25 @@
+<%@page import="com.kh.dobby.report.vo.ReportVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+<%
+	ReportVo vo = (ReportVo)request.getAttribute("vo");
+
+	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <style type="text/css">
 
 #first{
 	width: 960px;
-	height: 600px;
+	height: 750px;
 	margin: 0 auto;
 }
 
@@ -83,13 +92,13 @@ pageEncoding="UTF-8"%>
 	line-height :40px;
 }
 #i{
-	width: 270px;
+	width: 400px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
 	top: 60px;
-	left: 360px;
+	left: 290px;
 }
 #l{
 text-align:center;
@@ -100,34 +109,34 @@ border:none;
 border-bottom: 3px solid black;
 overflow:auto;
 }
-#reply{
-	width:100px;
-	display:flex;
-	margin-right:100px;
-	position:relative;
-	top:20px;
 
-	
-	
-}
 #main{
 	position:relative;
 	top: 50px;
 }
-input{
-	border:none;
-	height:30px;
+
+#reply-main{
+	width:960px;
+	height:300px;
+	display:flex;
+	text-align:center;
+	line-height:100px;
+	position:relative;
+	top:100px;
 	
 }
-input:focus {outline: none;}
-#input-btn{
- font-size:medium;
- font-weight:500;
- background-color:#EAE0D4;
+#top{
+	width:130px;
+	height:100px;
+	background-color:  #004412;
+	color: white;
 }
-input,textarea{
-	font-size:large;
+#bottom{
+	width: 830px;
+	height:98px;
+	border: 1px solid #004412;
 }
+
 
 </style>
 </head>
@@ -144,8 +153,7 @@ input,textarea{
 		<div id="a"></div>
 		<div id="b">신고게시판</div>
 	</div>
-	<form action="" method="post">
-		<div id="main">
+	<div id="main">
 		<div id="f">
 			<div class="h" id="t4">번호</div>
 			<div class="h" id="t5">신고할 회원</div>
@@ -154,24 +162,35 @@ input,textarea{
 			<div class="h" id="t8">작성자</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t13"><input type="text" name="postNo"></div>
-			<div class="h" id="t14"><input type="text" name="userNo"></div>
-			<div class="h" id="t15"><input type="text" name="serviceNo"></div>
-			<div class="h" id="t16"><input type="text" name="title"></div>
-			<div class="h" id="t17"><input type="text" name="writer"></div>
+			<div class="h" id="t13"><%=vo.getPostNo() %></div>
+			<div class="h" id="t14"><%=vo.getUserNo() %></div>
+			<div class="h" id="t15"><%=vo.getServiceNo() %></div>
+			<div class="h" id="t16"><%=vo.getTitle() %></div>
+			<div class="h" id="t17"><%=vo.getWriter() %></div>
 		</div>
 		<div>
 			<div id="l">신고내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="120" rows="18"></textarea>
+			<textarea class="custom-textarea" id="t18" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><input id="input-btn" type="submit" value="확인"></div>
+		<div class="i1"><a href=""></a>삭제</div>
+		<div class="i1"><input id="input-btn" type="submit" value="수정" ></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
-	</form>
+	
+	<%
+		if(vo.getHandleReportYn() != null){%>
+			<div id="reply-main">
+			<div id="top">관리자</div>
+			<div id="bottom">댓글 내용</div>
+		</div>
+		<%}
+	%>
 	
 </div>
+
+	
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

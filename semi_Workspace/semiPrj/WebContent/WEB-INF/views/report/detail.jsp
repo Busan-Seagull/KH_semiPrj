@@ -1,10 +1,21 @@
+<%@page import="com.kh.dobby.report.vo.ReportVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+<%
+	ReportVo vo = (ReportVo)request.getAttribute("vo");
+	String alertMsg = (String)request.getAttribute("alertMsg");
+	String msg = (String)request.getAttribute("msg");
+
+	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 
 <style type="text/css">
 
@@ -127,6 +138,16 @@ overflow:auto;
 	height:98px;
 	border: 1px solid #004412;
 }
+#input-btn{
+ font-size:medium;
+ font-weight:500;
+ background-color:#EAE0D4;
+}
+input{
+	border:none;
+	height:30px;
+	
+}
 
 
 </style>
@@ -153,26 +174,32 @@ overflow:auto;
 			<div class="h" id="t8">작성자</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t13"></div>
-			<div class="h" id="t14"></div>
-			<div class="h" id="t15"></div>
-			<div class="h" id="t16"></div>
-			<div class="h" id="t17"></div>
+			<div class="h" id="t13"><%=vo.getPostNo() %></div>
+			<div class="h" id="t14"><%=vo.getUserNo() %></div>
+			<div class="h" id="t15"><%=vo.getServiceNo() %></div>
+			<div class="h" id="t16"><%=vo.getTitle() %></div>
+			<div class="h" id="t17"><%=vo.getWriter() %></div>
 		</div>
 		<div>
 			<div id="l">신고내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><a href=""></a>삭제</div>
-		<div class="i1"><a href=""></a>수정</div>
-		<div class="i1"><a href=""></a>글목록</div>
+		<div class="i1"><input id="input-btn" type="submit" value="삭제"></div>
+		<div class="i1"><a href="/dobby/edit">수정</a></div>
+		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
-	<div id="reply-main">
-		<div id="top">관리자</div>
-		<div id="bottom">댓글 내용</div>
-	</div>
+	
+	<%
+		if(vo.getHandleReportYn() != null){%>
+			<div id="reply-main">
+			<div id="top">관리자</div>
+			<div id="bottom">댓글 내용</div>
+		</div>
+		<%}
+	%>
+	
 </div>
 
 

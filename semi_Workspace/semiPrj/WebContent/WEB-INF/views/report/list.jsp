@@ -9,6 +9,7 @@ pageEncoding="UTF-8"%>
 <%
 	List<ReportVo> voList = (List<ReportVo>)request.getAttribute("voList");
 	PageVo pv = (PageVo)request.getAttribute("pv");
+	String msg = (String)request.getAttribute("msg");
 %>
 
 <!DOCTYPE html>
@@ -174,7 +175,7 @@ pageEncoding="UTF-8"%>
 
 <div id="first">
 	<c:if test="${not empty loginMember}">
-		<div id="c"><a href="/dobby/report/write"></a>글쓰기</div>
+		<div id="c"><a href="/dobby/write">글쓰기</a></div>
 	</c:if>
 	<div id="second">
 		<div id="a"></div>
@@ -186,16 +187,11 @@ pageEncoding="UTF-8"%>
 			<div class="tm01">제목</div>
 			<div class="tm01">작성자</div>
 		
-		
-			<div>1</div>
-			<div>정말 화나요</div>
-			<div>nick01</div>
-		
-		
+	
 	
 	<%for(int i = 0; i < voList.size(); ++i){%>
 			<div><%= voList.get(i).getPostNo() %></div>
-	        <div><a href="/dobby/report/detail?bno=<%= voList.get(i).getPostNo() %>"><%= voList.get(i).getTitle() %></a></div>
+	        <div><a href="/dobby/detail?postNo=<%= voList.get(i).getPostNo() %>"><%= voList.get(i).getTitle() %></a></div>
 	        <div><%= voList.get(i).getWriter() %></div>
 		<%}%>
 	 
@@ -213,7 +209,7 @@ pageEncoding="UTF-8"%>
 			<li><a class="num"></a></li>
 			<li><a class="num"></a></li>
 			<li><a class="arrow right">></a></li>
-			<li><a href="/dobby/dobby/report?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
+			<li><a href="/dobby/report?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
 		</ul>
 	</div>
 	<script>
@@ -246,7 +242,7 @@ pageEncoding="UTF-8"%>
 			if(page<1 || page><%=pv.getMaxPage()%>){
 				num.classList.add('p-none');
 			}else{
-				num.href = '/dobby/dobby/report?pno='+page;
+				num.href = '/dobby/report?pno='+page;
 			}
 			num.innerHTML = page;
 			page++;
