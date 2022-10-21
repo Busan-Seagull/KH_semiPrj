@@ -45,6 +45,7 @@ public class MemberDao {
                     
                     loginMember=new MemberVo();
                     loginMember.setUserNo(userNo);
+                    loginMember.setRightNo(rightNo);//잘챙겨.
                     loginMember.setId(id);
                     loginMember.setPwd(pwd);
                     loginMember.setName(name);
@@ -128,6 +129,35 @@ public class MemberDao {
         
         return result;
         
+    }
+
+    public int idCheck(Connection conn, String id) {
+       
+        
+        String sql = "SELECT * FROM \"USER\" WHERE ID = ?"; // 입력값이 테이블에 있는지 확인
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        int idCheck = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next() || id.equals("")) {
+                idCheck = 0;  // 이미 존재하는 경우, 생성 불가능
+            } else {
+                idCheck = 1;  // 존재하지 않는 경우, 생성 가능
+            }
+        } catch (SQLException e) {
+           
+        }finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return idCheck;
     }
 
 }
