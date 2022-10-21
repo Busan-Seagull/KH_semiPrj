@@ -28,7 +28,7 @@ public class DetailAdminController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/report/detailAdmin.jsp").forward(req, resp);
         }else {
             req.setAttribute("msg", "권한이 없습니다.");
-            req.getRequestDispatcher("/views/report/detail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
         }
         
         

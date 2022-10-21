@@ -37,10 +37,29 @@ public class DetailController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/report/detail.jsp").forward(req, resp);
         }else {
             req.setAttribute("msg", "권한이 없습니다.");
-            req.getRequestDispatcher("/views/report/detail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
         }
 	    
 	    
-	}	 
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    
+	    String postNo = req.getParameter("postNo");
+        
+        int result = new ReportService().approval(postNo);
+        int result2 = new ReportService().returnReport(postNo);
+        
+        
+        if((result*result2) == 1) {
+            resp.getWriter().write("처리되었습니다.");
+            
+        }else {
+            resp.getWriter().write("처리되지 않았습니다");
+        }
+    
+	
+	}
 	
 }

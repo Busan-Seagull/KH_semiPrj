@@ -136,5 +136,25 @@ public class ReportService {
     
     
     }
+
+
+
+    public int writeReply(ReportVo vo) {
+        
+        Connection conn = getConnection();
+        
+        int result = dao.updateReply(conn,vo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        
+        return result;
+        
+        
+    }
     
 }

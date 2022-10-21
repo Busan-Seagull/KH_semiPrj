@@ -92,15 +92,17 @@ pageEncoding="UTF-8"%>
 	text-align: center;
 	margin: 0 auto;
 	line-height :40px;
+	border-radius:2.5rem;
+	
 }
 #i{
-	width: 400px;
+	width: 600px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
 	top: 60px;
-	left: 290px;
+	left: 180px;
 }
 #l{
 text-align:center;
@@ -138,17 +140,37 @@ overflow:auto;
 	height:98px;
 	border: 1px solid #004412;
 }
-#input-btn{
+.input-btn{
  font-size:medium;
- font-weight:500;
+ font-weight:600;
  background-color:#EAE0D4;
-}
-input{
-	border:none;
-	height:30px;
-	
+ border:none;
+ 
 }
 
+
+#r1{
+	width:100px;
+	height:40px;
+	background-color: #EAE0D4;
+	border:none;
+	box-shadow: 2px 2px lightgray;
+	
+	
+}
+#r2{
+	display:flex;
+	flex-direction:row-reverse;
+	position:relative;
+	top:20px;
+	
+}
+#reply-reply{
+	position:relative;
+	top: 30px;
+	
+	
+}
 
 </style>
 </head>
@@ -186,21 +208,32 @@ input{
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><input id="input-btn" type="submit" value="삭제"></div>
+	<% if(loginMember != null && loginMember.getId().equals("admin")){%>
+		<div class="i1"><input class="input-btn" type="submit" value="승인"></div>
+		<div class="i1"><input class="input-btn" type="submit" value="반려"></div>
+	<%} %>
+		<div class="i1"><input class="input-btn" type="submit" value="삭제"></div>
 		<div class="i1"><a href="/dobby/edit">수정</a></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
+	<% if(loginMember != null && loginMember.getId().equals("admin")){%>
+		<div>
+			<a href="/dobby/detailAdmin" id="reply-reply">댓글 달기</a>
+		</div>
+	<%} %>
 	
 	<%
 		if(vo.getHandleReportYn() != null){%>
 			<div id="reply-main">
-			<div id="top">관리자</div>
-			<div id="bottom">댓글 내용</div>
+			<div id="top"><%=vo.getWriter() %></div>
+			<div id="bottom"><%=vo.getReportComment() %></div>
 		</div>
 		<%}
 	%>
 	
 </div>
+
+
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

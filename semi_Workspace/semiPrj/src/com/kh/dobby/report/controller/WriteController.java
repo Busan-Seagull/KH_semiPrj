@@ -21,10 +21,7 @@ public class WriteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        
-//          HttpSession s = req.getSession();
-//          MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");
-           //회원만 글쓰기 버튼 볼 수 있게 나중에 수정
+   
           
           if(req.getSession().getAttribute("loginMember")!= null) {
               req.getRequestDispatcher("/WEB-INF/views/report/write.jsp").forward(req, resp);

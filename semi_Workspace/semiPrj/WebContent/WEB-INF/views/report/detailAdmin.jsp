@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
 	String alertMsg = (String)request.getAttribute("alertMsg");
 	String msg = (String)request.getAttribute("msg");
 	
-	boolean isAdmin = loginMember != null && loginMember.getId().equals("admin");
+	
 
 	
 %>
@@ -93,6 +93,7 @@ pageEncoding="UTF-8"%>
 	text-align: center;
 	margin: 0 auto;
 	line-height :40px;
+	border-radius:2.5rem;
 }
 #i{
 	width: 600px;
@@ -182,15 +183,15 @@ overflow:auto;
 			<div class="h" id="t8">작성자</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t13"></div>
-			<div class="h" id="t14"></div>
-			<div class="h" id="t15"></div>
-			<div class="h" id="t16"></div>
-			<div class="h" id="t17"></div>
+			<div class="h" id="t13"><%=vo.getPostNo() %></div>
+			<div class="h" id="t14"><%=vo.getUserNo() %></div>
+			<div class="h" id="t15"><%=vo.getServiceNo() %></div>
+			<div class="h" id="t16"><%=vo.getTitle() %></div>
+			<div class="h" id="t17"><%=vo.getWriter() %></div>
 		</div>
 		<div>
 			<div id="l">신고내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
 		</div>
 	</div>
 	<div id="i">
@@ -202,7 +203,7 @@ overflow:auto;
 	</div>
 	<div id="reply-main">
 		<div id="top1">댓글 내용</div>
-		<textarea id="bottom1" rows="" cols=""></textarea>
+		<textarea id="bottom1" name="content-reply" rows="" cols=""></textarea>
 		<div id="r2"><input id="r1" type="submit" value="확인"></div> 
 	</div>	
 </div>

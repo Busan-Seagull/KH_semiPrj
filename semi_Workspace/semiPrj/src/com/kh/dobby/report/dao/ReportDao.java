@@ -244,6 +244,29 @@ public class ReportDao {
         return result;
     
     }
+
+    public int updateReply(Connection conn, ReportVo vo) {
+        String sql = "UPDATE REPORT SET REPORT_COMMENT = '?' WHERE POST_NO = ?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, vo.getReportComment());
+            pstmt.setString(2, vo.getPostNo());
+          
+            
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        
+        return result;
+        
+    }
     
    
 }
