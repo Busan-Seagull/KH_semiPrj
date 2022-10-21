@@ -1,6 +1,7 @@
 package com.kh.dobby.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.crypto.spec.IvParameterSpec;
 import javax.servlet.ServletException;
@@ -22,7 +23,9 @@ public class MemberJoinController extends HttpServlet  {
     
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	   
+      
+	    
+	    
 	    
 	    req.setCharacterEncoding("UTF-8");
 	    
@@ -55,6 +58,9 @@ public class MemberJoinController extends HttpServlet  {
             rightvo.setBr_num(br_num);
             rightvo.setAccount(account);
         }
+        
+        
+
       
         
      // 디비 다녀오기
@@ -67,8 +73,8 @@ public class MemberJoinController extends HttpServlet  {
             resp.sendRedirect("/dobby");
         }else {
             //회원가입 실패
-            req.getSession().setAttribute("msg", "회원가입 실패!");
-            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+            req.getSession().setAttribute("alertMsg", "회원가입 실패!");
+            req.getRequestDispatcher("/WEB-INF/views/member/join.jsp").forward(req, resp);
         }
 
        

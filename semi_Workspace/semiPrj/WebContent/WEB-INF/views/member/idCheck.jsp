@@ -147,6 +147,8 @@ margin-top: 10px;
 
 }
 </style>
+
+
 </head>
 <body>
 <div id="result-main">
@@ -165,7 +167,7 @@ margin-top: 10px;
             <div id="result-view">
 
                 <table id="rstable">
-                    <tr  >
+                    <tr >
                         <td>ID</td>
                         <td>USER01</td>
                         <td>사용가능한 아이디 입니다</td>

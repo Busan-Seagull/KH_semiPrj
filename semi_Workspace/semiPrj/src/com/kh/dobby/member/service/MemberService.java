@@ -45,4 +45,21 @@ public class MemberService {
 
     }
 
+    public int idCheck(String id) {
+        Connection conn=JDBCTemplate.getConnection();
+        MemberDao dao = new MemberDao();
+        int result=dao.idCheck(conn, id);
+        
+        if (result == 0) {
+            System.out.println("이미 존재하는 아이디입니다.");
+        } else if (result == 1) {
+            System.out.println("사용 가능한 아이디입니다.");
+        }
+        
+        return result;
+        
+    }
+    
+   
+
 }

@@ -14,7 +14,7 @@ String root=request.getContextPath();
 <title>Insert title here</title>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <!-- 주소 API -->
 <script>
     function addr_execDaumPostcode() {
@@ -91,6 +91,7 @@ button {
       width: 400px;
       /* border: 1px solid red; */
       display: grid;
+      grid-template-columns: 1fr;
       grid-template-rows: repeat(20, 45px);
       padding: 99px;
       margin: auto;
@@ -148,16 +149,20 @@ button {
     height: 42px;
     margin: 0;
     padding: 0;
+   
    }
 
 
    #id input:nth-child(1){
+    float: left;
     width: 296.5px;
    }
 
    #id input:nth-child(2){
+    float: left;
     width: 98px;
    }
+   
 
    #pwd input,#nick input,#name input{
     width: 400px;
@@ -279,7 +284,7 @@ button {
 
 <div id="join-main">
     
-    <form action="/dobby/member/join" method="post" onsubmit="check();">
+    <form action="/dobby/member/join" method="post" onsubmit="return check();">
     
     <div id="join-area">
             <div id="join-title"><span class="material-symbols-outlined">magic_button</span>회원가입</div>
@@ -295,16 +300,16 @@ button {
 
             <div class="text">아이디</div>
             <div id="id">
-                <input type="text" name="memberId" maxlength="16">
-                <input type="button" value="중복확인" onclick="window.open('http://127.0.0.1:8888/dobby/member/idCheck', '집요정 | 아이디 중복확인', 'width=650, height=700, scrollbars=no')">
-                <input type="hidden" name="idcheck" value="iduncheck">
+                <input type="text" name="memberId" maxlength="8" placeholder="영어 소문자,숫자 포함 3~8글자">
+                <input type="button" id="btnCheck" value="중복확인">
             </div>
+           
 
             <div class="text">비밀번호</div>
-            <div id="pwd"><input type="password" name="memberPwd1"></div>
+            <div id="pwd"><input type="password" name="memberPwd1"  maxlength="12" placeholder="영어 소문자,숫자 포함 4~12글자"></div>
 
             <div class="text">비밀번호 확인</div>
-            <div id="pwd"><input type="password" name="memberPwd2"></div>
+            <div id="pwd"><input type="password" name="memberPwd2" maxlength="12" placeholder="비밀번호 다시 입력해주세요."></div>
 
             <div class="text">닉네임</div>
             <div id="nick"><input type="text" name="memberNick"></div>
@@ -323,9 +328,9 @@ button {
    
                    </select>
                    <span>-</span> 
-                   <input type="text" name="phone2" size="4" />
+                   <input type="text" name="phone2" maxlength="4" />
                    <span>-</span> 
-                   <input type="text" name="phone3" size="4" />
+                   <input type="text" name="phone3" maxlength="4" />
             </div>
 
            
@@ -357,11 +362,11 @@ button {
             <div id="zip_right">
                 <div id="br_num_text" class="text">사업자 등록번호</div>
                 <div id="br_num">
-                    <input type="text" name="br_num1" size="3" />
+                    <input type="text" name="br_num1" maxlength="3" />
                     <span>-</span> 
-                    <input type="text" name="br_num2" size="2" />
+                    <input type="text" name="br_num2" maxlength="2" />
                     <span>-</span> 
-                    <input type="text" name="br_num3" size="5" />
+                    <input type="text" name="br_num3" maxlength="5" />
                 </div>
 
             
@@ -382,7 +387,7 @@ button {
 
             </div>
 
-
+		<!--집요정이면 사업자 등록번호 등 보여주는  스크립트  -->
             <script>
 
                 $('input:radio[name="userRight"]').click(function() {
@@ -407,18 +412,124 @@ button {
     </form>
 
     <script>
-        // 비밀번호 일치여부 체크
-        const pwd1 = document.querySelector("input[name=memberPwd1]");
-        const pwd2 = document.querySelector("input[name=memberPwd2]");
-     
+        
+        const id=$("input[name=memberId]");
+        const pwd1 = $("input[name=memberPwd1]");
+        const pwd2 = $("input[name=memberPwd2]");
+        const nick=$("input[name=memberNick]");
+        const name=$("input[name=memberName]");
+        const phone2=$("input[name=phone2]");
+        const phone3=$("input[name=phone3]");
+        const email=$("input[name=Email1]");
+        const addr=$("input[name=addr]");
+        const addrdetail=$("input[name=addr-detail]");
+        const brnum1=$("input[name=br_num1]");
+        const brnum2=$("input[name=br_num2]");
+        const brnum3=$("input[name=br_num3]");
+        
+        
+        // 유효성 검사
         function check(){
-              if(pwd1.value.length>0 &&pwd1.value==pwd2.value){
-                  return true;
-                }else{
-                  alert("비밀번호가 일치 하지 않습니다.");
+
+        	 if(!id.val()){
+        		 alert("아이디를 입력하세요.");
+                   $('input[name="memberId"]').focus();
+                return false;
+        	 }
+        	 
+             if(id.val().length<2&&id.val().length>8){
+                alert("아이디 글자 수를 확인해주세요.");
+                $('input[name="memberId"]').focus();
+                return false;
+             }
+        	
+             if(!pwd1.val()&&!pwd2.val()){
+                alert("비밀번호를 입력하세요");
+                  pwd1.focus();
                   return false;
-                }
+             }
+
+             if(pwd1.val().length<3&&pwd1.val().length>12){
+                alert("글자 수를 확인해주세요.");
+                  pwd1.focus();
+                  return false;
+             }
+
+             if(pwd1.val()!=pwd2.val()){
+                alert("비밀번호가 일치하지 않습니다.");
+                  pwd2.focus();
+                  return false;
+             }
+
+             if(!nick.val()){
+            	 alert("닉네임을 입력하세요.");
+                 nick.focus();
+                 return false;
+             }
+             
+             if(!name.val()){
+            	 alert("이름을 입력하세요.");
+                 name.focus();
+                 return false;
+             }
+             
+             if(phone1.val().length!=4 && phone2.val().length!=4){
+                alert("번호를 입력하세요");
+                phone1.focus();
+                return false;
+              
+            }
+             
+             if(!email.val()){
+        		 alert("이메일을 입력하세요.");
+                 email.focus();
+                 return false;
+        	 }
+             
+             if(!addr.val()&&!addrdetail.val()){
+        		 alert("주소를 입력하세요.");
+                 addr.focus();
+                 return false;
+        	 }
+
+             return true;
+              
         }
+        
+        
+
+        $('#btnCheck').click(function () {
+             const JJINid=$('input[name="memberId"]').val(); 
+            $.ajax({    
+			        type: "post",
+			        url: "/dobby/member/idCheck",
+			        data: {id : JJINid}, 
+			        success: function(result) {
+			        	
+			        	  if(JJINid != ""){
+			        		  if (result == '0') {
+				        			 alert("이미 사용 중 인 아이디 입니다.");
+					               
+					                 
+					            } else{
+					            	 alert("사용 가능한 아이디 입니다.");
+					            }	   
+			                	
+			                }else{
+			                	 alert("아이디를 입력하세요.");
+					             $('input[name="memberId"]').focus();
+			                	
+			                }	
+			        },
+			        error: function() {   
+			                alert("아이디를 입력하세요.");
+			                $('input[name="memberId"]').focus();
+			        }
+                       
+                                  
+            });
+          
+        });
         
      </script>
 </div>
