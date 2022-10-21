@@ -6,8 +6,11 @@ import static com.kh.dobby.common.JDBCTemplate.getConnection;
 import static com.kh.dobby.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
+import com.kh.dobby.common.PageVo;
 import com.kh.dobby.report.dao.ReportDao;
+import com.kh.dobby.report.vo.ReportVo;
 import com.kh.dobby.review.dao.ReviewDao;
 import com.kh.dobby.review.vo.ReviewVo;
 
@@ -30,6 +33,16 @@ public class ReviewService {
         
         return result;
 
+        
+    
+    }
+
+    public List<ReviewVo> selectList(PageVo pv) {
+
+        Connection conn = getConnection();
+        List<ReviewVo> x = dao.selectList(conn, pv);
+        close(conn);
+        return x;
         
     
     }

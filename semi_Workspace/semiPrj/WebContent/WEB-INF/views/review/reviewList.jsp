@@ -1,5 +1,15 @@
+<%@page import="com.kh.dobby.review.vo.ReviewVo"%>
+<%@page import="com.kh.dobby.common.PageVo"%>
+
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+<%
+	List<ReviewVo> voList = (List<ReviewVo>)request.getAttribute("voList");
+	PageVo pv = (PageVo)request.getAttribute("pv");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,6 +140,72 @@ select{
 	width:90px;
 	height:30px;
 }
+
+
+   #page-area{
+        width: 50%;
+        height: 15%
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        position:relative;
+        top:50px;
+        
+    }
+
+    #page-nation{
+        list-style: none;
+        display: inline-block;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    #page-nation li{
+        display: inline;
+        text-align: center;
+        margin:0 10px;
+        }
+ #page-nation li a{
+        text-decoration: none;
+        color: #999999;
+        font-size: 15px;
+        font-family: var(--sans);
+        
+
+    }
+
+    #page-nation .first:hover,  #page-nation .last:hover,  #page-nation .right:hover,  #page-nation .left:hover{
+        color:var(--semi-green)
+    }
+
+
+    #page-nation a:active{
+        cursor: default;
+        color: white;
+    }
+
+    #page-nation .num{
+       
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border-radius: 100%;
+        line-height: 30px;
+    }
+
+    #page-nation .num:hover{
+        background-color: var(--semi-green);
+        color: white;
+    }
+
+    #page-nation .num:active{
+        background-color: var(--semi-green);
+        cursor: pointer;
+    } 
+
+
 </style>
 </head>
 <body>
@@ -139,11 +215,14 @@ select{
 
 
 
-
-
-
-<div id="a"></div>
-<div id="b">리뷰게시판</div>
+<div class="main-main">
+	<c:if test="${not empty loginMember}">
+		<div id="c"><a href="/dobby/reviewWrite">글쓰기</a></div>
+	</c:if>
+	<div>
+		<div id="a"></div>
+		<div id="b">리뷰게시판</div>
+	</div>
 
 <div id="op">
 	<form action="">
@@ -162,88 +241,72 @@ select{
 		<div class="t" id="t22">평점</div>
 	</div>
 	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-	</div>
-	<div class="d1">
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
-		<div class="content"></div>
+		<% for(int i = 0; i < voList.size(); ++i){%>
+			<div class="content"><%= voList.get(i).getPostNo() %></div>
+			<div class="content"><%= voList.get(i).getServiceNo() %></div>
+			<div class="content"><a href="/dobby/reviewDetail?postNo=<%= voList.get(i).getPostNo() %>"><%= voList.get(i).getTitle() %></a></div>
+			<div class="content"><%= voList.get(i).getUserNo() %></div>
+			<div class="content"><%= voList.get(i).getGrade() %></div>
+		
+		<%}%>
+		
 	</div>
 	
+</div>
+</div>
+
 	
-</div>
 
-<div id="page-area">
-	<div class="btn"><a>1</a></div> 
-	<div class="btn"><a>2</a></div> 
-	<div class="btn"><a>3</a></div> 
-	<div class="btn"><a>4</a></div> 
-	<div class="btn"><a>5</a></div> 
-</div>
+<!-- 페이징 -->
+	<div id="page-area">
+		<ul id="page-nation">
+			<li><a href="/dobby/report?pno=1" class="first"><<</a></li>
+			<li><a class="arrow left"><</a></li>
+			<li><a class="num"></a></li>
+			<li><a class="num"></a></li>
+			<li><a class="num"></a></li>
+			<li><a class="num"></a></li>
+			<li><a class="num"></a></li>
+			<li><a class="arrow right">></a></li>
+			<li><a href="/dobby/report?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
+		</ul>
+	</div>
+	<script>
+		const pageNation = document.querySelector('#page-nation');
+		const numArr = pageNation.querySelectorAll('.num');
+		const left = pageNation.querySelector('.arrow.left');
+		const right = pageNation.querySelector('.arrow.right');
 
-<div id="c"><a href=""></a>글쓰기</div>
+		<%if(pv.getStartPage() > 1){%>
+			left.href = '/dobby/report?pno=<%=pv.getStartPage()-1%>';
+		<%}else{%>
+			left.classList.add('none-select');
+		<%}%>
+
+		<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
+			right.href = '/dobby/reservation/history?pno=<%=pv.getCurrentPage()+1%>';
+		<%}else{%>
+			right.classList.add('none-select');
+		<%}%>
+
+		let page = <%=pv.getStartPage()%>;
+
+		for (let i = 0; i < numArr.length; i++) {
+			const num = numArr[i];
+			
+			if(page==<%=pv.getCurrentPage()%>){
+				num.classList.add('current');
+			}
+			
+			if(page<1 || page><%=pv.getMaxPage()%>){
+				num.classList.add('p-none');
+			}else{
+				num.href = '/dobby/report?pno='+page;
+			}
+			num.innerHTML = page;
+			page++;
+		}
+	</script>
 
 
 

@@ -1,5 +1,11 @@
+
+<%@page import="com.kh.dobby.review.vo.ReviewVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+<%
+	ReviewVo vo = (ReviewVo)request.getAttribute("vo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -168,15 +174,15 @@ overflow:auto;
 			<div class="h" id="t27">평점</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t28"></div>
-			<div class="h" id="t29"></div>
-			<div class="h" id="t30"></div>
-			<div class="h" id="t31"></div>
-			<div class="h" id="t32"></div>
+			<div class="h" id="t28"><%=vo.getPostNo() %></div>
+			<div class="h" id="t29"><%=vo.getServiceNo() %></div>
+			<div class="h" id="t30"><%=vo.getTitle() %></div>
+			<div class="h" id="t31"><%=vo.getUserNo() %></div>
+			<div class="h" id="t32"><%=vo.getGrade() %></div>
 		</div>
 		<div>
 			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
 		</div>
 	</div>
 	<div id="i">
