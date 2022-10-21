@@ -17,12 +17,12 @@ public class ReportService {
     
  
 
-    public int write(MemberVo memberVo, ServiceVo serviceVo, ReportVo vo) {
+    public int write(ReportVo vo) {
 
         
         Connection conn = getConnection();
         
-        int result = dao.insertReport(conn,memberVo,serviceVo,vo);
+        int result = dao.insertReport(conn,vo);
         
         if(result == 1) {
             commit(conn);
@@ -44,6 +44,95 @@ public class ReportService {
     List<ReportVo> x = dao.selectList(conn, pv);
     close(conn);
     return x;
+    
+    
+    }
+
+
+
+    public ReportVo selectOne(String postNo) {
+        Connection conn = getConnection();
+        ReportVo vo = dao.selectOne(conn, postNo);
+        
+        close(conn);
+        
+        return vo;
+    
+    }
+
+
+
+    public int delete(String postNo) {
+        
+        Connection conn = getConnection();
+        
+        int result = dao.delete(conn, postNo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        return result ;
+
+        
+    }
+
+
+
+    public int approval(String postNo) {
+        
+        Connection conn = getConnection();
+        
+        int result = dao.approval(conn, postNo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        
+        return result;
+
+    
+    }
+
+
+
+    public int returnReport(String postNo) {
+
+        Connection conn = getConnection();
+        
+        int result2 = dao.returnReport(conn, postNo);
+        
+        if(result2 == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        
+        return result2;
+    }
+
+
+
+    public int edit(ReportVo vo) {
+        
+        Connection conn = getConnection();
+        
+        int result = dao.editOneByNo(conn, vo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        
+        close(conn);
+        return result;
     
     
     }

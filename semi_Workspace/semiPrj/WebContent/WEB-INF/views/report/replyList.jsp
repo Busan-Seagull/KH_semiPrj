@@ -187,7 +187,7 @@ overflow:auto;
 		<div class="i1"><a href=""></a>반려</div>
 		<div class="i1"><a href=""></a>삭제</div>
 		<div class="i1"><a href=""></a>수정</div>
-		<div class="i1"><a href=""></a>글목록</div>
+		<div class="i1"><a href="">글목록</a></div>
 	</div>
 	<div id="reply-main">
 		<div id="top1">댓글 내용</div>
