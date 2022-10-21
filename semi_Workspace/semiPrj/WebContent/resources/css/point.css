@@ -1,0 +1,94 @@
+@charset "EUC-KR";
+
+
+#point-box{
+	border:2px solid black;
+	width:1000px;
+	position:relative;
+	left:20%;
+	top:28%;
+	bottom:0px;
+	margin:40px;
+}
+
+
+#text01{
+	font-size:40px;
+	margin:20px;
+}
+	
+	
+#box-table-page{
+	width:600px;
+	margin:80px;;
+}	
+
+
+
+
+.box{
+	width:600px;
+	height:140px;
+	background-color : #ADD9A6;
+	border-radius:20px;
+}
+
+
+
+#box-table-text{
+	font-size:2px;
+	width:50%;
+	float:left;
+}
+
+#subtext{
+font-size:40px;
+color:white;
+padding:10px;
+}
+#subtext2{
+font-size:20px;
+color:white;
+padding:10px;
+margin-left:80px;
+}
+#subtext3{
+font-size:20px;
+color:white;
+padding:10px;
+margin-left:80px;
+}
+
+
+
+
+#box-table-result{
+	font-size:2px;
+	width:50%;
+	float:right;
+}
+
+#box-table-result>#subtext{
+font-size:40px;
+color:black;
+padding:10px;
+margin-left:40%;
+}
+#box-table-result>#subtext2{
+font-size:20px;
+color:black;
+padding:10px;
+margin-left:40%;
+}
+#box-table-result>#subtext3{
+font-size:20px;
+color:black;
+padding:10px;
+margin-left:40%;
+}
+
+#text02{
+	font-size:40px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
