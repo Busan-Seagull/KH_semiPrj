@@ -35,5 +35,21 @@ public class AlarmService {
         
         return result;
     }
+    
+    public int insertAlarm(String uno, String text) {
+        
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int result = new AlarmDao().insertAlarm(conn, uno, text);
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+        }else {
+            JDBCTemplate.rollback(conn);
+        }
+        JDBCTemplate.close(conn);
+        
+        return result;
+    }
 
 }

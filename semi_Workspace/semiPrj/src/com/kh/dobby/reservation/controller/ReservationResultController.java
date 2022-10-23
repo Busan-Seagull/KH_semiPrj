@@ -24,6 +24,9 @@ public class ReservationResultController extends HttpServlet{
 	    String rno = req.getParameter("rno");
 	    String recomment = req.getParameter("recomment");
 	    
+	    System.out.println(rno);
+	    System.out.println(recomment);
+	    
 	    int result = new ReservationService().reservationResult(rno, "N");
 	    int result2 = new ReservationService().updateRecomment(rno, recomment);
 	    

@@ -73,32 +73,39 @@ public class ReservationService {
                 e.printStackTrace();
             }
 
-            if (vo.getReservationYN() == "Y") {
-                if (vo.getReservationAmount() != null) {// 예약완료
-                    if (vo.getPayNo() != null) {// 결제정보있음
-                        if (today.compareTo(rDay) < 0) {
-                            vo.setStatus("SC");
+            if(vo.getCancelDate()==null) {
+                
+                if (vo.getReservationYN() == "Y") {
+                    if (vo.getReservationAmount() != null) {// 예약완료
+                        if (vo.getPayNo() != null) {// 결제정보있음
+                            if (today.compareTo(rDay) < 0) {
+                                vo.setStatus("SC");
+                            } else {
+                                // 서비스대기중 SW
+                                vo.setStatus("SW");
+                            }
                         } else {
-                            // 서비스대기중 SW
-                            vo.setStatus("SW");
+                            // 결제대기중 PW
+                            vo.setStatus("PW");
                         }
                     } else {
-                        // 결제대기중 PW
-                        vo.setStatus("PW");
+                        // 견적승인은 되었지만 견적을 아직 안받음 견적대기중 EW
+                        vo.setStatus("EW");
                     }
                 } else {
-                    // 견적승인은 되었지만 견적을 아직 안받음 견적대기중 EW
-                    vo.setStatus("EW");
+                    if (vo.getReservationAmount() != null) {
+                        // 견적필요없고 예약승인 기다리는중 RAW
+                        vo.setStatus("RAW");
+                    } else {
+                        // 견적필요해서 견적승인 기다리는중 EAW
+                        vo.setStatus("EAW");
+                    }
                 }
-            } else {
-                if (vo.getReservationAmount() != null) {
-                    // 견적필요없고 예약승인 기다리는중 RAW
-                    vo.setStatus("RAW");
-                } else {
-                    // 견적필요해서 견적승인 기다리는중 EAW
-                    vo.setStatus("EAW");
-                }
+                
+            }else {
+                vo.setStatus("C");
             }
+
         }
 
         JDBCTemplate.close(conn);
@@ -112,7 +119,6 @@ public class ReservationService {
 
         int result = dao.updateReservationYN(conn, rno, yn);
 
-        ReservationVo rv = null;
         if (result == 1) {
             JDBCTemplate.commit(conn);
         } else {
@@ -130,7 +136,6 @@ public class ReservationService {
 
         int result = dao.updateRecomment(conn, rno, recomment);
 
-        ReservationVo rv = null;
         if (result == 1) {
             JDBCTemplate.commit(conn);
         } else {

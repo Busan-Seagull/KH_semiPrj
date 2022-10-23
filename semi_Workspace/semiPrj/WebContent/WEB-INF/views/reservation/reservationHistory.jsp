@@ -37,7 +37,7 @@
 				<!-- 여기서부터 바뀜 -->
 				
 				<c:if test="${sessionScope.loginMember.rightNo == 1}">
-				<c:forEach items="${list}" var="rv">
+				<c:forEach items="${list}" var="rv" varStatus="vs">
 				<div class="rh-item shadow-box">
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
@@ -57,9 +57,9 @@
 							<div class="rh-i-h-btn">리뷰하기</div>
 						</span>
 					</div>
-					<input type="checkbox" id="d-check01">
-					<label class="down material-symbols-outlined" for="d-check01">arrow_drop_down</label>
-					<label class="down material-symbols-outlined" for="d-check01">arrow_drop_up</label>
+					<input type="checkbox" id="d-check${vs.count}">
+					<label class="down material-symbols-outlined" for="d-check${vs.count}">arrow_drop_down</label>
+					<label class="down material-symbols-outlined" for="d-check${vs.count}">arrow_drop_up</label>
 					<div class="rh-detail">
 					
 						<form action="">
@@ -88,7 +88,7 @@
 								<div class="pointer"></div>
 							</div>
 							<div class="footer-btn-list flex-center">
-								<div class="rh-i-h-btn" onclick="cancel('none', ${rv.reservation_no})">예약취소</div>
+								<div class="rh-i-h-btn" onclick="cancel('none', ${rv.reservation_no});">예약취소</div>
 							</div>
 						</c:if>
 						
@@ -242,7 +242,7 @@
 				<!-- ------------------------------------------------------------------------------------------ -->
 				
 				<c:if test="${sessionScope.loginMember.rightNo == 2}">
-				<c:forEach items="${list}" var="rv">
+				<c:forEach items="${list}" var="rv" varStatus="vs">
 				<div class="rh-item shadow-box">
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
@@ -264,9 +264,9 @@
 							</c:if>
 						</div>
 					</div>
-					<input type="checkbox" id="d-check02">
-					<label class="down material-symbols-outlined" for="d-check02">arrow_drop_down</label>
-					<label class="down material-symbols-outlined" for="d-check02">arrow_drop_up</label>
+					<input type="checkbox" id="d-check${vs.count }">
+					<label class="down material-symbols-outlined" for="d-check${vs.count }">arrow_drop_down</label>
+					<label class="down material-symbols-outlined" for="d-check${vs.count }">arrow_drop_up</label>
 					<div class="rh-detail">
 					
 						<form action="">
@@ -299,8 +299,8 @@
 									<textarea name="" class="recomment-text"></textarea>
 								</div>
 								<div class="footer-btn-list flex-center">
-									<div class="rh-i-h-btn">예약승인</div>
-									<div class="rh-i-h-btn" onclick="cancel('none', ${rv.reservation_no})">예약취소</div>
+									<div class="rh-i-h-btn" onclick="approval(this, ${rv.reservation_no})">예약승인</div>
+									<div class="rh-i-h-btn" onclick="cancel(this, ${rv.reservation_no})">예약취소</div>
 								</div>
 							</form>
 						</c:if>
@@ -330,9 +330,13 @@
 									<h2>견적금액</h2>
 									<input type="number" name="" class="pay-text">
 								</div>
+								<div>
+									<h2>답변사항</h2>
+									<textarea name="" class="recomment-text"></textarea>
+								</div>
 								<div class="footer-btn-list flex-center">
-									<div class="rh-i-h-btn" onclick="">견적완료</div>
-									<div class="rh-i-h-btn" onclick="">견적반려</div>
+									<div class="rh-i-h-btn" onclick="updateAmount(this, ${rv.reservation_no})">견적완료</div>
+									<div class="rh-i-h-btn" onclick="cancel(this, ${rv.reservation_no})">견적반려</div>
 								</div>
 							</form>
 							
@@ -516,7 +520,7 @@
 						page++;
 					}
 					
-					function approval(object, pno) {
+					function approval(object, rno) {
 					    var xhr = new XMLHttpRequest();
 					    xhr.open("POST", '/dobby/reservation/result');
 					    xhr.onreadystatechange = function(){
@@ -530,13 +534,16 @@
 					    }
 
 						const recomment = object.form.querySelector('textarea').innerText;
-					    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
-					    xhr.send(`pno=${pno}&recomment=${recomment}`);					
+					    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");	
+						xhr.send('rno='+rno+'&recomment='+recomment);				
 					}
 
-					function updateAmount(object, pno) {
+					function updateAmount(object, rno) {
+						const recomment = object.form.querySelector('textarea').innerText;
+						const Amount = object.form.querySelector('input[type=number]').innerText;
+
 					    var xhr = new XMLHttpRequest();
-					    xhr.open("GET", '/dobby/reservation/update');
+					    xhr.open("GET", '/dobby/reservation/update?'+'rno='+rno+'&Amount='+Amount+'&recomment='+recomment);
 					    xhr.onreadystatechange = function(){
 					        if(xhr.readyState == 4){
 					            if(xhr.status == 200){
@@ -547,18 +554,24 @@
 					        }
 					    }
 
-						const Amount = object.form.querySelector('input[type=number]').innerText;
 					    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
-					    xhr.send(`pno=${pno}&Amount=${Amount}`);				
+						xhr.send();				
 					}
 					
-					function cancel(object, pno) {
+					function cancel(object, rno) {
+						let qString = '';
+						if(object!='none'){
+							const recomment = object.form.querySelector('textarea').innerText;
+							qString = 'rno='+rno+'&recomment='+recomment;			
+						}else{
+							qString = 'rno='+rno;
+						}
 					    var xhr = new XMLHttpRequest();
-					    xhr.open("GET", '/dobby/reservation/result');
+					    xhr.open("GET", '/dobby/reservation/result?'+qString);
 					    xhr.onreadystatechange = function(){
 					        if(xhr.readyState == 4){
 					            if(xhr.status == 200){
-
+									location.reload;
 					            }else{
 					                alert("결과가 저장되지 않음.");
 					            }
@@ -566,15 +579,11 @@
 					    }
 
 					    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
-						if(object!='none'){
-							const recomment = object.form.querySelector('textarea').innerText;
-							xhr.send(`pno=${pno}&recomment=${recomment}`);					
-						}else{
-							xhr.send(`pno=${pno}`);	
-						}
+
+						xhr.send();
 					}
 
-					function updateComment(object, pno) {
+					function updateComment(object, rno) {
 					    var xhr = new XMLHttpRequest();
 					    xhr.open("POST", '/dobby/reservation/update');
 					    xhr.onreadystatechange = function(){
@@ -589,7 +598,7 @@
  
 						const comment = object.form.querySelector('textarea').innerText;
 					    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
-					    xhr.send(`pno=${pno}&comment=${comment}`);					
+					    xhr.send('rno='+rno+'&comment='+comment);					
 					}
 
 				</script>

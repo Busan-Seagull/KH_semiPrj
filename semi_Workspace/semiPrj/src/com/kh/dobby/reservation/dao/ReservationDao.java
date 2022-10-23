@@ -206,7 +206,7 @@ public class ReservationDao {
             
             rs = pstmt.executeQuery();
             
-            if(rs.next()) {
+            while(rs.next()) {
                 ReservationVo rv = new ReservationVo();
                 
                 rv.setCancelDate(rs.getString("CANCEL_DATE"));

@@ -363,7 +363,7 @@
 
     .alarm-list-item{
         width: 90%;
-        height: 30px;
+        height: 60x;
         border-bottom: 1px solid rgb(133, 133, 133);
         flex-shrink: 0;
         display: flex;
@@ -385,14 +385,6 @@
     .alarm-list-item:hover{
         opacity: 100;
     }
-
-    .alarm-list-item .left,
-    .alarm-list-item .right{
-        position: absolute;
-        background-color: red;
-        width: 50%;
-        height: 100%;
-    }
 	
 </style>
 
@@ -406,12 +398,6 @@
 	                <a id="header-alarm">
                         <p id="notice-num"></p>
                         <div id="alarm-list">
-                            <div class="alarm-list-item">
-                                <p>123</p>
-                                <h3>123</h3>
-                                <div class="left"></div>
-                                <div class="right"></div>
-                            </div>
                         </div>
                         <div class="img"></div>
                         <p>Alarm</p>
@@ -469,7 +455,7 @@
         });
         
     	<c:if test="${not empty sessionScope.loginMember}">
-        	// getAlarm();
+        	getAlarm();
 		</c:if>
 
         function getAlarm() {
@@ -481,12 +467,11 @@
                     if(xhr.status == 200){
 
                         const result = JSON.parse(xhr.responseText);
-                        console.log(result);
 
                         const noticeNum = document.querySelector('#notice-num');
                         const list = document.querySelector('#alarm-list');
 
-                        if(result!=null || result!="flase" || result!=''){
+                        if(result!="flase" && result.length != 0){
 
                             for (let index = 0; index < result.length; index++) {
                                 const element = result[index];
@@ -503,12 +488,17 @@
                                 div.appendChild(p);
                                 div.appendChild(h3);
 
-                                div.addEventListener('click', updateCheck(element.alarmNo));
+                                div.addEventListener('click', function(){
+                                    updateCheck(element.alarmNo);
+                                    location.href = "/dobby/reservation/history";
+                                });
 
                                 list.appendChild(div);
                             }
                             
                             noticeNum.innerText = result.length;                              	
+                        }else{
+                            list.style.display = 'none';
                         }
 
                     }else{

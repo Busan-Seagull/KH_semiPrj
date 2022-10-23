@@ -36,7 +36,8 @@ public class ReservationSuccessController extends HttpServlet{
         rv.setReservationDate(date);
         rv.setComment(commet);
         //임시번호
-        rv.setServiceNo("999");
+//        rv.setServiceNo("999");
+        rv.setServiceNo("888");
         rv.setUserNo(loginMember.getUserNo());
         
         String rvNo = new ReservationService().insertReservation(rv);

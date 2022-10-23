@@ -57,14 +57,19 @@
             </div>
         </div>
 
-        <c:if test="${not empty sv.charge}">
+        <c:if test="${sv.charge != 0}">
             <div id="r-pay" class="border-g">
                 <div class="flex-center">
                     <span class="material-symbols-outlined"> payments </span>
                     <h1>요금선택</h1>
                 </div>
                 <div class="flex-center">
-                    <input id="numberInput" type="number" min="1" value="1" onchange="updatePay();"></input>
+                	<c:if test="${empty rv }">
+                    	<input id="numberInput" type="number" min="1" value="1" onchange="updatePay();"></input>
+                    </c:if>
+                   	<c:if test="${not empty rv }">
+                    	<input id="numberInput" type="number" min="1" value="1" onchange="updatePay();" readonly></input>
+                    </c:if>
                     <p>(${sv.chargeUnit})</p>
                     <p>&nbsp;X&nbsp;</p>
                     <p><fmt:formatNumber value="${sv.charge}" pattern="#,###"/>&nbsp;원</p>
@@ -72,7 +77,7 @@
                 <div class="flex-center">
                     <span class="material-symbols-outlined"> barcode </span>
                     <h1>결제 예정 금액 :</h1>
-                    <h1"><input type="text" id="payInput" name="pay" readonly value=""></input>&nbsp;원</h1>
+                    <h1><input type="text" id="payInput" name="pay" readonly value=""></input>&nbsp;원</h1>
                 </div>
             </div>
         </c:if>
@@ -325,8 +330,10 @@
     function updatePay() {
         const payInput = document.querySelector("#payInput");
 
-        const sumPay = numInput.value * ${sv.charge};
-        payInput.value = sumPay.toLocaleString('ko-KR');
+        if(payInput!=null){
+	        const sumPay = numInput.value * ${sv.charge};
+	        payInput.value = sumPay.toLocaleString('ko-KR');
+        }
     }
 
 </script>

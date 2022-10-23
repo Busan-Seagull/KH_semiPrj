@@ -22,6 +22,7 @@ public class ReservationHistroyController extends HttpServlet{
 	    
 	    MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
         if(loginMember==null) {
+            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
             return;
         }
         String page = req.getParameter("pno");

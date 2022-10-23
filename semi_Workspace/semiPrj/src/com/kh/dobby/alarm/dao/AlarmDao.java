@@ -68,4 +68,26 @@ public class AlarmDao {
         return result;
     }
 
+    public int insertAlarm(Connection conn, String uno, String text) {
+
+        String sql = "INSERT INTO ALARM (ALARM_NO, USER_NO, CONTENT) VALUES (SEQ_ALARM_NO.NEXTVAL, ?, ?)";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, uno);
+            pstmt.setString(2, text);
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
+    }
+
 }
