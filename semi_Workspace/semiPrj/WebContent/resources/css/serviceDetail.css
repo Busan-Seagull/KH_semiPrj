@@ -95,6 +95,10 @@
     line-height: 60px;
     font-size: 20px;
 }
+#reservation-btn:hover{
+    cursor: pointer;
+    background-color: rgb(35, 9, 9);
+}
 
 #reserve-info{
     padding-left: 35px;
@@ -148,6 +152,10 @@
 /* 서비스 네비바 */
 #service-navibar{
     margin-top: 10px;
+    top: 40px;
+    position: sticky;
+    z-index: 9999;
+    
 }
 #service-navibar>ul>li>a{
     width: 274px;
@@ -159,13 +167,15 @@
     font-size: 20px;
     float: left;
     display: block;
-    border: 1px solid var(--semi-green);
+    border: 2px solid var(--semi-green);
     border-bottom: none;
+    box-sizing: border-box;
+    font-weight: 600;
+    
+
+    cursor: pointer;
 }
-#first-a{
-    color: black;
-    background-color: white;
-}
+
 
 #service-navibar>ul{
     list-style: none;
@@ -177,10 +187,10 @@
 #main-contents{
     width: 810px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 40px;
 }
 #main-contents>div{
-    margin-top: 50px;
+    padding-top: 100px;
     font-size: 20px;
     font-weight: 600;
 }
