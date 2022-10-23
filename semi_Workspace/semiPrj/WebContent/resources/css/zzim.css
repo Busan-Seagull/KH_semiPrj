@@ -1,0 +1,56 @@
+@charset "EUC-KR";
+
+#point-box{
+	border:2px solid black;
+	width:880px;
+	top:28%;
+	bottom:0px;
+	margin-left:300px;
+	margin-top:100px;
+	position:relative;
+}
+#text01{
+	font-size:40px;
+	margin-left:20px;
+}
+.table{
+	width:160px;
+	height:160px;
+	margin:10px;
+	float:left;
+	border-radius:20px;
+	box-shadow:0px 4px 4px 4px gray;
+	
+	margin:20px;
+}
+#box-page{
+	border:2px solid blue;
+	height:400px;
+	top:28%;
+	bottom:0px;
+	margin-top:20px;
+}
+
+.boxtext{
+	font-size:20px;
+	margin-left:10px;
+	margin-bottom:6px;
+}
+
+#star{
+	color:yellow;
+	float:left;
+	margin-left:100px;
+}
+
+#point{
+	margin-left:120px;
+}
+#score-box{
+	margin-bottom:10px;
+}
+
+#reviewtext{
+	float:left;
+	margin-left:80px;
+}

@@ -2,7 +2,6 @@
 
 
 #point-box{
-	border:2px solid black;
 	width:1000px;
 	position:relative;
 	left:20%;
@@ -24,8 +23,6 @@
 }	
 
 
-
-
 .box{
 	width:600px;
 	height:140px;
@@ -36,7 +33,6 @@
 
 
 #box-table-text{
-	font-size:2px;
 	width:50%;
 	float:left;
 }
@@ -63,7 +59,6 @@ margin-left:80px;
 
 
 #box-table-result{
-	font-size:2px;
 	width:50%;
 	float:right;
 }
@@ -87,8 +82,77 @@ padding:10px;
 margin-left:40%;
 }
 
+
+
 #text02{
 	font-size:40px;
+	margin-top:80px;
+	margin-bottom:80px;
+}
+
+
+
+
+#box2>#box-table-text>#subtext2{
+	margin-top:60px;
+	margin-left:20px;
+}
+
+#box2>#box-table-text>#subtext3{
+	margin-left:20px;
+	
+}
+
+#box2>#box-table-result>#subtext{
+	margin-top:60px;
+	
+}
+
+
+
+#box3{
 	margin-top:20px;
 	margin-bottom:20px;
 }
+
+
+#box3>#box-table-text>#subtext2{
+	margin-top:60px;
+	margin-left:20px;
+}
+
+#box3>#box-table-text>#subtext3{
+	margin-left:20px;
+}
+
+#box3>#box-table-result>#subtext{
+	margin-top:60px;
+}
+
+
+#box4>#box-table-text>#subtext2{
+	margin-top:60px;
+	margin-left:20px;
+}
+
+#box4>#box-table-text>#subtext3{
+	margin-left:20px;
+}
+
+#box4>#box-table-result>#subtext{
+	margin-top:60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
