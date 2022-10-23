@@ -45,6 +45,11 @@
     background-color: rgb(215, 237, 202);
 }
 
+/* 선택된 페이지의 사이드바 버튼 스타일 */
+.checked{
+    background-color: rgb(215, 237, 202);
+}
+
 
 #profile-area div span{
     margin-right: 20px;
@@ -88,7 +93,7 @@
     grid-row: span 2;
 }
 
-#info-area{
+.info-area{
     width: 100%;
     height: 100%;
     border: 1px solid #999999;
@@ -97,6 +102,7 @@
     margin: auto;
     justify-content: center;
     align-items: center;
+    /* position: absolute; */
 }
 
 
@@ -198,6 +204,19 @@ input[type=submit]{
     margin: 10px;
 }
 
+#info-area02,
+#info-area03,
+#info-area04,
+#info-area05,
+#info-area06,
+#info-area07,
+#info-area08,
+#info-area09{
+
+    display: none;
+
+}
+
 
 
 
@@ -214,20 +233,28 @@ input[type=submit]{
             <div id="welcome">USER01 님 환영합니다</div>
         </div>
        
-        <div id="userEdit"><span class="material-symbols-outlined">settings</span>내 정보 수정</div>
-        <div><span class="material-symbols-outlined">list</span>예약 내역</div>
-        <div><span class="material-symbols-outlined"> credit_card </span>결제 내역</div>
-        <div><span class="material-symbols-outlined"> control_point_duplicate </span>보유 포인트</div>
-        <div><span class="material-symbols-outlined"> favorite </span>찜한 서비스</div>
-        <div><span class="material-symbols-outlined"> edit_square </span>작성한 게시물</div>
-        <div><span class="material-symbols-outlined"> forum </span>문의 내역</div>
-        <div><span class="material-symbols-outlined"> report </span>신고 내역</div>
+        <div id="userEdit" class="page-btn"><span class="material-symbols-outlined">settings</span>내 정보 수정</div>
+
+        <!-- 집요정 부분 하나 추가 -->
+        <div class="page-btn"><span class="material-symbols-outlined">list</span>등록한서비스</div>
+
+        <div class="page-btn"><span class="material-symbols-outlined">list</span>예약 내역</div>
+        <div class="page-btn"><span class="material-symbols-outlined"> credit_card </span>결제 내역</div>
+
+        <!-- 아래 두개는 집요정일 시 안보임 -->
+        <div class="page-btn"><span class="material-symbols-outlined"> control_point_duplicate </span>보유 포인트</div>
+        <div class="page-btn"><span class="material-symbols-outlined"> favorite </span>찜한 서비스</div>
+
+        <div class="page-btn"><span class="material-symbols-outlined"> edit_square </span>작성한 게시물</div>
+        <div class="page-btn"><span class="material-symbols-outlined"> forum </span>문의 내역</div>
+        <div class="page-btn"><span class="material-symbols-outlined"> report </span>신고 내역</div>
         <div id="bin"></div>
         <div><span class="material-symbols-outlined"> delete_forever </span>탈퇴하기</div>
 
         
     </div>
-    <div id="info-area">
+
+    <div class="info-area" id="info-area01">
 
         <form action="/dobby/member/join" method="post">
     
@@ -349,10 +376,86 @@ input[type=submit]{
               
                 </div>
             </form>
-        </div>
     </div>
+
+    <div class="info-area" id="info-area02">
+        2
+    </div>
+
+    <div class="info-area" id="info-area03">
+        3
+    </div>
+
+    <div class="info-area" id="info-area04">
+        4
+    </div>
+
+    <div class="info-area" id="info-area05">
+        5
+    </div>
+
+    <div class="info-area" id="info-area06">
+        6
+    </div>
+
+    <div class="info-area" id="info-area07">
+        7
+    </div>
+
+    <div class="info-area" id="info-area08">
+        8
+    </div>
+
+    <div class="info-area" id="info-area09">
+        9
+    </div>
+
+</div>
 
 
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
+
+<script>
+    const btnArr = document.querySelectorAll('.page-btn');
+    const infoArr = document.querySelectorAll('.info-area');
+
+    for (let i = 0; i < btnArr.length; i++) {
+        const element = btnArr[i];
+
+        element.addEventListener('click',function(){
+
+            btnArr.forEach(e => {
+                e.classList.remove('checked');
+            });
+
+            element.classList.add('checked');
+
+            infoArr[i].style.display = 'flex';
+
+            for (let j = 0; j < infoArr.length; j++) {
+                const element = infoArr[j];
+
+                if(i!=j){
+                    element.style.display = 'none';
+                }
+                
+            }
+        });
+        
+    }
+
+    const area01 = document.querySelector('#info-area01');
+    const area02 = document.querySelector('#info-area02');
+    const area03 = document.querySelector('#info-area03');
+    const area04 = document.querySelector('#info-area04');
+    const area05 = document.querySelector('#info-area05');
+    const area06 = document.querySelector('#info-area06');
+    const area07 = document.querySelector('#info-area07');
+    const area08 = document.querySelector('#info-area08');
+    const area09 = document.querySelector('#info-area09');
+
+
+</script>
+
 </html>
