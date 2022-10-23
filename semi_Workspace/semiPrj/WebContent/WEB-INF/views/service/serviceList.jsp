@@ -3,7 +3,7 @@
 <%@page import="com.kh.dobby.common.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
+<% 
 ServiceVo sv = (ServiceVo)request.getAttribute("sv");
 PageVo pv = (PageVo) request.getAttribute("pv");
 String root = request.getContextPath();
@@ -63,38 +63,38 @@ String root = request.getContextPath();
 			</div>
 			<div id="helper-number">1,150명의 집요정</div>
 			<div class="helper-list-flex">
-
-				<c:forEach var="list" items="${svList}">
-
-					<div class="helper-list-outline">
-						<div class="helper-list" onclick="location.href='<%=root %>/service/detail?sno=<c:out value='${list.serviceNo}'/>">
-							<div class="helper-pic">
-								<img src="" alt="">
-							</div>
-							<div class="helper-contents">
-								<div>
+			
+			<c:forEach var="list" items="${svList}">
+				
+				<div class="helper-list-outline">
+						<a class="helper-list" onclick="location.href='<%=root %>/service/detail?sno=<c:out value='${list.serviceNo}'/>">
+						<div class="helper-pic">
+							<img src="" alt="">
+						</div>
+						<div class="helper-contents">
+							<div>
 									<h2>${list.title}|${list.helper}</h2>
-									<p>${list.serviceIntro}</p>
-								</div>
-								<div>
-									<span class="starrr">★★★★★</span> <span class="star-num">5</span>
-									<span class="comment">"이 집 청소 잘하네요~"</span>
-								</div>
+								<p>${list.serviceIntro}</p>
 							</div>
-							<div class="helper-contents2">
-								<div class="favorite-btn-div">
-									<button class="favorite-btn">♥찜하기</button>
-								</div>
+							<div>
+								<span class="starrr">★★★★★</span> <span class="star-num">5</span>
+								<span class="comment">"이 집 청소 잘하네요~"</span>
+							</div>
+						</div>
+						<div class="helper-contents2">
+							<div class="favorite-btn-div">
+								<button class="favorite-btn">♥찜하기</button>
+							</div>
 								<div class="service-pay">${list.chargeUnit}당
 									<fmt:formatNumber value="${list.charge}" pattern="#,###" />
 									원
-								</div>
-							</div>
 						</div>
 					</div>
-
+						</a>
+				</div>
+				
 				</c:forEach>
-
+				
 				<div class="helper-list-outline">
 					<div class="helper-list">
 						<div class="helper-pic">

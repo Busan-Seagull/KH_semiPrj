@@ -45,6 +45,11 @@ main{
     line-height: 60px;
     color: grey;
 }
+#service-category>ul>li>a:hover{
+    color:var(--semi-green);
+    font-weight: 700;
+    cursor: pointer;
+}
 #service-main{
     padding: 0px 20px;
     margin-top: 30px;
@@ -164,10 +169,11 @@ main{
     justify-content: space-between;
 
     cursor: pointer;
-    
-
-    
 }
+.helper-list:hover{
+    background-color: rgb(249, 255, 247);
+}
+
 .helper-pic{
     height: 130px;
     width: 130px;

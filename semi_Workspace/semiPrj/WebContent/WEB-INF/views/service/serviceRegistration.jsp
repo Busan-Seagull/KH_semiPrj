@@ -10,6 +10,8 @@
 	href="/dobby/resources/css/serviceRegistration.css">
 </head>
 <body>
+
+
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div id="service-registration-wrap">
 		<div id="registration-title">서비스 등록하기</div>
@@ -36,7 +38,7 @@
 				</div>
 				<div id="payment-unit">요금단위</div>
 				<div id="payment-unit-input">
-					<select name="charge-unit" id="">
+					<select name="charge-unit" id="select-charge-unit">
 						<option value="1">평당</option>
 						<option value="2">시간당</option>
 						<option value="3">회당</option>
@@ -325,21 +327,26 @@
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
-<%-- 천단위.. text타입만..
-	<script type="text/javascript">
-		const input = document.querySelector('#number');
-		input.addEventListener('keyup', function(e) {
-			let value = e.target.value;
-			value = Number(value.replaceAll(',', ''));
-			if (isNaN(value)) { //NaN인지 판별
-				input.value = 0;
-			} else { //NaN이 아닌 경우
-				const formatValue = value.toLocaleString('ko-KR');
-				input.value = formatValue;
+	<script defer>
+
+		var select = document.querySelector('#select-charge-unit');
+		var selectIndex = select.selectedIndex;
+		var numberInput =document.querySelector('#number');
+
+		select.addEventListener('change',function(){
+			var val = select.options[selectIndex].value;
+
+			console.log(selectIndex);
+			console.log(val);
+
+			if(val == 1){
+				numberInput.value=0;
+				numberInput.disabled=true;
 			}
 		})
+
 	</script>
---%>
+
 
 </body>
 </html>

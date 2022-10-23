@@ -8,27 +8,28 @@
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
 <link rel="stylesheet" href="/dobby/resources/css/serviceDetail.css">
 </head>
+
 <body>
 <%@include file="/WEB-INF/views/common/header.jsp"%>
     <div id="service-wrap">
         <div id="main-content">
             <div id="service-pic-container">
                 <div id="service-pic1">
-                    <img src="/ryan/공통/resources/집4.jfif" alt="">
+                    <img src="" alt="">
                 </div>
                 <div id="service-pic2">
-                    <img src="/ryan/공통/resources/집2.jfif" alt="">
+                    <img src="" alt="">
                 </div>
                 <div id="service-pic3">
-                    <img src="/ryan/공통/resources/집3.jfif" alt="">
+                    <img src="" alt="">
                 </div>
                 <div id="service-pic4">
-                    <img src="/ryan/공통/resources/집1.jfif" alt="">
+                    <img src="" alt="">
                 </div>
             </div>
             <div id="helper-profile">
                 <div class="inline-block" id="profile-pic-div">
-                    <img src="/ryan/공통/resources/이상해씨.jpg" alt="">
+                    <img src="" alt="">
                 </div>
                 <div class="inline-block" id="profile-contents">
                     <h2>집 청소 제대로 해드립니다.</h2>
@@ -73,19 +74,19 @@
             <div id="service-navibar">
                 <ul>
                     <li>
-                        <a class="text-white back-green" id="first-a">서비스 설명</a>
+                        <a href="#service-explain" class="text-white back-green" id="first-a">서비스 설명</a>
                     </li>
                     <li>
-                        <a class="text-white back-green">요금 정보</a>
+                        <a href="#pay-info" class="text-white back-green" id="second-a">요금 정보</a>
                     </li>
                     <li>
-                        <a class="text-white back-green">서비스 평가</a>
+                        <a href="#service-review" class="text-white back-green" id="third-a">서비스 평가</a>
                     </li>
                 </ul>
             </div>
 
             <div id="main-contents">
-                <div id="service-expain">서비스 설명
+                <div id="service-explain">서비스 설명
                     <p>
                         노새, 오는 딴은 별 보고, 했던 시인의 어머님, 슬퍼하는 버리었습니다. 
                         이름과, 내일 강아지, 차 별 남은 어머님, 계십니다. 하나에 위에 비둘기, 나는 우는 다하지 사람들의 거외다.<br>
@@ -195,4 +196,37 @@
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
     
 </body>
+
+<script defer>
+    const navi_a = document.querySelector("#first-a");
+    const navi_b = document.querySelector("#second-a");
+    const navi_c = document.querySelector("#third-a");
+
+    navi_a.addEventListener('click', function(){
+        navi_a.classList.replace('text-white','text-green');
+        navi_a.classList.replace('back-green','back-white');
+        navi_b.classList.replace('text-green','text-white');
+        navi_b.classList.replace('back-white','back-green');
+        navi_c.classList.replace('text-green','text-white');
+        navi_c.classList.replace('back-white','back-green');
+    });
+    navi_b.addEventListener('click', function(){
+        navi_b.classList.replace('text-white','text-green');
+        navi_b.classList.replace('back-green','back-white');
+        navi_a.classList.replace('text-green','text-white');
+        navi_a.classList.replace('back-white','back-green');
+        navi_c.classList.replace('text-green','text-white');
+        navi_c.classList.replace('back-white','back-green');
+    });
+    navi_c.addEventListener('click', function(){
+        navi_c.classList.replace('text-white','text-green');
+        navi_c.classList.replace('back-green','back-white');
+        navi_b.classList.replace('text-green','text-white');
+        navi_b.classList.replace('back-white','back-green');
+        navi_a.classList.replace('text-green','text-white');
+        navi_a.classList.replace('back-white','back-green');
+    });
+
+</script>
+
 </html>
