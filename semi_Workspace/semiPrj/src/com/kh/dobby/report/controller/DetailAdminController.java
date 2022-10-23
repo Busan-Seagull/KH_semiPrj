@@ -28,7 +28,7 @@ public class DetailAdminController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/report/detailAdmin.jsp").forward(req, resp);
         }else {
             req.setAttribute("msg", "권한이 없습니다.");
-            req.getRequestDispatcher("/views/report/detail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
         }
         
         
@@ -40,12 +40,20 @@ public class DetailAdminController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
  
         String postNo = req.getParameter("postNo");
+        String contentReply = req.getParameter("content-reply");
+        
+     
+        ReportVo vo = new ReportVo();
+        vo.setPostNo(postNo);
+        vo.setReportComment(contentReply);
         
         int result = new ReportService().approval(postNo);
         int result2 = new ReportService().returnReport(postNo);
+
+        int result3 = new ReportService().writeReply(vo);
         
         
-        if((result*result2) == 1) {
+        if(result == 1 || result2 == 1 || result3 == 1) {
             resp.getWriter().write("처리되었습니다.");
             
         }else {

@@ -83,6 +83,7 @@ border-bottom: none;
 	text-align: center;
 	margin: 0 auto;
 	line-height :40px;
+	border-radius:2.5rem;
 }
 #i{
 	width: 250px;
@@ -120,7 +121,21 @@ overflow:auto;
 	top:30px;
 	
 	
-	
+}
+#input-btn{
+ font-size:medium;
+ font-weight:500;
+ background-color:#EAE0D4;
+ border:none;
+ font-weight:600;
+}
+
+input{
+	border: none;
+	height:40px;
+}
+input, textarea{
+	font-size:larger;
 }
 
 </style>
@@ -146,20 +161,20 @@ overflow:auto;
 			<div class="h" id="t27">평점</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t28"></div>
-			<div class="h" id="t29"></div>
-			<div class="h" id="t30"></div>
-			<div class="h" id="t31"></div>
-			<div class="h" id="t32"></div>
+			<div class="h" id="t28"><input type="text" name="postNo"></div>
+			<div class="h" id="t29"><input type="text" name="serviceNo"></div>
+			<div class="h" id="t30"><input type="text" name="title"></div>
+			<div class="h" id="t31"><input type="text" name="userNo"></div>
+			<div class="h" id="t32"><input type="text" name="grade"></div>
 		</div>
 		<div>
 			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="121" rows="18"></textarea>
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><a href=""></a>글목록</div>
-		<div class="i1"><a href=""></a>확인</div>
+		<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
+		<div class="i1"><input id="input-btn" type="submit" value="확인"></div>
 	</div>
 </div>
 

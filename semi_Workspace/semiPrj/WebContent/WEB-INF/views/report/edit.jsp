@@ -90,6 +90,7 @@ pageEncoding="UTF-8"%>
 	text-align: center;
 	margin: 0 auto;
 	line-height :40px;
+	border-radius:2.5rem;
 }
 #i{
 	width: 400px;
