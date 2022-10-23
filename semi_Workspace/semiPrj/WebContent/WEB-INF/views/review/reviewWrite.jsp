@@ -130,6 +130,14 @@ overflow:auto;
  font-weight:600;
 }
 
+input{
+	border: none;
+	height:40px;
+}
+input, textarea{
+	font-size:larger;
+}
+
 </style>
 </head>
 <body>
@@ -161,7 +169,7 @@ overflow:auto;
 		</div>
 		<div>
 			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="121" rows="18"></textarea>
 		</div>
 	</div>
 	<div id="i">

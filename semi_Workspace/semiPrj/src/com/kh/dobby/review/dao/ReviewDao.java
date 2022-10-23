@@ -45,7 +45,7 @@ public class ReviewDao {
     }
 
     public List<ReviewVo> selectList(Connection conn, PageVo pv) {
-        String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM,T.* FROM ( SELECT R.POST_NO ,S.SERVICE_NO ,U.USER_NO ,R.TITLE , R.CONTENT ,R.WRITE_TIME ,R.DELETE_YN, R.MODIFY_DATE ,R.GRADE ,U.NICK AS USER_NO FROM REVIEW R JOIN \"USER\" U ON R.USER_NO = U.USER_NO JOIN SERVICE_INFO S ON S.USER_NO = U.USER_NO WHERE R.DELETE_YN = 'N' ORDER BY R.POST_NO DESC )T ) WHERE RNUM BETWEEN ? AND ? ";
+        String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM,T.* FROM ( SELECT R.POST_NO ,S.SERVICE_NO ,R.TITLE , R.CONTENT , R.WRITE_TIME ,R.DELETE_YN, R.MODIFY_DATE ,R.GRADE ,U.NICK AS USER_NO FROM REVIEW R JOIN \"USER\" U ON R.USER_NO = U.USER_NO JOIN SERVICE_INFO S ON S.USER_NO = U.USER_NO WHERE R.DELETE_YN = 'N' ORDER BY R.POST_NO DESC )T ) WHERE RNUM BETWEEN ? AND ? ";
         
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -97,6 +97,61 @@ public class ReviewDao {
     
         return voList;
     
+    }
+
+    public ReviewVo selectOne(Connection conn, String postNo) {
+
+        String sql = "SELECT R.POST_NO ,U.USER_NO ,S.SERVICE_NO ,R.TITLE, R.CONTENT ,R.WRITE_TIME ,R.DELETE_YN ,R.MODIFY_DATE ,R.HANDLE_REPORT_YN,U.NICK AS WRITER FROM REPORT R JOIN \"USER\" U ON R.WRITER = U.USER_NO JOIN SERVICE_INFO S ON S.USER_NO = U.USER_NO WHERE R.POST_NO = ?";
+        
+        PreparedStatement pstmt = null;
+        ResultSet rs =  null;
+        ReviewVo vo = null;
+        
+        
+        try {
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, postNo);
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                String postNO = rs.getString("POST_NO");
+                String serviceNo = rs.getString("SERVICE_NO");
+                String userNo = rs.getString("USER_NO");
+                String title = rs.getString("TITLE");
+                String content = rs.getString("CONTENT");
+                Timestamp writeTime = rs.getTimestamp("WRITE_TIME");
+                String deleteYn = rs.getString("DELETE_YN");
+                Timestamp modifyDate = rs.getTimestamp("MODIFY_DATE");
+                String grade = rs.getString("GRADE");
+                
+                
+                vo = new ReviewVo();
+                vo.setPostNo(postNO);
+                vo.setServiceNo(serviceNo);
+                vo.setUserNo(userNo);  
+                vo.setTitle(title);
+                vo.setContent(content);
+                vo.setWriteTime(writeTime);
+                vo.setDeleteYn(deleteYn);
+                vo.setModifyDate(modifyDate);
+                vo.setGrade(grade);
+               
+                
+            }
+
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        
+        return vo;
+        
+        
     }
 
 }

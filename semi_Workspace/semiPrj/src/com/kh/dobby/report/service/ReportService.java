@@ -156,5 +156,18 @@ public class ReportService {
         
         
     }
+
+
+
+    public ReportVo selectReportList(String writer) {
+        
+        Connection conn = getConnection();
+        ReportVo vo = dao.selectReportList(conn,writer);
+        
+        close(conn);
+        
+        return vo;
+        
+    }
     
 }

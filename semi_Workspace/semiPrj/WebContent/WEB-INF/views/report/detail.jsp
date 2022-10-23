@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
 	
 	
 }
-#a{
+#title-a{
 	width: 2px;
 	height: 20px;
 	background-color: black;
@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%>
 	margin-right:5px;
 	
 }
-#b{
+#title-b{
 	width: 200px;
 	height: 30px;
 	
@@ -184,8 +184,8 @@ overflow:auto;
 
 <div id="first">
 	<div id="second">
-		<div id="a"></div>
-		<div id="b">신고게시판</div>
+		<div id="title-a"></div>
+		<div id="title-b">신고게시판</div>
 	</div>
 	<div id="main">
 		<div id="f">

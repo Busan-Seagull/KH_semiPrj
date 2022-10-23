@@ -47,4 +47,16 @@ public class ReviewService {
     
     }
 
+    public ReviewVo selectOne(String postNo) {
+
+        Connection conn = getConnection();
+        ReviewVo vo = dao.selectOne(conn, postNo);
+        
+        close(conn);
+        
+        return vo;
+    
+    
+    }
+
 }

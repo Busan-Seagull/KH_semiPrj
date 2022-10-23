@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+ReviewVo rvo = (ReviewVo)request.getAttribute("vo");
 <!DOCTYPE html>
 <html>
 <head>
@@ -207,15 +209,15 @@ overflow:auto;
 			<div class="h" id="t27">평점</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t28"></div>
-			<div class="h" id="t29"></div>
-			<div class="h" id="t30"></div>
-			<div class="h" id="t31"></div>
-			<div class="h" id="t32"></div>
+			<div class="h" id="t28"><%=rvo.getPostNo() %></div>
+			<div class="h" id="t29"><%=rvo.getServiceNo() %></div>
+			<div class="h" id="t30"><%=rvo.getTitle() %></div>
+			<div class="h" id="t31"><%=rvo.getUserNo() %></div>
+			<div class="h" id="t32"><%=rvo.getGrade() %></div>
 		</div>
 		<div>
 			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=rvo.getContent() %></textarea>
 		</div>
 	</div>
 	<div id="i">

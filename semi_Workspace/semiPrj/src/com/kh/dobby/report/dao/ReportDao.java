@@ -267,6 +267,59 @@ public class ReportDao {
         return result;
         
     }
+
+    public ReportVo selectReportList(Connection conn, String writer) {
+
+        String sql = "SELECT R.POST_NO ,U.USER_NO ,S.SERVICE_NO ,R.TITLE , R.CONTENT ,R.WRITE_TIME ,R.DELETE_YN, R.MODIFY_DATE ,R.HANDLE_REPORT_YN ,R.REPORT_COMMENT ,U.NICK AS WRITER FROM REPORT R JOIN \"USER\" U ON R.WRITER = U.USER_NO JOIN SERVICE_INFO S ON S.USER_NO = U.USER_NO WHERE R.DELETE_YN = 'N'AND U.NICK=? ORDER BY R.POST_NO DESC";
+        
+        PreparedStatement pstmt =  null;
+        ResultSet rs = null;
+        ReportVo vo = null;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,writer);
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                String postNO = rs.getString("POST_NO");
+                String userNo = rs.getString("USER_NO");
+                String serviceNo = rs.getString("SERVICE_NO");
+                String writer1 = rs.getString("WRITER");
+                String title = rs.getString("TITLE");
+                String content = rs.getString("CONTENT");
+                Timestamp writeTime = rs.getTimestamp("WRITE_TIME");
+                String deleteYn = rs.getString("DELETE_YN");
+                Timestamp modifyDate = rs.getTimestamp("MODIFY_DATE");
+                String handleReportYn = rs.getString("HANDLE_REPORT_YN");
+                
+                
+                vo = new ReportVo();
+                vo.setPostNo(postNO);
+                vo.setUserNo(userNo);
+                vo.setServiceNo(serviceNo);
+                vo.setWriter(writer1);
+                vo.setTitle(title);
+                vo.setContent(content);
+                vo.setWriteTime(writeTime);
+                vo.setDeleteYn(deleteYn);
+                vo.setModifyDate(modifyDate);
+                vo.setHandleReportYn(handleReportYn);
+                
+               
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        
+        return vo;
     
+        
+    }     
    
 }

@@ -195,8 +195,8 @@ overflow:auto;
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><button type="submit" onclick="approval();">승인</button></div>
-		<div class="i1"><button type="submit" onclick="return();">반려</button></div>
+		<div class="i1"><button type="submit" value="승인"></button></div>
+		<div class="i1"><button type="submit" value="반려"></button></div>
 		<div class="i1"><input id="input-btn" type="submit" value="삭제"></div>
 		<div class="i1"><a href="/dobby/edit">수정</a></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
@@ -207,43 +207,9 @@ overflow:auto;
 		<div id="r2"><input id="r1" type="submit" value="확인"></div> 
 	</div>	
 </div>
-<script type="text/javascript">
 
-	function approval(){
-		$.ajax({
-			url:"/dobby/detailAdmin",
-			type:"post",
-			success: function(){
-				alert("승인되었습니다");
-				
-			},
-			error: function(){
-				elert("ERROR");
-			}
-		});
 		
 	
-	function return(){
-		
-		$.ajax({
-			url:"/dobby/detailAdmin",
-			type:"post",
-			success: function(){
-				alert("반려되었습니다");
-				
-			},
-			error: function(){
-				elert("ERROR");
-			}
-		});
-		
-	}
-		
-	}
-	
-
-</script>
-
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
