@@ -188,6 +188,7 @@ overflow:auto;
 		<div id="title-b">신고게시판</div>
 	</div>
 	<div id="main">
+	<form action="" method="post">
 		<div id="f">
 			<div class="h" id="t4">번호</div>
 			<div class="h" id="t5">신고할 회원</div>
@@ -213,7 +214,7 @@ overflow:auto;
 		<div class="i1"><input class="input-btn" type="submit" value="반려"></div>
 	<%} %>
 		<div class="i1"><input class="input-btn" type="submit" value="삭제"></div>
-		<div class="i1"><a href="/dobby/edit">수정</a></div>
+		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo %>">수정</a></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
 	<% if(loginMember != null && loginMember.getId().equals("admin")){%>
@@ -230,7 +231,7 @@ overflow:auto;
 		</div>
 		<%}
 	%>
-	
+	</form>
 </div>
 
 

@@ -155,6 +155,7 @@ overflow:auto;
 		<div id="b">신고게시판</div>
 	</div>
 	<div id="main">
+	<form action="" method="post">
 		<div id="f">
 			<div class="h" id="t4">번호</div>
 			<div class="h" id="t5">신고할 회원</div>
@@ -175,7 +176,7 @@ overflow:auto;
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><a href=""></a>삭제</div>
+		<div class="i1"><input id="input-btn2" type="submit" value="삭제" ></div>
 		<div class="i1"><input id="input-btn" type="submit" value="수정" ></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
@@ -188,6 +189,8 @@ overflow:auto;
 		</div>
 		<%}
 	%>
+	</form>
+		
 	
 </div>
 

@@ -21,7 +21,12 @@ public class EditController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	   
-	  
+	    String postNo = req.getParameter("postNo");
+	    
+	    ReportVo vo = new ReportService().selectReportOne(postNo);
+	    
+	    
+	    req.setAttribute("vo", vo);
         req.getRequestDispatcher("/WEB-INF/views/report/edit.jsp").forward(req, resp);
     }
 	@Override
@@ -48,7 +53,7 @@ public class EditController extends HttpServlet {
 
         if (result == 1) {
             req.getSession().setAttribute("alertMsg", "작성완료");
-            resp.sendRedirect("/dobby/report");
+            resp.sendRedirect("/dobby/detail?postNo="+postNo);
         } else {
             resp.getWriter().write("[ERROR]작성 오류");
             resp.sendRedirect("/dobby/report");
