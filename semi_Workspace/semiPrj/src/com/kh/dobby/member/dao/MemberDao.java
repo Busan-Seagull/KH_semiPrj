@@ -160,6 +160,66 @@ public class MemberDao {
         return idCheck;
     }
 
+    public MemberVo idfindOne(Connection conn, MemberVo vo) {
+
+        String sql="SELECT USER_NO,RIGHT_NO,ID,PWD,NAME,EMAIL,NICK,ADDRESS,PHONE,ENROLL_DATE,QUIT_YN,MODIFY_DATE,REPORT_CNT FROM \"USER\" WHERE NAME=? AND PHONE=? AND QUIT_YN='N'";
+       
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        MemberVo idfind=null;
+        
+        try {
+            pstmt=conn.prepareStatement(sql);
+            
+            pstmt.setString(1, vo.getName());
+            pstmt.setString(2, vo.getPhone());
+            
+            rs=pstmt.executeQuery();
+//            System.out.println(vo);
+            if(rs.next()){
+                String userNo=rs.getString("USER_NO");
+                String rightNo=rs.getString("RIGHT_NO");
+                String id=rs.getString("ID");
+                String pwd=rs.getString("PWD");
+                String name=rs.getString("NAME");
+                String email=rs.getString("EMAIL");
+                String nick=rs.getString("NICK");
+                String address=rs.getString("ADDRESS");
+                String phone=rs.getString("PHONE");
+                String enrollDate=rs.getString("ENROLL_DATE");
+                String quitYn=rs.getString("QUIT_YN");
+                String modifyDate=rs.getString("MODIFY_DATE");
+                String reportCnt=rs.getString("REPORT_CNT");
+                
+                
+                idfind=new MemberVo();
+                idfind.setUserNo(userNo);
+                idfind.setRightNo(rightNo);//잘챙겨.
+                idfind.setId(id);
+                idfind.setPwd(pwd);
+                idfind.setName(name);
+                idfind.setEmail(email);
+                idfind.setNick(nick);
+                idfind.setAddress(address);
+                idfind.setPhone(phone);
+                idfind.setEnrollDate(enrollDate);
+                idfind.setQuitYn(quitYn);
+                idfind.setModifyDate(modifyDate);
+                idfind.setReportCnt(reportCnt);
+                
+                System.out.println(idfind);
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return idfind;
+    }
+
 }
 
 

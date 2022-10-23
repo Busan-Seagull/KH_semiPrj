@@ -1,10 +1,14 @@
+<%@page import="com.kh.dobby.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- <%
+String vo = (String)session.getAttribute("id"); 
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>집요정 | 비밀번호 찾기 결과</title>
+<title>집요정 | 아이디 찾기 결과</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="/dobby/resources/css/reset.css">
@@ -169,26 +173,22 @@ margin-top: 10px;
             </div>
 
             <div id="result-view">
-
+		<!--  부모창인풋 값을 파라미터로 받아와서 결과 서블릿에서 조회후 보여주자.-->
                 <table id="rstable">
-                    <tr  >
+                    <tr>
                         <td>ID</td>
-                        <td>USER01</td>
-                        <td>가입일 2022/10/12</td>
+                        <td></td>
+                        <td>가입일</td>
+                        <input type="hidden" id="inputName"name="inputName" value="">
+                        <input type="hidden" id="inputPhone" name="inputPhone" value="">
                     </tr> 
                 </table>
-            </div>
-
+            </div> 
+           
 
 
             <div id="id-btn"><input type="button" value="비밀번호 찾기" onclick="opener.document.location.href='http://127.0.0.1:8888/dobby/member/findpwd'; window.close(); "></input></div>
             <div id="close-btn"> <input type="button" value="창닫기" onclick="window.close();"></input></div>
-           
-           
-            
-
-
-
 
         </div>
 
@@ -197,5 +197,15 @@ margin-top: 10px;
 
 </div>
 
+
+ <script>
+    let name1 = opener.$('#memberName').val();
+    $('#inputName').val(name1);
+    let phone = opener.$('#memberPhone').val();
+    $('#inputPhone').val(phone);
+
+    console.log(name1);
+    console.log(phone);
+</script>
 </body>
 </html>
