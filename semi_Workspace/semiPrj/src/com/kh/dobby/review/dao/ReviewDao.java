@@ -101,7 +101,7 @@ public class ReviewDao {
 
     public ReviewVo selectOne(Connection conn, String postNo) {
 
-        String sql = "SELECT R.POST_NO ,U.USER_NO ,S.SERVICE_NO ,R.TITLE, R.CONTENT ,R.WRITE_TIME ,R.DELETE_YN ,R.MODIFY_DATE ,R.HANDLE_REPORT_YN,U.NICK AS WRITER FROM REPORT R JOIN \"USER\" U ON R.WRITER = U.USER_NO JOIN SERVICE_INFO S ON S.USER_NO = U.USER_NO WHERE R.POST_NO = ?";
+        String sql = "SELECT R.POST_NO, S.SERVICE_NO,U.USER_NO  ,R.TITLE, R.CONTENT ,R.WRITE_TIME ,R.DELETE_YN , R.MODIFY_DATE ,R.GRADE,U.NICK AS USER_NO FROM REVIEW R JOIN \"USER\" U ON R.USER_NO = U.USER_NO JOIN SERVICE_INFO S ON S.USER_NO = U.USER_NO WHERE R.POST_NO = ?";
         
         PreparedStatement pstmt = null;
         ResultSet rs =  null;

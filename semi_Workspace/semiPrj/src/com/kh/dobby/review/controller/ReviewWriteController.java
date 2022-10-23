@@ -21,7 +21,10 @@ public class ReviewWriteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        
+        
+        ReviewVo vo = new ReviewVo(); 
         if(req.getSession().getAttribute("loginMember")!= null) {
+            req.setAttribute("vo", vo);
             req.getRequestDispatcher("/WEB-INF/views/review/reviewWrite.jsp").forward(req, resp);
         }else {
             req.setAttribute("msg", "로그인 후 이용해주세요");
@@ -57,11 +60,11 @@ public class ReviewWriteController extends HttpServlet {
         int result = new ReviewService().reviewWrite(vo);
 
         if (result == 1) {
-            s.setAttribute("alertMsg", "작성완료");
+            
             resp.sendRedirect("/dobby/reviewList");
         } else {
-            resp.getWriter().write("[ERROR]작성 오류");
-            resp.sendRedirect("/dobby/reviewList");
+            req.setAttribute("msg", "ERROR] 작성실패");
+            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
         }
 
     

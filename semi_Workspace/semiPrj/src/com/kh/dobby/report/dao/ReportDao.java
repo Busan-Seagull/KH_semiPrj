@@ -178,7 +178,7 @@ public class ReportDao {
 
     public int approval(Connection conn, String postNo) {
 
-        String sql = "INSERT INTO REPORT(HANDLE_REPORT_YN) VALUES ('Y') WHERE POST_NO = ?";
+        String sql = "UPDATE REPORT SET HANDLE_REPORT_YN = 'Y' WHERE POST_NO = ?";
         PreparedStatement pstmt = null;
         int result = 0;
         
@@ -200,7 +200,7 @@ public class ReportDao {
 
     public int returnReport(Connection conn, String postNo) {
         
-        String sql = "INSERT INTO REPORT(HANDLE_REPORT_YN) VALUES ('N') WHERE POST_NO = ?";
+        String sql = "UPDATE REPORT SET HANDLE_REPORT_YN ='N' WHERE POST_NO = ?";
         PreparedStatement pstmt = null;
         int result2 = 0;
         

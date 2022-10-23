@@ -96,13 +96,13 @@ pageEncoding="UTF-8"%>
 	
 }
 #i{
-	width: 600px;
+	width: 420px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
 	top: 60px;
-	left: 180px;
+	left: 280px;
 }
 #l{
 text-align:center;
@@ -142,7 +142,7 @@ overflow:auto;
 }
 .input-btn{
  font-size:medium;
- font-weight:600;
+ font-weight:500;
  background-color:#EAE0D4;
  border:none;
  
@@ -214,7 +214,7 @@ overflow:auto;
 		<div class="i1"><input class="input-btn" type="submit" value="반려"></div>
 	<%} %>
 		<div class="i1"><input class="input-btn" type="submit" value="삭제"></div>
-		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo %>">수정</a></div>
+		<div class="i1"><a href="/dobby/edit?postNo=1">수정</a></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
 	<% if(loginMember != null && loginMember.getId().equals("admin")){%>
@@ -224,10 +224,13 @@ overflow:auto;
 	<%} %>
 	
 	<%
-		if(vo.getHandleReportYn() != null){%>
+		if(loginMember.getId().equals("admin")){%>
 			<div id="reply-main">
-			<div id="top"><%=vo.getWriter() %></div>
-			<div id="bottom"><%=vo.getReportComment() %></div>
+			<div id="top">admin</div>
+			<%if(vo.getReportComment() != null){%>
+				<div id="bottom"><%=vo.getReportComment() %></div>
+			<%} %>
+			
 		</div>
 		<%}
 	%>

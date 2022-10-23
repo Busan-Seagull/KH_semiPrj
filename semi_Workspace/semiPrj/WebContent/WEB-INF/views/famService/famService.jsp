@@ -133,8 +133,8 @@ li>div{
     width: 100%;
     height: 80%;
     border-bottom: 3px solid lightgray;
-    background-color:#EAE0D4;
-    color:black;
+    background-color:#004412;
+    color:white;
     box-shadow: 2px 2px lightgray;
 }
 
