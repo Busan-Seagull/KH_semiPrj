@@ -40,7 +40,7 @@
 	line-height:56px;
 }
 
-#write{
+.page-button{
 	width: 100px;
 	height:40px;
 	border:1px solid black;
@@ -50,7 +50,9 @@
 	top: 40px;
 	text-margin: center;
 	margin: 0 auto;
+	text-align:center;
 	line-height:40px;
+	float:left;
 }
 
 #title{
@@ -75,32 +77,32 @@
 	margin:0 auto;
 }
 
-
-
 #blackline, #title{
 	position:relative;
 }
 
 #t1{
-	width:16%;
+	width:90px;
 	height:60px;
 }
 #t2{
-	width:68%;
+	width:100px;
 	height:60px;
 }
 #t3{
-	width:16%;
+	width:700px;
 	height:60px;
 }
-#page-area{
-	width:200px;
-	height:30px;
-	bottom:80px;
-	left:460px;
-	top:25px;
-	font-weight:500;
-	font-size:larger;
+
+#button-box{
+	margin:20px;
+	margin-bottom:80px;
+}
+#write{
+	margin-left:360px;
+}
+#rollback{
+	margin-left:100px;
 }
 
 </style>
@@ -109,7 +111,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 	<div id="blackline"></div>
-	<div id="title">문의게시판</div>
+	<div id="title">문의게시판 작성</div>
 	
 	<div id="main">
 		<div id="header">
@@ -122,39 +124,14 @@
 			<div class="content" id="t2">2</div>
 			<div class="content" id="t3">3</div>
 		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
+		
 	
 	
 	</div>
-	
-	<div id="page-area">1 2</div>
-	
-	<div id="write"><a href="/dobby/request/write">글쓰기</a></div>
-	
+	<div id="button-box">
+		<input type="submit" value="작성하기" id="write"  class="page-button" >
+		<a href="/dobby/request/"><div class="page-button" id="rollback">돌아가기</div></a>
+	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 </body>
