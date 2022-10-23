@@ -52,6 +52,7 @@ public class MemberJoinController extends HttpServlet  {
         vo.setAddress(address);
         
         RightVo rightvo = null;
+        
         //집요정일 경우.
         if(vo.getRightNo().equals("2")) {
             rightvo = new RightVo();

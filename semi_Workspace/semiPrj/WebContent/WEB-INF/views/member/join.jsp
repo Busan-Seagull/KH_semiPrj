@@ -289,19 +289,19 @@ button {
     <div id="join-area">
             <div id="join-title"><span class="material-symbols-outlined">magic_button</span>회원가입</div>
             <div id="right">
-                <label> 일반 회원
-                    <input type="radio" name="userRight" value="1" checked>
-                </label>
+                <label for="userRight1">일반 회원</label><input type="radio" id="userRight1"name="userRight" value="1">
 
-                <label> 집요정
-                    <input type="radio" id="userRight" name="userRight" value="2" >
-                </label> 
+                <label for="userRight2">집요정</label> <input type="radio"id="userRight2" name="userRight" value="2" >
+                
             </div>
 
+           
             <div class="text">아이디</div>
             <div id="id">
                 <input type="text" name="memberId" maxlength="8" placeholder="영어 소문자,숫자 포함 3~8글자">
                 <input type="button" id="btnCheck" value="중복확인">
+                <input type="hidden" id="idCheck" value="Uncheck">
+
             </div>
            
 
@@ -373,13 +373,15 @@ button {
     
                 <div id="account_text" class="text">계좌번호</div>
                 <div id="account">
-                    <select name="account1">
-                        <option value="z"selected>은행명</option>
-                        <option value="카카오뱅크">카카오뱅크</option>
-                        <option value="신한은행">신한은행</option>
-                        <option value="우리은행">우리은행</option>
+                    <select name="account1" id="account1">
+                        <option value="">은행명</option>
+                        <option value="kakao">카카오뱅크</option>
+                        <option value="shinhan">신한은행</option>
+                        <option value="woori">우리은행</option>
        
                     </select>
+
+                 
                        <input type="text" name="account2" size="14" />
     
                 </div>
@@ -411,8 +413,8 @@ button {
         </div>
     </form>
 
+
     <script>
-        
         const id=$("input[name=memberId]");
         const pwd1 = $("input[name=memberPwd1]");
         const pwd2 = $("input[name=memberPwd2]");
@@ -426,20 +428,25 @@ button {
         const brnum1=$("input[name=br_num1]");
         const brnum2=$("input[name=br_num2]");
         const brnum3=$("input[name=br_num3]");
-        
-        
+        const account1=$("select[name=account1]");
+        const account2=$("input[name=account2]");
+        const idCheck=$('#idCheck'); 
         // 유효성 검사
         function check(){
-
         	 if(!id.val()){
         		 alert("아이디를 입력하세요.");
                    $('input[name="memberId"]').focus();
                 return false;
         	 }
         	 
-             if(id.val().length<2&&id.val().length>8){
+             if(id.val().length<3){
                 alert("아이디 글자 수를 확인해주세요.");
                 $('input[name="memberId"]').focus();
+                return false;
+             }
+
+             if(idCheck.val()!='check'){
+                alert("아이디를 중복확인을 하세요.");
                 return false;
              }
         	
@@ -449,8 +456,8 @@ button {
                   return false;
              }
 
-             if(pwd1.val().length<3&&pwd1.val().length>12){
-                alert("글자 수를 확인해주세요.");
+             if(pwd1.val().length<3){
+                alert("비밀번호 글자 수를 확인해주세요.");
                   pwd1.focus();
                   return false;
              }
@@ -473,12 +480,24 @@ button {
                  return false;
              }
              
-             if(phone1.val().length!=4 && phone2.val().length!=4){
+             if(!phone2.val()&&!phone3.val()){
                 alert("번호를 입력하세요");
-                phone1.focus();
+                phone2.focus();
                 return false;
-              
-            }
+             }
+
+             if(phone2.val().length<4){
+                alert("올바른 번호가 아닙니다");
+                phone2.focus();
+                return false;
+             }
+
+             if(phone3.val().length<4){
+                alert("올바른 번호가 아닙니다");
+                phone3.focus();
+                return false;
+             }
+             
              
              if(!email.val()){
         		 alert("이메일을 입력하세요.");
@@ -492,7 +511,57 @@ button {
                  return false;
         	 }
 
-             return true;
+             
+        
+                //집요정일때
+                const userRight= $('input[name=userRight]:checked').val();
+                if(userRight==2){
+                    if(!brnum1.val()&& brnum1.val().length<3){
+                    alert("사업자 등록번호를 입력해 주세요.");
+                    brnum1.focus();
+                    return false;
+                    }
+
+                    if(!brnum2.val()&& brnum2.val().length<2){
+                    alert("사업자 등록번호를 입력해 주세요.");
+                    brnum2.focus();
+                    return false;
+                    }
+
+                    if(!brnum3.val()&& brnum3.val().length<5){
+                    alert("사업자 등록번호를 입력해 주세요.");
+                    brnum3.focus();
+                    return false;
+                    }
+
+                    console.log(account1);
+
+                    if(account1.val()==""){
+                    alert("은행명을 선택해 주세요");
+                   
+                    return false;
+                    }
+
+                    if(!account2.val()){
+                    alert("계좌번호를 입력해 주세요");
+                    account2.focus();
+                    return false;
+                    }
+
+                
+                    if(account2.val().length<11&&account2.val().length>15){
+                    alert("계좌번호를 다시 확인하여 입력해 주세요");
+                    account2.focus();
+                    return false;
+                    }
+                    return true;//도경아 이거 트루인데 테스트하는거다..놓치지마라..
+                }
+       
+                
+                    
+                
+
+             return true;//도경아 이거 트루인데 테스트하는거다..놓치지마라..
               
         }
         
@@ -500,19 +569,23 @@ button {
 
         $('#btnCheck').click(function () {
              const JJINid=$('input[name="memberId"]').val(); 
+             const idCheck=$('#idCheck'); 
             $.ajax({    
 			        type: "post",
 			        url: "/dobby/member/idCheck",
 			        data: {id : JJINid}, 
 			        success: function(result) {
 			        	
-			        	  if(JJINid != ""){
+			        	  if(JJINid != "" && JJINid.length>=3){
 			        		  if (result == '0') {
 				        			 alert("이미 사용 중 인 아이디 입니다.");
-					               
+                                     idCheck.val('Uncheck');
+                                
 					                 
 					            } else{
 					            	 alert("사용 가능한 아이디 입니다.");
+                                     idCheck.val('check');
+                                     
 					            }	   
 			                	
 			                }else{

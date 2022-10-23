@@ -59,6 +59,18 @@ public class MemberService {
         return result;
         
     }
+
+    public MemberVo idfind(MemberVo vo) {
+        Connection conn=JDBCTemplate.getConnection();
+        
+        MemberDao dao=new MemberDao();
+        MemberVo idFind=new MemberDao().idfindOne(conn,vo);
+        
+        JDBCTemplate.close(conn);
+
+        return idFind; 
+    
+    }
     
    
 
