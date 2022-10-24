@@ -39,6 +39,7 @@
 				<c:if test="${sessionScope.loginMember.rightNo == 1}">
 				<c:forEach items="${list}" var="rv" varStatus="vs">
 				<div class="rh-item shadow-box">
+
 					<div class="rh-i-header">
 						<div style="line-height:200%;">
 							<h1>${rv.sTitle}</h1>
@@ -57,9 +58,11 @@
 							<div class="rh-i-h-btn">리뷰하기</div>
 						</span>
 					</div>
+
 					<input type="checkbox" id="d-check${vs.count}">
 					<label class="down material-symbols-outlined" for="d-check${vs.count}">arrow_drop_down</label>
 					<label class="down material-symbols-outlined" for="d-check${vs.count}">arrow_drop_up</label>
+					
 					<div class="rh-detail">
 					
 						<form action="">
