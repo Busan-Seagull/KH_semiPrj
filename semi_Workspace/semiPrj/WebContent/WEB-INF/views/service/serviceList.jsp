@@ -3,8 +3,8 @@
 <%@page import="com.kh.dobby.common.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<% 
-ServiceVo sv = (ServiceVo)request.getAttribute("sv");
+<%
+ServiceVo sv = (ServiceVo) request.getAttribute("sv");
 PageVo pv = (PageVo) request.getAttribute("pv");
 String root = request.getContextPath();
 %>
@@ -44,8 +44,37 @@ String root = request.getContextPath();
 		<div id="service-main">
 			<div id="service-main-category">가사도우미</div>
 			<div id="service-main-nav">
-				<div class="nav-select" id="select-region">지역선택</div>
-				<div class="nav-select" id="select-date">날짜선택</div>
+				<select class="nav-select" id="select-region">
+					<option value="">지역선택</option>
+					<option value="1">도봉구</option>
+					<option value="2">노원구</option>
+					<option value="3">강북구</option>
+					<option value="4">은평구</option>
+					<option value="5">종로구</option>
+					<option value="6">성북구</option>
+					<option value="7">중랑구</option>
+					<option value="8">동대문구</option>
+					<option value="9">서대문구</option>
+					<option value="10">중구</option>
+					<option value="11">마포구</option>
+					<option value="12">용산구</option>
+					<option value="13">성동구</option>
+					<option value="14">광진구</option>
+					<option value="15">강서구</option>
+					<option value="16">양천구</option>
+					<option value="17">구로구</option>
+					<option value="18">영등포구</option>
+					<option value="19">금천구</option>
+					<option value="20">동작구</option>
+					<option value="21">관악구</option>
+					<option value="22">서초구</option>
+					<option value="23">강남구</option>
+					<option value="24">송파구</option>
+					<option value="25">강동구</option>
+				</select>
+				<select class="nav-select" id="select-date">
+					<option value="">날짜선택</option>
+				</select>
 				<div class="nav-select" id="helper-search">
 					<form action="">
 						<div id="textbox-wrap">
@@ -63,42 +92,45 @@ String root = request.getContextPath();
 			</div>
 			<div id="helper-number">1,150명의 집요정</div>
 			<div class="helper-list-flex">
-			
-			<c:forEach var="list" items="${svList}">
-				
-				<div class="helper-list-outline">
-						<a class="helper-list" onclick="location.href='<%=root %>/service/detail?sno=<c:out value='${list.serviceNo}'/>">
-						<div class="helper-pic">
-							<img src="" alt="">
-						</div>
-						<div class="helper-contents">
-							<div>
-									<h2>${list.title}|${list.helper}</h2>
-								<p>${list.serviceIntro}</p>
+
+				<c:forEach var="list" items="${svList}">
+
+					<div class="helper-list-outline">
+						<a class="helper-list"
+							onclick="location.href='<%=root %>/service/detail?sno=${list.serviceNo}'">
+							<div class="helper-pic">
+								<img src="/dobby/${list.profileImg}" alt="">
 							</div>
-							<div>
-								<span class="starrr">★★★★★</span> <span class="star-num">5</span>
-								<span class="comment">"이 집 청소 잘하네요~"</span>
+							<div class="helper-contents">
+								<div>
+									<h2>${list.title} | ${list.helper}</h2>
+									<p>${list.serviceIntro}</p>
+								</div>
+								<div>
+									<span class="starrr">★★★★★</span> <span class="star-num">5</span>
+									<span class="comment">"이 집 청소 잘하네요~"</span>
+								</div>
 							</div>
-						</div>
-						<div class="helper-contents2">
-							<div class="favorite-btn-div">
-								<button class="favorite-btn">♥찜하기</button>
-							</div>
+							<div class="helper-contents2">
+								<div class="favorite-btn-div">
+									<button class="favorite-btn">
+										<span class="material-symbols-outlined"> favorite </span>찜
+									</button>
+								</div>
 								<div class="service-pay">${list.chargeUnit}당
 									<fmt:formatNumber value="${list.charge}" pattern="#,###" />
 									원
-						</div>
-					</div>
+								</div>
+							</div>
 						</a>
-				</div>
-				
+					</div>
+
 				</c:forEach>
-				
+
 				<div class="helper-list-outline">
 					<div class="helper-list">
 						<div class="helper-pic">
-							<img src="/ryan/공통/resources/이상해씨.jpg" alt="">
+							<img src="/dobby/resources/img/service/dobby3.jpg" alt="">
 						</div>
 						<div class="helper-contents">
 							<div>

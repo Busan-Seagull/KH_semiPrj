@@ -15,21 +15,22 @@
         <div id="main-content">
             <div id="service-pic-container">
                 <div id="service-pic1">
-                    <img src="" alt="">
+                    <img src="/dobby/resources/img/service/house1.jfif" alt="서비스1">
                 </div>
                 <div id="service-pic2">
-                    <img src="" alt="">
+                    <img src="/dobby/resources/img/service/house3.jfif" alt="서비스2">
                 </div>
                 <div id="service-pic3">
-                    <img src="" alt="">
+                    <img src="/dobby/resources/img/service/house2.jfif" alt="서비스3">
                 </div>
                 <div id="service-pic4">
-                    <img src="" alt="">
+                    <img src="/dobby/resources/img/service/house4.jfif" alt="서비스4">
+                    
                 </div>
             </div>
             <div id="helper-profile">
                 <div class="inline-block" id="profile-pic-div">
-                    <img src="" alt="">
+                    <img src="/dobby/WEB-INF/upload/service/1666579981181_32901.50304726053.jpg" alt="">
                 </div>
                 <div class="inline-block" id="profile-contents">
                     <h2>집 청소 제대로 해드립니다.</h2>

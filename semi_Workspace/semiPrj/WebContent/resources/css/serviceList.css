@@ -3,6 +3,16 @@
     padding: 0;
 }
 
+
+.material-symbols-outlined {
+	
+	font-size:12px;
+ 
+ 
+  
+}
+
+
 #main-baner-box{
     height: 200px;
     width: 1200px;
@@ -171,7 +181,7 @@ main{
     cursor: pointer;
 }
 .helper-list:hover{
-    background-color: rgb(249, 255, 247);
+    background-color: rgb(237, 242, 237);
 }
 
 .helper-pic{

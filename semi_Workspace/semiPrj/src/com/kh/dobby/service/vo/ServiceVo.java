@@ -13,6 +13,7 @@ public class ServiceVo {
     private String serviceIntro;
     private String profileImg;
     private int charge;
+    private int chargeUnitNo;
     private String chargeUnit;
     private int helperExp;
     private String openTime;
@@ -35,11 +36,12 @@ public class ServiceVo {
     public ServiceVo() {
         
     }
+
     public ServiceVo(int serviceNo, String title, int typeNo, String serviceType, int helperNo, String helper,
-            String serviceIntro, String profileImg, int charge, String chargeUnit, int helperExp, String openTime,
-            String closeTime, String serviceDetail, String paymentDetail, String servicePic_1, String servicePic_2,
-            String servicePic_3, String servicePic_4, int pTypeNo_1, int pTypeNo_2, int pTypeNo_3, int areaNo_1,
-            int areaNo_2, int areaNo_3, int areaNo_4, int areaNo_5) {
+            String serviceIntro, String profileImg, int charge, int chargeUnitNo, String chargeUnit, int helperExp,
+            String openTime, String closeTime, String serviceDetail, String paymentDetail, String servicePic_1,
+            String servicePic_2, String servicePic_3, String servicePic_4, int pTypeNo_1, int pTypeNo_2, int pTypeNo_3,
+            int areaNo_1, int areaNo_2, int areaNo_3, int areaNo_4, int areaNo_5) {
         super();
         this.serviceNo = serviceNo;
         this.title = title;
@@ -50,6 +52,7 @@ public class ServiceVo {
         this.serviceIntro = serviceIntro;
         this.profileImg = profileImg;
         this.charge = charge;
+        this.chargeUnitNo = chargeUnitNo;
         this.chargeUnit = chargeUnit;
         this.helperExp = helperExp;
         this.openTime = openTime;
@@ -70,7 +73,12 @@ public class ServiceVo {
         this.areaNo_5 = areaNo_5;
     }
 
-
+    public int getChargeUnitNo() {
+        return chargeUnitNo;
+    }
+    public void setChargeUnitNo(int chargeUnitNo) {
+        this.chargeUnitNo = chargeUnitNo;
+    }
     public String getServiceType() {
         return serviceType;
     }
@@ -289,15 +297,12 @@ public class ServiceVo {
     public String toString() {
         return "ServiceVo [serviceNo=" + serviceNo + ", title=" + title + ", typeNo=" + typeNo + ", serviceType="
                 + serviceType + ", helperNo=" + helperNo + ", helper=" + helper + ", serviceIntro=" + serviceIntro
-                + ", profileImg=" + profileImg + ", charge=" + charge + ", chargeUnit=" + chargeUnit + ", helperExp="
-                + helperExp + ", openTime=" + openTime + ", closeTime=" + closeTime + ", serviceDetail=" + serviceDetail
-                + ", paymentDetail=" + paymentDetail + ", servicePic_1=" + servicePic_1 + ", servicePic_2="
-                + servicePic_2 + ", servicePic_3=" + servicePic_3 + ", servicePic_4=" + servicePic_4 + ", pTypeNo_1="
-                + pTypeNo_1 + ", pTypeNo_2=" + pTypeNo_2 + ", pTypeNo_3=" + pTypeNo_3 + ", areaNo_1=" + areaNo_1
-                + ", areaNo_2=" + areaNo_2 + ", areaNo_3=" + areaNo_3 + ", areaNo_4=" + areaNo_4 + ", areaNo_5="
-                + areaNo_5 + "]";
+                + ", profileImg=" + profileImg + ", charge=" + charge + ", chargeUnitNo=" + chargeUnitNo
+                + ", chargeUnit=" + chargeUnit + ", helperExp=" + helperExp + ", openTime=" + openTime + ", closeTime="
+                + closeTime + ", serviceDetail=" + serviceDetail + ", paymentDetail=" + paymentDetail
+                + ", servicePic_1=" + servicePic_1 + ", servicePic_2=" + servicePic_2 + ", servicePic_3=" + servicePic_3
+                + ", servicePic_4=" + servicePic_4 + ", pTypeNo_1=" + pTypeNo_1 + ", pTypeNo_2=" + pTypeNo_2
+                + ", pTypeNo_3=" + pTypeNo_3 + ", areaNo_1=" + areaNo_1 + ", areaNo_2=" + areaNo_2 + ", areaNo_3="
+                + areaNo_3 + ", areaNo_4=" + areaNo_4 + ", areaNo_5=" + areaNo_5 + "]";
     }
-
-    
-
 }

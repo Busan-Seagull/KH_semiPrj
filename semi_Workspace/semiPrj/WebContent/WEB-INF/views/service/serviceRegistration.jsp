@@ -14,7 +14,7 @@
 
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div id="service-registration-wrap">
-		<div id="registration-title">서비스 등록하기</div>
+		<div id="registration-title">서비스 등록</div>
 		<form action="" method="post" enctype="multipart/form-data">
 			<div id="registration-form1">
 				<div id="service-name">서비스명</div>
@@ -34,20 +34,22 @@
 				</div>
 				<div id="profile-pic">프로필 사진</div>
 				<div id="profile-pic-input">
-					<input type="file" name="profile-img">
+					<label for="profile-img">+</label> <input type="file"
+						name="profile-img" id="profile-img">
 				</div>
 				<div id="payment-unit">요금단위</div>
 				<div id="payment-unit-input">
 					<select name="charge-unit" id="select-charge-unit">
-						<option value="1">평당</option>
-						<option value="2">시간당</option>
-						<option value="3">회당</option>
-						<option value="4">견적필요</option>
+						<option value="2">평당</option>
+						<option value="3">시간당</option>
+						<option value="4">회당</option>
+						<option value="1">견적필요</option>
 					</select>
 				</div>
 				<div id="payment">요금</div>
 				<div id="payment-input">
-					<input type="number" name="charge" value="10000" id="number"> 원
+					<input type="number" name="charge" value="10000" id="number">
+					원
 				</div>
 				<div id="payment-method">
 					현장 결제수단
@@ -291,16 +293,20 @@
 			<div id="service-pic-wrap">
 				<div id="service-pic" class="registration-t2">서비스 사진</div>
 				<div id="service-pic-input1" class="service-pic-input">
-					<input type="file" name="service-img-1">
+					<label for="service-img-1">+</label> <input type="file"
+						name="service-img-1" id="service-img-1">
 				</div>
 				<div id="service-pic-input2" class="service-pic-input">
-					<input type="file" name="service-img-2">
+					<label for="service-img-2">+</label> <input type="file"
+						name="service-img-2" id="service-img-2">
 				</div>
 				<div id="service-pic-input3" class="service-pic-input">
-					<input type="file" name="service-img-3">
+					<label for="service-img-3">+</label> <input type="file"
+						name="service-img-3" id="service-img-3">
 				</div>
 				<div id="service-pic-input4" class="service-pic-input">
-					<input type="file" name="service-img-4">
+					<label for="service-img-4">+</label> <input type="file"
+						name="service-img-4" id="service-img-4">
 				</div>
 				<div id="service-pic-detail">서비스를 나타내는 사진을 1장이상 등록해주세요</div>
 			</div>
@@ -328,23 +334,24 @@
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
 	<script defer>
+		const select = document.querySelector('#select-charge-unit');
+		const numberInput = document.querySelector('#number');
 
-		var select = document.querySelector('#select-charge-unit');
-		var selectIndex = select.selectedIndex;
-		var numberInput =document.querySelector('#number');
+		select.addEventListener('change', function() {
 
-		select.addEventListener('change',function(){
-			var val = select.options[selectIndex].value;
+			const selectIndex = select.selectedIndex;
+			const val = select.options[selectIndex].value;
 
 			console.log(selectIndex);
 			console.log(val);
 
-			if(val == 1){
-				numberInput.value=0;
-				numberInput.disabled=true;
+			if (val == 1) {
+				numberInput.value = 0;
+				numberInput.disabled = true;
+			} else {
+				numberInput.disabled = false;
 			}
 		})
-
 	</script>
 
 

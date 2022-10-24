@@ -38,6 +38,7 @@ public class ServiceService {
         return result;
     }
 
+    //서비스 타입으로 리스트 받아오기
     public List<ServiceVo> listService(PageVo pv, String stn) {
 
         Connection conn = JDBCTemplate.getConnection();
@@ -48,7 +49,20 @@ public class ServiceService {
 
         return x;
     }
+    //유저 번호로 리스트 받아오기
+    public List<ServiceVo> listService(int userNo) {
+        
+        Connection conn = JDBCTemplate.getConnection();
 
+        List<ServiceVo> x = sd.listService(conn, userNo);
+
+        JDBCTemplate.close(conn);
+
+        return x;
+        
+    }
+
+    //서비스 넘버로 서비스 디테일 받아오기
     public ServiceVo selectOne(String sno) {
         Connection conn = JDBCTemplate.getConnection();
 
@@ -233,5 +247,7 @@ public class ServiceService {
         
         
     }
+
+    
     
 }

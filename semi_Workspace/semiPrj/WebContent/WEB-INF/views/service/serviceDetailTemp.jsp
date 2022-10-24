@@ -18,21 +18,21 @@
         <div id="main-content">
             <div id="service-pic-container">
                 <div id="service-pic1">
-                    <img src="${sv.servicePic_1}" alt="">
+                    <img src="/dobby/${sv.servicePic_1}" alt="">
                 </div>
                 <div id="service-pic2">
-                    <img src="${sv.servicePic_2}" alt="">
+                    <img src="/dobby/${sv.servicePic_2}" alt="">
                 </div>
                 <div id="service-pic3">
-                    <img src="${sv.servicePic_3}" alt="">
+                    <img src="/dobby/${sv.servicePic_3}" alt="">
                 </div>
                 <div id="service-pic4">
-                    <img src="${sv.servicePic_4}" alt="">
+                    <img src="/dobby/${sv.servicePic_4}" alt="">
                 </div>
             </div>
             <div id="helper-profile">
                 <div class="inline-block" id="profile-pic-div">
-                    <img src="${sv.profileImg}" alt="">
+                    <img src="/dobby/${sv.profileImg}" alt="">
                 </div>
                 <div class="inline-block" id="profile-contents">
                     <h2>${sv.serviceIntro}</h2>
