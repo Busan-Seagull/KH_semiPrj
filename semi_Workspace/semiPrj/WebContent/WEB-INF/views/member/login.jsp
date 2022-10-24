@@ -3,7 +3,15 @@
     pageEncoding="UTF-8"%>
 <% 
 String root=request.getContextPath();
+String msg = (String)session.getAttribute("msg");
+session.removeAttribute("msg");
 %>
+
+<script>
+<%if(msg!=null){%>
+alert('<%= msg%>');
+<%}%>
+</script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +22,7 @@ String root=request.getContextPath();
 <style>
     #member-box{
         width: 600px;
-        height: auto;
+       /*  height: auto; */
         background: #FFFFFF;
         border: 1px solid #999999;
         border-radius: 18px;
@@ -24,7 +32,7 @@ String root=request.getContextPath();
 
    #login-area{
         width: 400px;
-        height: 70%;
+        /* height: 70%; */
         /* border: 1px solid red; */
         display: grid;
         grid-template-rows: repeat(7, 45px);

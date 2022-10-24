@@ -1,8 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	MemberVo id = (MemberVo)session.getAttribute("id");
+	MemberVo idFind = (MemberVo)session.getAttribute("idFind");
+	String msg = (String)session.getAttribute("msg");
+	session.removeAttribute("msg");
+	session.removeAttribute("idFind");
 %>
+<script>
+<%if(msg!=null){%>
+alert('<%= msg%>');
+<%}%>
+
+</script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +33,7 @@
 
    #findid-area{
         width: 400px;
-        height: 70%;
+       /*  height: 70%; */
         /* border: 1px solid red; */
         display: grid;
         grid-template-rows: repeat(7, 45px);
@@ -108,20 +118,29 @@
             <div id="id-title"><span class="material-symbols-outlined">magic_button</span>아이디 찾기</div>
             <div class="text">가입 시 입력했던 이름을 입력해주세요</div>
             <div id="name">
-                <input type="text" id ="memberName" name="memberName" placeholder="이름">
+                <input type="text" name="memberName" placeholder="이름">
+                <%if(idFind!=null){ %>
+                <input type="hidden" id="setId" value="<%=idFind.getId() %>" >
+                <%} %>
             </div>
 
             <div class="text">가입 시 입력했던 휴대폰 번호를 입력해주세요</div>
-            <div id="phone"><input type="text" id ="memberPhone" name="memberPhone" placeholder="휴대폰 번호 - 생략"></div>
+            <div id="phone">
+                <input type="text" name="memberPhone" placeholder="휴대폰 번호 - 생략">
+                 <%if(idFind!=null){ %>
+                <input type="hidden" id="setEnrollDate" value="<%=idFind.getEnrollDate() %>">
+           		  <%} %>
+            </div>
 			
-            <div><input type="submit" value="아이디 찾기" onclick="window.open('http://127.0.0.1:8888/dobby/member/findidresult', '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no')"></div>
+            <div>
+            <input type="submit" value="아이디 찾기" onclick="window.open('http://127.0.0.1:8888/dobby/member/findidresult', '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no')">
+            </div>
+            
         </div>
         
 
     </form>
-    <Script>
-        
-    </Script>
+
 
     <div id="login-etc">
         <div id="join">집요정에 가입하세요.&nbsp&nbsp&nbsp<a href="/dobby/member/join"> 회원가입</a></div>

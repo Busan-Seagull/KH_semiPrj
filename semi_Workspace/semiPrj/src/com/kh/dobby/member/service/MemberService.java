@@ -71,6 +71,17 @@ public class MemberService {
         return idFind; 
     
     }
+
+    public MemberVo pwdfind(MemberVo vo) {
+        Connection conn=JDBCTemplate.getConnection();
+        
+        MemberDao dao=new MemberDao();
+        MemberVo pwdFind=new MemberDao().pwdfindOne(conn,vo);
+        
+        JDBCTemplate.close(conn);
+
+        return pwdFind;
+    }
     
    
 

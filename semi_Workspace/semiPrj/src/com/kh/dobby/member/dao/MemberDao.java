@@ -207,7 +207,7 @@ public class MemberDao {
                 idfind.setModifyDate(modifyDate);
                 idfind.setReportCnt(reportCnt);
                 
-                System.out.println(idfind);
+//                System.out.println(idfind);
                 
             }
         } catch (SQLException e) {
@@ -218,6 +218,60 @@ public class MemberDao {
         }
         
         return idfind;
+    }
+
+    public MemberVo pwdfindOne(Connection conn, MemberVo vo) {
+        String sql="SELECT USER_NO,RIGHT_NO,ID,PWD,NAME,EMAIL,NICK,ADDRESS,PHONE,ENROLL_DATE,QUIT_YN,MODIFY_DATE,REPORT_CNT FROM \"USER\" WHERE ID=? AND EMAIL=? AND QUIT_YN='N'";
+        
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        MemberVo pwdfind=null;
+        
+        try {
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, vo.getId());
+            pstmt.setString(2, vo.getEmail());
+            
+            rs=pstmt.executeQuery();
+           
+            if(rs.next()){
+                String userNo=rs.getString("USER_NO");
+                String rightNo=rs.getString("RIGHT_NO");
+                String id=rs.getString("ID");
+                String pwd=rs.getString("PWD");
+                String name=rs.getString("NAME");
+                String email=rs.getString("EMAIL");
+                String nick=rs.getString("NICK");
+                String address=rs.getString("ADDRESS");
+                String phone=rs.getString("PHONE");
+                String enrollDate=rs.getString("ENROLL_DATE");
+                String quitYn=rs.getString("QUIT_YN");
+                String modifyDate=rs.getString("MODIFY_DATE");
+                String reportCnt=rs.getString("REPORT_CNT");
+            
+                pwdfind=new MemberVo();
+                pwdfind.setUserNo(userNo);
+                pwdfind.setRightNo(rightNo);
+                pwdfind.setId(id);
+                pwdfind.setPwd(pwd);
+                pwdfind.setName(name);
+                pwdfind.setEmail(email);
+                pwdfind.setNick(nick);
+                pwdfind.setAddress(address);
+                pwdfind.setPhone(phone);
+                pwdfind.setEnrollDate(enrollDate);
+                pwdfind.setQuitYn(quitYn);
+                pwdfind.setModifyDate(modifyDate);
+                pwdfind.setReportCnt(reportCnt);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+        return pwdfind;
+        
     }
 
 }
