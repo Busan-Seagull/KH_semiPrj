@@ -31,6 +31,9 @@
 .back-light{
     background-color: lightgrey;
 }
+.back-white{
+	background-color:white;
+}
 .xl{
     font-size: 18px;
 }
@@ -235,7 +238,7 @@
     align-items: flex-end;
 }
 #profile-contents>h2{
-    margin: 10px 0 20px 0;
+    margin: 10px 0 10px 0;
     font-size:18px;
     font-weight:500;
 }

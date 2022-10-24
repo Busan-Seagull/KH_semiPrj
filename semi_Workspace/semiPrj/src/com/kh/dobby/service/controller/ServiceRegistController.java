@@ -1,9 +1,5 @@
 package com.kh.dobby.service.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -22,7 +18,7 @@ import com.kh.dobby.service.vo.ServiceVo;
 
 @WebServlet(urlPatterns = "/service/regist")
 @MultipartConfig(
-        //location = "/khtmp" ,
+        location = "c:/upload" ,
         fileSizeThreshold = 1024 * 1024 ,
         maxFileSize = 1024 * 1024 * 50 ,
         maxRequestSize = 1024 * 1024 * 50 * 5
@@ -63,7 +59,7 @@ public class ServiceRegistController extends HttpServlet{
         //데이터 꺼내기
         String title = req.getParameter("service");
         String typeNo = req.getParameter("type-no");
-        String chargeUnit = req.getParameter("charge-unit");
+        String chargeUnitNo = req.getParameter("charge-unit");
         String charge = req.getParameter("charge");
         String[] pTypeNo = req.getParameterValues("pay-type-no");
         String serviceIntro = req.getParameter("service-intro");
@@ -74,12 +70,18 @@ public class ServiceRegistController extends HttpServlet{
         String serviceDetail =req.getParameter("service-detail");
         String paymentDetail = req.getParameter("payment-detail");
         
+        
+        for(int i = 0; i<areaNo.length; i++) {
+            System.out.println(areaNo[i]);
+        }
+        
+        
         //데이터 뭉치기
         ServiceVo sv = new ServiceVo();
         sv.setTitle(title);
         sv.setTypeNo(Integer.parseInt(typeNo));
         sv.setHelperNo(Integer.parseInt(helperExp));
-        sv.setChargeUnit(chargeUnit);
+        sv.setChargeUnitNo(Integer.parseInt(chargeUnitNo));
         sv.setCharge(Integer.parseInt(charge));
         if(pTypeNo.length == 1) {
             sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
@@ -121,43 +123,36 @@ public class ServiceRegistController extends HttpServlet{
         
         //데이터 뭉치기 - 첨부파일
         Part f = req.getPart("profile-img");
+        Part s1 = req.getPart("service-img-1");
+        Part s2 = req.getPart("service-img-2");
+        Part s3 = req.getPart("service-img-3");
+        Part s4 = req.getPart("service-img-4");
         
-        ServiceAttachmentVo s_attachmentVo = new ServiceAttachmentVo();
+        ServiceAttachmentVo s_attachmentVo = null;
+       
         
         //첨부파일 준비
-        String originName = f.getSubmittedFileName();
-        String ext = originName.substring(originName.lastIndexOf("."), originName.length());
-        String changeName = System.currentTimeMillis()+ext;
-        
-        String filePath="WEB-INF/upload/img";
-        String path = req.getServletContext().getRealPath("/") + filePath + "/";
-        File target = new File(path, changeName);
-        
-        //추가한거..
-        target.createNewFile();
-        
-        //파일 확인.. 왜 없냐고..
-        System.out.println(target.exists());
-        
-        BufferedInputStream bis = new BufferedInputStream(f.getInputStream());
-        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(target));
-        
-        byte[] buf = new byte[1024];
-         
-        int size = 0;
-        while( (size = bis.read(buf)) != -1) {
-            bos.write(buf , 0 , size );
+        String rootPath = req.getServletContext().getRealPath("/");
+        if(f.getSubmittedFileName().length()>0) {
+            s_attachmentVo = ServiceFileUploader.uploadFile(f, rootPath);
+            sv.setProfileImg(s_attachmentVo.getFilePath());
         }
-        
-        bos.flush();
-        bis.close();
-        bos.close();
-        
-        s_attachmentVo.setChangeName(changeName);
-        s_attachmentVo.setOriginName(originName);
-        s_attachmentVo.setFilePath(path+changeName);
-        
-        sv.setProfileImg(s_attachmentVo.getFilePath());
+        if(s1.getSubmittedFileName().length()>0) {
+            s_attachmentVo = ServiceFileUploader.uploadFile(s1, rootPath);
+            sv.setServicePic_1(s_attachmentVo.getFilePath());
+        }
+        if(s2.getSubmittedFileName().length()>0) {
+            s_attachmentVo = ServiceFileUploader.uploadFile(s2, rootPath);
+            sv.setServicePic_2(s_attachmentVo.getFilePath());
+        }
+        if(s3.getSubmittedFileName().length()>0) {
+            s_attachmentVo = ServiceFileUploader.uploadFile(s3, rootPath);
+            sv.setServicePic_3(s_attachmentVo.getFilePath());
+        }
+        if(s4.getSubmittedFileName().length()>0) {
+            s_attachmentVo = ServiceFileUploader.uploadFile(s4, rootPath);
+            sv.setServicePic_4(s_attachmentVo.getFilePath());
+        }
         
         
         //데이터 뭉치기 - 확인
