@@ -17,6 +17,8 @@ public class ListController extends HttpServlet{
         req.getRequestDispatcher("/WEB-INF/views/request/list.jsp").forward(req, resp);
     }
     
+    
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO Auto-generated method stub
