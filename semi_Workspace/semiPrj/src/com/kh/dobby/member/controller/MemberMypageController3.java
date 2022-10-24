@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(urlPatterns = "/member/mypage03")
+@WebServlet(urlPatterns = "/member/mypage03reservation")
 public class MemberMypageController3 extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/member/mypage03.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/member/mypage03reservation.jsp").forward(req, resp);
     }
 
 }

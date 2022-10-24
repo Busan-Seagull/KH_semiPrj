@@ -1,7 +1,9 @@
 package com.kh.dobby.reservation.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +27,7 @@ public class ReservationHistroyController extends HttpServlet{
             req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
             return;
         }
+        
         String page = req.getParameter("pno");
         int currentPage = 1;
         
@@ -36,8 +39,12 @@ public class ReservationHistroyController extends HttpServlet{
         req.setAttribute("list", list);
         
         PageVo pv = new PageVo(list.size(), currentPage, 5, 10);
-        
         req.setAttribute("pv", pv);
+        
+        Map<String, Object> map = new HashMap<>();
+        map.put("list", list);
+        map.put("pv", pv);
+        
 		req.getRequestDispatcher("/WEB-INF/views/reservation/reservationHistory.jsp").forward(req, resp);
 	}
 	

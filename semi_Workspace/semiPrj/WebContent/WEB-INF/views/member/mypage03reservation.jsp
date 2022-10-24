@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js%22%3E"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+<link rel="stylesheet" href="/dobby/resources/css/reservationHistory.css">
 <style>
 #mypage{
     width: 1200px;
-    height: 80vh;
+    /* height: 80vh; */
     /* border: 1px solid red; */
     display: grid;
     grid-template-columns: 275px 915px;
@@ -20,10 +25,10 @@
 
 #profile-area{
     width: 100%;
-    height: 100%;
+    min-height: 80vh;
     
     display: grid;
-    grid-template-rows: repeat(16,1fr);
+    grid-template-rows: repeat(16,48px);
     border: 1px solid #999999;
     border-radius: 10px;
 
@@ -101,7 +106,7 @@
     display: flex;
     margin: auto;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     /* position: absolute; */
 }
 
@@ -215,6 +220,12 @@ input[type=submit]{
 
     display: none;
 
+}
+
+/* d */
+#info-area03{
+    min-height: 1000px;
+    height: auto;
 }
 
 
@@ -383,7 +394,7 @@ input[type=submit]{
     </div>
 
     <div class="info-area" id="info-area03">
-        <div id="rh-main" class="shadow-box">
+        <div id="rh-main">
 			<div id="rh-main-header">
 				<div id="r-title">
 					<span class="material-symbols-outlined"> magic_button </span>
@@ -399,17 +410,19 @@ input[type=submit]{
 					</select>
 				</form>
 			</div>
+
+
 			<div id="rh-main-list">
 				<!-- 여기서부터 바뀜 -->
 				
 				
 				
 				<!-- 페이징 -->
-				<div id="page-area">
+				<div id="page-area" class="page-area03">
 					<ul id="page-nation">
 						<li><a href="/dobby/reservation/history?pno=1" class="first"><<</a></li>
 						<li><a class="arrow left"><</a></li>
-						<li><a class="num"></a></li>
+						<li><a class="num">1</a></li>
 						<li><a class="num"></a></li>
 						<li><a class="num"></a></li>
 						<li><a class="num"></a></li>
@@ -418,7 +431,11 @@ input[type=submit]{
 						<li><a href="/dobby/reservation/history?pno=${pv.maxPage}" class="last">>></a></li>
 					</ul>
 				</div>
+
+
 			</div>
+
+
 		</div>
     </div>
 
@@ -490,6 +507,79 @@ input[type=submit]{
     const area07 = document.querySelector('#info-area07');
     const area08 = document.querySelector('#info-area08');
     const area09 = document.querySelector('#info-area09');
+
+
+    //임정한 페이지 에이젝스
+    function reservationAjax() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", '/dobby/reservation/history');
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+
+                    const result = JSON.parse(xhr.responseText);
+
+                    const list = null;
+                    const pvo = null;
+
+                    if(result != null){
+                        list = result.list;
+                        pvo = result.list;
+                    }
+
+                    if(${sessionScope.loginMember.rightNo == 1}){
+                        for (let i = 0; i < list.length; i++) {
+                            const rv = list[i];
+
+                            const header = $('div');
+                            header.addClass('rh-i-header');
+
+                            let div = $('div');
+                            div.css('line-height','200%');
+
+                            $('<h1>'+rv.sTitle+'</h1>').appendTo(div);
+                            $('<p>'+rv.dName+'</p>').appendTo(div);
+
+                            div.appendTo(header);
+
+                            div = $('div');
+                            div.css('line-height','170%');    
+
+                            div.append('<p>예약날짜 : <span>'+rv.reservationDate+'</span></p>');
+                            if(rv.estimateDate!=null){
+                                div.append('<p>견적날짜 : <span>'+rv.estimateDate+'</span></p>');
+                            }
+                            div.appendTo(header);
+
+                            let span = $('span');
+                            span.addClass('btn-list');
+                            $('<div class="rh-i-h-btn">신고하기</div>').appendTo(span);
+                            $('<div class="rh-i-h-btn">문의하기</div>').appendTo(span);
+                            $('<div class="rh-i-h-btn">리뷰하기</div>').appendTo(span);
+                            span.appendTo(header);
+
+                            header.appendTo();
+
+                            $('<input type="checkbox" id="d-check'+rv.count+'">').appendTo();
+
+
+                        }
+
+
+                    }else if(${sessionScope.loginMember.rightNo == 2}){
+
+                    }
+
+
+
+                }else{
+                    alert("결과가 저장되지 않음.");
+                }
+            }
+        }
+	
+        xhr.send();
+    }
 
 
 
