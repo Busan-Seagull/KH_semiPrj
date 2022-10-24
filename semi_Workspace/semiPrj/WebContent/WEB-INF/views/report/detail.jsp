@@ -214,23 +214,24 @@ overflow:auto;
 		<div class="i1"><input class="input-btn" type="submit" value="반려"></div>
 	<%} %>
 		<div class="i1"><input class="input-btn" type="submit" value="삭제"></div>
-		<div class="i1"><a href="/dobby/edit?postNo=1">수정</a></div>
+		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %>>">수정</a></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
 	<% if(loginMember != null && loginMember.getId().equals("admin")){%>
-		<div>
-			<a href="/dobby/detailAdmin" id="reply-reply">댓글 달기</a>
-		</div>
+		<details>
+			<summary>댓글</summary>
+			<div>
+			<a href="/dobby/detailAdmin" id="reply-reply"></a>
+			</div>
+		</details>
+		
 	<%} %>
 	
 	<%
-		if(loginMember.getId().equals("admin")){%>
+		if(loginMember.getId().equals("admin")&&vo.getReportComment() != null){%>
 			<div id="reply-main">
 			<div id="top">admin</div>
-			<%if(vo.getReportComment() != null){%>
-				<div id="bottom"><%=vo.getReportComment() %></div>
-			<%} %>
-			
+			<div id="bottom"><%=vo.getReportComment() %></div>
 		</div>
 		<%}
 	%>

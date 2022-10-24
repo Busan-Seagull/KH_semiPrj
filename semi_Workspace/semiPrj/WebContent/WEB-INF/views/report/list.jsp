@@ -175,12 +175,13 @@ pageEncoding="UTF-8"%>
 
 
 <div id="first">
-	<c:if test="${not empty loginMember}">
-		<div id="c"><a href="/dobby/write">글쓰기</a></div>
-	</c:if>
+	
 	<div id="second">
 		<div id="a"></div>
 		<div id="b">신고게시판</div>
+		<c:if test="${not empty loginMember}">
+			<div style="border:1px solid red" id="c"><a href="/dobby/write">글쓰기</a></div>
+		</c:if>
 	</div>
 	<div id="main">
 		

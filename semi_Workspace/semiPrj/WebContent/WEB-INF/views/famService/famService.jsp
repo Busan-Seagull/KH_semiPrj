@@ -15,7 +15,8 @@ li{
 #main-main{
     width: 960px;
     height: 700px;
-   
+   display:flex;
+   margin: 50px auto;
    
     
 
@@ -24,9 +25,8 @@ li{
 #main-second{
     width: 960px;
     height: 700px;
-    position: relative;
-    top: 100px;
-    left: 550px;
+    display:grid;
+    grid-template-columns: 1fr;
     
    
    
@@ -53,7 +53,7 @@ li{
 }
 .controls{
     text-align: center;
-    margin-top: 50px;
+    
 }
 .controls span{
     
@@ -74,8 +74,7 @@ li>div{
 }
 #title{
     display:flex;
-	position:relative;
-    bottom: 50px;
+
 	
 }
 #a{

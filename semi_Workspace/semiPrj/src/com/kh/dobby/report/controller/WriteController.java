@@ -21,8 +21,9 @@ public class WriteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-           ReportVo vo = new ReportVo(); 
-          
+            
+            ReportVo vo = new ReportVo();
+//            vo.setPostNo();
           if(req.getSession().getAttribute("loginMember")!= null) {
               req.setAttribute("vo", vo);
               req.getRequestDispatcher("/WEB-INF/views/report/write.jsp").forward(req, resp);
@@ -36,8 +37,8 @@ public class WriteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setContentType("text/plain; charset=UTF-8;");
-
+        
+        req.setCharacterEncoding("UTF-8");
         HttpSession s = req.getSession();
 
         MemberVo loginMember = (MemberVo) s.getAttribute("loginMember");
@@ -58,7 +59,7 @@ public class WriteController extends HttpServlet {
 
         if (result == 1) {
             
-            resp.sendRedirect("/dobby/report");
+            resp.sendRedirect("/dobby/list");
         } else {
             req.setAttribute("msg", "ERROR] 작성실패");
             req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);

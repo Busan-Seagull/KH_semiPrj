@@ -13,12 +13,12 @@ import com.kh.dobby.common.PageVo;
 import com.kh.dobby.report.service.ReportService;
 import com.kh.dobby.report.vo.ReportVo;
 
-@WebServlet(urlPatterns = "/report")
+@WebServlet(urlPatterns = "/list")
 public class ListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		req.setCharacterEncoding("UTF-8");
 	    String page = req.getParameter("pno");
 	    int currentPage = 1;
 

@@ -53,10 +53,10 @@ public class EditController extends HttpServlet {
 
         if (result == 1) {
             req.getSession().setAttribute("alertMsg", "작성완료");
-            resp.sendRedirect("/dobby/detail?postNo="+postNo);
+            resp.sendRedirect("/dobby/detail");
         } else {
             resp.getWriter().write("[ERROR]작성 오류");
-            resp.sendRedirect("/dobby/report");
+            resp.sendRedirect("/dobby/list");
         }
 	
 	}

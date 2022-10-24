@@ -58,6 +58,7 @@ pageEncoding="UTF-8"%>
 	text-align: center;
 	line-height: 45px;
 	border-bottom: 3px solid black;
+	height:45px;
 }
 
 .h-no6{width: 80px;}
@@ -144,7 +145,7 @@ input,textarea{
 		<div id="a"></div>
 		<div id="b">신고게시판</div>
 	</div>
-	<form action="" method="post">
+	<form action="/dobby/write" method="post">
 		<div id="main">
 		<div id="f">
 			<div class="h-no6" >번호</div>
