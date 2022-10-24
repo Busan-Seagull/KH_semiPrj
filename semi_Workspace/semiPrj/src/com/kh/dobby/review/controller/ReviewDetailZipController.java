@@ -30,8 +30,7 @@ public class ReviewDetailZipController extends HttpServlet {
             ReviewVo vo = new ReviewService().selectOne(postNo);
             
             req.setAttribute("vo", vo);
-           
-            
+      
             req.getRequestDispatcher("/WEB-INF/views/review/reviewDetailZip.jsp").forward(req, resp);
         }else {
             req.setAttribute("msg", "권한이 없습니다.");

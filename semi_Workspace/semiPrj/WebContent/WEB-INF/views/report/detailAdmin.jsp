@@ -198,7 +198,7 @@ overflow:auto;
 		<div class="i1"><button type="submit" value="승인"></button></div>
 		<div class="i1"><button type="submit" value="반려"></button></div>
 		<div class="i1"><input id="input-btn" type="submit" value="삭제"></div>
-		<div class="i1"><a href="/dobby/edit">수정</a></div>
+		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %>">수정</a></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
 	<div id="reply-main">

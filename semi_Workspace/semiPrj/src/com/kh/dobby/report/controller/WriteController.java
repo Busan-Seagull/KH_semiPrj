@@ -21,13 +21,15 @@ public class WriteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-   
-          
+            
+            ReportVo vo = new ReportVo();
+//            vo.setPostNo();
           if(req.getSession().getAttribute("loginMember")!= null) {
+              req.setAttribute("vo", vo);
               req.getRequestDispatcher("/WEB-INF/views/report/write.jsp").forward(req, resp);
           }else {
               req.setAttribute("msg", "로그인 후 이용해주세요");
-              req.getRequestDispatcher("/WEB-INF/views/report/list.jsp").forward(req, resp);
+              req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
           }
 
     }
@@ -35,8 +37,8 @@ public class WriteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setContentType("text/plain; charset=UTF-8;");
-
+        
+        req.setCharacterEncoding("UTF-8");
         HttpSession s = req.getSession();
 
         MemberVo loginMember = (MemberVo) s.getAttribute("loginMember");
@@ -56,11 +58,11 @@ public class WriteController extends HttpServlet {
         int result = new ReportService().write(vo);
 
         if (result == 1) {
-            s.setAttribute("alertMsg", "작성완료");
-            resp.sendRedirect("/dobby/report");
+            
+            resp.sendRedirect("/dobby/list");
         } else {
-            resp.getWriter().write("[ERROR]작성 오류");
-            resp.sendRedirect("/dobby/report");
+            req.setAttribute("msg", "ERROR] 작성실패");
+            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
         }
 
     }

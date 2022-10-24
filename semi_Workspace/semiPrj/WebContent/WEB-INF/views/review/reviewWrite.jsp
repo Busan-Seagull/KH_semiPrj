@@ -1,5 +1,8 @@
+<%@page import="com.kh.dobby.review.vo.ReviewVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+<% ReviewVo vo = (ReviewVo) request.getAttribute("vo"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,19 +62,16 @@ pageEncoding="UTF-8"%>
 }
 #j{
 border-bottom: none;
+height:45px;
 }
 
 
-#t23{width: 96px;}
-#t24{width: 96px;}
-#t25{width: 528px;}
-#t26{width: 192px;}
-#t27{width: 144px;}
-#t28{width: 96px; height: 46px;}
-#t29{width: 96px;}
-#t30{width: 528px;height: 46px;}
-#t31{width: 192px;}
-#t32{ width: 144px;}
+.h-no1{width: 96px;}
+.h-no2{width: 96px;}
+.h-no3{width: 528px;}
+.h-no4{width: 192px;}
+.h-no5{width: 144px;}
+
 
 
 .i1{
@@ -154,18 +154,18 @@ input, textarea{
 	</div>
 	<div id="main">
 		<div id="f">
-			<div class="h" id="t23">번호</div>
-			<div class="h" id="t24">서비스 번호</div>
-			<div class="h" id="t25">제목</div>
-			<div class="h" id="t26">작성자</div>
-			<div class="h" id="t27">평점</div>
+			<div class="h-no1" >번호</div>
+			<div class="h-no2" >서비스 번호</div>
+			<div class="h-no3" >제목</div>
+			<div class="h-no4" >작성자</div>
+			<div class="h-no5" >평점</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t28"><input type="text" name="postNo"></div>
-			<div class="h" id="t29"><input type="text" name="serviceNo"></div>
-			<div class="h" id="t30"><input type="text" name="title"></div>
-			<div class="h" id="t31"><input type="text" name="userNo"></div>
-			<div class="h" id="t32"><input type="text" name="grade"></div>
+			<div class="h-no1" ><input type="text" name="postNo"><%=vo.getPostNo() %></div>
+			<div class="h-no2" ><input type="text" name="serviceNo"></div>
+			<div class="h-no3" ><input type="text" name="title"></div>
+			<div class="h-no4"><input type="text" name="userNo"></div>
+			<div class="h-no5" ><input type="text" name="grade"></div>
 		</div>
 		<div>
 			<div id="l">내용</div>

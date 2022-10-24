@@ -22,46 +22,39 @@ pageEncoding="UTF-8"%>
 	width:960px;
 	height:700px;
 }
+
+
+
 #main-area{
 	width: 960px;
-	height: 507px;
+	height: 495px;
+	margin: 0 auto;
 	display:flex;
-	justify-content:center;
-	border-left: none;
-	border-right: none;
-	margin: 0 auto;
-	position: relative;
-	top: 30px;
-	left: 550px;
+	position:relative;
+	top:30px;
+	left:550px;
+	display:grid;
+	grid-template-columns: 1fr 1fr 4fr 2fr 2fr;
+	grid-template-rows:repeat(11, 45px);
 	border-bottom: 3px solid #004412;
-	border-top: 3px solid #004412;
+	place-content:center;
+	border-top:3px solid #004412;
 	
-
-
 
 }
-.main-content{
+#main-area>div{
 	
+	display:inline-block;
 	height: 45px;
-	border-bottom: 1px solid lightgray;
-	display: flex;
-	text-align: center;
-	line-height: 45px;
-	
-	
-
-	
-    }
-#main-title{
-	width: 960px;
-	height:45px;
 	margin: 0 auto;
-	border-bottom: 5px solid #004412;
-	display: flex;
-	text-align: center;
-	line-height: 45px;
-
+	text-align:center;
+	line-height:45px;
+	border-bottom: 1px solid lightgray;
+	
 }
+
+
+
 
 
 #write-review{
@@ -109,24 +102,28 @@ pageEncoding="UTF-8"%>
 	font-size: larger;
 
 }
-#t18{
+#t18,#t19,#t20,#t21,#t22{
+
+border-bottom: 3px solid #004412;
+}
+.t-no1{
 	width: 96px;
 	height: 45px;
 }
-#t19{
+.t-no2{
 	width: 96px;
 	height: 45px;
 }
-#t20{
-	width: 528px;
+.t-no3{
+	width: 384px;
 	height: 45px;
 }
-#t21{
+.t-no4{
 	width: 192px;
 	height: 45px;
 }
-#t22{
-	width: 144px;
+.t-no5{
+	width: 192px;
 	height: 45px;
 }
 #page-area{
@@ -251,23 +248,23 @@ select{
 		</form>
 	</div>
 	<div id="main-area">
-		<div id="main-title">
-			<div class="t" id="t18">번호</div>
-			<div class="t" id="t19">서비스 번호</div>
-			<div class="t" id="t20">제목</div>
-			<div class="t" id="t21">작성자</div>
-			<div class="t" id="t22">평점</div>
-		</div>
-		<div class="main-content">
+		
+			<div class="t-no1" id="t18">번호</div>
+			<div class="t-no2" id="t19">서비스 번호</div>
+			<div class="t-no3" id="t20">제목</div>
+			<div class="t-no4" id="t21">작성자</div>
+			<div class="t-no5" id="t22">평점</div>
+		
+		
 			<% for(int i = 0; i < voList.size(); ++i){%>
-				<div class="content"><%= voList.get(i).getPostNo() %></div>
-				<div class="content"><%= voList.get(i).getServiceNo() %></div>
-				<div class="content"><a href="/dobby/reviewDetail?postNo=<%= voList.get(i).getPostNo() %>"><%= voList.get(i).getTitle() %></a></div>
-				<div class="content"><%= voList.get(i).getUserNo() %></div>
-				<div class="content"><%= voList.get(i).getGrade() %></div>
+				<div class="t-no1"><%= voList.get(i).getPostNo() %></div>
+				<div class="t-no2"><%= voList.get(i).getServiceNo() %></div>
+				<div class="t-no3"><a href="/dobby/reviewDetail?postNo=<%= voList.get(i).getPostNo() %>"><%= voList.get(i).getTitle() %></a></div>
+				<div class="t-no4"><%= voList.get(i).getUserNo() %></div>
+				<div class="t-no5"><%= voList.get(i).getGrade() %></div>
 			
 			<%}%>
-		</div>
+		
 	</div>
 	<div id="page-area">
 		<ul id="page-nation">

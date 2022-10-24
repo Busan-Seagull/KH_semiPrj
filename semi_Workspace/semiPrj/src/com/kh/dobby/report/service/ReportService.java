@@ -169,5 +169,16 @@ public class ReportService {
         return vo;
         
     }
+
+
+
+    public ReportVo selectReportOne(String postNo) {
+        
+        Connection conn = getConnection();
+        ReportVo vo = dao.selectReportOne(conn,postNo);
+        
+        close(conn);
+        return vo;
+    }
     
 }

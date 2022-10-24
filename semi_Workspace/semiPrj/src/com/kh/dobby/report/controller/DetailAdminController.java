@@ -54,10 +54,12 @@ public class DetailAdminController extends HttpServlet {
         
         
         if(result == 1 || result2 == 1 || result3 == 1) {
-            resp.getWriter().write("처리되었습니다.");
+            req.setAttribute("vo", vo);
+            req.getRequestDispatcher("/WEB-INF/views/report/detailAdmin.jsp").forward(req, resp);
             
         }else {
-            resp.getWriter().write("처리되지 않았습니다");
+            req.setAttribute("msg", "권한이 없습니다.");
+            req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
         }
     
     

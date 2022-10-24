@@ -1,7 +1,10 @@
+<%@page import="com.kh.dobby.review.vo.ReviewVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 
-ReviewVo rvo = (ReviewVo)request.getAttribute("vo");
+<% ReviewVo vo = (ReviewVo)request.getAttribute("vo");%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,6 +204,7 @@ overflow:auto;
 		<div id="b">리뷰게시판</div>
 	</div>
 	<div id="main">
+	<form action="" method="post">
 		<div id="f">
 			<div class="h" id="t23">번호</div>
 			<div class="h" id="t24">서비스 번호</div>
@@ -209,25 +213,27 @@ overflow:auto;
 			<div class="h" id="t27">평점</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t28"><%=rvo.getPostNo() %></div>
-			<div class="h" id="t29"><%=rvo.getServiceNo() %></div>
-			<div class="h" id="t30"><%=rvo.getTitle() %></div>
-			<div class="h" id="t31"><%=rvo.getUserNo() %></div>
-			<div class="h" id="t32"><%=rvo.getGrade() %></div>
+			<div class="h" id="t28"><%=vo.getPostNo() %></div>
+			<div class="h" id="t29"><%=vo.getServiceNo() %></div>
+			<div class="h" id="t30"><%=vo.getTitle() %></div>
+			<div class="h" id="t31"><%=vo.getUserNo() %></div>
+			<div class="h" id="t32"><%=vo.getGrade() %></div>
 		</div>
 		<div>
 			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=rvo.getContent() %></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><a href=""></a>글목록</div>
+		<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
 	</div>
 	<div id="reply-main">
 		<div id="top1">댓글 내용</div>
 		<textarea id="bottom1" rows="" cols=""></textarea>
 		<div id="r2"><input id="r1" type="submit" value="확인"></div> 
 	</div>
+	</form>
+		
 </div>
 
 

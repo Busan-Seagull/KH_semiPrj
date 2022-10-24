@@ -1,5 +1,8 @@
+<%@page import="com.kh.dobby.report.vo.ReportVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+<% ReportVo vo = (ReportVo) request.getAttribute("vo"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,22 +58,19 @@ pageEncoding="UTF-8"%>
 	text-align: center;
 	line-height: 45px;
 	border-bottom: 3px solid black;
+	height:45px;
 }
 
-#t4{width: 80px;}
-#t5{width: 160px;}
-#t6{width: 160px;}
-#t7{width: 480px;}
-#t8{width: 160px;}
+.h-no6{width: 80px;}
+.h-no7{width: 160px;}
+.h-no8{width: 160px;}
+.h-no9{width: 480px;}
+.h-no10{width: 160px;}
 #t9{width: 144px; height: 46px;}
 #t10{width: 336px;}
 #t11{width: 144px;height: 46px;}
 #t12{width: 336px;}
-#t13{ width: 80px;}
-#t14{ width: 160px;}
-#t15{ width: 160px;}
-#t16{ width: 480px;}
-#t17{ width: 158px;}
+
 
 .i1{
 	width: 100px;
@@ -145,25 +145,25 @@ input,textarea{
 		<div id="a"></div>
 		<div id="b">신고게시판</div>
 	</div>
-	<form action="" method="post">
+	<form action="/dobby/write" method="post">
 		<div id="main">
 		<div id="f">
-			<div class="h" id="t4">번호</div>
-			<div class="h" id="t5">신고할 회원</div>
-			<div class="h" id="t6">신고할 서비스</div>
-			<div class="h" id="t7">제목</div>
-			<div class="h" id="t8">작성자</div>
+			<div class="h-no6" >번호</div>
+			<div class="h-no7" >신고할 회원</div>
+			<div class="h-no8" >신고할 서비스</div>
+			<div class="h-no9" >제목</div>
+			<div class="h-no10" >작성자</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t13"><input type="text" name="postNo"></div>
-			<div class="h" id="t14"><input type="text" name="userNo"></div>
-			<div class="h" id="t15"><input type="text" name="serviceNo"></div>
-			<div class="h" id="t16"><input type="text" name="title"></div>
-			<div class="h" id="t17"><input type="text" name="writer"></div>
+			<div class="h-no6" ><input type="text" name="postNo"><%=vo.getPostNo() %></div>
+			<div class="h-no7" ><input type="text" name="userNo"></div>
+			<div class="h-no8" ><input type="text" name="serviceNo"></div>
+			<div class="h-no9" ><input type="text" name="title"></div>
+			<div class="h-no10" ><input type="text" name="writer"></div>
 		</div>
 		<div>
 			<div id="l">신고내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="120" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="115" rows="18"></textarea>
 		</div>
 	</div>
 	<div id="i">
