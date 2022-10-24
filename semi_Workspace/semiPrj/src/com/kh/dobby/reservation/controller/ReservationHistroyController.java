@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.dobby.common.PageVo;
 import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.reservation.service.ReservationService;
@@ -45,7 +46,12 @@ public class ReservationHistroyController extends HttpServlet{
         map.put("list", list);
         map.put("pv", pv);
         
-		req.getRequestDispatcher("/WEB-INF/views/reservation/reservationHistory.jsp").forward(req, resp);
+        Gson gson = new Gson();
+        String json = gson.toJson(map);
+        
+        resp.getWriter().write(json);
+        
+//		req.getRequestDispatcher("/WEB-INF/views/reservation/reservationHistory.jsp").forward(req, resp);
 	}
 	
 }

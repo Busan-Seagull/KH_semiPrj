@@ -67,6 +67,7 @@ br{
     padding: 25px 35px 35px 35px;
     /* border: 1px solid var(--semi-green); */
     border-radius: 10px;
+    width: 775px;
 }
 
 /* 아이템 헤더 */
@@ -211,7 +212,7 @@ input[type=checkbox]:checked ~ .down:nth-of-type(2){
 /* 텍스트에어리아 */
 
 textarea{
-    width: 728px;
+    width: 755px;
     resize: none;
     background-color: #eae0d430;
     margin-bottom: 10px;

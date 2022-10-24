@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js%22%3E"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="/dobby/resources/css/reservationHistory.css">
 <style>
@@ -413,27 +413,22 @@ input[type=submit]{
 
 
 			<div id="rh-main-list">
-				<!-- 여기서부터 바뀜 -->
-				
-				
-				
-				<!-- 페이징 -->
-				<div id="page-area" class="page-area03">
-					<ul id="page-nation">
-						<li><a href="/dobby/reservation/history?pno=1" class="first"><<</a></li>
-						<li><a class="arrow left"><</a></li>
-						<li><a class="num">1</a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="arrow right">></a></li>
-						<li><a href="/dobby/reservation/history?pno=${pv.maxPage}" class="last">>></a></li>
-					</ul>
-				</div>
-
 
 			</div>
+
+            <div id="page-area" class="page-area03">
+                <ul id="page-nation">
+                    <li><a href="/dobby/reservation/history?pno=1" class="first"><<</a></li>
+                    <li><a class="arrow left"><</a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="arrow right">></a></li>
+                    <li><a class="last">>></a></li>
+                </ul>
+            </div>
 
 
 		</div>
@@ -508,6 +503,7 @@ input[type=submit]{
     const area08 = document.querySelector('#info-area08');
     const area09 = document.querySelector('#info-area09');
 
+    btnArr[2].addEventListener('click', reservationAjax());
 
     //임정한 페이지 에이젝스
     function reservationAjax() {
@@ -518,23 +514,29 @@ input[type=submit]{
                 if(xhr.status == 200){
 
                     const result = JSON.parse(xhr.responseText);
+                    const mainList = $('#rh-main-list');
 
-                    const list = null;
-                    const pvo = null;
+                    console.log(result);
+
+                    let list = null;
+                    let pvo = null;
 
                     if(result != null){
                         list = result.list;
-                        pvo = result.list;
+                        pvo = result.pv;
                     }
 
                     if(${sessionScope.loginMember.rightNo == 1}){
                         for (let i = 0; i < list.length; i++) {
                             const rv = list[i];
 
-                            const header = $('div');
+                            const item = $('<div/>');
+                            item.addClass('rh-item shadow-box');
+
+                            const header = $('<div/>');
                             header.addClass('rh-i-header');
 
-                            let div = $('div');
+                            let div = $('<div/>');
                             div.css('line-height','200%');
 
                             $('<h1>'+rv.sTitle+'</h1>').appendTo(div);
@@ -542,7 +544,9 @@ input[type=submit]{
 
                             div.appendTo(header);
 
-                            div = $('div');
+                            $('<div/>').appendTo(header);
+
+                            div = $('<div/>');
                             div.css('line-height','170%');    
 
                             div.append('<p>예약날짜 : <span>'+rv.reservationDate+'</span></p>');
@@ -551,24 +555,195 @@ input[type=submit]{
                             }
                             div.appendTo(header);
 
-                            let span = $('span');
+                            let span = $('<span/>');
                             span.addClass('btn-list');
                             $('<div class="rh-i-h-btn">신고하기</div>').appendTo(span);
                             $('<div class="rh-i-h-btn">문의하기</div>').appendTo(span);
                             $('<div class="rh-i-h-btn">리뷰하기</div>').appendTo(span);
                             span.appendTo(header);
 
-                            header.appendTo();
+                            header.appendTo(item);
 
-                            $('<input type="checkbox" id="d-check'+rv.count+'">').appendTo();
+                            $('<input type="checkbox" id="d-check'+i+'">').appendTo(item);
+                            $('<label class="down material-symbols-outlined" for="d-check'+i+'">arrow_drop_down</label>').appendTo(item);
+                            $('<label class="down material-symbols-outlined" for="d-check'+i+'">arrow_drop_up</label>').appendTo(item);
 
+                            const detail = $('<div/>');
+                            detail.addClass('rh-detail');
 
+                            let form = $('<form/>');
+                            form.append('<h2>요구사항</h2>');
+                            form.append('<textarea class="comment-text" readonly>'+rv.comment+'</textarea>');
+                            form.append('<button type="button" onclick="updateComment(this, '+rv.reservation_no+')">수정</button>');
+
+                            form.appendTo(detail);
+
+                            setStatus(detail, rv.status);
+
+                            div = $('<div/>');
+                            div.addClass('footer-btn-list flex-center');
+
+                            switch (rv.status) {
+                                case 'EAW':
+                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    break;
+                                case 'EW':
+                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    break;
+                                case 'RAW':
+                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    break;
+                                case 'PW':
+                                    $('<div class="rh-i-h-btn">결제하기</div>').appendTo(div);
+                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    break;
+                                case 'SW':
+                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    break;
+                                case 'SC':
+
+                                    break;
+                                case 'C':
+
+                                    break;
+                            }
+
+                            div.appendTo(detail);
+                            detail.appendTo(item);
+
+                            item.appendTo(mainList);
                         }
-
-
                     }else if(${sessionScope.loginMember.rightNo == 2}){
+                        for (let i = 0; i < list.length; i++) {
 
+                            const item = $('<div/>');
+                            item.addClass('rh-item shadow-box');
+
+                            const header = $('<div/>');
+                            header.addClass('rh-i-header');
+
+                            let div = $('<div/>');
+                            div.css('line-height','200%');
+
+                            $('<h1>'+rv.sTitle+'</h1>').appendTo(div);
+                            div.appendTo(header);
+
+                            span = $('<span/>');
+                            span.addClass('btn-list');
+
+                            $('<div class="rh-i-h-btn">신고하기</div>').appendTo(span);
+                            span.appendTo(header);
+
+                            const header2 = $('<div/>');
+                            header.addClass('rh-i-header2');
+
+                            div = $('<div/>');
+                            div.css('line-height','170%');    
+
+                            div.append('<p>예약자 : <span>'+rv.userName+'</span></p>');
+                            div.append('<p>주소지 : <span>'+rv.address+'</span></p>');
+                            div.appendTo(header2);
+
+                            div = $('<div/>');
+                            div.css('line-height','170%');    
+
+                            div.append('<p>예약날짜 : <span>'+rv.reservationDate+'</span></p>');
+                            if(rv.estimateDate!=null){
+                                div.append('<p>견적날짜 : <span>'+rv.estimateDate+'</span></p>');
+                            }
+                            div.appendTo(header2);
+
+                            header.appendTo(item);
+
+                            $('<input type="checkbox" id="d-check'+i+'">').appendTo(item);
+                            $('<label class="down material-symbols-outlined" for="d-check'+i+'">arrow_drop_down</label>').appendTo(item);
+                            $('<label class="down material-symbols-outlined" for="d-check'+i+'">arrow_drop_up</label>').appendTo(item);
+
+                            const detail = $('<div/>');
+                            detail.addClass('rh-detail');
+
+                            let form = $('<form/>');
+                            form.append('<h2>요구사항</h2>');
+                            form.append('<textarea class="comment-text" readonly>'+rv.comment+'</textarea>');
+
+                            form.appendTo(detail);
+
+                            setStatus(detail, rv.status);
+
+                            form = $('<form/>');
+
+                            switch (rv.status) {
+                                case 'EAW':
+                                    $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="approval(this, ${rv.reservation_no})">예약승인</div> <div class="rh-i-h-btn" onclick="cancel(this, ${rv.reservation_no})">예약취소</div> </div>').appendTo(form);
+                                    break;
+                                case 'EW':
+                                    $('<div> <h2>견적금액</h2> <input type="number" name="" class="pay-text"> </div>').appendTo(form);
+                                    $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="updateAmount(this, ${rv.reservation_no})">견적완료</div> <div class="rh-i-h-btn" onclick="cancel(this, ${rv.reservation_no})">견적반려</div> </div>').appendTo(form);
+                                    break;
+                                case 'RAW':
+                                    $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn">예약승인</div> <div class="rh-i-h-btn">예약반려</div> </div>').appendTo(form);
+                                    break;
+                                case 'PW':
+                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn">예약취소</div> </div>').appendTo(form);
+                                    break;
+                                case 'SW':
+                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn">예약취소</div> </div>').appendTo(form);
+                                    break;
+                                case 'SC':
+
+                                    break;
+                                case 'C':
+
+                                    break;
+                            }
+
+                            form.appendTo(detail);
+                            detail.appendTo(item);
+
+                            item.appendTo(mainList);
+                        }
                     }
+
+                    const pageNation = document.querySelector('#page-nation');
+					const numArr = pageNation.querySelectorAll('.num');
+					const left = pageNation.querySelector('.arrow.left');
+					const right = pageNation.querySelector('.arrow.right');
+                    const last = pageNation.querySelector('.last');
+
+                    last.href = '/dobby/reservation/history?pno='+pvo.maxPage;
+
+					if(pvo.startPage > 1){
+						left.href = '/dobby/reservation/history?pno='+pvo.startPage;
+					}else{
+						left.classList.add('none-select');
+					}
+
+					if(pvo.currentPage != pvo.maxPage){
+						right.href = '/dobby/reservation/history?pno='+(pvo.currentPage + 1);
+					}else{
+						right.classList.add('none-select');
+					}
+
+					let page = pvo.startPage;
+
+					for (let i = 0; i < numArr.length; i++) {
+						const num = numArr[i];
+						
+						if(page == pvo.currentPage){
+							num.classList.add('current');
+						}
+						
+						if(page < 1 || page > pvo.maxPage){
+							num.classList.add('p-none');
+						}else{
+							num.href = '/dobby/reservation/history?pno='+page;
+						}
+						num.innerHTML = page;
+						page++;
+					}
 
 
 
@@ -581,7 +756,40 @@ input[type=submit]{
         xhr.send();
     }
 
+    function setStatus(div, status) {
 
+        switch (status) {
+            case 'EAW':
+                div.append('<div class="rh-i-status-text"> <p>서비스신청</p> <p>견적승인대기</p> <p></p> <p></p> <p></p> </div>');
+                div.append('<div class="rh-i-status"> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer stay"></div> <div class="line"></div> <div class="pointer"></div> <div class="line"></div> <div class="pointer"></div> <div class="line"></div> <div class="pointer"></div> </div>');
+                break;
+            case 'EW':
+                div.append('<div class="rh-i-status-text"> <p>서비스신청</p> <p>견적 확인중</p> <p></p> <p></p> <p></p> </div>');
+                div.append('<div class="rh-i-status"> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer stay"></div> <div class="line"></div> <div class="pointer"></div> <div class="line"></div> <div class="pointer"></div> <div class="line"></div> <div class="pointer"></div> </div>');
+                break;
+            case 'RAW':
+                div.append('<div class="rh-i-status-text"> <p>서비스신청</p> <p>견적완료</p> <p>예약 승인대기</p> <p></p> <p></p> </div>');
+                div.append('<div class="rh-i-status"> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer stay"></div> <div class="line"></div> <div class="pointer"></div> <div class="line"></div> <div class="pointer"></div> </div>');
+                break;
+            case 'PW':
+                div.append('<div class="rh-i-status-text"> <p>서비스신청</p> <p>견적완료</p> <p>예약완료</p> <p>결제대기</p> <p></p> </div>');
+                div.append('<div class="rh-i-status"> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer stay"></div> <div class="line"></div> <div class="pointer"></div> </div>');
+                break;
+            case 'SW':
+                div.append('<div class="rh-i-status-text"> <p>서비스신청</p> <p>견적완료</p> <p>예약완료</p> <p>결제완료</p> <p>서비스 대기</p> </div>');
+                div.append('<div class="rh-i-status"> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer stay"></div> </div>');
+                break;
+            case 'SC':
+                div.append('<div class="rh-i-status-text"> <p>서비스신청</p> <p>견적완료</p> <p>예약완료</p> <p>결제완료</p> <p>서비스 완료</p> </div>');
+                div.append('<div class="rh-i-status"> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> <div class="line done"></div> <div class="pointer done"></div> </div>');
+                break;
+            case 'C':
+                div.append('<div class="rh-i-status-text"> <p>서비스신청</p> <p></p> <p></p> <p></p> <p>예약취소</p> </div>');
+                div.append('<div class="rh-i-status"> <div class="pointer"></div> <div class="line"></div> <div class="pointer"></div> <div class="line"></div> <div class="pointer"></div> <div class="line"></div> <div class="pointer"></div> <div class="line"></div> <div class="pointer"></div> </div>');
+                break;
+        }
+        
+    }
 
     // 임정한 에이젝스 함수
     function approval(object, rno) {
@@ -624,7 +832,7 @@ input[type=submit]{
     
     function cancel(object, rno) {
         let qString = '';
-        if(object!='none'){
+        if(object!=null){
             const recomment = object.form.querySelector('textarea').innerText;
             qString = 'rno='+rno+'&recomment='+recomment;			
         }else{

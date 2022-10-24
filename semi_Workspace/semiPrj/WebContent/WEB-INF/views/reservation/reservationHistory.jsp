@@ -74,10 +74,10 @@
 						<c:if test="${rv.status == 'EAW'}">
 							<div class="rh-i-status-text">
 								<p>서비스신청</p>
-								<p>견적승인대기</p><!--견적승인대기 견적승인 견적반려 -->
-								<p></p><!--예약승인대기 예약승인 예약반려 -->
-								<p></p><!--결제대기 결제완료 -->
-								<p></p><!--서비스예정 서비스완료 -->
+								<p>견적승인대기</p>
+								<p></p>
+								<p></p>
+								<p></p>
 							</div>
 							<div class="rh-i-status">
 								<div class="pointer done"></div>
@@ -98,10 +98,10 @@
 						<c:if test="${rv.status == 'EW'}">
 							<div class="rh-i-status-text">
 								<p>서비스신청</p>
-								<p>견적 확인중</p><!--견적승인대기 견적승인 견적반려 -->
-								<p></p><!--예약승인대기 예약승인 예약반려 -->
-								<p></p><!--결제대기 결제완료 -->
-								<p></p><!--서비스예정 서비스완료 -->
+								<p>견적 확인중</p>
+								<p></p>
+								<p></p>
+								<p></p>
 							</div>
 							<div class="rh-i-status">
 								<div class="pointer done"></div>
