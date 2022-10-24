@@ -21,17 +21,21 @@ public class WriteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-            
-            ReportVo vo = new ReportVo();
-//            vo.setPostNo();
+        
+          
+          ReportVo vo = new ReportVo();
+          
+          
           if(req.getSession().getAttribute("loginMember")!= null) {
-              req.setAttribute("vo", vo);
-              req.getRequestDispatcher("/WEB-INF/views/report/write.jsp").forward(req, resp);
+          req.setAttribute("vo", vo);
+          req.getRequestDispatcher("/WEB-INF/views/report/write.jsp").forward(req,
+          resp);
           }else {
-              req.setAttribute("msg", "로그인 후 이용해주세요");
-              req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+          req.setAttribute("msg", "로그인 후 이용해주세요");
+          req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req,
+          resp);
           }
-
+         
     }
 
     @Override
@@ -42,13 +46,15 @@ public class WriteController extends HttpServlet {
         HttpSession s = req.getSession();
 
         MemberVo loginMember = (MemberVo) s.getAttribute("loginMember");
-
+        
+       
         String userNo = req.getParameter("userNo");
         String serviceNo = req.getParameter("serviceNo");
         String title = req.getParameter("title");
         String content = req.getParameter("content");
 
         ReportVo vo = new ReportVo();
+        
         vo.setUserNo(userNo);
         vo.setServiceNo(serviceNo);
         vo.setTitle(title);

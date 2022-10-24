@@ -171,6 +171,10 @@ overflow:auto;
 	
 	
 }
+#reply-reply{
+	postition: relative;
+	top: 100px;
+}
 
 </style>
 </head>
@@ -217,11 +221,12 @@ overflow:auto;
 		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %>>">수정</a></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
+	<br><br>
 	<% if(loginMember != null && loginMember.getId().equals("admin")){%>
 		<details>
 			<summary>댓글</summary>
-			<div>
-			<a href="/dobby/detailAdmin" id="reply-reply"></a>
+			<div id="reply-reply">
+			<a href="/dobby/detailAdmin" ><%=vo.getReportComment() %></a>
 			</div>
 		</details>
 		

@@ -153,6 +153,7 @@ input, textarea{
 		<div id="b">리뷰게시판</div>
 	</div>
 	<div id="main">
+	<form action="" method="post">
 		<div id="f">
 			<div class="h-no1" >번호</div>
 			<div class="h-no2" >서비스 번호</div>
@@ -176,6 +177,7 @@ input, textarea{
 		<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
 		<div class="i1"><input id="input-btn" type="submit" value="확인"></div>
 	</div>
+	</form>
 </div>
 
 

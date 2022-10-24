@@ -38,7 +38,7 @@ public class ReviewWriteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setContentType("text/plain; charset=UTF-8;");
+        req.setCharacterEncoding("UTF-8");
 
         HttpSession s = req.getSession();
 

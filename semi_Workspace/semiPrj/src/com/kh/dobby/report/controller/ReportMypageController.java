@@ -22,10 +22,12 @@ public class ReportMypageController extends HttpServlet{
         
         HttpSession s = req.getSession();
         MemberVo loginMember = (MemberVo) s.getAttribute("loginMember");
-        String writer = req.getParameter("writer");
+       
+        String writer =loginMember.getNick();
         ReportVo vo = new ReportVo();
-        vo.setWriter(loginMember.getNick());
+        vo.setWriter(writer);
         vo = new ReportService().selectReportList(writer);
+       
         req.setAttribute("vo",vo);
         
         req.getRequestDispatcher("/WEB-INF/views/report/reportMypage.jsp").forward(req, resp);

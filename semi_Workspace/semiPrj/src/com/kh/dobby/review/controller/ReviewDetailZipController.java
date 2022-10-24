@@ -18,8 +18,11 @@ import com.kh.dobby.review.vo.ReviewVo;
 @WebServlet(urlPatterns = "/reviewDetailZip")
 public class ReviewDetailZipController extends HttpServlet {
 
+   
+    
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession s = req.getSession(); 
         MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");
        
@@ -36,8 +39,6 @@ public class ReviewDetailZipController extends HttpServlet {
             req.setAttribute("msg", "권한이 없습니다.");
             req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
         }
-        
-       
-    }
     
+    }
 }

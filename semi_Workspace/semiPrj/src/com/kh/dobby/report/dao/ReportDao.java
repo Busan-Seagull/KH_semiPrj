@@ -336,7 +336,7 @@ public class ReportDao {
             pstmt.setString(1, postNo);
             
             rs = pstmt.executeQuery();
-            
+         
             if(rs.next()) {
                 String postNO = rs.getString("POST_NO");
                 String userNo = rs.getString("USER_NO");

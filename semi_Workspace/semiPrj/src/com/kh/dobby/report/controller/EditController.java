@@ -25,7 +25,7 @@ public class EditController extends HttpServlet {
 	    
 	    ReportVo vo = new ReportService().selectReportOne(postNo);
 	    
-	    
+	   
 	    req.setAttribute("vo", vo);
         req.getRequestDispatcher("/WEB-INF/views/report/edit.jsp").forward(req, resp);
     }

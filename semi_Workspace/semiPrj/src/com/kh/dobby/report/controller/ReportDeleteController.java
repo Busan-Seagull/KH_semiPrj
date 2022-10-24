@@ -21,7 +21,7 @@ public class ReportDeleteController extends HttpServlet {
         
         if(result == 1) {
             req.getSession().setAttribute("alertMsg","삭제되었습니다");
-            resp.sendRedirect("/dobby/detail");
+            resp.sendRedirect("/dobby/list");
             
         }else {
             req.setAttribute("msg", "[ERROR]삭제 실패");
