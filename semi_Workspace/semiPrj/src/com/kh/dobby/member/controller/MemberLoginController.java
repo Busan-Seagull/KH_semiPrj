@@ -39,8 +39,9 @@ public class MemberLoginController extends HttpServlet  {
 
             
         }else {
-            req.setAttribute("msg","로그인실패");
-            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+            HttpSession hs=req.getSession();
+            hs.setAttribute("msg", "로그인 실패!!");
+            req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
         }
 
 	}

@@ -1,7 +1,6 @@
 package com.kh.dobby.member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,29 +21,30 @@ public class MemberIdFindController extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/views/member/idFind.jsp").forward(req, resp);
     }
     
-   @Override
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       req.setCharacterEncoding("UTF-8");
-
+        req.setCharacterEncoding("UTF-8");
+        String memberName=req.getParameter("memberName");
+        String memberPhone=req.getParameter("memberPhone");
+        
+        MemberVo vo=new MemberVo();
+        vo.setName(memberName);
+        vo.setPhone(memberPhone);
        
-       String name=req.getParameter("memberName");
-       String phone=req.getParameter("memberPhone");
-       
-       MemberVo vo=new MemberVo();
-       vo.setName(name);
-       vo.setPhone(phone);
-       
-//       System.out.println(vo);
-       
-       if(vo!=null) {
-           HttpSession hs=req.getSession();
-           resp.sendRedirect("/dobby/member/findid");
+        MemberVo idFind = new MemberService().idfind(vo);
+        
+        if(idFind!=null) {
+            HttpSession hs=req.getSession();
+            hs.setAttribute("idFind", idFind);
+            resp.sendRedirect("/dobby/member/findid");
+            
+            
            
-       }
-
-       
-       
-       
-    }
-
+        }else {
+            HttpSession hs=req.getSession();
+            hs.setAttribute("msg", "아이디가 없습니다!");
+            req.getRequestDispatcher("/WEB-INF/views/member/idFind.jsp").forward(req, resp);
+        }
+    
+}
 }

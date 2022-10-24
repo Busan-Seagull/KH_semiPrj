@@ -1,3 +1,4 @@
+<%@page import="com.kh.dobby.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -173,11 +174,26 @@ margin-top: 10px;
                 <table id="rstable">
                     <tr  >
                         <td>PASSWORD</td>
-                        <td>1234</td>
-                        <td>가입일 2022/10/12</td>
+                        <td id="getPwd">일치하는 비밀번호가 없습니다.</td>
+                        <td id="getEnrolldate"></td>
+
+                        <!-- <input type="hidden" id="getId"name="inputId" value="">
+                        <input type="hidden" id="getEmail" name="inputEmail" value=""> -->
                     </tr> 
                 </table>
             </div>
+
+            <script>
+                const pwdresult = opener.$('#setPassWord').val();
+                const enrollDateresult=opener.$('#setEnrollDate').val();
+               
+                console.log(pwdresult);
+                console.log(enrollDateresult);
+                $('#getPwd').text(pwdresult);
+                $('#getEnrolldate').text(enrollDateresult);
+
+
+            </script>
 
 
 

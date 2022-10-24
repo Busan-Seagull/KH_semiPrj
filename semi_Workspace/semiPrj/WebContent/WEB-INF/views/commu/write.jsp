@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%
+String msg = (String)session.getAttribute("msg");
+session.removeAttribute("msg"); 
+%>
+<script>
+<%if(msg!=null){%>
+alert('<%= msg%>');
+<%}%>
+
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -132,7 +142,9 @@ input[type=submit]{
                 
                 <div class="row1">
                     <select name="category">
+                    <%if(loginMember.getRightNo()=="3"){%>
                         <option value="200">공지</option>
+                    <%};%>
                         <option value="201">전체</option>
                         <option value="202">TIP</option>
                         <option value="203">추천</option>

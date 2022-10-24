@@ -1,9 +1,18 @@
 <%@page import="com.kh.dobby.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%
-String vo = (String)session.getAttribute("id"); 
-%> --%>
+<%
+	MemberVo idFind = (MemberVo)session.getAttribute("idFind");
+	String msg = (String)session.getAttribute("msg");
+	session.removeAttribute("msg");
+	session.removeAttribute("idFind");
+%>
+<script>
+<%if(msg!=null){%>
+alert('<%= msg%>');
+<%}%>
+
+</script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,12 +159,9 @@ margin-top: 10px;
     height: 42px;
 
 }
-
-
-
-
-
 </style>
+
+
 </head>
 <body>
 
@@ -173,19 +179,30 @@ margin-top: 10px;
             </div>
 
             <div id="result-view">
-		<!--  부모창인풋 값을 파라미터로 받아와서 결과 서블릿에서 조회후 보여주자.-->
                 <table id="rstable">
                     <tr>
                         <td>ID</td>
-                        <td></td>
-                        <td>가입일</td>
-                        <input type="hidden" id="inputName"name="inputName" value="">
-                        <input type="hidden" id="inputPhone" name="inputPhone" value="">
+                        <td id="getId">일치하는 아이디가 없습니다.</td>
+                        <td id="getEnrolldate"></td>
+                       
+                        <input type="hidden" id="getName"name="inputName" value="">
+                        <input type="hidden" id="getPhone" name="inputPhone" value="">
+
+                       
                     </tr> 
                 </table>
             </div> 
-           
+        
+            <script>
+                const idresult=opener.$("#setId").val();
+                const enrollDateresult=opener.$("#setEnrollDate").val();
+                console.log(idresult);
+                console.log(enrollDateresult);
+                $('#getId').text(idresult);
+                $('#getEnrolldate').text(enrollDateresult);
 
+
+            </script>
 
             <div id="id-btn"><input type="button" value="비밀번호 찾기" onclick="opener.document.location.href='http://127.0.0.1:8888/dobby/member/findpwd'; window.close(); "></input></div>
             <div id="close-btn"> <input type="button" value="창닫기" onclick="window.close();"></input></div>
@@ -198,14 +215,7 @@ margin-top: 10px;
 </div>
 
 
- <script>
-    let name1 = opener.$('#memberName').val();
-    $('#inputName').val(name1);
-    let phone = opener.$('#memberPhone').val();
-    $('#inputPhone').val(phone);
 
-    console.log(name1);
-    console.log(phone);
-</script>
+
 </body>
 </html>
