@@ -21,6 +21,7 @@ pageEncoding="UTF-8"%>
 #main-main{
 	width:960px;
 	height:700px;
+	margin:auto;
 }
 
 
@@ -32,7 +33,7 @@ pageEncoding="UTF-8"%>
 	display:flex;
 	position:relative;
 	top:30px;
-	left:550px;
+	left: 50px;
 	display:grid;
 	grid-template-columns: 1fr 1fr 4fr 2fr 2fr;
 	grid-template-rows:repeat(11, 45px);
@@ -58,8 +59,8 @@ pageEncoding="UTF-8"%>
 
 
 #write-review{
-	width: 100px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	box-shadow:2px 2px lightgray;
 	background-color: #004412;
 	color:white;
@@ -68,18 +69,18 @@ pageEncoding="UTF-8"%>
 	left:975px;
 	text-align: center;
 	margin: 0 auto;
-	line-height :40px;
+	line-height :60px;
 	border-radius:2.5rem;
 }
 
 #write-review>a{
 	color:white;
 }
+
+
 #title{
 	display:flex;
-	justify-content:flex-end;
-	
-	
+	justify-content:stretch;
 	
 }
 #title-a{
@@ -88,7 +89,8 @@ pageEncoding="UTF-8"%>
 	height: 25px;
 	background-color: black;
 	border: 1px solid black;
-	right:200px;
+	left:50px;
+	
 	
 	
 }
@@ -96,16 +98,14 @@ pageEncoding="UTF-8"%>
 	position:relative;
 	width: 200px;
 	height: 30px;
-	right:185px;
 	top:5px;
 	font-weight: 500;
 	font-size: larger;
+	left:60px;
+	bottom:5px;
 
 }
-#t18,#t19,#t20,#t21,#t22{
 
-border-bottom: 3px solid #004412;
-}
 .t-no1{
 	width: 96px;
 	height: 45px;
@@ -167,7 +167,7 @@ select{
         margin: auto;
         position:relative;
         top:40px;
-        left:500px;
+        left:50px;
         
     }
 
@@ -221,6 +221,11 @@ select{
         background-color: var(--semi-green);
         cursor: pointer;
     } 
+    
+#t18,#t19,#t20,#t21,#t22{
+
+border-bottom: 3px solid #004412;
+}
 
 
 </style>

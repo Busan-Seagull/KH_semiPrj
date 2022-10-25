@@ -66,15 +66,15 @@ pageEncoding="UTF-8"%>
 
 
 #c{
-	width: 100px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	box-shadow:2px 2px lightgray;
 	background-color: #EAE0D4;
 	margin: 0 auto;
 	display:flex;
 	position: relative;
 	justify-content:center;
-	line-height:40px;
+	line-height:60px;
 	top:65px;
 	left:420px;
 	border-radius:2.5rem;
@@ -180,7 +180,7 @@ pageEncoding="UTF-8"%>
 		<div id="a"></div>
 		<div id="b">신고게시판</div>
 		<c:if test="${not empty loginMember}">
-			<div style="border:1px solid red" id="c"><a href="/dobby/write">글쓰기</a></div>
+			<div id="c"><a href="/dobby/write">글쓰기</a></div>
 		</c:if>
 	</div>
 	<div id="main">

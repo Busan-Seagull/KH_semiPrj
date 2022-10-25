@@ -186,7 +186,7 @@ overflow:auto;
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><a href=""></a>글목록</div>
+		<div class="i1"><a href="">글목록</a></div>
 	</div>
 	<div id="reply-main">
 		<div id="top">집요정</div>

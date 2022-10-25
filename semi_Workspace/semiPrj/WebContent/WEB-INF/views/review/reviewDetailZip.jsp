@@ -67,27 +67,22 @@ border-bottom: none;
 }
 
 
-#t23{width: 96px;}
-#t24{width: 96px;}
-#t25{width: 528px;}
-#t26{width: 192px;}
-#t27{width: 144px;}
-#t28{width: 96px; height: 46px;}
-#t29{width: 96px;}
-#t30{width: 528px;height: 46px;}
-#t31{width: 192px;}
-#t32{ width: 144px;}
+.review-title01{width: 96px;}
+.review-title02{width: 96px;}
+.review-title03{width: 528px;}
+.review-title04{width: 192px;}
+.review-title05{width: 144px;}
 
 
 .i1{
-	width: 100px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	box-shadow: 2px 2px lightgray;
 	background-color: #EAE0D4;
 	position: relative;
 	text-align: center;
 	margin: 0 auto;
-	line-height :40px;
+	line-height :60px;
 	border-radius:2.5rem;
 }
 #i{
@@ -172,8 +167,8 @@ overflow:auto;
 }
 
 #r1{
-	width:100px;
-	height:40px;
+	width:60px;
+	height:60px;
 	background-color: #EAE0D4;
 	border:none;
 	box-shadow: 2px 2px lightgray;
@@ -203,37 +198,36 @@ overflow:auto;
 		<div id="a"></div>
 		<div id="b">리뷰게시판</div>
 	</div>
-	<div id="main">
 	<form action="" method="post">
-		<div id="f">
-			<div class="h" id="t23">번호</div>
-			<div class="h" id="t24">서비스 번호</div>
-			<div class="h" id="t25">제목</div>
-			<div class="h" id="t26">작성자</div>
-			<div class="h" id="t27">평점</div>
+		<div id="main">
+			<div id="f">
+				<div class="review-title01" id="t23">번호</div>
+				<div class="review-title02" id="t24">서비스 번호</div>
+				<div class="review-title03" id="t25">제목</div>
+				<div class="review-title04" id="t26">작성자</div>
+				<div class="review-title05" id="t27">평점</div>
+			</div>
+			<div id="j">
+				<div class="review-title01" id="t28"><%=vo.getPostNo() %></div>
+				<div class="review-title02" id="t29"><%=vo.getServiceNo() %></div>
+				<div class="review-title03" id="t30"><%=vo.getTitle() %></div>
+				<div class="review-title04" id="t31"><%=vo.getUserNo() %></div>
+				<div class="review-title05" id="t32"><%=vo.getGrade() %></div>
+			</div>
+			<div>
+				<div id="l">내용</div>
+				<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
+			</div>
 		</div>
-		<div id="j">
-			<div class="h" id="t28"><%=vo.getPostNo() %></div>
-			<div class="h" id="t29"><%=vo.getServiceNo() %></div>
-			<div class="h" id="t30"><%=vo.getTitle() %></div>
-			<div class="h" id="t31"><%=vo.getUserNo() %></div>
-			<div class="h" id="t32"><%=vo.getGrade() %></div>
+		<div id="i">
+			<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
 		</div>
-		<div>
-			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
+		<div id="reply-main">
+			<div id="top1">댓글 내용</div>
+			<textarea id="bottom1" rows="" cols=""></textarea>
+			<div id="r2"><input id="r1" type="submit" value="확인"></div> 
 		</div>
-	</div>
-	<div id="i">
-		<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
-	</div>
-	<div id="reply-main">
-		<div id="top1">댓글 내용</div>
-		<textarea id="bottom1" rows="" cols=""></textarea>
-		<div id="r2"><input id="r1" type="submit" value="확인"></div> 
-	</div>
 	</form>
-		
 </div>
 
 

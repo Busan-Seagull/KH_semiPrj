@@ -82,24 +82,24 @@ pageEncoding="UTF-8"%>
 #t17{ width: 158px;}
 
 .i1{
-	width: 100px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	box-shadow: 2px 2px lightgray;
 	background-color: #EAE0D4;
 	position: relative;
 	text-align: center;
 	margin: 0 auto;
-	line-height :40px;
+	line-height :60px;
 	border-radius:2.5rem;
 }
 #i{
-	width: 400px;
+	width: 250px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
 	top: 60px;
-	left: 290px;
+	left: 360px;
 }
 #l{
 text-align:center;
@@ -137,11 +137,18 @@ overflow:auto;
 	height:98px;
 	border: 1px solid #004412;
 }
-input{
+#input-btn{
 	background-color:#EAE0D4;
 	border:none;
 	font-size:medium;
 
+}
+.input{
+	border:none;
+	height:40px;
+	font-size:medium;
+	text-align:center;
+	color:black;
 }
 
 </style>
@@ -159,41 +166,40 @@ input{
 		<div id="a"></div>
 		<div id="b">신고게시판</div>
 	</div>
-	<div id="main">
-	<form action="" method="post">
-		<div id="f">
-			<div class="h" id="t4">번호</div>
-			<div class="h" id="t5">신고할 회원</div>
-			<div class="h" id="t6">신고할 서비스</div>
-			<div class="h" id="t7">제목</div>
-			<div class="h" id="t8">작성자</div>
+	<form action="/dobby/edit" method="post">
+		<div id="main">
+			<div id="f">
+				<div class="h" id="t4">번호</div>
+				<div class="h" id="t5">신고할 회원</div>
+				<div class="h" id="t6">신고할 서비스</div>
+				<div class="h" id="t7">제목</div>
+				<div class="h" id="t8">작성자</div>
+			</div>
+			<div id="j">
+				<div class="h" id="t13"><input type="text" class="input" placeholder="<%=vo.getPostNo() %>"></div>
+				<div class="h" id="t14"><input type="text" class="input" placeholder="<%=vo.getUserNo() %>"></div>
+				<div class="h" id="t15"><input type="text" class="input" placeholder="<%=vo.getServiceNo()%>"></div>
+				<div class="h" id="t16"><input type="text" class="input" placeholder="<%=vo.getTitle() %>"></div>
+				<div class="h" id="t17"><input type="text" class="input" placeholder="<%=vo.getWriter() %>"></div>
+			</div>
+			<div>
+				<div id="l">신고내용</div>
+				<textarea class="custom-textarea" id="t18" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
+			</div>
 		</div>
-		<div id="j">
-			<div class="h" id="t13"><%=vo.getPostNo() %></div>
-			<div class="h" id="t14"><%=vo.getUserNo() %></div>
-			<div class="h" id="t15"><%=vo.getServiceNo() %></div>
-			<div class="h" id="t16"><%=vo.getTitle() %></div>
-			<div class="h" id="t17"><%=vo.getWriter() %></div>
+		<div id="i">
+			<div class="i1"><input id="input-btn" type="submit" value="수정" ></div>
+			<div class="i1"><a href="/dobby/list">글목록</a></div>
 		</div>
-		<div>
-			<div id="l">신고내용</div>
-			<textarea class="custom-textarea" id="t18" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
-		</div>
-	</div>
-	<div id="i">
-		<div class="i1"><input id="input-btn2" type="submit" value="삭제" ></div>
-		<div class="i1"><input id="input-btn" type="submit" value="수정" ></div>
-		<div class="i1"><a href="/dobby/report">글목록</a></div>
-	</div>
-	
-	<%
-		if(vo.getReportComment() != null){%>
-			<div id="reply-main">
-			<div id="top">관리자</div>
-			<div id="bottom"><%=vo.getReportComment() %></div>
-		</div>
-		<%}
-	%>
+		
+		<%
+			if(vo.getReportComment() != null){%>
+				<div id="reply-main">
+				<div id="top">관리자</div>
+				<div id="bottom"><%=vo.getReportComment() %></div>
+			</div>
+			<%}
+		%>
 	</form>
 		
 	

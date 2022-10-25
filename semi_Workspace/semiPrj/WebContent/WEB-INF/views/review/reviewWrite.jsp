@@ -75,14 +75,14 @@ height:45px;
 
 
 .i1{
-	width: 100px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	box-shadow: 2px 2px lightgray;
 	background-color: #EAE0D4;
 	position: relative;
 	text-align: center;
 	margin: 0 auto;
-	line-height :40px;
+	line-height :60px;
 	border-radius:2.5rem;
 }
 #i{
@@ -153,6 +153,7 @@ input, textarea{
 		<div id="b">리뷰게시판</div>
 	</div>
 	<div id="main">
+	<form action="" method="post">
 		<div id="f">
 			<div class="h-no1" >번호</div>
 			<div class="h-no2" >서비스 번호</div>
@@ -176,6 +177,7 @@ input, textarea{
 		<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
 		<div class="i1"><input id="input-btn" type="submit" value="확인"></div>
 	</div>
+	</form>
 </div>
 
 
