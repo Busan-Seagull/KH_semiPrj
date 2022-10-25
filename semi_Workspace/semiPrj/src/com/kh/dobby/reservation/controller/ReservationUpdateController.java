@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.dobby.alarm.service.AlarmService;
 import com.kh.dobby.common.PageVo;
 import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.reservation.service.ReservationService;
@@ -22,11 +23,16 @@ public class ReservationUpdateController extends HttpServlet{
 	 
         String rno = req.getParameter("rno");
         String amountText = req.getParameter("amount");
+        ReservationService rs = new ReservationService();
         
         try {
             int amount = Integer.parseInt(amountText);
             
-            int result = new ReservationService().updateAmount(rno, amount);
+            int result = rs.updateAmount(rno, amount);
+            
+            ReservationVo rv = rs.selectOne(rno);
+            String msg = "'"+rv.getsTitle()+"' 견적이 완료되었습니다.";
+            new AlarmService().insertAlarm(msg, rv.getUserNo());
             
             if(result == 1) {
                 
@@ -47,7 +53,7 @@ public class ReservationUpdateController extends HttpServlet{
 	    String comment = req.getParameter("comment");
 	    
         int result = new ReservationService().updateComment(rno, comment);
-        
+                
         if(result == 1) {
             
         }else {

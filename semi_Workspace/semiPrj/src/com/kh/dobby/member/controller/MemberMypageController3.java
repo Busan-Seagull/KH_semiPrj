@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberMypageController3 extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String pno = req.getParameter("pno");
+        req.setAttribute("pno", pno);
         req.getRequestDispatcher("/WEB-INF/views/member/mypage03reservation.jsp").forward(req, resp);
     }
 

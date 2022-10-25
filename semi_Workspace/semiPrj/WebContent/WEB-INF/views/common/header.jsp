@@ -471,6 +471,10 @@
                         const noticeNum = document.querySelector('#notice-num');
                         const list = document.querySelector('#alarm-list');
 
+                        while ( list.hasChildNodes() ){
+                            list.removeChild( list.firstChild );       
+                        }
+
                         if(result!="flase" && result.length != 0){
 
                             for (let index = 0; index < result.length; index++) {
@@ -490,7 +494,7 @@
 
                                 div.addEventListener('click', function(){
                                     updateCheck(element.alarmNo);
-                                    location.href = "/dobby/reservation/history";
+                                    location.href = "/dobby/member/mypage03reservation?=pno=3";
                                 });
 
                                 list.appendChild(div);
@@ -513,7 +517,7 @@
 
         function updateCheck(ano) {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", '/dobby/alarm');
+            xhr.open("GET", '/dobby/alarm?ano='+ano);
             xhr.onreadystatechange = function(){
                 if(xhr.readyState == 4){
                     if(xhr.status == 200){
@@ -525,7 +529,7 @@
             }
 
             xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
-            xhr.send('ano='+ano);	
+            xhr.send();	
 
             getAlarm();
         }

@@ -28,7 +28,7 @@
     min-height: 80vh;
     
     display: grid;
-    grid-template-rows: repeat(16,48px);
+    grid-template-rows: repeat(17,48px);
     border: 1px solid #999999;
     border-radius: 10px;
 
@@ -106,8 +106,7 @@
     display: flex;
     margin: auto;
     justify-content: center;
-    /* align-items: center; */
-    /* position: absolute; */
+    align-items: center;
 }
 
 
@@ -226,6 +225,8 @@ input[type=submit]{
 #info-area03{
     min-height: 1000px;
     height: auto;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 
@@ -418,7 +419,7 @@ input[type=submit]{
 
             <div id="page-area" class="page-area03">
                 <ul id="page-nation">
-                    <li><a href="/dobby/reservation/history?pno=1" class="first"><<</a></li>
+                    <li><a onclick="reservationAjax(1)" class="first"><<</a></li>
                     <li><a class="arrow left"><</a></li>
                     <li><a class="num"></a></li>
                     <li><a class="num"></a></li>
@@ -503,20 +504,18 @@ input[type=submit]{
     const area08 = document.querySelector('#info-area08');
     const area09 = document.querySelector('#info-area09');
 
-    btnArr[2].addEventListener('click', reservationAjax());
+    btnArr[2].addEventListener('click', reservationAjax(1));
 
     //임정한 페이지 에이젝스
-    function reservationAjax() {
+    function reservationAjax(pno) {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", '/dobby/reservation/history');
+        xhr.open("GET", '/dobby/reservation/history?pno='+pno);
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
 
                     const result = JSON.parse(xhr.responseText);
                     const mainList = $('#rh-main-list');
-
-                    console.log(result);
 
                     let list = null;
                     let pvo = null;
@@ -573,7 +572,7 @@ input[type=submit]{
 
                             let form = $('<form/>');
                             form.append('<h2>요구사항</h2>');
-                            form.append('<textarea class="comment-text" readonly>'+rv.comment+'</textarea>');
+                            form.append('<textarea class="comment-text" readonly onclick="notReadOnly(this);">'+rv.comment+'</textarea>');
                             form.append('<button type="button" onclick="updateComment(this, '+rv.reservation_no+')">수정</button>');
 
                             form.appendTo(detail);
@@ -675,22 +674,23 @@ input[type=submit]{
                             switch (rv.status) {
                                 case 'EAW':
                                     $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
-                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="approval(this, ${rv.reservation_no})">예약승인</div> <div class="rh-i-h-btn" onclick="cancel(this, ${rv.reservation_no})">예약취소</div> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="approval(this, '+rv.reservation_no+')">예약승인</div> <div class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">예약반려</div> </div>').appendTo(form);
                                     break;
                                 case 'EW':
                                     $('<div> <h2>견적금액</h2> <input type="number" name="" class="pay-text"> </div>').appendTo(form);
                                     $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
-                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="updateAmount(this, ${rv.reservation_no})">견적완료</div> <div class="rh-i-h-btn" onclick="cancel(this, ${rv.reservation_no})">견적반려</div> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="updateAmount(this, '+rv.reservation_no+')">견적완료</div> <div class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">견적반려</div> </div>').appendTo(form);
                                     break;
                                 case 'RAW':
                                     $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
-                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn">예약승인</div> <div class="rh-i-h-btn">예약반려</div> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="approval(this, '+rv.reservation_no+')">예약승인</div> <div class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">예약반려</div> </div>').appendTo(form);
                                     break;
                                 case 'PW':
-                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn">예약취소</div> </div>').appendTo(form);
+                                    $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">예약취소</div> </div>').appendTo(form);
                                     break;
                                 case 'SW':
-                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn">예약취소</div> </div>').appendTo(form);
+
                                     break;
                                 case 'SC':
 
@@ -713,16 +713,16 @@ input[type=submit]{
 					const right = pageNation.querySelector('.arrow.right');
                     const last = pageNation.querySelector('.last');
 
-                    last.href = '/dobby/reservation/history?pno='+pvo.maxPage;
+                    last.onclick = "reservationAjax(pvo.maxPage)";
 
 					if(pvo.startPage > 1){
-						left.href = '/dobby/reservation/history?pno='+pvo.startPage;
+						left.onclick = "reservationAjax(pvo.startPage)";
 					}else{
 						left.classList.add('none-select');
 					}
 
 					if(pvo.currentPage != pvo.maxPage){
-						right.href = '/dobby/reservation/history?pno='+(pvo.currentPage + 1);
+						right.onclick = "reservationAjax(pvo.currentPage + 1)";
 					}else{
 						right.classList.add('none-select');
 					}
@@ -739,7 +739,7 @@ input[type=submit]{
 						if(page < 1 || page > pvo.maxPage){
 							num.classList.add('p-none');
 						}else{
-							num.href = '/dobby/reservation/history?pno='+page;
+							num.onclick = "reservationAjax(page)";
 						}
 						num.innerHTML = page;
 						page++;
@@ -748,12 +748,12 @@ input[type=submit]{
 
 
                 }else{
-                    alert("결과가 저장되지 않음.");
+                    alert("리스트가 조회되지 않음");
                 }
             }
         }
-	
-        xhr.send();
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");	
+        xhr.send();	
     }
 
     function setStatus(div, status) {
@@ -871,6 +871,18 @@ input[type=submit]{
         const comment = object.form.querySelector('textarea').innerText;
         xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
         xhr.send('rno='+rno+'&comment='+comment);					
+    }
+
+    for (let i = 0; i < btnArr.length; i++) {
+        const element = btnArr[i];
+
+        if(${pno}-1==i){
+            element.click();
+        }   
+    }
+
+    function notReadOnly(object) {
+        object.readOnly = false;
     }
 
 </script>

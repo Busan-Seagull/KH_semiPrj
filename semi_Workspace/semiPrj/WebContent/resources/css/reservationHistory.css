@@ -218,6 +218,7 @@ textarea{
     margin-bottom: 10px;
     border: none;
     padding: 10px;
+    outline: none;
 }
 
 form h2{

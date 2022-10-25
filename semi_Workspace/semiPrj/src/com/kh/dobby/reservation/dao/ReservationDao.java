@@ -86,7 +86,7 @@ public class ReservationDao {
     }
 
     public ReservationVo selectOne(Connection conn, String rno) {
-        
+            
         String sql = "SELECT\r\n"
                 + "    RESERVATION_NO,\r\n"
                 + "    SERVICE_NO,\r\n"
@@ -99,24 +99,25 @@ public class ReservationDao {
                 + "    RE_COMMENT,\r\n"
                 + "    ESTIMATE_DATE,\r\n"
                 + "    NAME,\r\n"
+                + "    ADDRESS,\r\n"
                 + "    D_NAME,\r\n"
                 + "    S_NAME,\r\n"
                 + "    SERVICE_TITLE,\r\n"
                 + "    CHARGE,\r\n"
-                + "    CHARGE_UNIT\r\n"
+                + "    CHARGE_UNIT,\r\n"
+                + "    D_NO\r\n"
                 + "FROM RESERVATION \r\n"
                 + "JOIN \"USER\" USING(USER_NO) \r\n"
                 + "JOIN \r\n"
                 + "(\r\n"
                 + "    SELECT\r\n"
-                + "    U.NAME AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
+                + "    USER_NO AS D_NO, U.NAME AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
                 + "    FROM SERVICE_INFO\r\n"
                 + "    JOIN \"USER\" U USING(USER_NO)\r\n"
                 + "    JOIN \"SERVICE\" S USING(SERVICE_TYPE_NO) \r\n"
                 + "    JOIN CHARGE_UNIT USING(CHARGE_UNIT_NO)\r\n"
                 + ") USING(SERVICE_NO)\r\n"
-                + "WHERE RESERVATION_NO = ?\r\n"
-                + "AND CANCEL_DATE IS NULL\r\n";
+                + "WHERE RESERVATION_NO = ?\r\n";
         
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -148,6 +149,8 @@ public class ReservationDao {
                 rv.setdName(rs.getString("D_NAME"));
                 rv.setCharge(rs.getString("CHARGE"));
                 rv.setChargeUnit(rs.getString("CHARGE_UNIT"));
+                rv.setdNo(rs.getString("D_NO"));
+                rv.setAddress(rs.getString("ADDRESS"));
             }
             
         } catch (SQLException e) {
@@ -293,7 +296,7 @@ public class ReservationDao {
 
     public int updateComment(Connection conn, String rno, String comment) {
 
-        String sql = "UPDATE RESERVATION SET COMMENT = ? WHERE RESERVATION_NO = ?";
+        String sql = "UPDATE RESERVATION SET \"COMMENT\" = ? WHERE RESERVATION_NO = ?";
         PreparedStatement pstmt = null;
         int result = 0;
         

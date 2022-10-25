@@ -52,6 +52,17 @@ public class ReservationService {
 
         return rv;
     }
+    
+    public ReservationVo selectOne(String rno) {
+        
+        Connection conn = JDBCTemplate.getConnection();
+        
+        ReservationVo rv = dao.selectOne(conn, rno);
+        
+        JDBCTemplate.close(conn);
+        
+        return rv;
+    }
 
     public List<ReservationVo> selectList(String userNo) {
 

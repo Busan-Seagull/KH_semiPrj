@@ -14,7 +14,7 @@ public class AlarmDao {
 
     public List<AlarmVo> selectList(Connection conn, String userNo) {
         
-        String sql = "SELECT ALARM_NO, USER_NO, CONTENT, MODIFY_DATE, CHECK_YN FROM ALARM WHERE USER_NO = ? AND CHECK_YN = 'N'";
+        String sql = "SELECT ALARM_NO, USER_NO, CONTENT, MODIFY_DATE, CHECK_YN FROM ALARM WHERE USER_NO = ? AND CHECK_YN != 'Y'";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         
