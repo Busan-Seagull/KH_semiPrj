@@ -266,6 +266,9 @@
     color: white;
     background-color: rgb(161, 161, 161);
 }
+#profile-btns>button:hover{
+	background-color: rgb(200,200,200);
+}
 #favorite{
     border: 1px groove lightgrey;
     border-radius: 5px;

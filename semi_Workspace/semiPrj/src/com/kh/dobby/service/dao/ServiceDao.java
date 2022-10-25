@@ -18,8 +18,6 @@ public class ServiceDao {
 
         String sql = "INSERT INTO \"SERVICE_INFO\" VALUES (SEQ_SERVICE_INFO_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // TODO sql작성..
-
         PreparedStatement pstmt = null;
         int result = 0;
 
@@ -61,7 +59,51 @@ public class ServiceDao {
 
         return result;
     }
+    //서비스 정보 수정
+    public int modifyService(Connection conn, ServiceVo sv) {
+        String sql = "UPDATE SERVICE_INFO SET SERVICE_TITLE = ?, IMAGE_LINK = ?, CHARGE_UNIT_NO = ?, CHARGE = ?, PAYMENT_ABLE_1 = ?, PAYMENT_ABLE_2 = ?, PAYMENT_ABLE_3 = ?, SERVICE_INTRO = ?, OPEN_TIME = ?, CLOSE_TIME = ?, EXP = ?, AREA_1 = ?, AREA_2 = ?, AREA_3 = ?, AREA_4 = ?, AREA_5 = ?, SERVICE_PIC_1 = ?, SERVICE_PIC_2 = ?, SERVICE_PIC_3 = ?, SERVICE_PIC_4 = ?, DETAIL = ?, PAYMENT_DETAIL = ? WHERE SERVICE_NO = ?";
+        // TODO sql작성..
 
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, sv.getTitle());
+            pstmt.setString(2, sv.getProfileImg());
+            pstmt.setInt(3, sv.getChargeUnitNo());
+            pstmt.setInt(4, sv.getCharge());
+            pstmt.setInt(5, sv.getpTypeNo_1());
+            pstmt.setInt(6, sv.getpTypeNo_2());
+            pstmt.setInt(7, sv.getpTypeNo_3());
+            pstmt.setString(8, sv.getServiceIntro());
+            pstmt.setString(9, sv.getOpenTime());
+            pstmt.setString(10, sv.getCloseTime());
+            pstmt.setInt(11, sv.getHelperExp());
+            pstmt.setInt(12, sv.getAreaNo_1());
+            pstmt.setInt(13, sv.getAreaNo_2());
+            pstmt.setInt(14, sv.getAreaNo_3());
+            pstmt.setInt(15, sv.getAreaNo_4());
+            pstmt.setInt(16, sv.getAreaNo_5());
+            pstmt.setString(17, sv.getServicePic_1());
+            pstmt.setString(18, sv.getServicePic_2());
+            pstmt.setString(19, sv.getServicePic_3());
+            pstmt.setString(20, sv.getServicePic_4());
+            pstmt.setString(21, sv.getServiceDetail());
+            pstmt.setString(22, sv.getPaymentDetail());
+            pstmt.setInt(23, sv.getServiceNo());
+      
+
+            result = pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(pstmt);
+        }
+
+        return result;
+    }
     
     //카테고리 별로 리스트 받아오기
     public List<ServiceVo> listService(Connection conn, PageVo pv, String stn) {

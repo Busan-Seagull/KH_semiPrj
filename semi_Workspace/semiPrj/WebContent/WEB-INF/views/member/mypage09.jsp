@@ -408,43 +408,77 @@ input[type=submit]{
 
     <div class="info-area" id="info-area09">
         <div id="myservice-wrap">
-		<div id="myservice-title">
-			<h1>내 서비스</h1>
-		</div>
+				<div id="myservice-title">
+					<h1>내 서비스</h1>
+				</div>
 
-		<div class="helper-list-flex">
-			<div class="helper-list-outline">
-				<div class="helper-list">
-					<div class="helper-pic">
-						<img src="/ryan/공통/resources/이상해씨.jpg" alt="">
-					</div>
-					<div class="helper-contents">
-						<div>
-							<h2>집고치는 집요정 | 집요정</h2>
-							<p>
-								모든 집 수리 다 합니다<br> 모든 집 수리 다해요 ~
-							</p>
+				<div class="helper-list-flex">
+					<c:forEach var="list" items="${myService}">
+						<div class="helper-list-outline">
+							<a class="helper-list"
+							onclick="location.href='/dobby/service/detail?sno=${list.serviceNo}'">
+								<div class="helper-pic">
+									<img src="/dobby/${list.profileImg}" alt="">
+								</div>
+								<div class="helper-contents">
+									<div>
+										<h2>${list.title} | ${list.helper}</h2>
+										<p>
+											${list.serviceIntro}
+										</p>
+									</div>
+									<div>
+										<span class="starrr">★★★★★</span> <span class="star-num">5</span>
+										<span class="comment">"이 집 청소 잘하네요~"</span>
+									</div>
+								</div>
+								<div class="helper-contents2">
+									<div id="btn1">
+										<button onclick="loction.href='/dobby/service/modify?sno=${list.serviceNo}'">수정하기</button>
+									</div>
+									<div id="btn2">
+										<button>삭제하기</button>
+									</div>
+									<div id="btn3">
+										<button>리뷰보기</button>
+									</div>
+								</div>
+							</a>
 						</div>
-						<div>
-							<span class="starrr">★★★★★</span> <span class="star-num">5</span>
-							<span class="comment">"이 집 청소 잘하네요~"</span>
-						</div>
-					</div>
-					<div class="helper-contents2">
-						<div id="btn1">
-							<button>수정하기</button>
-						</div>
-						<div id="btn2">
-							<button>삭제하기</button>
-						</div>
-						<div id="btn3">
-							<button>리뷰보기</button>
+					</c:forEach>
+					<!-- 임시 서비스 프로필 -->
+					<div class="helper-list-outline">
+						<div class="helper-list">
+							<div class="helper-pic">
+								<img src="/dobby/resources/img/dust.png" alt="">
+							</div>
+							<div class="helper-contents">
+								<div>
+									<h2>집고치는 집요정 | 집요정</h2>
+									<p>
+										모든 집 수리 다 합니다<br> 모든 집 수리 다해요 ~
+									</p>
+								</div>
+								<div>
+									<span class="starrr">★★★★★</span> <span class="star-num">5</span>
+									<span class="comment">"이 집 청소 잘하네요~"</span>
+								</div>
+							</div>
+							<div class="helper-contents2">
+								<div id="btn1">
+									<button onclick="loction.href='/dobby/service/modify'">수정하기</button>
+								</div>
+								<div id="btn2">
+									<button>삭제하기</button>
+								</div>
+								<div id="btn3">
+									<button>리뷰보기</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
     </div>
 
 </div>
