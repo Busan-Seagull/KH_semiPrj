@@ -46,17 +46,19 @@ public class DetailController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    
+	    req.setCharacterEncoding("UTF-8");
 	    String postNo = req.getParameter("postNo");
         
         int result = new ReportService().approval(postNo);
         int result2 = new ReportService().returnReport(postNo);
         
         
-        if((result*result2) == 1) {
-            resp.getWriter().write("처리되었습니다.");
+        if(result==1 || result2 == 1) {
+            req.getRequestDispatcher("/WEB-INF/views/report/detail.jsp").forward(req, resp);
             
         }else {
-            resp.getWriter().write("처리되지 않았습니다");
+            req.setAttribute("msg", "ERROR]오류 발생");
+            req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
         }
     
 	

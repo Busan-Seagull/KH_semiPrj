@@ -1,4 +1,4 @@
-						<%@page import="com.kh.dobby.report.vo.ReportVo"%>
+<%@page import="com.kh.dobby.report.vo.ReportVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     

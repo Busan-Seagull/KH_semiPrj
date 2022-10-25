@@ -30,7 +30,7 @@ public class ReportMypageController extends HttpServlet{
        
         req.setAttribute("vo",vo);
         
-        req.getRequestDispatcher("/WEB-INF/views/report/reportMypage.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/member/mypage10.jsp").forward(req, resp);
     }
     
     

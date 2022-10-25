@@ -85,14 +85,14 @@ pageEncoding="UTF-8"%>
 #t17{ width: 158px;}
 
 .i1{
-	width: 100px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	box-shadow: 2px 2px lightgray;
 	background-color: #EAE0D4;
 	position: relative;
 	text-align: center;
 	margin: 0 auto;
-	line-height :40px;
+	line-height :60px;
 	border-radius:2.5rem;
 }
 #i{

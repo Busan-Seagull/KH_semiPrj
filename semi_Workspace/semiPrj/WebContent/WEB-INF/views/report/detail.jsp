@@ -84,19 +84,19 @@ pageEncoding="UTF-8"%>
 #t17{ width: 158px;}
 
 .i1{
-	width: 100px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	box-shadow: 2px 2px lightgray;
 	background-color: #EAE0D4;
 	position: relative;
 	text-align: center;
 	margin: 0 auto;
-	line-height :40px;
+	line-height :60px;
 	border-radius:2.5rem;
 	
 }
 #i{
-	width: 420px;
+	width: 400px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
@@ -192,7 +192,7 @@ overflow:auto;
 		<div id="title-b">신고게시판</div>
 	</div>
 	<div id="main">
-	<form action="" method="post">
+	<form action="" method="get">
 		<div id="f">
 			<div class="h" id="t4">번호</div>
 			<div class="h" id="t5">신고할 회원</div>
@@ -218,7 +218,7 @@ overflow:auto;
 		<div class="i1"><input class="input-btn" type="submit" value="반려"></div>
 	<%} %>
 		<div class="i1"><input class="input-btn" type="submit" value="삭제"></div>
-		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %>>">수정</a></div>
+		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %>">수정</a></div>
 		<div class="i1"><a href="/dobby/report">글목록</a></div>
 	</div>
 	<br><br>
