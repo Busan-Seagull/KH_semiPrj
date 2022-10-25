@@ -13,8 +13,13 @@
 	height:25px;
 	background-color: black;
 	border:1px solid black;
-	left:440px;
+	right:500px;
 	top:50px;
+	margin:0 auto;
+}
+
+#blackline, #title{
+	position:relative;
 }
 
 #t1{
@@ -33,15 +38,15 @@
 	width:200px;
 	height:30px;
 	bottom:80px;
-	left:460px;
+	margin-left:0px;
 	top:25px;
-	font-weight:500;
+	font-weight:400;
 	font-size:larger;
+	right:390px;
+	margin:0 auto;
 }
 
-#blackline, #title{
-	position:relative;
-}
+
 
 #main{
 	width: 960px;
