@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.dobby.common.JDBCTemplate;
+import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.reservation.vo.ReservationVo;
 
 public class ReservationDao {
@@ -163,8 +164,15 @@ public class ReservationDao {
         return rv;
     }
 
-    public List<ReservationVo> selectList(Connection conn, String userNo) {
+    public List<ReservationVo> selectList(Connection conn, MemberVo loginMember) {
 
+        String sqlPlus = "";
+        if("1".equals(loginMember.getRightNo())) {
+            sqlPlus = "USER_NO";
+        }else if("2".equals(loginMember.getRightNo())) {
+            sqlPlus = "D_NO";
+        }
+        
         String sql = "SELECT\r\n"
                 + "    RESERVATION_NO,\r\n"
                 + "    SERVICE_NO,\r\n"
@@ -195,7 +203,7 @@ public class ReservationDao {
                 + "    JOIN \"SERVICE\" S USING(SERVICE_TYPE_NO) \r\n"
                 + "    JOIN CHARGE_UNIT USING(CHARGE_UNIT_NO)\r\n"
                 + ") USING(SERVICE_NO)\r\n"
-                + "WHERE USER_NO = ?\r\n"
+                + "WHERE "+sqlPlus+" = ?\r\n"
                 + "ORDER BY RESERVATION_DATE DESC";
         
         PreparedStatement pstmt = null;
@@ -205,7 +213,7 @@ public class ReservationDao {
         
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userNo);
+            pstmt.setString(1, loginMember.getUserNo());
             
             rs = pstmt.executeQuery();
             

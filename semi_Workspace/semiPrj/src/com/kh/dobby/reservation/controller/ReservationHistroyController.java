@@ -36,7 +36,7 @@ public class ReservationHistroyController extends HttpServlet{
             currentPage = Integer.parseInt(page);
         }
         
-        List<ReservationVo> list = new ReservationService().selectList(loginMember.getUserNo());
+        List<ReservationVo> list = new ReservationService().selectList(loginMember);
         req.setAttribute("list", list);
         
         PageVo pv = new PageVo(list.size(), currentPage, 5, 10);

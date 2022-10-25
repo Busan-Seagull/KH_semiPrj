@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.kh.dobby.common.JDBCTemplate;
+import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.reservation.dao.ReservationDao;
 import com.kh.dobby.reservation.vo.ReservationVo;
 
@@ -64,11 +65,11 @@ public class ReservationService {
         return rv;
     }
 
-    public List<ReservationVo> selectList(String userNo) {
+    public List<ReservationVo> selectList(MemberVo loginMember) {
 
         Connection conn = JDBCTemplate.getConnection();
 
-        List<ReservationVo> list = dao.selectList(conn, userNo);
+        List<ReservationVo> list = dao.selectList(conn, loginMember);
 
         Date today = new Date();
 
