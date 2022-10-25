@@ -207,11 +207,75 @@ input[type=submit]{
     margin: 10px;
 }
 
+
+
+
+
+
+
+
+#t06_point-box{
+	border:2px solid black;
+	width:880px;
+	top:28%;
+	bottom:0px;
+	margin-left:300px;
+	margin-top:100px;
+	position:relative;
+}
+#t06_text01{
+	font-size:40px;
+	margin-left:20px;
+}
+.t06_table{
+	width:160px;
+	height:160px;
+	margin:10px;
+	float:left;
+	border-radius:20px;
+	box-shadow:0px 4px 4px 4px gray;
+	
+	margin:20px;
+}
+#t06_box-page{
+	border:2px solid blue;
+	height:400px;
+	top:28%;
+	bottom:0px;
+	margin-top:20px;
+}
+
+.t06_boxtext{
+	font-size:20px;
+	margin-left:10px;
+	margin-bottom:6px;
+}
+
+#t06_star{
+	color:yellow;
+	float:left;
+	margin-left:100px;
+}
+
+#t06_point{
+	margin-left:120px;
+}
+#t06_score-box{
+	margin-bottom:10px;
+}
+
+#t06_reviewtext{
+	float:left;
+	margin-left:80px;
+}
+
 #info-area02,
 #info-area03,
 #info-area04,
 #info-area05,
-#info-area06,
+#info-area06{
+	display:overflow;
+},
 #info-area07,
 #info-area08,
 #info-area09{
@@ -987,6 +1051,108 @@ input[type=submit]{
     <div class="info-area" id="info-area06"><!--  6 -->
     
     
+    <form>
+		<div id="t06_point-box">
+			<div id="t06_text01">찜한 목록</div>
+			
+			<div id="t06_box-page">
+					<div class="t06_table" id="t06_table1">
+						<img src="/dobby/resources/img/로고.png" alt="이미지" width="140px" height="80px">
+							<div id = "t06_score-box">
+								<div id="t06_star">★</div><div id="t06_point">5.0</div>
+							</div>
+						<div class="t06_boxtext"><a href="/">벌레잡는 너굴맨</a></div>
+						<div id = "t06_score-box2">
+								<div id="t06_reviewtext">리뷰</div><div id="t06_point">123</div>
+							</div>
+					</div>
+					
+					
+					<div class="t06_table" id="t06_table2">
+						<img src="/dobby/resources/img/로고.png" alt="이미지" width="140px" height="80px">
+							<div id = "t06_score-box">
+								<div id="t06_star">★</div><div id="t06_point">5.0</div>
+							</div>
+						<div class="t06_boxtext"><a href="/">벌레잡는 너굴맨</a></div>
+						<div id = "t06_score-box2">
+								<div id="t06_reviewtext">리뷰</div><div id="t06_point">123</div>
+							</div>
+					</div>
+					
+					
+					<div class="t06_table" id="06_table3">
+						<img src="/dobby/resources/img/로고.png" alt="이미지" width="140px" height="80px">
+							<div id = "t06_score-box">
+								<div id="t06_star">★</div><div id="t06_point">5.0</div>
+							</div>
+						<div class="t06_boxtext"><a href="/">벌레잡는 너굴맨</a></div>
+						<div id = "t06_score-box2">
+								<div id="t06_reviewtext">리뷰</div><div id="t06_point">123</div>
+							</div>
+					</div>
+					
+					
+					<div class="t06_table" id="t06_table4">
+						<img src="/dobby/resources/img/로고.png" alt="이미지" width="140px" height="80px">
+							<div id = "t06_score-box">
+								<div id="t06_star">★</div><div id="t06_point">5.0</div>
+							</div>
+						<div class="t06_boxtext"><a href="/">벌레잡는 너굴맨</a></div>
+						<div id = "t06_score-box2">
+								<div id="t06_reviewtext">리뷰</div><div id="t06_point">123</div>
+							</div>
+					</div>
+					
+					<div class="t06_table" id="t06_table5">
+						<img src="/dobby/resources/img/로고.png" alt="이미지" width="140px" height="80px">
+							<div id = "t06_score-box">
+								<div id="t06_star">★</div><div id="t06_point">5.0</div>
+							</div>
+						<div class="t06_boxtext"><a href="/">벌레잡는 너굴맨</a></div>
+						<div id = "t06_score-box2">
+								<div id="t06_reviewtext">리뷰</div><div id="t06_point">123</div>
+							</div>
+					</div>
+					
+					<div class="t06_table" id="t06_table6">
+						<img src="/dobby/resources/img/로고.png" alt="이미지" width="140px" height="80px">
+							<div id = "t06_score-box">
+								<div id="t06_star">★</div><div id="t06_point">5.0</div>
+							</div>
+						<div class="t06_boxtext"><a href="/">벌레잡는 너굴맨</a></div>
+						<div id = "t06_score-box2">
+								<div id="t06_reviewtext">리뷰</div><div id="t06_point">123</div>
+							</div>
+					</div>
+					
+					
+					<div class="t06_table" id="t06_table7">
+						<img src="/dobby/resources/img/로고.png" alt="이미지" width="140px" height="80px">
+							<div id = "t06_score-box">
+								<div id="t06_star">★</div><div id="t06_point">5.0</div>
+							</div>
+						<div class="t06_boxtext"><a href="/">벌레잡는 너굴맨</a></div>
+						<div id = "t06_score-box2">
+								<div id="t06_reviewtext">리뷰</div><div id="t06_point">123</div>
+							</div>
+					</div>
+					
+					
+					<div class="t06_table" id="t06_table8">
+						<img src="/dobby/resources/img/로고.png" alt="이미지" width="140px" height="80px">
+							<div id = "t06_score-box">
+								<div id="t06_star">★</div><div id="t06_point">5.0</div>
+							</div>
+						<div class="t06_boxtext"><a href="/">벌레잡는 너굴맨</a></div>
+						<div id = "t06_score-box2">
+								<div id="t06_reviewtext">리뷰</div><div id="t06_point">123</div>
+							</div>
+					</div>
+					
+					
+			</div>
+		</div>
+	</form>
     
     
     
