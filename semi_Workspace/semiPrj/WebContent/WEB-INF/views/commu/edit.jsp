@@ -1,7 +1,9 @@
+<%@page import="com.kh.dobby.commu.vo.CommuVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
+CommuVo vo=(CommuVo)request.getAttribute("vo");
 String msg = (String)session.getAttribute("msg");
 session.removeAttribute("msg"); 
 %>
@@ -155,8 +157,7 @@ input[type=submit]{
                 <div id="title" class="row1">
                   <input type="text" name="title" placeholder="제목을 입력하세요.">
                 </div>
-    
-                <div id="content">
+     			 <div id="content">
                     <textarea id="summernote" name="editordata"></textarea>
                 </div>
 

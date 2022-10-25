@@ -47,8 +47,8 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
     int result=CommuService.write(cv);
     
     if (result==1) {
-        hs.setAttribute("msg", "게시물 작성 성공!");//이게 왜 작성하기를 눌러야만 뜨는가?
-        resp.sendRedirect("/dobby/commu/list");
+        hs.setAttribute("msg", "게시물 작성 성공!");
+        req.getRequestDispatcher("/WEB-INF/views/commu/list.jsp").forward(req, resp);
     }else {
         req.setAttribute("msg","게시물 작성 실패ㅠ" );
         req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
