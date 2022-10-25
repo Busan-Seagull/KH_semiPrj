@@ -87,7 +87,7 @@ public class ReservationService {
 
             if(vo.getCancelDate()==null) {
                 
-                if (vo.getReservationYN() == "Y") {
+                if ("Y".equals(vo.getReservationYN())) {
                     if (vo.getReservationAmount() != null) {// 예약완료
                         if (vo.getPayNo() != null) {// 결제정보있음
                             if (today.compareTo(rDay) < 0) {

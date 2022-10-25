@@ -36,11 +36,11 @@ public class AlarmService {
         return result;
     }
     
-    public int insertAlarm(String uno, String text) {
+    public int insertAlarm(String text, String uno) {
         
         Connection conn = JDBCTemplate.getConnection();
         
-        int result = new AlarmDao().insertAlarm(conn, uno, text);
+        int result = new AlarmDao().insertAlarm(conn, text, uno);
         
         if(result==1) {
             JDBCTemplate.commit(conn);

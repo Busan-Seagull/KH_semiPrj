@@ -614,6 +614,7 @@ input[type=submit]{
                         }
                     }else if(${sessionScope.loginMember.rightNo == 2}){
                         for (let i = 0; i < list.length; i++) {
+                        	const rv = list[i];
 
                             const item = $('<div/>');
                             item.addClass('rh-item shadow-box');
@@ -673,21 +674,21 @@ input[type=submit]{
 
                             switch (rv.status) {
                                 case 'EAW':
-                                    $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
-                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="approval(this, '+rv.reservation_no+')">예약승인</div> <div class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">예약반려</div> </div>').appendTo(form);
+                                    $('<div> <h2>답변사항</h2> <textarea name="c" class="recomment-text"></textarea> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <button type="button" class="rh-i-h-btn" onclick="approval(this, '+rv.reservation_no+')">예약승인</button> <button type="button" class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">예약반려</div> </button>').appendTo(form);
                                     break;
                                 case 'EW':
-                                    $('<div> <h2>견적금액</h2> <input type="number" name="" class="pay-text"> </div>').appendTo(form);
-                                    $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
-                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="updateAmount(this, '+rv.reservation_no+')">견적완료</div> <div class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">견적반려</div> </div>').appendTo(form);
+                                    $('<div> <h2>견적금액</h2> <input type="number" name="p" class="pay-text"> </div>').appendTo(form);
+                                    $('<div> <h2>답변사항</h2> <textarea name="c" class="recomment-text"></textarea> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <button type="button" class="rh-i-h-btn" onclick="updateAmount(this, '+rv.reservation_no+')">견적완료</button> <button type="button" class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">견적반려</div> </button>').appendTo(form);
                                     break;
                                 case 'RAW':
-                                    $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
-                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="approval(this, '+rv.reservation_no+')">예약승인</div> <div class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">예약반려</div> </div>').appendTo(form);
+                                    $('<div> <h2>답변사항</h2> <textarea name="c" class="recomment-text"></textarea> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <button type="button" class="rh-i-h-btn" onclick="approval(this, '+rv.reservation_no+')">예약승인</button> <button type="button" class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">예약반려</div> </button>').appendTo(form);
                                     break;
                                 case 'PW':
-                                    $('<div> <h2>답변사항</h2> <textarea name="" class="recomment-text"></textarea> </div>').appendTo(form);
-                                    $('<div class="footer-btn-list flex-center"> <div class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">예약취소</div> </div>').appendTo(form);
+                                    $('<div> <h2>답변사항</h2> <textarea name="c" class="recomment-text"></textarea> </div>').appendTo(form);
+                                    $('<div class="footer-btn-list flex-center"> <button type="button" class="rh-i-h-btn" onclick="cancel(this, '+rv.reservation_no+')">예약취소</button> </div>').appendTo(form);
                                     break;
                                 case 'SW':
 
@@ -798,28 +799,28 @@ input[type=submit]{
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-
+                	//location.reload();
                 }else{
                     alert("결과가 저장되지 않음.");
                 }
             }
         }
 
-        const recomment = object.form.querySelector('textarea').innerText;
-        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");	
+        const recomment = object.form.c.value;
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
         xhr.send('rno='+rno+'&recomment='+recomment);				
     }
 
     function updateAmount(object, rno) {
-        const recomment = object.form.querySelector('textarea').innerText;
-        const Amount = object.form.querySelector('input[type=number]').innerText;
+        const recomment = object.form.c.value;
+        const Amount = object.form.p.value;
 
         var xhr = new XMLHttpRequest();
         xhr.open("GET", '/dobby/reservation/update?'+'rno='+rno+'&Amount='+Amount+'&recomment='+recomment);
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-
+                	//location.reload();
                 }else{
                     alert("결과가 저장되지 않음.");
                 }
@@ -833,7 +834,7 @@ input[type=submit]{
     function cancel(object, rno) {
         let qString = '';
         if(object!=null){
-            const recomment = object.form.querySelector('textarea').innerText;
+            const recomment = object.form.c.value;
             qString = 'rno='+rno+'&recomment='+recomment;			
         }else{
             qString = 'rno='+rno;
@@ -843,7 +844,7 @@ input[type=submit]{
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-                    location.reload;
+                    //location.reload;
                 }else{
                     alert("결과가 저장되지 않음.");
                 }
@@ -861,14 +862,14 @@ input[type=submit]{
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-
+                	//location.reload();
                 }else{
                     alert("결과가 저장되지 않음.");
                 }
             }
         }
 
-        const comment = object.form.querySelector('textarea').innerText;
+        const comment = object.form.c.value;
         xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
         xhr.send('rno='+rno+'&comment='+comment);					
     }
@@ -877,6 +878,7 @@ input[type=submit]{
         const element = btnArr[i];
 
         if(${pno}-1==i){
+        	console.log(${pno});
             element.click();
         }   
     }

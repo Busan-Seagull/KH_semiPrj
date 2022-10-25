@@ -63,7 +63,7 @@ public class ReservationResultController extends HttpServlet{
         int result2 = rs.updateRecomment(rno, recomment);
         
         ReservationVo rv = rs.selectOne(rno);
-        String msg = "'"+rv.getsTitle()+"' 예약이 완료되었습니다.\r\n"
+        String msg = "\""+rv.getsTitle()+"\" 예약이 완료되었습니다.\r\n"
                 + "\""+recomment+"\"";
         new AlarmService().insertAlarm(msg, rv.getUserNo());
         

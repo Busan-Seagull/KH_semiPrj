@@ -64,12 +64,7 @@
                     <h1>요금선택</h1>
                 </div>
                 <div class="flex-center">
-                	<c:if test="${empty rv }">
-                    	<input id="numberInput" type="number" min="1" value="1" onchange="updatePay();"></input>
-                    </c:if>
-                   	<c:if test="${not empty rv }">
-                    	<input id="numberInput" type="number" min="1" value="1" onchange="updatePay();" readonly></input>
-                    </c:if>
+                   	<input id="numberInput" type="number" min="1" value="1" onchange="updatePay();"></input>
                     <p>(${sv.chargeUnit})</p>
                     <p>&nbsp;X&nbsp;</p>
                     <p><fmt:formatNumber value="${sv.charge}" pattern="#,###"/>&nbsp;원</p>

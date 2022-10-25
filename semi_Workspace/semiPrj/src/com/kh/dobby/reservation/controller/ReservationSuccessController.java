@@ -30,6 +30,7 @@ public class ReservationSuccessController extends HttpServlet{
         String sno = req.getParameter("sno");
         String date = req.getParameter("date");
         String commet = req.getParameter("coment");
+        String pay = req.getParameter("pay").replaceAll(",", "");
         
         ServiceVo sv = new ServiceService().selectOne(sno);
         
@@ -39,6 +40,7 @@ public class ReservationSuccessController extends HttpServlet{
         //임시번호
         rv.setServiceNo(Integer.toString(sv.getServiceNo()));
         rv.setUserNo(loginMember.getUserNo());
+        rv.setReservationAmount(pay);
         
         String rvNo = new ReservationService().insertReservation(rv);
         rv.setReservation_no(rvNo);
@@ -46,7 +48,7 @@ public class ReservationSuccessController extends HttpServlet{
         req.setAttribute("sv", sv);
         req.setAttribute("rv", rv);
         
-        if(sv.getCharge()==0) {
+        if(sv.getCharge()==0) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             req.getRequestDispatcher("/WEB-INF/views/reservation/reservation.jsp").forward(req, resp);            
         }else {
             req.getRequestDispatcher("/WEB-INF/views/reservation/reservationSuccess.jsp").forward(req, resp);	                    
