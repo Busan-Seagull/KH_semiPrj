@@ -306,7 +306,7 @@ button {
            
 
             <div class="text">비밀번호</div>
-            <div id="pwd"><input type="password" name="memberPwd1"  maxlength="12" placeholder="영어 소문자,숫자 포함 4~12글자"></div>
+            <div id="pwd"><input type="password" name="memberPwd1"  maxlength="12" placeholder="영어 대소문자,숫자 포함 4~12글자"></div>
 
             <div class="text">비밀번호 확인</div>
             <div id="pwd"><input type="password" name="memberPwd2" maxlength="12" placeholder="비밀번호 다시 입력해주세요."></div>
@@ -431,42 +431,61 @@ button {
         const account1=$("select[name=account1]");
         const account2=$("input[name=account2]");
         const idCheck=$('#idCheck'); 
+
+        //영소문자 숫자 포함 3 ~ 8
+        const idRegExp = /^[a-z0-9]{3,8}$/g;
+        //영소문자 숫자 포함 4 ~ 12글자 무조건 1개이상
+        const pwdRegExp = /^[0-9a-zA-Z]{4,12}$/g;
+        //한글 영문제한
+        const korRegExp = /^[a-zA-Zㄱ-힣][a-zA-Zㄱ-힣 ]*$/g;
+        //숫자만 
+        const numRegExp = /^[0-9]/g;
+
         // 유효성 검사
         function check(){
+            
         	 if(!id.val()){
         		 alert("아이디를 입력하세요.");
                    $('input[name="memberId"]').focus();
                 return false;
         	 }
-        	 
-             if(id.val().length<3){
+
+                
+            if(id.val().length<3){
                 alert("아이디 글자 수를 확인해주세요.");
                 $('input[name="memberId"]').focus();
                 return false;
-             }
+            }
 
-             if(idCheck.val()!='check'){
+            if(idCheck.val()=='Uncheck'){
                 alert("아이디를 중복확인을 하세요.");
                 return false;
-             }
-        	
+            }
+              
+
              if(!pwd1.val()&&!pwd2.val()){
                 alert("비밀번호를 입력하세요");
                   pwd1.focus();
                   return false;
              }
-
-             if(pwd1.val().length<3){
+            
+             if(pwdRegExp.test(pwd1)!=true){
+                if(pwd1.val().length<3){
                 alert("비밀번호 글자 수를 확인해주세요.");
                   pwd1.focus();
                   return false;
-             }
+                }
 
-             if(pwd1.val()!=pwd2.val()){
-                alert("비밀번호가 일치하지 않습니다.");
-                  pwd2.focus();
-                  return false;
-             }
+                if(pwd1.val()!=pwd2.val()){
+                    alert("비밀번호가 일치하지 않습니다.");
+                    pwd2.focus();
+                    return false;
+                }
+             }else{
+                    alert("비밀번호 형식이 올바르지 않습니다.");
+                    return false;
+                }
+            
 
              if(!nick.val()){
             	 alert("닉네임을 입력하세요.");
@@ -485,18 +504,23 @@ button {
                 phone2.focus();
                 return false;
              }
+             if(numRegExp.test(phone2)!=true&&numRegExp.test(phone3)!=true){
+                    if(phone2.val().length<4){
+                    alert("올바른 번호가 아닙니다");
+                    phone2.focus();
+                    return false;
+                }
 
-             if(phone2.val().length<4){
-                alert("올바른 번호가 아닙니다");
-                phone2.focus();
-                return false;
-             }
-
-             if(phone3.val().length<4){
-                alert("올바른 번호가 아닙니다");
-                phone3.focus();
-                return false;
-             }
+                if(phone3.val().length<4){
+                    alert("올바른 번호가 아닙니다");
+                    phone3.focus();
+                    return false;
+                }
+             }else{
+                    alert("숫자만 입력해주세요.");
+                    return false;
+                }
+            
              
              
              if(!email.val()){
@@ -516,44 +540,54 @@ button {
                 //집요정일때
                 const userRight= $('input[name=userRight]:checked').val();
                 if(userRight==2){
-                    if(!brnum1.val()&& brnum1.val().length<3){
-                    alert("사업자 등록번호를 입력해 주세요.");
-                    brnum1.focus();
-                    return false;
-                    }
+                    if(numRegExp.test(brnum1)&&numRegExp.test(brnum2)&&numRegExp.test(brnum3)){
+                        if(!brnum1.val()&& brnum1.val().length<3){
+                        alert("사업자 등록번호를 입력해 주세요.");
+                        brnum1.focus();
+                        return false;
+                        }
 
-                    if(!brnum2.val()&& brnum2.val().length<2){
-                    alert("사업자 등록번호를 입력해 주세요.");
-                    brnum2.focus();
-                    return false;
-                    }
+                        if(!brnum2.val()&& brnum2.val().length<2){
+                        alert("사업자 등록번호를 입력해 주세요.");
+                        brnum2.focus();
+                        return false;
+                        }
 
-                    if(!brnum3.val()&& brnum3.val().length<5){
-                    alert("사업자 등록번호를 입력해 주세요.");
-                    brnum3.focus();
-                    return false;
+                        if(!brnum3.val()&& brnum3.val().length<5){
+                        alert("사업자 등록번호를 입력해 주세요.");
+                        brnum3.focus();
+                        return false;
+                        }
+                    }else{
+                        alert("숫자만 입력해주세요.");
+                        return false;
                     }
-
-                    console.log(account1);
+                  
 
                     if(account1.val()==""){
                     alert("은행명을 선택해 주세요");
                    
                     return false;
                     }
-
+                  
                     if(!account2.val()){
                     alert("계좌번호를 입력해 주세요");
                     account2.focus();
                     return false;
                     }
 
+                    if(numRegExp.test(account2)){
                 
-                    if(account2.val().length<11&&account2.val().length>15){
-                    alert("계좌번호를 다시 확인하여 입력해 주세요");
-                    account2.focus();
-                    return false;
+                        if(account2.val().length<11&&account2.val().length>15){
+                        alert("계좌번호를 다시 확인하여 입력해 주세요");
+                        account2.focus();
+                        return false;
+                        }
+                    }else{
+                        alert("숫자만 입력해주세요.");
+                        return false;
                     }
+
                     return true;//도경아 이거 트루인데 테스트하는거다..놓치지마라..
                 }
        
@@ -575,24 +609,29 @@ button {
 			        url: "/dobby/member/idCheck",
 			        data: {id : JJINid}, 
 			        success: function(result) {
-			        	
-			        	  if(JJINid != "" && JJINid.length>=3){
+			        	if(JJINid != "" && JJINid.length>=3){
 			        		  if (result == '0') {
 				        			 alert("이미 사용 중 인 아이디 입니다.");
                                      idCheck.val('Uncheck');
                                 
-					                 
 					            } else{
+                                    if(idRegExp.test(JJINid)==true){
 					            	 alert("사용 가능한 아이디 입니다.");
                                      idCheck.val('check');
-                                     
-					            }	   
-			                	
-			                }else{
-			                	 alert("아이디를 입력하세요.");
-					             $('input[name="memberId"]').focus();
-			                	
-			                }	
+                                    }else{
+                                        alert("아이디 중복확인을 다시 해주세요.");
+                                        idCheck.val('Uncheck');
+                                    }
+					            }
+                            
+			            }else{
+                            alert("아이디를 입력하세요!!");
+                            $('input[name="memberId"]').focus();
+                        
+                         }
+                         
+                
+                      
 			        },
 			        error: function() {   
 			                alert("아이디를 입력하세요.");

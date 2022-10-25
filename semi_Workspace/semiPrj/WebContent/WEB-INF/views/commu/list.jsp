@@ -1,9 +1,15 @@
+<%@page import="com.kh.dobby.common.PageVo"%>
+<%@page import="com.kh.dobby.commu.vo.CommuVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
+List<CommuVo> volist =(List<CommuVo>)request.getAttribute("voList");
+PageVo pv=(PageVo)request.getAttribute("pv");
 String msg = (String)session.getAttribute("msg");
 session.removeAttribute("msg"); 
+String root=request.getContextPath();
 %>
 <script>
 <%if(msg!=null){%>
@@ -182,11 +188,13 @@ alert('<%= msg%>');
         display: inline-block;
         border-radius: 100%;
         line-height: 30px;
+         text-align: center;
     }
 
     #page-nation .num:hover{
         background-color: var(--semi-green);
         color: white;
+       
     }
 
     #page-nation .num:active{
@@ -247,96 +255,75 @@ alert('<%= msg%>');
                <div class="first">작성자</div>
                <div class="first">일시</div>
                <div class="first">조회수</div>
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
-
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
-
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
-
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
-
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
-
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
-
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
-
-
-               <div>1</div>
-               <div>테스트 제목</div>
-               <div>하이염</div>
-               <div>2022/10/15</div>
-               <div>12</div>
+				<%for (int i =0; i <volist.size();i++){ %>
+               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getPostNo() %></a></div>
+               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getTitle() %></a></div>
+               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getUserNo()%></a></div>
+               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getWriteTime()%></a></div>
+               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getViews()%></a></div>
+				<%} %>
+              
                
             </div>
 
             <div id="write">
                 <input type="button" value="작성하기" onclick="location.href='/dobby/commu/write';">
             </div>
+<!-- 페이징 -->
+          	<div id="page-area">
+					<ul id="page-nation">
+						<li><a href="/dobby/commu/list?pno=1" class="first"><<</a></li>
+						<li><a class="arrow left"><</a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="arrow right">></a></li>
+						<li><a href="/dobby/commu/list?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
+					</ul>
+				</div>
 
-            <div id="page-area">
-                   <ul id="page-nation">
-                    <li><a href="#" class="first"><<</a></li>
-                    <li><a href="#" class="arrow left"><</a></li>
-                    <li><a href="#" class="num">1</a></li>
-                    <li><a href="/" class="num">2</a></li>
-                    <li><a href="/" class="num">3</a></li>
-                    <li><a href="/" class="num">4</a></li>
-                    <li><a href="/" class="num">5</a></li>
-                    <li><a href="/" class="arrow right">></a></li>
-                    <li><a href="/" class="last">>></a></li>
-                   </ul>
-           </div>
        </div>
     </div>
     
+				<script>
+					const pageNation = document.querySelector('#page-nation');
+					const numArr = pageNation.querySelectorAll('.num');
+					const left = pageNation.querySelector('.arrow.left');
+					const right = pageNation.querySelector('.arrow.right');
+
+					<%if(pv.getStartPage() > 1){%>
+						left.href = '/dobby/commu/list?pno=<%=pv.getStartPage()-1%>';
+					<%}else{%>
+						left.classList.add('none-select');
+					<%}%>
+
+					<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
+						right.href = '/dobby/commu/list?pno=<%=pv.getCurrentPage()+1%>';
+					<%}else{%>
+						right.classList.add('none-select');
+					<%}%>
+
+					let page = <%=pv.getStartPage()%>;
+
+					for (let i = 0; i < numArr.length; i++) {
+						const num = numArr[i];
+						
+						if(page==<%=pv.getCurrentPage()%>){
+							num.classList.add('current');
+						}
+						
+						if(page<1 || page><%=pv.getMaxPage()%>){
+							num.classList.add('p-none');
+						}else{
+							num.href = '/dobby/commu/list?pno='+page;
+						}
+						num.innerHTML = page;
+						page++;
+					}
+				</script>
+
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>

@@ -1,5 +1,11 @@
+<%@page import="com.kh.dobby.commu.vo.CommuVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+CommuVo vo=(CommuVo)request.getAttribute("vo");
+String root=request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +15,7 @@
      #detail-main{
         width: 1200px;
         height: 70vh;
+        margin:auto;
     }
 
     #detail-area{
@@ -204,18 +211,18 @@
 
             <div id="commu-detail">
                     <div id="title">
-                        <div class="style1">공지</div>
-                        <div class="style1">2022/10/16 19:19:40</div>
-                        <div class="style1">조회수 12</div>
-                        <div>테스트입니다.</div>
-                        <div id="writer">개수니</div>
+                        <div class="style1"><%=vo.getTypeNo() %></div>
+                        <div class="style1"><%=vo.getWriteTime() %></div>
+                        <div class="style1"><%=vo.getViews()%></div>
+                        <div><%=vo.getTitle() %></div>
+                        <div id="writer"><%=vo.getUserNo() %></div>
                     </div>
                     <div id="content">
-                        <div>안녕하이~</div>
+                        <div><%=vo.getContent()%></div>
                         <div id="btn">
-                            <input type="button" value="수정하기">
+                            <input type="button" value="수정하기" onclick="/dobby/commu/edit?no=<%=vo.getPostNo()%>">
                             <input type="button" value="삭제하기"> 
-                            <input type="button" value="목록으로">
+                            <input type="button" value="목록으로" onclick="history.back()">
                         </div>
                     </div>
             </div>

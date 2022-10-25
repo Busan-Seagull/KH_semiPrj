@@ -22,19 +22,24 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
     int currentPage = 1;
 
     if(page!=null) {
-        currentPage = Integer.parseInt(page);\
+        currentPage = Integer.parseInt(page);
     }
-    //new PageVo(글갯수, 현재페이지, 5고정(페이징갯수), 한페이지에 몇개의 글);
-    PageVo pv = new PageVo(100, currentPage, 5, 10);
+    //게시글 카운트 하기
+    int listCount=new CommuService().selectCount();
 
+    
+    //new PageVo(글갯수, 현재페이지, 5고정(페이징갯수), 한페이지에 몇개의 글);
+    PageVo pv = new PageVo(listCount, currentPage, 5, 10);
+    
     
     //디비 다녀오기 
     List<CommuVo> voList= new CommuService().selectList(pv);
-    
     req.setAttribute("voList", voList);
+
+   
+    
+    //글갯수에 카운트불러와서 넝허주기.
     req.setAttribute("pv", pv);
-    
-    
     req.getRequestDispatcher("/WEB-INF/views/commu/list.jsp").forward(req, resp);
 }
 

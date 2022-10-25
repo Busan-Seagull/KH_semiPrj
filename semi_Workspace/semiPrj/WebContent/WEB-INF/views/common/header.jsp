@@ -429,7 +429,7 @@
 
             <div><a href=""><p>인기집요정</p></a></div>
             <div><a href=""><p>인기서비스</p></a></div>
-            <div><a href="/dobby/commu/list"><p>커뮤니티</p></a></div>
+            <div><a href="/dobby/commu/list?pno=1"><p>커뮤니티</p></a></div>
             <div><a href="/dobby/event"><p>이벤트</p></a></div>
             <div id="header-help">
                 <article><p>고객센터</p></article>

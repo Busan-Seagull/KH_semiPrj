@@ -50,4 +50,37 @@ public class CommuService {
 
     }
 
+    public CommuVo selectOne(String bno) {
+        Connection conn=JDBCTemplate.getConnection();
+        int result=Commudao.increaseHit(conn,bno);
+         
+         CommuVo vo =null;
+         if(result ==1) {
+             JDBCTemplate.commit(conn);
+             vo =Commudao.selectOne(conn,bno);
+         }
+         
+         
+         JDBCTemplate.close(conn);
+         
+         return vo;
+
+    }
+
+    public int edit(CommuVo vo) {
+Connection conn = JDBCTemplate.getConnection();
+        
+        int result = new Commudao().updateOneByNo(conn,vo);
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+        }else {
+            JDBCTemplate.rollback(conn);
+        }
+        
+        JDBCTemplate.close(conn);
+        
+        return result;
+    }
+
 }
