@@ -42,7 +42,11 @@ String root = request.getContextPath();
 			</ul>
 		</div>
 		<div id="service-main">
-			<div id="service-main-category">가사도우미</div>
+			
+				<div id="service-main-category">
+					${category}
+				</div>
+			
 			<div id="service-main-nav">
 				<select class="nav-select" id="select-region">
 					<option value="">지역선택</option>
@@ -72,9 +76,7 @@ String root = request.getContextPath();
 					<option value="24">송파구</option>
 					<option value="25">강동구</option>
 				</select>
-				<select class="nav-select" id="select-date">
-					<option value="">날짜선택</option>
-				</select>
+				
 				<div class="nav-select" id="helper-search">
 					<form action="">
 						<div id="textbox-wrap">
@@ -92,9 +94,7 @@ String root = request.getContextPath();
 			</div>
 			<div id="helper-number">1,150명의 집요정</div>
 			<div class="helper-list-flex">
-
 				<c:forEach var="list" items="${svList}">
-
 					<div class="helper-list-outline">
 						<a class="helper-list"
 							onclick="location.href='<%=root %>/service/detail?sno=${list.serviceNo}'">

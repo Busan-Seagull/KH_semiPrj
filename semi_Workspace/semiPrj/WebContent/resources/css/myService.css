@@ -112,6 +112,7 @@
 	color: white;
 	width: 80px;
 	height: 23px;
+	z-index: 50;
 }
 .helper-contents2 div {
 	z-index: 50;

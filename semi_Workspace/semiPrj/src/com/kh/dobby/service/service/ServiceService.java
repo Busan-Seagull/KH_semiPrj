@@ -3,6 +3,8 @@ package com.kh.dobby.service.service;
 import java.sql.Connection;
 import java.util.List;
 
+import org.apache.tomcat.dbcp.dbcp2.Jdbc41Bridge;
+
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.common.PageVo;
 import com.kh.dobby.service.dao.ServiceDao;
@@ -30,6 +32,7 @@ public class ServiceService {
 
         return result;
     }
+
     // 서비스 정보 수정
     public int modify(ServiceVo sv) {
 
@@ -37,6 +40,24 @@ public class ServiceService {
 
         // 서비스 인서트
         int result = sd.modifyService(conn, sv);
+
+        if (result == 1) {
+            JDBCTemplate.commit(conn);
+        } else {
+            JDBCTemplate.rollback(conn);
+        }
+        JDBCTemplate.close(conn);
+
+        return result;
+    }
+
+    // (서비스 번호로)서비스 정보 삭제
+    public int deleteOne(int serviceNo) {
+
+        Connection conn = JDBCTemplate.getConnection();
+
+        // 서비스 삭제
+        int result = sd.deleteService(conn, serviceNo);
 
         if (result == 1) {
             JDBCTemplate.commit(conn);
@@ -536,10 +557,6 @@ public class ServiceService {
                 break;
         }
         return cv;
-    }
-
-    public void changeAreaCode(int AreaNo) {
-
     }
 
 }

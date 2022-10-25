@@ -62,7 +62,6 @@ public class ServiceDao {
     //서비스 정보 수정
     public int modifyService(Connection conn, ServiceVo sv) {
         String sql = "UPDATE SERVICE_INFO SET SERVICE_TITLE = ?, IMAGE_LINK = ?, CHARGE_UNIT_NO = ?, CHARGE = ?, PAYMENT_ABLE_1 = ?, PAYMENT_ABLE_2 = ?, PAYMENT_ABLE_3 = ?, SERVICE_INTRO = ?, OPEN_TIME = ?, CLOSE_TIME = ?, EXP = ?, AREA_1 = ?, AREA_2 = ?, AREA_3 = ?, AREA_4 = ?, AREA_5 = ?, SERVICE_PIC_1 = ?, SERVICE_PIC_2 = ?, SERVICE_PIC_3 = ?, SERVICE_PIC_4 = ?, DETAIL = ?, PAYMENT_DETAIL = ? WHERE SERVICE_NO = ?";
-        // TODO sql작성..
 
         PreparedStatement pstmt = null;
         int result = 0;
@@ -94,6 +93,27 @@ public class ServiceDao {
             pstmt.setInt(23, sv.getServiceNo());
       
 
+            result = pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(pstmt);
+        }
+
+        return result;
+    }
+    //서비스넘버 받아 서비스 삭제하기
+    public int deleteService(Connection conn, int serviceNo) {
+        String sql = "DELETE FROM SERVICE_INFO WHERE SERVICE_NO=?";
+
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, serviceNo);
+      
             result = pstmt.executeUpdate();
 
         } catch (Exception e) {
@@ -371,5 +391,6 @@ public class ServiceDao {
         return svList;
         
     }
+   
 
 }
