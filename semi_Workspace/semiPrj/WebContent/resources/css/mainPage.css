@@ -40,11 +40,9 @@
     width: 100vW;
     
     /* 백그라운드이미지 각각 개별로 */
-    background: url(/dobby/resources/img/baner/메인배너_01.jfif);
-
-    /* 아래는 임시 설정 */
-    background-position: center center;
+    background: black;
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 #main-search-box{

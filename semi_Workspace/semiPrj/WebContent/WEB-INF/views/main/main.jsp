@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +19,9 @@
 		<div id="baner-back-btn"><span class="material-symbols-outlined">chevron_left</span></div>
 		<div id="baner-next-btn"><span class="material-symbols-outlined">chevron_right</span></div>
 		<div id="main-baner" style="left: 0;">
-			<a href="" class="baner-item">1</a>
-			<a href="" class="baner-item">2</a>
-			<a href="" class="baner-item">3</a>
-			<a href="" class="baner-item">4</a>
+			<c:forEach items="${list}" var="bvo">
+			<a href="${bvo.link}" class="baner-item" style="background: url(${bvo.imgLink});background-size: 100% 100%;"></a>
+			</c:forEach>
 		</div>
 	</div>
 	<div id="main-search-box">

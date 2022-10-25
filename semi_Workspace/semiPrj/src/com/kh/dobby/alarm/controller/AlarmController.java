@@ -1,4 +1,4 @@
-package com.kh.dobby.alarm;
+package com.kh.dobby.alarm.controller;
 
 import java.io.IOException;
 import java.util.List;
