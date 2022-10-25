@@ -111,7 +111,7 @@
 					</p>
                 </div>
                 <div id="service-review">서비스 평가
-                    <button id="go-board">전체보기</button>
+                    <button id="go-board" onclick="location.href='/dobby/reviewList'">전체보기</button>
                     <div class="review-box" id="review1">
                         <div id="review-head">
                             <div>
@@ -154,7 +154,7 @@
         <div id="side-content">
             <div id="reservation-box">
                 <div id="reservation-content"></div>
-                <div class="back-brown text-white" id="reservation-btn">예약하기</div>
+                <div class="back-brown text-white" id="reservation-btn" onclick="location.href='/dobby/reservation?sno=${sv.serviceNo}'">예약하기</div>
             </div>
             <div class="back-light" id="reserve-info">
                 서비스 완료후에 집요정에게 결제대금이 전달됩니다.

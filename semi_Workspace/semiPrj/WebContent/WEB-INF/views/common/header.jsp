@@ -418,24 +418,24 @@
             <div id="header-service">
                 <article><p>서비스둘러보기</p></article>
                 <div>
-                    <a href="/dobby/service/list"><p>가사도우미</p></a>
-                    <a href="/dobby/service/list"><p>이사</p></a>
-                    <a href="/dobby/service/list"><p>인테리어</p></a>
-                    <a href="/dobby/service/list"><p>전기/수도/가스</p></a>
-                    <a href="/dobby/service/list"><p>가전설치</p></a>
-                    <a href="/dobby/service/list"><p>펫/식물</p></a>
+                    <a href="/dobby/service/list?stn=1"><p>가사도우미</p></a>
+                    <a href="/dobby/service/list?stn=2"><p>이사</p></a>
+                    <a href="/dobby/service/list?stn=3"><p>인테리어</p></a>
+                    <a href="/dobby/service/list?stn=4"><p>전기/수도/가스</p></a>
+                    <a href="/dobby/service/list?stn=5"><p>가전설치</p></a>
+                    <a href="/dobby/service/list?stn=6"><p>펫/식물</p></a>
                 </div>
             </div>
 
             <div><a href=""><p>인기집요정</p></a></div>
-            <div><a href=""><p>인기서비스</p></a></div>
+            <div><a href="/dobby/famService"><p>인기서비스</p></a></div>
             <div><a href="/dobby/commu/list?pno=1"><p>커뮤니티</p></a></div>
             <div><a href="/dobby/event"><p>이벤트</p></a></div>
             <div id="header-help">
                 <article><p>고객센터</p></article>
                 <div>
-                    <a href=""><p>문의하기</p></a>
-                    <a href="/dobby/report"><p>신고하기</p></a>
+                    <a href="/dobby/request"><p>문의하기</p></a>
+                    <a href="/dobby/list"><p>신고하기</p></a>
                 </div>
             </div>
             <article id="header-nav-hover"></article>

@@ -31,37 +31,37 @@
 	</div>
 	<main>
 		<div id="main-category">
-			<a href="/dobby/service/list" class="category-item" style="z-index: 10;">
+			<a href="/dobby/service/list?stn=1" class="category-item" style="z-index: 10;">
 				<div class="category-box flex-center shadow-box">
 					<span class="material-symbols-outlined">styler</span>
 				</div>
 				<p>가사도우미</p>
 			</a>
-			<a href="/dobby/service/list" class="category-item">
+			<a href="/dobby/service/list?stn=2" class="category-item">
 				<div class="category-box flex-center shadow-box">
 					<span class="material-symbols-outlined">local_shipping</span>
 				</div>
 				<p>이사</p>
 			</a>
-			<a href="/dobby/service/list" class="category-item">
+			<a href="/dobby/service/list?stn=3" class="category-item">
 				<div class="category-box flex-center shadow-box">
 					<span class="material-symbols-outlined">scene</span>
 				</div>
 				<p>인테리어</p>
 			</a>
-			<a href="/dobby/service/list" class="category-item">
+			<a href="/dobby/service/list?stn=4" class="category-item">
 				<div class="category-box flex-center shadow-box">
 					<span class="material-symbols-outlined">shower</span>
 				</div>
 					<p>전기/수도/가스</p>
 			</a>
-			<a href="/dobby/service/list" class="category-item">
+			<a href="/dobby/service/list?stn=5" class="category-item">
 				<div class="category-box flex-center shadow-box">
 					<span class="material-symbols-outlined">kitchen</span>
 				</div>
 				<p>가전설치</p>
 			</a>
-			<a href="/dobby/service/list" class="category-item">
+			<a href="/dobby/service/list?stn=6" class="category-item">
 				<div class="category-box flex-center shadow-box">
 					<span class="material-symbols-outlined">potted_plant</span>
 				</div>

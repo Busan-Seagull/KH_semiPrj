@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.reservation.service.ReservationService;
 import com.kh.dobby.reservation.vo.ReservationVo;
+import com.kh.dobby.service.service.ServiceService;
 import com.kh.dobby.service.vo.ServiceVo;
 
 @WebServlet(urlPatterns = "/reservation/success")
@@ -30,14 +31,13 @@ public class ReservationSuccessController extends HttpServlet{
         String date = req.getParameter("date");
         String commet = req.getParameter("coment");
         
-        ServiceVo sv = new ServiceVo();
+        ServiceVo sv = new ServiceService().selectOne(sno);
         
         ReservationVo rv = new ReservationVo();
         rv.setReservationDate(date);
         rv.setComment(commet);
         //임시번호
-        rv.setServiceNo("999");
-//        rv.setServiceNo("888");
+        rv.setServiceNo(Integer.toString(sv.getServiceNo()));
         rv.setUserNo(loginMember.getUserNo());
         
         String rvNo = new ReservationService().insertReservation(rv);

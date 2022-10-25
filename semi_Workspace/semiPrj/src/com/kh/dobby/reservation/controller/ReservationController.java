@@ -12,6 +12,7 @@ import com.kh.dobby.common.PageVo;
 import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.reservation.service.ReservationService;
 import com.kh.dobby.reservation.vo.ReservationVo;
+import com.kh.dobby.service.service.ServiceService;
 import com.kh.dobby.service.vo.ServiceVo;
 
 @WebServlet(urlPatterns = "/reservation")
@@ -24,10 +25,8 @@ public class ReservationController extends HttpServlet{
 	    
 	    String sno = req.getParameter("sno");
   	    
-	    ServiceVo sv = new ServiceVo();
+	    ServiceVo sv = new ServiceService().selectOne(sno);
 	    //임시내용
-	    sv.setCharge(1231);
-	    sv.setChargeUnit("asdf");
 	    
 	    req.setAttribute("sv", sv);
 		req.getRequestDispatcher("/WEB-INF/views/reservation/reservation.jsp").forward(req, resp);
