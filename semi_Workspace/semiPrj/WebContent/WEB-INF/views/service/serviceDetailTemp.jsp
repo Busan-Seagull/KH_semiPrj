@@ -80,7 +80,8 @@
                     <div id="favorite">♥
                         <span id="favor-num">50</span>
                     </div>
-                    <button>수정하기</button>
+                    <button onclick="location.href='/dobby/service/modify?sno=${sv.serviceNo}';">수정하기</button>
+                 
                     <button>삭제하기</button>
                 </div>
             </div>

@@ -24,7 +24,7 @@
 				<div id="service-category">서비스 카테고리</div>
 				<div id="service-category-input">
 					<select name="type-no" id="">
-						<option value="1">가사도우미</option>
+						<option value="1" selected>가사도우미</option>
 						<option value="2">이사</option>
 						<option value="3">인테리어</option>
 						<option value="4">전기/수도/가스</option>
@@ -40,7 +40,7 @@
 				<div id="payment-unit">요금단위</div>
 				<div id="payment-unit-input">
 					<select name="charge-unit" id="select-charge-unit">
-						<option value="2">평당</option>
+						<option value="2" selected>평당</option>
 						<option value="3">시간당</option>
 						<option value="4">회당</option>
 						<option value="1">견적필요</option>
@@ -68,7 +68,7 @@
 				<div id="open-time">운영시작시간</div>
 				<div id="open-time-input">
 					<select name="open-time" id="">
-						<option value="01:00">01:00</option>
+						<option value="01:00" selected>01:00</option>
 						<option value="02:00">02:00</option>
 						<option value="03:00">03:00</option>
 						<option value="04:00">04:00</option>
@@ -97,7 +97,7 @@
 				<div id="close-time">운영종료시간</div>
 				<div id="close-time-input">
 					<select name="close-time" id="">
-						<option value="01:00">01:00</option>
+						<option value="01:00" selected>01:00</option>
 						<option value="02:00">02:00</option>
 						<option value="03:00">03:00</option>
 						<option value="04:00">04:00</option>
@@ -126,7 +126,7 @@
 				<div id="career-years">경력</div>
 				<div id="career-years-input">
 					<select name="helper-exp" id="">
-						<option value="1">1년 미만</option>
+						<option value="1" selected>1년 미만</option>
 						<option value="2">1년</option>
 						<option value="3">2년</option>
 						<option value="4">3년</option>
@@ -140,7 +140,7 @@
 				<div id="region-input">
 					<div id="region-input-1">
 						<select name="area-no" id="">
-							<option value="0">지역을 선택해주세요</option>
+							<option value="0" selected>지역을 선택해주세요</option>
 							<option value="1">도봉구</option>
 							<option value="2">노원구</option>
 							<option value="3">강북구</option>
@@ -170,7 +170,7 @@
 					</div>
 					<div id="region-input-2">
 						<select name="area-no" id="">
-							<option value="0">지역을 선택해주세요</option>
+							<option value="0" selected>지역을 선택해주세요</option>
 							<option value="1">도봉구</option>
 							<option value="2">노원구</option>
 							<option value="3">강북구</option>
@@ -200,7 +200,7 @@
 					</div>
 					<div id="region-input-3">
 						<select name="area-no" id="">
-							<option value="0">지역을 선택해주세요</option>
+							<option value="0" selected>지역을 선택해주세요</option>
 							<option value="1">도봉구</option>
 							<option value="2">노원구</option>
 							<option value="3">강북구</option>
@@ -230,7 +230,7 @@
 					</div>
 					<div id="region-input-4">
 						<select name="area-no" id="">
-							<option value="0">지역을 선택해주세요</option>
+							<option value="0" selected>지역을 선택해주세요</option>
 							<option value="1">도봉구</option>
 							<option value="2">노원구</option>
 							<option value="3">강북구</option>
@@ -260,7 +260,7 @@
 					</div>
 					<div id="region-input-5">
 						<select name="area-no" id="">
-							<option value="">지역을 선택해주세요</option>
+							<option value="0" selected>지역을 선택해주세요</option>
 							<option value="1">도봉구</option>
 							<option value="2">노원구</option>
 							<option value="3">강북구</option>
@@ -341,9 +341,6 @@
 
 			const selectIndex = select.selectedIndex;
 			const val = select.options[selectIndex].value;
-
-			console.log(selectIndex);
-			console.log(val);
 
 			if (val == 1) {
 				numberInput.value = 0;

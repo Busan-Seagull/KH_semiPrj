@@ -113,3 +113,6 @@
 	width: 80px;
 	height: 23px;
 }
+.helper-contents2 div {
+	z-index: 50;
+}

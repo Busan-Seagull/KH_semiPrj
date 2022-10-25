@@ -1,5 +1,10 @@
+<%@page import="com.kh.dobby.service.vo.ServiceVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<% ServiceVo sv = (ServiceVo)session.getAttribute("sv");
+	System.out.println(sv);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,26 +14,27 @@
 <link rel="stylesheet"
 	href="/dobby/resources/css/serviceModification.css">
 </head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
 
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div id="service-registration-wrap">
 		<div id="registration-title">서비스 정보 수정</div>
-		<form action="" method="post" enctype="multipart/form-data">
+		<form action="/dobby/service/modify" method="post" enctype="multipart/form-data">
 			<div id="registration-form1">
 				<div id="service-name">서비스명</div>
 				<div id="service-name-input">
-					<input type="text" name="service">
+					<input type="text" name="service" value="${sv.title}">
 				</div>
 				<div id="service-category">서비스 카테고리</div>
 				<div id="service-category-input">
 					<select name="type-no" id="" disabled>
-						<option value="1">가사도우미</option>
-						<option value="2">이사</option>
-						<option value="3">인테리어</option>
-						<option value="4">전기/수도/가스</option>
-						<option value="5">가전설치</option>
-						<option value="6">펫/식물</option>
+						<option value="1" <c:if test="${sv.typeNo==1}">selected</c:if>>가사도우미</option>
+						<option value="2" <c:if test="${sv.typeNo==2}">selected</c:if>>이사</option>
+						<option value="3" <c:if test="${sv.typeNo==3}">selected</c:if>>인테리어</option>
+						<option value="4" <c:if test="${sv.typeNo==4}">selected</c:if>>전기/수도/가스</option>
+						<option value="5" <c:if test="${sv.typeNo==5}">selected</c:if>>가전설치</option>
+						<option value="6" <c:if test="${sv.typeNo==6}">selected</c:if>>펫/식물</option>
 					</select>
 				</div>
 				<div id="profile-pic">프로필 사진</div>
@@ -39,15 +45,15 @@
 				<div id="payment-unit">요금단위</div>
 				<div id="payment-unit-input">
 					<select name="charge-unit" id="select-charge-unit">
-						<option value="2">평당</option>
-						<option value="3">시간당</option>
-						<option value="4">회당</option>
-						<option value="1">견적필요</option>
+						<option value="2"<c:if test="${sv.chargeUnitNo==2}">selected</c:if>>평당</option>
+						<option value="3"<c:if test="${sv.chargeUnitNo==3}">selected</c:if>>시간당</option>
+						<option value="4"<c:if test="${sv.chargeUnitNo==4}">selected</c:if>>회당</option>
+						<option value="1"<c:if test="${sv.chargeUnitNo==1}">selected</c:if>>견적필요</option>
 					</select>
 				</div>
 				<div id="payment">요금</div>
 				<div id="payment-input">
-					<input type="number" name="charge" value="10000" id="number">
+					<input type="number" name="charge" value="10000" id="number" value="${sv.charge}">
 					원
 				</div>
 				<div id="payment-method">
@@ -62,7 +68,7 @@
 				</div>
 				<div id="introduction">한줄소개</div>
 				<div id="introduction-input">
-					<input type="text" name="service-intro">
+					<input type="text" name="service-intro" value="${sv.serviceIntro}">
 				</div>
 				<div id="open-time">운영시작시간</div>
 				<div id="open-time-input">
@@ -259,7 +265,7 @@
 					</div>
 					<div id="region-input-5">
 						<select name="area-no" id="">
-							<option value="">지역을 선택해주세요</option>
+							<option value="0">지역을 선택해주세요</option>
 							<option value="1">도봉구</option>
 							<option value="2">노원구</option>
 							<option value="3">강북구</option>
@@ -312,16 +318,14 @@
 			<div id="service-detail-wrap">
 				<div id="service-detail-text" class="registration-t2">서비스 상세내용</div>
 				<div id="service-detail" class="textarea-div">
-					<textarea name="service-detail" id=""
-						placeholder="서비스에 대한 상세내용을 작성해주세요"></textarea>
+					<textarea name="service-detail" id="">${sv.serviceDetail}</textarea>
 				</div>
 
 			</div>
 			<div id="payment-detail-wrap">
 				<div id="payment-detail-text" class="registration-t2">요금 상세 정보</div>
 				<div id="payment-detail" class="textarea-div">
-					<textarea name="payment-detail" id=""
-						placeholder="요금에 대한 상세내용을 작성해주세요"></textarea>
+					<textarea name="payment-detail" id="">${sv.paymentDetail}</textarea>
 				</div>
 			</div>
 			<div id="registration-button-div">
@@ -341,9 +345,6 @@
 			const selectIndex = select.selectedIndex;
 			const val = select.options[selectIndex].value;
 
-			console.log(selectIndex);
-			console.log(val);
-
 			if (val == 1) {
 				numberInput.value = 0;
 				numberInput.disabled = true;
@@ -351,6 +352,10 @@
 				numberInput.disabled = false;
 			}
 		})
+		
+	</script>
+	<script>
+		
 	</script>
 
 </body>
