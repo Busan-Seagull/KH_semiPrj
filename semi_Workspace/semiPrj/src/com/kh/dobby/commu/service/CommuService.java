@@ -68,7 +68,7 @@ public class CommuService {
     }
 
     public int edit(CommuVo vo) {
-Connection conn = JDBCTemplate.getConnection();
+        Connection conn = JDBCTemplate.getConnection();
         
         int result = new Commudao().updateOneByNo(conn,vo);
         
@@ -82,5 +82,25 @@ Connection conn = JDBCTemplate.getConnection();
         
         return result;
     }
+
+    public int delete(String bno) {
+        Connection conn=JDBCTemplate.getConnection();
+        
+        int result=new Commudao().delete(conn,bno);
+        
+        if(result==1) {
+            
+            JDBCTemplate.commit(conn);
+            
+        }else {
+            JDBCTemplate.rollback(conn);
+        }
+        
+        JDBCTemplate.close(conn);
+        
+        return result;
+        }
+
+    
 
 }

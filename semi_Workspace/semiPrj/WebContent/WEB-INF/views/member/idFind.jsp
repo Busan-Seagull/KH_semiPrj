@@ -133,11 +133,16 @@ alert('<%= msg%>');
             </div>
 			
             <div>
-            <input type="submit" value="아이디 찾기" onclick="window.open('http://127.0.0.1:8888/dobby/member/findidresult', '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no')">
+            <input type="submit" value="아이디 찾기" onclick="setTimeOut(find(),100);">
             </div>
             
         </div>
-        
+        <script>
+            function find(){
+                window.open('http://127.0.0.1:8888/dobby/member/findidresult', '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no');
+            }
+        </script>
+     
 
     </form>
 

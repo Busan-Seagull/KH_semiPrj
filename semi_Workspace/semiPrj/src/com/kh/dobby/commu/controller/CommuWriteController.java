@@ -18,7 +18,15 @@ public class CommuWriteController extends HttpServlet {
     
 @Override
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    req.getRequestDispatcher("/WEB-INF/views/commu/write.jsp").forward(req, resp);
+    HttpSession s =req.getSession();
+    MemberVo loginMember=(MemberVo) s.getAttribute("loginMember");
+    
+    if(loginMember!=null) {
+        req.getRequestDispatcher("/WEB-INF/views/commu/write.jsp").forward(req, resp);
+    }else {
+        req.setAttribute("msg","로그인을 해주세요!");
+        req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+    }
 }
 
 
@@ -47,11 +55,11 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
     int result=CommuService.write(cv);
     
     if (result==1) {
-        hs.setAttribute("msg", "게시물 작성 성공!");
-        req.getRequestDispatcher("/WEB-INF/views/commu/list.jsp").forward(req, resp);
+//        hs.setAttribute("msg", "게시물 작성 성공!");
+        resp.sendRedirect("/dobby/commu/list?pno=1");
     }else {
         req.setAttribute("msg","게시물 작성 실패ㅠ" );
-        req.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
        }
        
         

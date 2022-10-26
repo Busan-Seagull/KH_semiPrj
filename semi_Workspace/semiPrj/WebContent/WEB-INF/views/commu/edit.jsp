@@ -4,14 +4,8 @@
 
 <%
 CommuVo vo=(CommuVo)request.getAttribute("vo");
-String msg = (String)session.getAttribute("msg");
-session.removeAttribute("msg"); 
 %>
-<script>
-<%if(msg!=null){%>
-alert('<%= msg%>');
-<%}%>
-</script>
+
 
 <!DOCTYPE html>
 <html>
@@ -137,7 +131,7 @@ input[type=submit]{
 
     <div id="write-main">
         <div id="write-area">
-            <form action="/dobby/commu/write" method="post">
+            <form action="" method="post">
                 <div class="row1">
                     <select name="category">
                     <%if(Integer.parseInt(loginMember.getRightNo())==3){%>
@@ -155,16 +149,16 @@ input[type=submit]{
                 </div>
 
                 <div id="title" class="row1">
-                  <input type="text" name="title" placeholder="제목을 입력하세요.">
+                  <input type="text" name="title" placeholder="제목을 입력하세요." value="<%=vo.getTitle()%>">
                 </div>
      			 <div id="content">
-                    <textarea id="summernote" name="editordata"></textarea>
+                    <textarea id="summernote" name="editordata"><%=vo.getContent()%></textarea>
                 </div>
 
                 
                 <div id="sub-btn">
-                    <input type="submit" value="작성하기">
-                    <input type="button" value="작성취소">
+                    <input type="submit" value="수정완료">
+                    <input type="button" value="수정취소" onclick="location.href='http://127.0.0.1:8888/dobby/commu/detail?bno=<%=vo.getPostNo()%>'">
                 </div>
 
     
