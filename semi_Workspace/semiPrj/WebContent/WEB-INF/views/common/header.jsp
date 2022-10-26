@@ -414,7 +414,7 @@
             <%} %>
         </div>
     </header>
-   	<%if(loginMember!=null&&!("3".equals(loginMember.getRightNo()))) {%>
+   	<%if(loginMember==null||!("3".equals(loginMember.getRightNo()))) {%>
     <nav style="z-index: 100;">
         <div id="header-nav-box">
             <div class="img"></div>
@@ -451,10 +451,12 @@
         document.addEventListener('scroll', () => {
             // console.log(window.scrollY);
             const nav = document.querySelector('nav');
-            if(window.scrollY >= 150){
-                nav.classList.add('sticky');
-            }else{
-                nav.classList.remove('sticky');
+            if(nav!=null){
+	            if(window.scrollY >= 150){
+	                nav.classList.add('sticky');
+	            }else{
+	                nav.classList.remove('sticky');
+	            }
             }
         });
         

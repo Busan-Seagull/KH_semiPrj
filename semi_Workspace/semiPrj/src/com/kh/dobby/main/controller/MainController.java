@@ -31,6 +31,8 @@ public class MainController extends HttpServlet{
 	    if(list!=null) {
 	        req.setAttribute("list", list);
 	        req.getRequestDispatcher("/WEB-INF/views/main/main.jsp").forward(req, resp);
+	    }else {
+	        req.getRequestDispatcher("/WEB-INF/views/main/main.jsp").forward(req, resp);
 	    }
 	    
 	}
