@@ -100,7 +100,7 @@ public class ReservationDao {
                 + "    \"COMMENT\",\r\n"
                 + "    RE_COMMENT,\r\n"
                 + "    ESTIMATE_DATE,\r\n"
-                + "    NAME,\r\n"
+                + "    NICK,\r\n"
                 + "    ADDRESS,\r\n"
                 + "    D_NAME,\r\n"
                 + "    S_NAME,\r\n"
@@ -113,7 +113,7 @@ public class ReservationDao {
                 + "JOIN \r\n"
                 + "(\r\n"
                 + "    SELECT\r\n"
-                + "    USER_NO AS D_NO, U.NAME AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
+                + "    USER_NO AS D_NO, U.NICK AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
                 + "    FROM SERVICE_INFO\r\n"
                 + "    JOIN \"USER\" U USING(USER_NO)\r\n"
                 + "    JOIN \"SERVICE\" S USING(SERVICE_TYPE_NO) \r\n"
@@ -144,7 +144,7 @@ public class ReservationDao {
                 rv.setReservationDate(rs.getString("RESERVATION_DATE"));
                 rv.setReservationYN(rs.getString("RESERVATION_YN"));
                 rv.setServiceNo(rs.getString("SERVICE_NO"));
-                rv.setUserName(rs.getString("NAME"));
+                rv.setUserName(rs.getString("NICK"));
                 rv.setUserNo(rs.getString("USER_NO"));
                 rv.setsTitle(rs.getString("SERVICE_TITLE"));
                 rv.setsName(rs.getString("S_NAME"));
@@ -185,7 +185,7 @@ public class ReservationDao {
                 + "    \"COMMENT\",\r\n"
                 + "    RE_COMMENT,\r\n"
                 + "    ESTIMATE_DATE,\r\n"
-                + "    NAME,\r\n"
+                + "    NICK,\r\n"
                 + "    ADDRESS,\r\n"
                 + "    D_NAME,\r\n"
                 + "    S_NAME,\r\n"
@@ -198,7 +198,7 @@ public class ReservationDao {
                 + "JOIN \r\n"
                 + "(\r\n"
                 + "    SELECT\r\n"
-                + "    USER_NO AS D_NO, U.NAME AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
+                + "    USER_NO AS D_NO, U.NICK AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
                 + "    FROM SERVICE_INFO\r\n"
                 + "    JOIN \"USER\" U USING(USER_NO)\r\n"
                 + "    JOIN \"SERVICE\" S USING(SERVICE_TYPE_NO) \r\n"
@@ -230,7 +230,7 @@ public class ReservationDao {
                 rv.setReservationDate(rs.getString("RESERVATION_DATE"));
                 rv.setReservationYN(rs.getString("RESERVATION_YN"));
                 rv.setServiceNo(rs.getString("SERVICE_NO"));
-                rv.setUserName(rs.getString("NAME"));
+                rv.setUserName(rs.getString("NICK"));
                 rv.setUserNo(rs.getString("USER_NO"));
                 rv.setsTitle(rs.getString("SERVICE_TITLE"));
                 rv.setsName(rs.getString("S_NAME"));
