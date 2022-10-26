@@ -1,5 +1,13 @@
+<%@page import="java.util.List"%>
+<%@ page import="com.kh.dobby.request.vo.Requestvo" %>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	List<Requestvo> voList = (List<Requestvo>)request.getAttribute("voList");
+%>
 <!DOCTYPE html>
 <html>
 <head>

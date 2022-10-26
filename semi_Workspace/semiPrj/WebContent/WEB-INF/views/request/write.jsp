@@ -150,6 +150,8 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 
+
+<form>
 <%if(loginmember!=null){ %> <!-- 로그인멤버 널일경우 에러페이지 출력 -->
 	<div id="blackline"></div>
 	<div id="title">문의게시판 작성</div>
@@ -231,6 +233,6 @@
 	
 	
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
+	</form>
 </body>
 </html>
