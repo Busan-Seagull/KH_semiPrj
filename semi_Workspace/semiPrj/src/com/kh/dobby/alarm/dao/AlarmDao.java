@@ -14,7 +14,7 @@ public class AlarmDao {
 
     public List<AlarmVo> selectList(Connection conn, String userNo) {
         
-        String sql = "SELECT ALARM_NO, USER_NO, CONTENT, MODIFY_DATE, CHECK_YN FROM ALARM WHERE USER_NO = ? AND CHECK_YN != 'Y'";
+        String sql = "SELECT ALARM_NO, USER_NO, \"CONTENT\", MODIFY_DATE, CHECK_YN FROM ALARM WHERE USER_NO = ? AND CHECK_YN != 'Y'";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         
@@ -68,9 +68,9 @@ public class AlarmDao {
         return result;
     }
 
-    public int insertAlarm(Connection conn, String uno, String text) {
+    public int insertAlarm(Connection conn, String text, String uno) {
 
-        String sql = "INSERT INTO ALARM (ALARM_NO, USER_NO, CONTENT) VALUES (SEQ_ALARM_NO.NEXTVAL, ?, ?)";
+        String sql = "INSERT INTO ALARM (ALARM_NO, USER_NO, \"CONTENT\") VALUES (SEQ_ALARM_NO.NEXTVAL, ?, ?)";
         PreparedStatement pstmt = null;
         int result = 0;
         
@@ -78,6 +78,9 @@ public class AlarmDao {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uno);
             pstmt.setString(2, text);
+            
+            System.out.println("text"+text);
+            System.out.println(uno);
             
             result = pstmt.executeUpdate();
             

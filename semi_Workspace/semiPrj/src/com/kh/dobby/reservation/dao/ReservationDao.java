@@ -15,15 +15,16 @@ public class ReservationDao {
 
     public int insertReservation(Connection conn, ReservationVo rv) {
 
-        String sql = "INSERT INTO RESERVATION (RESERVATION_NO, SERVICE_NO, USER_NO, \"COMMENT\") VALUES (SEQ_RESERVATION_NO.NEXTVAL, ?,?,?)";
+        String sql = "INSERT INTO RESERVATION (RESERVATION_NO, SERVICE_NO, RESERVATION_AMOUNT, USER_NO, \"COMMENT\") VALUES (SEQ_RESERVATION_NO.NEXTVAL,?,?,?,?)";
         PreparedStatement pstmt = null;
         int result = 0;
         
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, rv.getServiceNo());
-            pstmt.setString(2, rv.getUserNo());
-            pstmt.setString(3, rv.getComment());
+            pstmt.setString(2, rv.getReservationAmount());
+            pstmt.setString(3, rv.getUserNo());
+            pstmt.setString(4, rv.getComment());
             
             result = pstmt.executeUpdate();
             

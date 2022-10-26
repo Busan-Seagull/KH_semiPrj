@@ -27,7 +27,7 @@
 				<div id="rs-s-img"></div>
 				<div id="rs-s-info" class="flex-col">
 					<div id="rs-si-title"><h1>${sv.title}</h1></div>
-					<div id="rs-si-dobby">${sv.helperNo}</div>
+					<div id="rs-si-dobby">${sv.helper}</div>
 					<div id="rs-si-r-date"><span>예약날짜 : </span>${rv.reservationDate}</div>
 					<div id="rs-si-coment"><span>요구사항 : </span>${rv.comment}</div>
 				</div>
@@ -50,7 +50,7 @@
 					<p>담당 집요정이 예약을 확인한 후 예약승인이 이루어 집니다.</p>
 					<p>예약 승인 이후 결제가 진행되어야 예약이 완료됩니다.</p>
 				</div>
-				<a href="" class="grid-c23 grid-r45 btn shadow-box flex-center">확인</a>
+				<a href="/dobby" class="grid-c23 grid-r45 btn shadow-box flex-center">확인</a>
 			</div> 
 		</div>
 	</div>

@@ -36,7 +36,6 @@
     <%if(loginMember != null){%>
         <a href="/dobby/member/mypage"><span class="material-symbols-outlined" style="font-size: 35px;">person_filled</span></a>
         <a href=""><span class="material-symbols-outlined" style="font-size: 30px;">favorite</span></a>
-        <a href=""><span class="material-symbols-outlined" style="font-size: 30px;">notifications</span></a>
         <a href="/dobby/member/logout"><span class="material-symbols-outlined" style="font-size: 30px;">logout</span></a>
         <hr>
     <%}%>

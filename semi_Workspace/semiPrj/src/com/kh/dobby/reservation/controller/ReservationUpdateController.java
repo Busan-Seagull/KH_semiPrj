@@ -21,6 +21,7 @@ public class ReservationUpdateController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	 
+	    //updateAmount
         String rno = req.getParameter("rno");
         String amountText = req.getParameter("amount");
         ReservationService rs = new ReservationService();

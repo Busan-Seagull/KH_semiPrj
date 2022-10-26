@@ -392,6 +392,7 @@
         <div id="header-logo-box">
             <img onclick="location.href='/dobby'" src="/dobby/resources/img/로고.png" alt="" id="header-logo">
             <%if(loginMember != null){%>
+            	<%if(!("3".equals(loginMember.getRightNo()))) {%>
             	<div id="header-quick-box">
 	                <a href="/dobby/member/mypage"><div class="img"></div><p>MyPage</p></a>
 	                <a href=""><div class="img"></div><p>Favorites</p></a>
@@ -402,6 +403,7 @@
                         <div class="img"></div>
                         <p>Alarm</p>
                     </a>
+                <%} %>
 	                <a href="/dobby/member/logout"><div class="img"></div><p>Logout</p></a>
 	            </div>
             <%}else{%>
@@ -412,6 +414,7 @@
             <%} %>
         </div>
     </header>
+   	<%if(!("3".equals(loginMember.getRightNo()))) {%>
     <nav style="z-index: 100;">
         <div id="header-nav-box">
             <div class="img"></div>
@@ -442,6 +445,7 @@
         </div>
        
     </nav>
+    <%} %>
 
     <script defer>
         document.addEventListener('scroll', () => {
@@ -494,7 +498,7 @@
 
                                 div.addEventListener('click', function(){
                                     updateCheck(element.alarmNo);
-                                    location.href = "/dobby/member/mypage03reservation?=pno=3";
+                                    location.href = "/dobby/member/mypage03reservation?pno=3";
                                 });
 
                                 list.appendChild(div);

@@ -31,11 +31,6 @@ public class EventListController extends HttpServlet {
         
         List<EventVo> list = es.getRanckList(pv);
         
-//        Gson gson = new Gson();
-//        
-//        String json = gson.toJson(list);
-//        resp.getWriter().write(json);
-        
         req.setAttribute("list", list);
         req.setAttribute("pv", pv);
         
