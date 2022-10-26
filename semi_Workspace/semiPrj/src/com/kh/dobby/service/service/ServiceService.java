@@ -98,8 +98,6 @@ public class ServiceService {
     public ServiceVo selectOne(String sno) {
         Connection conn = JDBCTemplate.getConnection();
 
-        int result = 0;
-
         ServiceVo sv = null;
 
         sv = sd.selectOne(conn, sno);

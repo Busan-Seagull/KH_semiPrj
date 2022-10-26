@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +11,34 @@
 <link rel="stylesheet" href="/dobby/resources/css/pay.css">
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
 </head>
+<script defer>
+	function pointCalculate(){
+		const usePoint = document.querySelector('#use-point').value;
+		var usePointNumber = parseInt(usePoint);
+
+		document.querySelector('#use-point-2').innerText = usePointNumber.toLocaleString('ko-KR') + 'p';
+
+		document.querySelector('#final-amount').innerText = parseInt((${rv.reservationAmount} - usePoint)).toLocaleString('ko-kr')+'원';
+	}
+	function doPay(){
+
+		if(!document.querySelector('#payment-agree-checkbox').checked){
+			alert("결제 동의 해라");
+		}else{
+			location.href='/dobby/pay/complete';
+		}
+		
+		;
+		payment-agree-checkbox
+
+	}
+
+
+</script>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
+
+	
 
 	<div id="wrap">
 		<div id="main-wrap">
@@ -19,23 +48,26 @@
 					<div id="reserv-info-pic">
 						<img src="/ryan/공통/resources/이상해씨.jpg" alt="">
 					</div>
-					<div id="reserv-info-helper">집요정</div>
-					<div id="reserv-info-service">집고치는 집요정</div>
-					<div id="reserv-info-request">요청사항 : 잘좀 해주세요~</div>
-					<div id="reserv-info-date">예약날짜 : 2022/10/10</div>
+					<div id="reserv-info-helper">${rv.dName}</div>
+					<div id="reserv-info-service">${rv.sTitle}</div>
+					<div id="reserv-info-request">요청사항 : ${rv.reComment}</div>
+					<div id="reserv-info-date">예약날짜 : ${rv.reservationDate}</div>
 					<div id="reserv-info-pay">
-						15,000원<br>*20
+					<c:set var= "amount" value="${rv.reservationAmount/rv.charge}"/>
+						${charge}원<br>*<fmt:parseNumber value="${amount}" integerOnly="true"/>
 					</div>
 				</div>
 				<div id="request">
 					<div id="request-text">요청사항</div>
 					<div id="request-input">
-						<input type="text">
+						<input name ="request" type="text">
 					</div>
 				</div>
 				<div id="order-sum">
 					<div id="order-sum-text">주문합계</div>
-					<div id="order-sum-input">300,000</div>
+					<div id="order-sum-input">
+					<fmt:formatNumber value="${rv.reservationAmount}" pattern="#,###"/>
+					</div>
 					<div id="won">원</div>
 				</div>
 			</div>
@@ -48,11 +80,11 @@
 							<tr>
 								<td class="text-grey">사용가능 포인트</td>
 								<td class="text-green">35,000p</td>
-								<td id="point-input-div"><input type="text"></td>
+								<td id="point-input-div"><input id="use-point" type="number" min=0></td>
 							</tr>
 						</table>
 					</div>
-					<div class="inline-block" id="point-btn">사용</div>
+					<div class="inline-block" id="point-btn" onclick="pointCalculate()">사용</div>
 				</div>
 			</div>
 			<div id="select-payment-wrap">
@@ -101,11 +133,11 @@
 				<table>
 					<tr>
 						<td class="payment-detail-text">서비스 금액</td>
-						<td class="payment-detail-input">300,000원</td>
+						<td class="payment-detail-input"><fmt:formatNumber value="${rv.reservationAmount}" pattern="#,###"/></td>
 					</tr>
 					<tr>
 						<td class="payment-detail-text">포인트 사용</td>
-						<td class="payment-detail-input text-green">12,000p</td>
+						<td class="payment-detail-input text-green" id="use-point-2">0p</td>
 					</tr>
 				</table>
 			</div>
@@ -113,7 +145,7 @@
 				<table>
 					<tr>
 						<td class="payment-detail-text">총 결제 금액</td>
-						<td class="payment-detail2-input">288,000원</td>
+						<td id="final-amount" class="payment-detail2-input"><fmt:formatNumber value="${rv.reservationAmount}" pattern="#,###"/>원</td>
 					</tr>
 				</table>
 			</div>
@@ -122,7 +154,7 @@
 				<label for="payment-agree-checkbox">주문내역을 확인했으며 결제에
 					동의합니다(필수)</label>
 			</div>
-			<input type="submit" id="payment-btn" value="결제하기">
+			<input type="submit" id="payment-btn" value="결제하기" onclick="doPay()">
 			<div id="cancel-btn">결제취소</div>
 		</div>
 	</div>
