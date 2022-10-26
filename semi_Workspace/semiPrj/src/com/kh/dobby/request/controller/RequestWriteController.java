@@ -9,13 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import com.kh.dobby.member.vo.MemberVo;
+import com.kh.dobby.request.service.RequestService;
+import com.kh.dobby.request.vo.Requestvo;
 
 @WebServlet(urlPatterns = "/request/write")
 public class RequestWriteController extends HttpServlet{
 
+    private RequestService rs = new RequestService();
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/views/request/write.jsp").forward(req, resp);
+        
+        //로그인 검사
     }
     
     
@@ -30,8 +39,34 @@ public class RequestWriteController extends HttpServlet{
         HttpSession s = req.getSession();
         
         //로그인멤버 가져옴
+        MemberVo loginMember = (MemberVo) s.getAttribute("loginMember");
         
+        //인코딩
         
+        //데이터 꺼내기
+        String title = req.getParameter("title");
+        String content = req.getParameter("content");
+        //String postno = req.getParameter("postno");
+        //Part file = req.getPart("file");
+        
+        //데이터 뭉치기
+        Requestvo vo = new Requestvo();
+        vo.setTitle(title);
+        vo.setContent(content);
+        vo.setPostNo(loginMember.getUserNo());
+        
+        //디비 다녀오기
+        int result = rs.write(vo);
+        
+        //화면 선택
+        if(result==1) {
+            s.setAttribute("alertMsg", "작성 성공");
+            resp.sendRedirect("/dobby/request");
+        } else {
+            //게시글 작성실패
+            s.setAttribute("alertMsg", "작성 실패");
+            resp.sendRedirect("/views/common/error.jsp");
+        }
     }
     
 }
