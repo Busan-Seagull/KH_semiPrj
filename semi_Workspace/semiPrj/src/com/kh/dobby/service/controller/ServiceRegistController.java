@@ -17,8 +17,12 @@ import com.kh.dobby.service.vo.ServiceAttachmentVo;
 import com.kh.dobby.service.vo.ServiceVo;
 
 @WebServlet(urlPatterns = "/service/regist")
-@MultipartConfig(location = "c:/upload", fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024
-        * 50, maxRequestSize = 1024 * 1024 * 50 * 5)
+@MultipartConfig(
+//        location = "c:/upload" ,
+        fileSizeThreshold = 1024 * 1024 ,
+        maxFileSize = 1024 * 1024 * 50 ,
+        maxRequestSize = 1024 * 1024 * 50 * 5
+        )
 public class ServiceRegistController extends HttpServlet {
 
     @Override
@@ -65,6 +69,9 @@ public class ServiceRegistController extends HttpServlet {
         String[] areaNo = req.getParameterValues("area-no");
         String serviceDetail = req.getParameter("service-detail");
         String paymentDetail = req.getParameter("payment-detail");
+        
+        System.out.println(title);
+        System.out.println(typeNo);
 
         System.out.println(pTypeNo.length);
         for (int i = 0; i < pTypeNo.length; i++) {

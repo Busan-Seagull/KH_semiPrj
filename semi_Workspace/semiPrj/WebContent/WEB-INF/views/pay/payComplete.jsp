@@ -91,8 +91,8 @@
 
 		</div>
 		<div id="button-wrap">
-			<button class="button" id="button1">홈으로 가기</button>
-			<button class="button" id="button2">예약내역 확인</button>
+			<button class="button" id="button1" onclick="location.href='/dobby'">홈으로 가기</button>
+			<button class="button" id="button2" onclick="location.href='/dobby/mypage/history'">결제내역 확인</button>
 		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
