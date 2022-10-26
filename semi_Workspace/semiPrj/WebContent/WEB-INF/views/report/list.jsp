@@ -75,8 +75,7 @@ pageEncoding="UTF-8"%>
 	position: relative;
 	justify-content:center;
 	line-height:60px;
-	top:65px;
-	left:420px;
+	left:330px;
 	border-radius:2.5rem;
 	
 	}
@@ -203,7 +202,7 @@ pageEncoding="UTF-8"%>
 	<!-- 페이징 -->
 	<div id="page-area">
 		<ul id="page-nation">
-			<li><a href="/dobby/report?pno=1" class="first"><<</a></li>
+			<li><a href="/dobby/list?pno=1" class="first"><<</a></li>
 			<li><a class="arrow left"><</a></li>
 			<li><a class="num"></a></li>
 			<li><a class="num"></a></li>
@@ -211,7 +210,7 @@ pageEncoding="UTF-8"%>
 			<li><a class="num"></a></li>
 			<li><a class="num"></a></li>
 			<li><a class="arrow right">></a></li>
-			<li><a href="/dobby/report?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
+			<li><a href="/dobby/list?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
 		</ul>
 	</div>
 	<script>
@@ -244,7 +243,7 @@ pageEncoding="UTF-8"%>
 			if(page<1 || page><%=pv.getMaxPage()%>){
 				num.classList.add('p-none');
 			}else{
-				num.href = '/dobby/report?pno='+page;
+				num.href = '/dobby/list?pno='+page;
 			}
 			num.innerHTML = page;
 			page++;

@@ -110,7 +110,7 @@ public class ReportDao {
         try {
             pstmt=conn.prepareStatement(sql);
             pstmt.setString(1, postNo);
-            System.out.println(postNo);
+            
             rs = pstmt.executeQuery();
             
             if(rs.next()) {

@@ -68,20 +68,16 @@ pageEncoding="UTF-8"%>
 	border-bottom: 3px solid black;
 }
 
-#t4{width: 80px;}
-#t5{width: 160px;}
-#t6{width: 160px;}
-#t7{width: 480px;}
-#t8{width: 160px;}
+.h-title1{width: 80px;}
+.h-title2{width: 160px;}
+.h-title3{width: 160px;}
+.h-title4{width: 480px;}
+.h-title5{width: 160px;}
 #t9{width: 144px; height: 46px;}
 #t10{width: 336px;}
 #t11{width: 144px;height: 46px;}
 #t12{width: 336px;}
-#t13{ width: 80px;}
-#t14{ width: 160px;}
-#t15{ width: 160px;}
-#t16{ width: 480px;}
-#t17{ width: 158px;}
+
 
 .i1{
 	width: 60px;
@@ -98,7 +94,7 @@ pageEncoding="UTF-8"%>
 #i{
 	width: 400px;
 	display: flex;
-	justify-content: space-around;
+	justify-content: stretch;
 	position: relative;
 	margin: 0 auto;
 	top: 60px;
@@ -174,6 +170,14 @@ overflow:auto;
 #reply-reply{
 	postition: relative;
 	top: 100px;
+	height: 100px;
+}
+#write-reply{
+	width:60px;
+	height:60px;
+	border-radius:2.5rem;
+	background-color:004412;
+	color:white;
 }
 
 </style>
@@ -191,58 +195,65 @@ overflow:auto;
 		<div id="title-a"></div>
 		<div id="title-b">신고게시판</div>
 	</div>
-	<div id="main">
-	<form action="" method="get">
-		<div id="f">
-			<div class="h" id="t4">번호</div>
-			<div class="h" id="t5">신고할 회원</div>
-			<div class="h" id="t6">신고할 서비스</div>
-			<div class="h" id="t7">제목</div>
-			<div class="h" id="t8">작성자</div>
-		</div>
-		<div id="j">
-			<div class="h" id="t13"><%=vo.getPostNo() %></div>
-			<div class="h" id="t14"><%=vo.getUserNo() %></div>
-			<div class="h" id="t15"><%=vo.getServiceNo() %></div>
-			<div class="h" id="t16"><%=vo.getTitle() %></div>
-			<div class="h" id="t17"><%=vo.getWriter() %></div>
-		</div>
-		<div>
-			<div id="l">신고내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
-		</div>
-	</div>
-	<div id="i">
-	<% if(loginMember != null && loginMember.getId().equals("admin")){%>
-		<div class="i1"><input class="input-btn" type="submit" value="승인"></div>
-		<div class="i1"><input class="input-btn" type="submit" value="반려"></div>
-	<%} %>
-		<div class="i1"><input class="input-btn" type="submit" value="삭제"></div>
-		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %>">수정</a></div>
-		<div class="i1"><a href="/dobby/report">글목록</a></div>
-	</div>
-	<br><br>
-	<% if(loginMember != null && loginMember.getId().equals("admin")){%>
-		<details>
-			<summary>댓글</summary>
-			<div id="reply-reply">
-			<a href="/dobby/detailAdmin" ><%=vo.getReportComment() %></a>
+	<form action="/dobby/detailAdmin" method="post">
+		<input type="hidden" name="postNo" value="<%=vo.getPostNo()%>">
+		<div id="main">
+			<div id="f">
+				<div class="h-title1" >번호</div>
+				<div class="h-title2" >신고할 회원</div>
+				<div class="h-title3" >신고할 서비스</div>
+				<div class="h-title4" >제목</div>
+				<div class="h-title5" >작성자</div>
 			</div>
-		</details>
-		
-	<%} %>
-	
-	<%
-		if(loginMember.getId().equals("admin")&&vo.getReportComment() != null){%>
-			<div id="reply-main">
-			<div id="top">admin</div>
-			<div id="bottom"><%=vo.getReportComment() %></div>
+			<div id="j">
+				<div class="h-title1" ><%=vo.getPostNo() %></div>
+				<div class="h-title2" ><%=vo.getUserNo() %></div>
+				<div class="h-title3" ><%=vo.getServiceNo() %></div>
+				<div class="h-title4" ><%=vo.getTitle() %></div>
+				<div class="h-title5"><%=vo.getWriter() %></div>	
+			</div>
+			<div>
+				<div id="l">신고내용</div>
+				<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
+			</div>
 		</div>
-		<%}
-	%>
-	</form>
+		<div id="i">
+		<% if(loginMember != null && loginMember.getId().equals("admin")){%>
+			<div class="i1"><input class="input-btn" type="submit" value="승인"></div>
+			<div class="i1"><a href="/dobby/detail?postNo=<%=vo.getPostNo() %>">반려</a></div>
+		<%} %>
+			
+			<div class="i1"><a href="/dobby/delete?postNo=<%=vo.getPostNo() %>">삭제</a></div>
+			<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %>">수정</a></div>
+			<div class="i1"><a href="/dobby/list">글목록</a></div>
+		</div>
+		<br><br>
+		<% if(loginMember != null && loginMember.getId().equals("admin")){%>
+			<details>
+				<summary>댓글</summary>
+				<div id="reply-reply">
+				<%if(vo.getReportComment()!= null){%>
+					<div><%=vo.getReportComment() %></div>
+				<%} else{
+					out.write("0");
+				}%>
+				<div id="write-reply"><a href="/dobby/detailAdmin" >댓글쓰기</a></div>
+				</div>
+			</details>
+			
+		<%} %>
+		
+		<%
+			if(loginMember.getId().equals("admin")&&vo.getReportComment() != null){%>
+				<div id="reply-main">
+				<div id="top">admin</div>
+				<div id="bottom"><%=vo.getReportComment() %></div>
+			</div>
+			<%}
+		%>
+	</form>	
 </div>
-
+	
 
 
 
