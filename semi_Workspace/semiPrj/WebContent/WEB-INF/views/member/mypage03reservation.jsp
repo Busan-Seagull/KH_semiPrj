@@ -593,7 +593,7 @@ input[type=submit]{
                                     $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
                                     break;
                                 case 'PW':
-                                    $('<div class="rh-i-h-btn">결제하기</div>').appendTo(div);
+                                    $('<div class="rh-i-h-btn" onclick="location.href=\"/dobby/pay?rno='+rv.reservation_no+'\"">결제하기</div>').appendTo(div);
                                     $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
                                     break;
                                 case 'SW':

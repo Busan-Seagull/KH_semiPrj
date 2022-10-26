@@ -46,10 +46,8 @@ public class ReservationController extends HttpServlet{
         
         ReservationVo rv = new ReservationService().setEstimate(rno, date);
         
-        System.out.println(rv);
-        
-        //확인완료
-        //화면전환 -> 결제로 어떻게 보내지?       
+        resp.sendRedirect("/dobby/pay?rno"+rv.getReservation_no());
+          
 	}
 	
 }
