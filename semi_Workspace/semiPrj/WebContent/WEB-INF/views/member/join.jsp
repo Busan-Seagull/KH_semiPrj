@@ -500,7 +500,7 @@ button {
              }
              
              if(!phone2.val()&&!phone3.val()){
-                alert("번호를 입력하세요");
+                alert("전화 번호를 입력하세요");
                 phone2.focus();
                 return false;
              }
@@ -517,7 +517,7 @@ button {
                     return false;
                 }
              }else{
-                    alert("숫자만 입력해주세요.");
+                    alert("전화 번호는 숫자만 입력해주세요.");
                     return false;
                 }
             
@@ -540,7 +540,7 @@ button {
                 //집요정일때
                 const userRight= $('input[name=userRight]:checked').val();
                 if(userRight==2){
-                    if(numRegExp.test(brnum1)&&numRegExp.test(brnum2)&&numRegExp.test(brnum3)){
+                    if(numRegExp.test(brnum1)!=true&&numRegExp.test(brnum2)!=true&&numRegExp.test(brnum3)!=true){
                         if(!brnum1.val()&& brnum1.val().length<3){
                         alert("사업자 등록번호를 입력해 주세요.");
                         brnum1.focus();
@@ -559,7 +559,7 @@ button {
                         return false;
                         }
                     }else{
-                        alert("숫자만 입력해주세요.");
+                        alert("사업자 번호는 숫자만 입력해주세요.");
                         return false;
                     }
                   
@@ -576,7 +576,7 @@ button {
                     return false;
                     }
 
-                    if(numRegExp.test(account2)){
+                    if(numRegExp.test(account2)!=true){
                 
                         if(account2.val().length<11&&account2.val().length>15){
                         alert("계좌번호를 다시 확인하여 입력해 주세요");
@@ -584,7 +584,7 @@ button {
                         return false;
                         }
                     }else{
-                        alert("숫자만 입력해주세요.");
+                        alert("계좌 번호는 숫자만 입력해주세요.");
                         return false;
                     }
 

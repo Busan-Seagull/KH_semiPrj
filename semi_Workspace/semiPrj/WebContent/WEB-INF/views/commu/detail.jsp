@@ -220,9 +220,11 @@ String root=request.getContextPath();
                     <div id="content">
                         <div><%=vo.getContent()%></div>
                         <div id="btn">
-                            <input type="button" value="수정하기" onclick="/dobby/commu/edit?no=<%=vo.getPostNo()%>">
-                            <input type="button" value="삭제하기"> 
-                            <input type="button" value="목록으로" onclick="history.back()">
+                        <% if(loginMember!=null&&loginMember.getNick().equals(vo.getUserNo())) { %>
+                            <input type="button" value="수정하기" onclick="location.href='/dobby/commu/edit?bno=<%=vo.getPostNo()%>'">
+                            <input type="button" value="삭제하기"  onclick="location.href='/dobby/commu/delete?bno=<%=vo.getPostNo()%>'"> 
+                        <%} %>
+                            <input type="button" value="목록으로" onclick="location.href='/dobby/commu/list'">
                         </div>
                     </div>
             </div>
