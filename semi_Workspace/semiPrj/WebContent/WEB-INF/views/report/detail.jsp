@@ -181,6 +181,7 @@ overflow:auto;
 }
 
 </style>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -195,8 +196,7 @@ overflow:auto;
 		<div id="title-a"></div>
 		<div id="title-b">신고게시판</div>
 	</div>
-	<form action="/dobby/detailAdmin" method="post">
-		<input type="hidden" name="postNo" value="<%=vo.getPostNo()%>">
+	<form action="/dobby/detail" method="post">
 		<div id="main">
 			<div id="f">
 				<div class="h-title1" >번호</div>
@@ -219,13 +219,13 @@ overflow:auto;
 		</div>
 		<div id="i">
 		<% if(loginMember != null && loginMember.getId().equals("admin")){%>
-			<div class="i1"><input class="input-btn" type="submit" value="승인"></div>
-			<div class="i1"><a href="/dobby/detail?postNo=<%=vo.getPostNo() %>">반려</a></div>
+			<div class="i1"><a href="/dobby/detail?postNo=<%=vo.getPostNo() %>&y=y">승인</a></div>
+			<div class="i1"><a href="/dobby/detail?postNo=<%=vo.getPostNo() %>&y=n">반려</a></div>
 		<%} %>
 			
-			<div class="i1"><a href="/dobby/delete?postNo=<%=vo.getPostNo() %>">삭제</a></div>
-			<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %>">수정</a></div>
-			<div class="i1"><a href="/dobby/list">글목록</a></div>
+			<div class="i1"><a href="/dobby/delete?postNo=<%=vo.getPostNo() %>" >삭제</a></div>
+			<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %> " >수정</a></div>
+			<div class="i1"><a href="/dobby/list" >글목록</a></div>
 		</div>
 		<br><br>
 		<% if(loginMember != null && loginMember.getId().equals("admin")){%>

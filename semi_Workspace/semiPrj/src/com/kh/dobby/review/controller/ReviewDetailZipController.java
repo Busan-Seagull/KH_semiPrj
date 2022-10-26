@@ -21,7 +21,7 @@ public class ReviewDetailZipController extends HttpServlet {
    
     
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession s = req.getSession(); 
         MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");

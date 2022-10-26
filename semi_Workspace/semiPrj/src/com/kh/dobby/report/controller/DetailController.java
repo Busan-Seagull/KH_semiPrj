@@ -48,13 +48,23 @@ public class DetailController extends HttpServlet {
 	    
 	    req.setCharacterEncoding("UTF-8");
 	    String postNo = req.getParameter("postNo");
+        String y = req.getParameter("y");
         
-        int result = new ReportService().approval(postNo);
-        int result2 = new ReportService().returnReport(postNo);
+        int result =0;
+        int result2 =0;
+        if(y.equals(y)) {
+            result = new ReportService().approval(postNo);
+        }else {
+            result2 = new ReportService().returnReport(postNo);
+        }
+        
+        
         
         
         if(result==1 || result2 == 1) {
-            req.getRequestDispatcher("/WEB-INF/views/report/detail.jsp").forward(req, resp);
+            req.getSession().setAttribute("alertMsg", "처리완료");
+            resp.sendRedirect("/dobby/detail?postNo="+postNo);
+           // req.getRequestDispatcher("/WEB-INF/views/report/detail.jsp").forward(req, resp);
             
         }else {
             req.setAttribute("msg", "[ERROR]오류 발생");
