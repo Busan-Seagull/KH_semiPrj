@@ -65,8 +65,8 @@ pageEncoding="UTF-8"%>
 	background-color: #004412;
 	color:white;
 	position: relative;
-	top:70px;
-	left:975px;
+	top:50px;
+	left:500px;
 	text-align: center;
 	margin: 0 auto;
 	line-height :60px;
@@ -143,19 +143,6 @@ pageEncoding="UTF-8"%>
 	background-color:#004412;
 	color:white;
 }
-#selection{
-	display:flex;
-	flex-direction:row-reverse;
-	position:relative;
-	left:540px;
-	bottom:50px;
-	
-	
-}
-select{
-	width:90px;
-	height:30px;
-}
 
 
    #page-area{
@@ -226,7 +213,7 @@ select{
 
 border-bottom: 3px solid #004412;
 }
-
+}
 
 </style>
 </head>
@@ -243,14 +230,6 @@ border-bottom: 3px solid #004412;
 	<div id="title">
 		<div id="title-a"></div>
 		<div id="title-b">리뷰게시판</div>
-	</div>
-	<div id="selection">
-		<form action="">
-			<select>
-				<option>최신순</option>
-				<option>서비스순</option>
-			</select>
-		</form>
 	</div>
 	<div id="main-area">
 		
@@ -273,7 +252,7 @@ border-bottom: 3px solid #004412;
 	</div>
 	<div id="page-area">
 		<ul id="page-nation">
-			<li><a href="/dobby/report?pno=1" class="first"><<</a></li>
+			<li><a href="/dobby/reviewList?pno=1" class="first"><<</a></li>
 			<li><a class="arrow left"><</a></li>
 			<li><a class="num"></a></li>
 			<li><a class="num"></a></li>
@@ -281,7 +260,7 @@ border-bottom: 3px solid #004412;
 			<li><a class="num"></a></li>
 			<li><a class="num"></a></li>
 			<li><a class="arrow right">></a></li>
-			<li><a href="/dobby/report?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
+			<li><a href="/dobby/reviewList?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
 		</ul>
 	</div>
 </div>
@@ -321,7 +300,7 @@ border-bottom: 3px solid #004412;
 			if(page<1 || page><%=pv.getMaxPage()%>){
 				num.classList.add('p-none');
 			}else{
-				num.href = '/dobby/report?pno='+page;
+				num.href = '/dobby/review?pno='+page;
 			}
 			num.innerHTML = page;
 			page++;

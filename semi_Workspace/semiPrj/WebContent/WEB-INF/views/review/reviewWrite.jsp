@@ -86,13 +86,13 @@ height:45px;
 	border-radius:2.5rem;
 }
 #i{
-	width: 250px;
+	width: 200px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
 	top: 60px;
-	left: 365px;
+	left: 430px;
 }
 #l{
 text-align:center;

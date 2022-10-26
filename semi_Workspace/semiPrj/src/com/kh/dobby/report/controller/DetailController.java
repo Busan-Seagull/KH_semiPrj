@@ -57,7 +57,7 @@ public class DetailController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/report/detail.jsp").forward(req, resp);
             
         }else {
-            req.setAttribute("msg", "ERROR]오류 발생");
+            req.setAttribute("msg", "[ERROR]오류 발생");
             req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
         }
     

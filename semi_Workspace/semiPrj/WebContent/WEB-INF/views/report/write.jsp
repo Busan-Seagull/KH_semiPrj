@@ -61,7 +61,7 @@ pageEncoding="UTF-8"%>
 	height:45px;
 }
 
-.h-no6{width: 80px;}
+
 .h-no7{width: 160px;}
 .h-no8{width: 160px;}
 .h-no9{width: 480px;}
@@ -84,13 +84,13 @@ pageEncoding="UTF-8"%>
 	border-radius:2.5rem;
 }
 #i{
-	width: 270px;
+	width: 150px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
 	top: 60px;
-	left: 360px;
+	left: 400px;
 }
 #l{
 text-align:center;
@@ -148,14 +148,12 @@ input,textarea{
 	<form action="/dobby/write" method="post">
 		<div id="main">
 		<div id="f">
-			<div class="h-no6" >번호</div>
 			<div class="h-no7" >신고할 회원</div>
 			<div class="h-no8" >신고할 서비스</div>
 			<div class="h-no9" >제목</div>
 			<div class="h-no10" >작성자</div>
 		</div>
 		<div id="j">
-			<div class="h-no6" ><input type="text" name="postNo"><%=vo.getPostNo() %></div>
 			<div class="h-no7" ><input type="text" name="userNo"></div>
 			<div class="h-no8" ><input type="text" name="serviceNo"></div>
 			<div class="h-no9" ><input type="text" name="title"></div>
@@ -168,7 +166,7 @@ input,textarea{
 	</div>
 	<div id="i">
 		<div class="i1"><input id="input-btn" type="submit" value="확인"></div>
-		<div class="i1"><a href="/dobby/report">글목록</a></div>
+		<div class="i1"><a href="/dobby/list">글목록</a></div>
 	</div>
 	</form>
 	
