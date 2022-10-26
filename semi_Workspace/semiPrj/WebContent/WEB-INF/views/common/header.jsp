@@ -414,7 +414,7 @@
             <%} %>
         </div>
     </header>
-   	<%if(!("3".equals(loginMember.getRightNo()))) {%>
+   	<%if(loginMember!=null&&!("3".equals(loginMember.getRightNo()))) {%>
     <nav style="z-index: 100;">
         <div id="header-nav-box">
             <div class="img"></div>

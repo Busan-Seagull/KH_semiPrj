@@ -23,7 +23,7 @@ public class MainController extends HttpServlet{
 	    
 	    MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
 	    
-	    if("3".equals(loginMember.getRightNo())) {
+	    if(loginMember!=null&&"3".equals(loginMember.getRightNo())) {
 	        req.getRequestDispatcher("WEB-INF/views/admin/admin.jsp").forward(req, resp);
 	        return;
 	    }
