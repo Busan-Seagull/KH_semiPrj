@@ -28,6 +28,12 @@ public class ReservationController extends HttpServlet{
 	    ServiceVo sv = new ServiceService().selectOne(sno);
 	    //임시내용
 	    
+	    if(sno==null) {
+	        req.setAttribute("msg", "정상적인 접근이 아닙니다.");
+	        req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+	        return;
+	    }
+	    
 	    req.setAttribute("sv", sv);
 		req.getRequestDispatcher("/WEB-INF/views/reservation/reservation.jsp").forward(req, resp);
 	}

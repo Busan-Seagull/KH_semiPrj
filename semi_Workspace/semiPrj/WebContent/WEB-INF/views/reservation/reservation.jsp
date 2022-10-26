@@ -19,7 +19,7 @@
 	
 	<c:if test="${not empty rv}">
 		<script type="text/javascript">
-			
+			alert("견적이 필요한 서비스 입니다. 견적예약으로 이동합니다.");
 		</script>
     	<form id="r-main-container" action="/dobby/reservation" method="post" class="flex-col">
     	<input type="hidden" name="rno" value="${rv.reservation_no}">

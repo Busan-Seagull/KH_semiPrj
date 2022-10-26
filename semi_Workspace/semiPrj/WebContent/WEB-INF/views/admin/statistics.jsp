@@ -9,6 +9,7 @@
 	.box-1200{
 		width: 1200px;
 		margin: auto;
+		margin-top: 60px;
 	}
 
 	#title{

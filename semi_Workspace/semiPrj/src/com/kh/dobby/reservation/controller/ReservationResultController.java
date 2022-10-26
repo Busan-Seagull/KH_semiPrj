@@ -20,7 +20,7 @@ public class ReservationResultController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	 
+	    	 
 	    ReservationService rs = new ReservationService();
 	    //취소
 	    String rno = req.getParameter("rno");

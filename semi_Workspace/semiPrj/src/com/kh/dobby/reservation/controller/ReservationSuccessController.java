@@ -24,6 +24,8 @@ public class ReservationSuccessController extends HttpServlet{
         
         MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
         if(loginMember==null) {
+            req.setAttribute("msg", "정상적인 접근이 아닙니다.");
+            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
             return;
         }
         
@@ -37,7 +39,6 @@ public class ReservationSuccessController extends HttpServlet{
         ReservationVo rv = new ReservationVo();
         rv.setReservationDate(date);
         rv.setComment(commet);
-        //임시번호
         rv.setServiceNo(Integer.toString(sv.getServiceNo()));
         rv.setUserNo(loginMember.getUserNo());
         rv.setReservationAmount(pay);
