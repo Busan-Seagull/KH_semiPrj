@@ -3,71 +3,87 @@ package com.kh.dobby.payVo;
 import java.sql.Timestamp;
 
 public class PayVo {
-    
-    private int paymentNo;
-    private int reservationNo;
-    private int pTypeNo;
-    private Timestamp paymentDate;
-    private Timestamp cancelDate;
-    private int point;
+
+    private String paymentNo;
+    private String reservationNo;
+    private String point;
+    private String paymentType;
+    private String request;
+    private String paymentDate;
+    private String cancelDate;
     
     public PayVo() {
-        super();
     }
-    public PayVo(int paymentNo, int reservationNo, int pTypeNo, Timestamp paymentDate, Timestamp cancelDate,
-            int point) {
+    
+    public PayVo(String paymentNo, String reservationNo, String point, String paymentType, String request,
+            String paymentDate, String cancelDate) {
         super();
         this.paymentNo = paymentNo;
         this.reservationNo = reservationNo;
-        this.pTypeNo = pTypeNo;
+        this.point = point;
+        this.paymentType = paymentType;
+        this.request = request;
         this.paymentDate = paymentDate;
         this.cancelDate = cancelDate;
-        this.point = point;
     }
-    public int getPaymentNo() {
-        return paymentNo;
-    }
-    public void setPaymentNo(int paymentNo) {
-        this.paymentNo = paymentNo;
-    }
-    public int getReservationNo() {
-        return reservationNo;
-    }
-    public void setReservationNo(int reservationNo) {
-        this.reservationNo = reservationNo;
-    }
-    public int getpTypeNo() {
-        return pTypeNo;
-    }
-    public void setpTypeNo(int pTypeNo) {
-        this.pTypeNo = pTypeNo;
-    }
-    public Timestamp getPaymentDate() {
-        return paymentDate;
-    }
-    public void setPaymentDate(Timestamp paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-    public Timestamp getCancelDate() {
+
+    public String getCancelDate() {
         return cancelDate;
     }
-    public void setCancelDate(Timestamp cancelDate) {
+
+    public void setCancelDate(String cancelDate) {
         this.cancelDate = cancelDate;
     }
-    public int getPoint() {
+
+    public String getRequest() {
+        return request;
+    }
+
+    public void setRequest(String request) {
+        this.request = request;
+    }
+
+    public String getPaymentNo() {
+        return paymentNo;
+    }
+    public void setPaymentNo(String paymentNo) {
+        this.paymentNo = paymentNo;
+    }
+    public String getPaymentDate() {
+        return paymentDate;
+    }
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+    public String getReservationNo() {
+        return reservationNo;
+    }
+    public void setReservationNo(String reservationNo) {
+        this.reservationNo = reservationNo;
+    }
+    public String getPoint() {
         return point;
     }
-    public void setPoint(int point) {
+    public void setPoint(String point) {
         this.point = point;
     }
+    public String getPaymentType() {
+        return paymentType;
+    }
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+    
+    
     @Override
     public String toString() {
-        return "PayVo [paymentNo=" + paymentNo + ", reservationNo=" + reservationNo + ", pTypeNo=" + pTypeNo
-                + ", paymentDate=" + paymentDate + ", cancelDate=" + cancelDate + ", point=" + point + "]";
+        return "PayVo [paymentNo=" + paymentNo + ", reservationNo=" + reservationNo + ", point=" + point
+                + ", paymentType=" + paymentType + ", request=" + request + ", paymentDate=" + paymentDate
+                + ", cancelDate=" + cancelDate + "]";
     }
+    
     
     
     
     
 }
-

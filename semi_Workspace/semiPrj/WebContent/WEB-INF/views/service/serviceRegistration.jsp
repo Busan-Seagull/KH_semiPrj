@@ -25,8 +25,8 @@
 		<form action="" method="post" enctype="multipart/form-data">
 			<div id="registration-form1">
 				<div id="service-name">서비스명*</div>
-				<div id="service-name-input" required>
-					<input type="text" name="service" id="name-input">
+				<div id="service-name-input">
+					<input type="text" name="service" id="name-input" required>
 				</div>
 				<div id="service-category">서비스 카테고리</div>
 				<div id="service-category-input">
@@ -399,7 +399,7 @@
 		if(document.querySelector('#name-input').value==""||document.querySelector('#service-intro').value==""){
 			alert("필수입력란을 작성해주세요");
 			document.querySelector('#name-input').focus();
-			return false;
+			return true;
 		}
 	}
 </script>

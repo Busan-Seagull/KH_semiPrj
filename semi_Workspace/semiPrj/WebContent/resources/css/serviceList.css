@@ -3,13 +3,10 @@
     padding: 0;
 }
 
-
-.material-symbols-outlined {
-	
-	font-size:12px;
- 
- 
-  
+.text-green{
+    color: var(--semi-green);
+    font-size: 16px;
+    margin-right: 5px;
 }
 
 
@@ -54,6 +51,12 @@ main{
     font-size: 20px;
     line-height: 60px;
     color: grey;
+}
+#service-category>ul>li>a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 200px;
 }
 #service-category>ul>li>a:hover{
     color:var(--semi-green);

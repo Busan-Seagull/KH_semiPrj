@@ -28,7 +28,7 @@
 					<div class="helper-contents">
 						<div class="content-div1">
 							<h1>전기 고치는 집요정</h1>
-							<button>결제 상세 정보 ></button>
+							<button onclick="location.href='/dobby/mypage/payinfo'">결제 상세 정보 ></button>
 						</div>
 						<div class="content-div2">
 							<h2>128,000원</h2>
