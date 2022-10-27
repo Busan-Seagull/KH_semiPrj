@@ -278,13 +278,13 @@ border-bottom: 3px solid #004412;
 		const right = pageNation.querySelector('.arrow.right');
 
 		<%if(pv.getStartPage() > 1){%>
-			left.href = '/dobby/report?pno=<%=pv.getStartPage()-1%>';
+			left.href = '/dobby/reviewList?pno=<%=pv.getStartPage()-1%>';
 		<%}else{%>
 			left.classList.add('none-select');
 		<%}%>
 
 		<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
-			right.href = '/dobby/reservation/history?pno=<%=pv.getCurrentPage()+1%>';
+			right.href = '/dobby/reviewList?pno=<%=pv.getCurrentPage()+1%>';
 		<%}else{%>
 			right.classList.add('none-select');
 		<%}%>
@@ -301,7 +301,7 @@ border-bottom: 3px solid #004412;
 			if(page<1 || page><%=pv.getMaxPage()%>){
 				num.classList.add('p-none');
 			}else{
-				num.href = '/dobby/review?pno='+page;
+				num.href = '/dobby/reviewList?pno='+page;
 			}
 			num.innerHTML = page;
 			page++;

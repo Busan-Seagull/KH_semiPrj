@@ -220,13 +220,13 @@ pageEncoding="UTF-8"%>
 		const right = pageNation.querySelector('.arrow.right');
 
 		<%if(pv.getStartPage() > 1){%>
-			left.href = '/dobby/report?pno=<%=pv.getStartPage()-1%>';
+			left.href = '/dobby/list?pno=<%=pv.getStartPage()-1%>';
 		<%}else{%>
 			left.classList.add('none-select');
 		<%}%>
 
 		<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
-			right.href = '/dobby/reservation/history?pno=<%=pv.getCurrentPage()+1%>';
+			right.href = '/dobby/list?pno=<%=pv.getCurrentPage()+1%>';
 		<%}else{%>
 			right.classList.add('none-select');
 		<%}%>

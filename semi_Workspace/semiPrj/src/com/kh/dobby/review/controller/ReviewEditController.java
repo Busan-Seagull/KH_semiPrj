@@ -41,7 +41,8 @@ public class ReviewEditController extends HttpServlet {
         String userNo = req.getParameter("userNo");
         String grade = req.getParameter("grade");
         String content = req.getParameter("content");
-
+        
+       
         ReviewVo vo = new ReviewVo();
         vo.setPostNo(postNo);
         vo.setServiceNo(serviceNo);

@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 
-<% ReviewVo vo = (ReviewVo) request.getAttribute("vo"); %>
+<% ReviewVo vo = (ReviewVo)request.getAttribute("vo"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,7 @@ height:45px;
 }
 
 
-
+.h-no1{width: 96px;}
 .h-no2{width: 96px;}
 .h-no3{width: 528px;}
 .h-no4{width: 192px;}
@@ -155,12 +156,14 @@ input, textarea{
 	<form action="/dobby/reviewEdit" method="post">
 	<div id="main">
 		<div id="f">
+			<div class="h-no1" >번호</div>
 			<div class="h-no2" >서비스 번호</div>
 			<div class="h-no3" >제목</div>
 			<div class="h-no4" >작성자</div>
 			<div class="h-no5" >평점</div>
 		</div>
 		<div id="j">
+			<div class="h-no1" ><input type="text"  name="postNo" value="<%=vo.getPostNo() %>"></div>
 			<div class="h-no2" ><input type="text" name="serviceNo" value="<%=vo.getServiceNo()%>"></div>
 			<div class="h-no3" ><input type="text" name="title" value="<%=vo.getTitle()%>"></div>
 			<div class="h-no4"><input type="text" name="userNo" value="<%=vo.getUserNo()%>"></div>
@@ -168,7 +171,7 @@ input, textarea{
 		</div>
 		<div>
 			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="115" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="115" rows="18"><%=vo.getContent()%></textarea>
 		</div>
 	</div>
 	<div id="i">

@@ -1,6 +1,7 @@
 package com.kh.dobby.report.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -24,13 +25,13 @@ public class ReportMypageController extends HttpServlet{
         MemberVo loginMember = (MemberVo) s.getAttribute("loginMember");
        
         String writer =loginMember.getNick();
-        ReportVo vo = new ReportVo();
-        vo.setWriter(writer);
-        vo = new ReportService().selectReportList(writer);
-       
-        req.setAttribute("vo",vo);
+        List<ReportVo> voList = new ArrayList<ReportVo>();
         
-        req.getRequestDispatcher("/WEB-INF/views/member/mypage10.jsp").forward(req, resp);
+        voList = new ReportService().selectReportList(writer);
+       
+        req.setAttribute("voList",voList);
+        
+        req.getRequestDispatcher("/WEB-INF/views/report/mypage10.jsp").forward(req, resp);
     }
     
     

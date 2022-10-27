@@ -268,13 +268,13 @@ public class ReportDao {
         
     }
 
-    public ReportVo selectReportList(Connection conn, String writer) {
+    public List<ReportVo> selectReportList(Connection conn, String writer) {
 
         String sql = "SELECT R.POST_NO ,U.USER_NO ,S.SERVICE_NO ,R.TITLE , R.CONTENT ,R.WRITE_TIME ,R.DELETE_YN, R.MODIFY_DATE ,R.HANDLE_REPORT_YN ,R.REPORT_COMMENT ,U.NICK AS WRITER FROM REPORT R JOIN \"USER\" U ON R.WRITER = U.USER_NO JOIN SERVICE_INFO S ON S.USER_NO = U.USER_NO WHERE R.DELETE_YN = 'N'AND U.NICK=? ORDER BY R.POST_NO DESC";
         
         PreparedStatement pstmt =  null;
         ResultSet rs = null;
-        ReportVo vo = null;
+        List<ReportVo> voList = new ArrayList<ReportVo>();
         
         try {
             pstmt = conn.prepareStatement(sql);
@@ -282,7 +282,7 @@ public class ReportDao {
             
             rs = pstmt.executeQuery();
             
-            if(rs.next()) {
+            while(rs.next()) {
                 String postNO = rs.getString("POST_NO");
                 String userNo = rs.getString("USER_NO");
                 String serviceNo = rs.getString("SERVICE_NO");
@@ -295,7 +295,7 @@ public class ReportDao {
                 String handleReportYn = rs.getString("HANDLE_REPORT_YN");
                 
                 
-                vo = new ReportVo();
+                ReportVo vo = new ReportVo();
                 vo.setPostNo(postNO);
                 vo.setUserNo(userNo);
                 vo.setServiceNo(serviceNo);
@@ -307,6 +307,7 @@ public class ReportDao {
                 vo.setModifyDate(modifyDate);
                 vo.setHandleReportYn(handleReportYn);
                 
+                voList.add(vo);
                
             }
             
@@ -317,7 +318,7 @@ public class ReportDao {
             close(pstmt);
         }
         
-        return vo;
+        return voList;
     
         
     }
