@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     
 <%
-	MemberVo pwdFind = (MemberVo)session.getAttribute("pwdFind");
 	String msg = (String)session.getAttribute("msg");
 	session.removeAttribute("msg");
 %>
@@ -75,7 +74,7 @@ alert('<%= msg%>');
    }
 
    #id input{
-    width: 380px;
+    width: 400px;
     height: 42px;
     padding:0 10px;
    }
@@ -103,7 +102,7 @@ alert('<%= msg%>');
    }
 
     /*초록버튼들 */
-    input[type=submit]{
+    input[type=button]{
     background-color:var(--semi-green);
     color: white;
     width: 400px;
@@ -141,9 +140,6 @@ alert('<%= msg%>');
             <div class="text">가입 시 입력했던 아이디를 입력해주세요</div>
             <div id="id">
                 <input type="text" name="memberId" placeholder="아이디">
-                <%if(pwdFind!=null){ %>
-                <input type="hidden" id="setPassWord" value="<%=pwdFind.getPwd()%>">
-                <%} %>
             </div>
 
             <div class="text">가입 시 입력했던 이메일을 입력해주세요</div>
@@ -158,15 +154,49 @@ alert('<%= msg%>');
                     <option value="nate.com">nate.com</option>
                     <option value="outlook.com">outlook.com</option>
                 </select>
-                 <%if(pwdFind!=null){ %>
-                <input type="hidden" id="setEnrollDate" value="<%=pwdFind.getEnrollDate()%>">
-                 <%} %>
+              
             </div>
 
 
-            <div><input type="submit" value="비밀번호 찾기" onclick="window.open('http://127.0.0.1:8888/dobby/member/findpwdresult', '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no')"></div>
+            <div><input type="button" id="pwdfind"value="비밀번호 찾기"></div>
         </div>
-        
+         <script>
+        $('#pwdfind').click(function(){
+            const id=$('input[name="memberId"]').val(); 
+            const e1=$('input[name="Email1"]').val(); 
+            const e2=$('select[name="Email2"]').val(); 
+            const email=e1+"@"+e2;
+           
+           $.ajax({    
+			        type: "post",
+			        url: "/dobby/member/findpwdresult",
+			        data: {
+			        	userid : id,
+			        	useremail : email
+			        	},
+			        success: function(result) {
+			        	/* console.log(result); */
+			        	if(result=="false"){
+			        		window.open('http://127.0.0.1:8888/dobby/member/findpwdresult', '집요정 | 비밀번호 찾기', 'width=650, height=700, scrollbars=no')
+			        		return;
+			        	}else{
+			        		const info=JSON.parse(result);
+					        window.open('http://127.0.0.1:8888/dobby/member/findpwdresult?phone='+info.phone+'&enrollDate='+info.enrollDate, '집요정 | 비밀번호 찾기', 'width=650, height=700, scrollbars=no');
+						
+			        	}
+			        	
+			    	
+			        },
+			        error: function() {   
+			        	alert("실패!");
+			              
+			        }
+                      
+                                 
+           });
+        });
+        </script>
+     
 
     </form>
 

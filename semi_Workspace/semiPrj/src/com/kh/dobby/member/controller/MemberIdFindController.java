@@ -21,30 +21,5 @@ public class MemberIdFindController extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/views/member/idFind.jsp").forward(req, resp);
     }
     
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        String memberName=req.getParameter("memberName");
-        String memberPhone=req.getParameter("memberPhone");
-        
-        MemberVo vo=new MemberVo();
-        vo.setName(memberName);
-        vo.setPhone(memberPhone);
-       
-        MemberVo idFind = new MemberService().idfind(vo);
-        
-        if(idFind!=null) {
-            HttpSession hs=req.getSession();
-            hs.setAttribute("idFind", idFind);
-            resp.sendRedirect("/dobby/member/findid");
-            
-            
-           
-        }else {
-            HttpSession hs=req.getSession();
-            hs.setAttribute("msg", "아이디가 없습니다!");
-            req.getRequestDispatcher("/WEB-INF/views/member/idFind.jsp").forward(req, resp);
-        }
-    
-}
+   
 }

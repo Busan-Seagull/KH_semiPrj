@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	MemberVo idFind = (MemberVo)session.getAttribute("idFind");
 	String msg = (String)session.getAttribute("msg");
 	session.removeAttribute("msg");
-	session.removeAttribute("idFind");
 %>
 <script>
 <%if(msg!=null){%>
@@ -75,13 +73,13 @@ alert('<%= msg%>');
    }
 
    #phone input,#name input{
-    width: 380px;
+    width: 400px;
     height: 42px;
     padding:0 10px;
    }
 
     /*초록버튼들 */
-    input[type=submit]{
+    input[type=button]{
     background-color:var(--semi-green);
     color: white;
     width: 400px;
@@ -119,28 +117,56 @@ alert('<%= msg%>');
             <div class="text">가입 시 입력했던 이름을 입력해주세요</div>
             <div id="name">
                 <input type="text" name="memberName" placeholder="이름">
-                <%if(idFind!=null){ %>
-                <input type="hidden" id="setId" value="<%=idFind.getId() %>" >
-                <%} %>
+              
             </div>
 
             <div class="text">가입 시 입력했던 휴대폰 번호를 입력해주세요</div>
             <div id="phone">
                 <input type="text" name="memberPhone" placeholder="휴대폰 번호 - 생략">
-                 <%if(idFind!=null){ %>
-                <input type="hidden" id="setEnrollDate" value="<%=idFind.getEnrollDate() %>">
-           		  <%} %>
+               
             </div>
 			
             <div>
-            <input type="submit" value="아이디 찾기" onclick="setTimeOut(find(),100);">
+            <input type="button" id="idfind"value="아이디 찾기">
             </div>
             
         </div>
+        
         <script>
-            function find(){
-                window.open('http://127.0.0.1:8888/dobby/member/findidresult', '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no');
-            }
+        $('#idfind').click(function(){
+            const name=$('input[name="memberName"]').val(); 
+            const phone=$('input[name="memberPhone"]').val(); 
+           
+           $.ajax({    
+			        type: "post",
+			        url: "/dobby/member/findidresult",
+			        data: {
+			        	username : name,
+			        	userphone : phone
+			        	},
+			        success: function(result) {
+			        	console.log(result);
+			        	if(result=="false"){
+
+			        		window.open('http://127.0.0.1:8888/dobby/member/findidresult', '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no');
+							return;
+			        	}else{
+			        		const info=JSON.parse(result);
+			        		
+					        window.open('http://127.0.0.1:8888/dobby/member/findidresult?id='+info.id+'&enrollDate='+info.enrollDate, '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no');
+							
+			        	}
+			        	
+			    	
+			        },
+			        error: function() {   
+			        	alert("실패!");
+			              
+			        }
+                      
+                                 
+           });
+        });
         </script>
      
 
