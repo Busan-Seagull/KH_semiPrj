@@ -85,8 +85,8 @@
 
 	#graph > div > div > div{
 		width: 50px;
-		transition: 0.5s;
-		transition-timing-function: ease-in-out;
+		transition: 0.8s;
+		transition-timing-function: cubic-bezier(0.2, 0.9, 0.95, 1);
 	}
 
 	#graph > div > p{
@@ -106,6 +106,11 @@
 		flex-direction: column;
 		gap: 10px;
 		justify-content: flex-end;
+	}
+
+	#month{
+		width: 50px;
+		text-align: center;
 	}
 </style>
 </head>
@@ -183,13 +188,19 @@
 	get(tMonth);
 
 	left.addEventListener('click', function(){
-		const mm = parseInt(month.innerText) - 1;
+		let mm = parseInt(month.innerText) - 1;
+		if(mm == 0){
+			mm = 12;
+		};
 		month.innerText = mm;
 		get(mm);
 	})
 
 	right.addEventListener('click', function(){
-		const mm = parseInt(month.innerText) + 1;
+		let mm = parseInt(month.innerText) + 1;
+		if(mm == 13){
+			mm = 1;
+		};
 		month.innerText = mm;
 		get(mm);
 	})
@@ -218,7 +229,12 @@
 						brown.style.height = element.dobbyCount*5 + "px";
 						gray.style.height = element.suerviceCount*5 + "px";
 
-						cMonth.innerText = (m-index)+"월";
+						let mm = (m-index);
+						if((m-index) <= 0){
+							mm = 12 + m-index;
+						};
+
+						cMonth.innerText = mm+"월";
 					}
 
                 }else{

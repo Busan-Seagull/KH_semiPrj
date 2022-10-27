@@ -30,9 +30,7 @@ public class StatisticsController extends HttpServlet {
 
         String sd = req.getParameter("sDate");
         int month = Integer.parseInt(sd);
-        
-        System.out.println(month);
-        
+                
         StatisticsService ss = new StatisticsService();
         
         List<Map> list = new ArrayList<Map>();
@@ -50,14 +48,17 @@ public class StatisticsController extends HttpServlet {
 //            map.put("dobbyCount", dobbyCount);
 //            map.put("suerviceCount", suerviceCount);
             
-            map.put("userCount", month*5+i*2);
-            map.put("dobbyCount", month*4+i*3);
-            map.put("suerviceCount", month*2+i*5);
+            int random = (int)(Math.random()*5) + 1;
+            int random2 = (int)(Math.random()*5) + 1;
+            int random3 = (int)(Math.random()*5) + 1;
+            
+            map.put("userCount", month*random+i);
+            map.put("dobbyCount", month*random2+i);
+            map.put("suerviceCount", month*random3+i);
             
             list.add(map);
         }
         
-        System.out.println(list);
         Gson gson = new Gson();
         
         String text = gson.toJson(list);

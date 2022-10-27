@@ -714,16 +714,16 @@ input[type=submit]{
 					const right = pageNation.querySelector('.arrow.right');
                     const last = pageNation.querySelector('.last');
 
-                    last.onclick = "reservationAjax(pvo.maxPage)";
+                    last.onclick = "reservationAjax("+pvo.maxPage+")";
 
 					if(pvo.startPage > 1){
-						left.onclick = "reservationAjax(pvo.startPage)";
+						left.onclick = "reservationAjax("+pvo.startPage+")";
 					}else{
 						left.classList.add('none-select');
 					}
 
 					if(pvo.currentPage != pvo.maxPage){
-						right.onclick = "reservationAjax(pvo.currentPage + 1)";
+						right.onclick = "reservationAjax("+(pvo.currentPage + 1)+")";
 					}else{
 						right.classList.add('none-select');
 					}
@@ -740,7 +740,7 @@ input[type=submit]{
 						if(page < 1 || page > pvo.maxPage){
 							num.classList.add('p-none');
 						}else{
-							num.onclick = "reservationAjax(page)";
+							num.onclick = "reservationAjax("+page+")";
 						}
 						num.innerHTML = page;
 						page++;

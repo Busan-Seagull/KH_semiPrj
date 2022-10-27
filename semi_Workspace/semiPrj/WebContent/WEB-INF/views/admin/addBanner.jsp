@@ -72,6 +72,14 @@
 		font-family: var(--serif);
 		font-weight: 700;
 	}
+	
+	input[type=submit]{
+		width: 500px;
+		margin: auto;
+		margin-top: 50px;
+		font-size: 1.2em;
+		border-radius: 0;
+	}
 
 	label[for=file]:hover, #find:hover, input[type=submit]:hover{
 		background-color: var(--semi-green);
