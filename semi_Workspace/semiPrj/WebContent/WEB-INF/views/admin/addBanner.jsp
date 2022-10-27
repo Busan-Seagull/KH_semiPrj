@@ -56,7 +56,7 @@
 		display: none;
 	}
 
-	label[for=file], #find{
+	label[for=file], #find, input[type=submit]{
 		border: none;
 		outline: none;
 		background: none;
@@ -73,7 +73,7 @@
 		font-weight: 700;
 	}
 
-	label[for=file]:hover, #find:hover{
+	label[for=file]:hover, #find:hover, input[type=submit]:hover{
 		background-color: var(--semi-green);
 		color: white;
 	}
