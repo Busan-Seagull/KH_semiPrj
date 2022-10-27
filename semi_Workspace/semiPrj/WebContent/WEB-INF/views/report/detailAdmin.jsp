@@ -174,7 +174,8 @@ overflow:auto;
 		<div id="a"></div>
 		<div id="b">신고게시판</div>
 	</div>
-	<div id="main">
+	<form action="">
+		<div id="main">
 		<div id="f">
 			<div class="h" id="t4">번호</div>
 			<div class="h" id="t5">신고할 회원</div>
@@ -195,17 +196,23 @@ overflow:auto;
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><input class="input-btn" type="submit" value="승인" ></div>
-		<div class="i1"><a href="/dobby/detail?postNo=<%=vo.getPostNo() %>" >반려</a></div>
+	<% if(loginMember != null && "3".equals(loginMember.getRightNo())) {%>
+		<div class="i1"><input type="submit" name="approval" value="승인"></div>
+		<div class="i1"><input type="submit" name="return" value="반려"></div>
+		
+	<%} %>
+		
 		<div class="i1"><a href="/dobby/delete?postNo=<%=vo.getPostNo() %>" >삭제</a></div>
 		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %> " >수정</a></div>
-		<div class="i1"><a href="/dobby/list">글목록</a></div>
+		<div class="i1"><a href="/dobby/list" >글목록</a></div>
 	</div>
 	<div id="reply-main">
 		<div id="top1">댓글 내용</div>
 		<textarea id="bottom1" name="content-reply" rows="" cols=""></textarea>
 		<div id="r2"><input id="r1" type="submit" value="확인"></div> 
 	</div>	
+	</form>
+	
 </div>
 
 		

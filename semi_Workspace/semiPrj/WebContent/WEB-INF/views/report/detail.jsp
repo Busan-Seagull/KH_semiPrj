@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
 
 #first{
 	width: 960px;
-	height: 750px;
+	height: 1300px;
 	margin: 0 auto;
 }
 
@@ -119,10 +119,12 @@ overflow:auto;
 	width:960px;
 	height:300px;
 	display:flex;
-	text-align:center;
+	flex-direction:column;
+	text-align:right;
 	line-height:100px;
 	position:relative;
 	top:100px;
+	
 	
 }
 #top{
@@ -146,11 +148,12 @@ overflow:auto;
 
 
 #r1{
-	width:100px;
-	height:40px;
+	width:60px;
+	height:60px;
 	background-color: #EAE0D4;
 	border:none;
 	box-shadow: 2px 2px lightgray;
+	border-radius:2.5rem;
 	
 	
 }
@@ -161,13 +164,13 @@ overflow:auto;
 	top:20px;
 	
 }
-#reply-reply{
+/* #reply-reply{
 	position:relative;
 	top: 30px;
 	
 	
-}
-#reply-reply{
+} */
+/* #reply-reply{
 	postition: relative;
 	top: 100px;
 	height: 100px;
@@ -178,6 +181,65 @@ overflow:auto;
 	border-radius:2.5rem;
 	background-color:004412;
 	color:white;
+} */
+input{
+	border:none;
+	font-size:medium;
+	font-weight: 400;
+	background-color:#EAE0D4;
+	font-family: var(--sans);
+}
+
+#top1{
+width: 200px;
+height: 30px;
+display:flex;
+justify-self: center;
+justify-content:center;
+flex-direction:column;
+border-bottom: 5px double #004412;
+position:relative;
+left: 400px;
+top: 50px;
+text-align:center;
+font-size: large;
+
+
+}
+#bottom2{
+	width:960px;
+	height: 150px;
+	border:3px solid #004412;
+	display:flex;
+	justify-content:flex-end;
+	background-color:#004412;
+	
+	
+
+}
+#bottom1{
+	width:800px;
+	height:80px;
+	border: 5px solid lightgray;
+	margin-right:20px;
+	margin-top:2.5px;
+}
+#reply-area-one{
+	margin-top: 50px;
+	
+}
+
+#admin-reply{
+	width:100px;
+	height:100px;
+	display:flex;
+	justify-content:center;
+	position:relative;
+	top:100px;
+	left:15px;
+	color:white;
+	
+	
 }
 
 </style>
@@ -196,7 +258,8 @@ overflow:auto;
 		<div id="title-a"></div>
 		<div id="title-b">신고게시판</div>
 	</div>
-	<form action="/dobby/detail" method="post">
+	<form action="/dobby/detail?postNo=<%=vo.getPostNo() %>" method="post">
+	
 		<div id="main">
 			<div id="f">
 				<div class="h-title1" >번호</div>
@@ -218,9 +281,10 @@ overflow:auto;
 			</div>
 		</div>
 		<div id="i">
-		<% if(loginMember != null && loginMember.getId().equals("admin")){%>
-			<div class="i1"><a href="/dobby/detail?postNo=<%=vo.getPostNo() %>&y=y">승인</a></div>
-			<div class="i1"><a href="/dobby/detail?postNo=<%=vo.getPostNo() %>&y=n">반려</a></div>
+		<% if(loginMember != null && "3".equals(loginMember.getRightNo())) {%>
+			<div class="i1"><input type="submit" name="approval" value="승인"></div>
+			<div class="i1"><input type="submit" name="return" value="반려"></div>
+			
 		<%} %>
 			
 			<div class="i1"><a href="/dobby/delete?postNo=<%=vo.getPostNo() %>" >삭제</a></div>
@@ -228,7 +292,7 @@ overflow:auto;
 			<div class="i1"><a href="/dobby/list" >글목록</a></div>
 		</div>
 		<br><br>
-		<% if(loginMember != null && loginMember.getId().equals("admin")){%>
+		<%-- <% if(loginMember != null && "3".equals(loginMember.getRightNo())){%>
 			<details>
 				<summary>댓글</summary>
 				<div id="reply-reply">
@@ -241,16 +305,26 @@ overflow:auto;
 				</div>
 			</details>
 			
-		<%} %>
-		
-		<%
-			if(loginMember.getId().equals("admin")&&vo.getReportComment() != null){%>
+		<%} %> --%>
+		<div id=reply-area-one>
+			<%if("3".equals(loginMember.getRightNo())){%>
 				<div id="reply-main">
-				<div id="top">admin</div>
+					<div id="top1">댓글쓰기</div>
+					<div id="admin-reply">관리자</div>
+					<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
+					<div id="r2"><input id="r1" type="submit" value="확인"></div> 
+				</div>
+			<%}%>
+		
+			
+			<%if("3".equals(loginMember.getRightNo())){%>
+			<div id="reply-main">
+				<div id="top1">댓글</div>
+				<div id="top">관리자</div>
 				<div id="bottom"><%=vo.getReportComment() %></div>
 			</div>
-			<%}
-		%>
+			<%}%>
+		</div>
 	</form>	
 </div>
 	

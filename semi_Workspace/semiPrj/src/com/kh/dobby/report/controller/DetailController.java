@@ -48,14 +48,19 @@ public class DetailController extends HttpServlet {
 	    
 	    req.setCharacterEncoding("UTF-8");
 	    String postNo = req.getParameter("postNo");
-        String y = req.getParameter("y");
+        String approval = req.getParameter("approval");
+        String returnReport = req.getParameter("return");
+        
+        
         
         int result =0;
         int result2 =0;
-        if(y.equals(y)) {
+        if(approval == "승인") {
             result = new ReportService().approval(postNo);
-        }else {
+            
+        }else if(returnReport == "반려") {
             result2 = new ReportService().returnReport(postNo);
+          
         }
         
         

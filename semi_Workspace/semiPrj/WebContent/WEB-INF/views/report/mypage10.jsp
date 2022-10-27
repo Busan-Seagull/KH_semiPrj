@@ -1,8 +1,9 @@
+<%@page import="java.util.List"%>
 <%@page import="com.kh.dobby.report.vo.ReportVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<% ReportVo vo = (ReportVo)request.getAttribute("vo"); %>
+<% List<ReportVo> voList = (List<ReportVo>)request.getAttribute("voList"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -219,6 +220,60 @@ input[type=submit]{
     display: none;
 
 }
+/* 신고게시판 */
+#report-area{
+	width:960px;
+	height: 500px;
+	display:flex;
+	margin: 0 auto;
+	justify-content: center;
+}
+
+#report-list{
+	position: relative;
+	border-top: 3px solid #004412;
+	border-bottom: 3px solid #004412;
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr 3fr 2fr;
+	grid-template-rows: 45px 45px 610px;
+	top:100px;
+
+	
+}
+.list-no1{
+	border-bottom: 3px solid #004412;;
+
+}
+.list-no2{
+	border-bottom: 1px solid lightgray;
+
+}
+#report-list>div{
+	
+	text-align: center;
+	line-height: 45px;
+}
+
+#report-span{
+
+	grid-column: span 5;
+}
+#report-title{
+	display: flex;
+	margin-top: 50px ;
+	position:relative;
+	left: 100px;
+	width: 100px;
+
+
+}
+#report-content-content{
+	width: 100%;
+	height: auto;
+	border-top:3px solid #004412;
+	border-bottom:3px solid #004412;
+
+}
 
 
 
@@ -423,18 +478,21 @@ input[type=submit]{
 				<div class="list-no1">작성자</div>
 			
 			
-				<div class="list-no2"><%=vo.getPostNo() %></div> 
-				<div class="list-no2"><%=vo.getUserNo() %></div>
-				<div class="list-no2"><%=vo.getServiceNo() %></div>
-				<div class="list-no2"><%=vo.getTitle() %></div>
-				<div class="list-no2"><%=vo.getWriter()%></div>
-		
-			<div id="report-span">
+			<%for(int i = 0; i< voList.size(); i++){%>
+				<div class="list-no2"><%=voList.get(i).getPostNo() %></div> 
+				<div class="list-no2"><%=voList.get(i).getUserNo() %></div>
+				<div class="list-no2"><%=voList.get(i).getServiceNo() %></div>
+				<div class="list-no2"><%=voList.get(i).getTitle() %></div>
+				<div class="list-no2"><%=voList.get(i).getWriter()%></div>
+				<div id="report-span">
 			<details>
 				<summary><div id="report-content">신고내용</div></summary>
-				<p><div id="report-content-content"><%=vo.getContent() %></div></p>
+				<p><div id="report-content-content"><%=voList.get(i).getContent() %></div></p>
 			</details>
 			</div>
+				
+			<%} %>
+			
 		</div>
 	</div>
     </div>
