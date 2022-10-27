@@ -220,7 +220,7 @@ String root=request.getContextPath();
                     <div id="content">
                         <div><%=vo.getContent()%></div>
                         <div id="btn">
-                        <% if(loginMember!=null&&loginMember.getNick().equals(vo.getUserNo())) { %>
+                        <% if(loginMember!=null&&loginMember.getNick().equals(vo.getUserNo())|| Integer.parseInt(loginMember.getRightNo())==3){ %>
                             <input type="button" value="수정하기" onclick="location.href='/dobby/commu/edit?bno=<%=vo.getPostNo()%>'">
                             <input type="button" value="삭제하기"  onclick="location.href='/dobby/commu/delete?bno=<%=vo.getPostNo()%>'"> 
                         <%} %>

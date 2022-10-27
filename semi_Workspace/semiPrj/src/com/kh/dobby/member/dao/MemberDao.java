@@ -274,6 +274,32 @@ public class MemberDao {
         
     }
 
+    public int updateOneByNo(Connection conn, MemberVo vo) {
+        PreparedStatement pstmt=null;
+        int result=0;
+        
+        String sql="";
+        
+        try {
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, vo.getPwd());
+            pstmt.setString(2, vo.getNick());
+            pstmt.setString(3, vo.getAddr());
+            pstmt.setString(4, vo.getHobby());
+            pstmt.setString(5, vo.getNo());
+            
+            result=pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
+
+    }
+
 }
 
 

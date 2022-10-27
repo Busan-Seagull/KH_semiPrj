@@ -152,7 +152,6 @@ alert('<%= msg%>');
 							return;
 			        	}else{
 			        		const info=JSON.parse(result);
-			        		
 					        window.open('http://127.0.0.1:8888/dobby/member/findidresult?id='+info.id+'&enrollDate='+info.enrollDate, '집요정 | 아이디 찾기', 'width=650, height=700, scrollbars=no');
 							
 			        	}
