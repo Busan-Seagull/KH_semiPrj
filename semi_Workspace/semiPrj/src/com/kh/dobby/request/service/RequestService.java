@@ -59,6 +59,35 @@ public class RequestService {
         return result;
     }
 
+
+    public RequestVo selectOne(String bno) {
+        
+        
+        //커넥션 준비
+        //SQL
+        //트랜잭션 자원반납
+        
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int result= dao.selectOne(conn, bno);
+        
+        RequestVo vo = null;
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+            vo = dao.selectOne(conn, bno);
+        } else {
+            JDBCTemplate.rollback(conn);
+        }
+        
+        
+        
+        
+    }
+
+
+   
+
     
 
 }

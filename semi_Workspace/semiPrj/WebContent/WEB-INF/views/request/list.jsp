@@ -8,6 +8,7 @@
     
 <%
     List<RequestVo> voList = (List<RequestVo>)request.getAttribute("voList");
+	PageVo pv = (PageVo)request.getAttribute("pv");
 %>
 <!DOCTYPE html>
 <html>
@@ -112,6 +113,23 @@
 	font-size:larger;
 }
 
+#page01{
+	width: 100px;
+	height:40px;
+	border:1px solid black;
+	background-color: #EAE0D4;
+	position: relative;
+	text-margin: center;
+	margin: 0 auto;
+	line-height:40px;
+	text-align:center;
+}
+
+#data-size-align{
+	width:100%;
+	height:60px;
+}
+
 </style>
 </head>
 <body>
@@ -122,9 +140,7 @@
 	
 	<div id="main">
 	
-		<%if(loginMember!=null) {%>
-			<div id="write"><a href="/dobby/request/write">글쓰기</a></div>
-		<%} %>
+		
 		
 		<div id="header">
 			<div class="t" id="t1">번호</div>
@@ -132,25 +148,46 @@
 			<div class="t" id="t3">작성자</div>
 		</div>
 		
-		<div><%= voList.get(1).getPostNo() %></div>
-		<div><a href="dobby/request/detail?postNo="><%= voList.get(1).getPostNo() %></a></div>
-		<div><%= voList.get(1).getUserNo() %></div>
 		
 		
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
+		<div id="data-size-align">
+			<% for(int i=0;i<voList.size();i++) { %>
+				<div class="data1">
+					<div class="content" id="t1"><%= voList.get(i).getPostNo() %></div>
+					<div class="content" id="t2"><a href="dobby/request/detail?bno=<%=voList.get(i).getPostNo() %>"><%= voList.get(i).getContent() %></a></div>
+					<div class="content" id="t3"><%= voList.get(i).getUserNo() %></div>
+				</div>
+				<%} %>
 		</div>
+		
 		
 	
 	
 	</div>
 	
-	<div id="page-area">1 2</div>
 	
+	<div id="page-area">
 	
+	<!-- 이전 버튼 -->
+	<%if(pv.getStartPage() !=1) {%>
+		<a href="/dobby/request/list?pno=<%=pv.getStartPage()-1%>" id="page01">이전</a>
+	<%} %>
 	
+	<!-- 페이지 숫자 -->
+	<%for(int i = pv.getStartPage(); i<pv.getEndPage(); ++i) {%>
+		<a href="/dobby/request/list?pno=<%=i%>"><%=i %></a>
+	<%} %>
+	
+	<!-- 다음 버튼 -->
+	<%if(pv.getEndPage() != pv.getMaxPage()){ %>
+		<a href="/dobby/request/list?pno=<%=pv.getEndPage()%>" id="page01">다음</a>
+	<%} %>
+		
+	</div>
+	
+	<%if(loginMember!=null) {%>
+			<div id="write"><a href="/dobby/request/write">글쓰기</a></div>
+	<%} %>
 	
 	
 	

@@ -14,9 +14,9 @@ public class RequestDao {
 
     public int insertBoard(Connection conn, RequestVo vo) {
 
-        String sql = "INSERT INTO QUESTION ( POST_NO, USER_NO, TITLE, CONTENT, WRITE_TIME, DELETE_YN, MODIFY_DATE, ADMIN_NO, REPEAT_REPOR,"
+        String sql = "INSERT INTO QUESTION ( POST_NO, USER_NO, TITLE, CONTENT, WRITE_TIME, DELETE_YN, MODIFY_DATE, ADMIN_NO, REPEAT_REPORT,"
                 + " REPEAT_CONTENT, REPEAT_TIME, REPEAT_MODIFY_DATE, REPEAT_DELETE_YN) "
-                + "VALUES ( SEQ_QUESTION_NO.NEXTVAL , ? , ? , ? , SYSDATE , 'N' , SYSDATE , '2' , 'N' , '' , SYSDATE , SYSDATE , '' )";
+                + "VALUES ( SEQ_QUESTION_NO.NEXTVAL , ? , ? , ? , SYSDATE , 'N' , SYSDATE , '3' , 'N' , '' , SYSDATE , SYSDATE , '' )";
         
         PreparedStatement pstmt = null;
         int result = 0;
@@ -54,7 +54,7 @@ public class RequestDao {
             rs = pstmt.executeQuery();
             
             while(rs.next()) {
-                String postNo = rs.getString("NO");
+                String postNo = rs.getString("POST_NO");
                 String userNo = rs.getString("USER_NO");
                 String title = rs.getString("TITLE");
                 String content = rs.getString("CONTENT");
@@ -123,5 +123,66 @@ public class RequestDao {
         }
         return result;
     }
+
+    public int selectOne(Connection conn, String bno) {
+        
+        String sql = "SELECT *  FROM QUESTION WHERE DELETE_YN='N' AND POST_NO=?";
+        
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        RequestVo vo = null;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            /*페이지 내용은 이 안에*/
+            pstmt.setString(1, bno);
+            rs = pstmt.executeQuery();
+            
+            while(rs.next()) {
+                String postNo = rs.getString("POST_NO");
+                String userNo = rs.getString("USER_NO");
+                String title = rs.getString("TITLE");
+                String content = rs.getString("CONTENT");
+                String writeTime = rs.getString("WRITE_TIME");
+                String deleteYn = rs.getString("DELETE_YN");
+                String modifyDate = rs.getString("MODIFY_DATE");
+                String adminNo = rs.getString("ADMIN_NO");
+                String repeatReport = rs.getString("REPEAT_REPORT");
+                String repeatContent = rs.getString("REPEAT_CONTENT");
+                String repeatTime = rs.getString("REPEAT_TIME");
+                String repeatModifyDate = rs.getString("REPEAT_MODIFY_DATE");
+                String repeatDeleteYn = rs.getString("REPEAT_DELETE_YN");
+                
+                vo = new RequestVo();
+                vo.setPostNo(postNo);
+                vo.setUserNo(userNo);
+                vo.setTitle(title);
+                vo.setContent(content);
+                vo.setWriteTime(writeTime);
+                vo.setDeleteYn(deleteYn);
+                vo.setModifyDate(modifyDate);
+                vo.setAdminNo(adminNo);
+                vo.setRepeatReport(repeatReport);
+                vo.setRepeatContent(repeatContent);
+                vo.setRepeatTime(repeatTime);
+                vo.setRepeatModifyDate(repeatModifyDate);
+                vo.setRepeatDeleteYn(repeatDeleteYn);
+                
+                
+                System.out.println(vo);
+            };
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+        return vo;
+        
+        
+    }
+    
+    
 
 }

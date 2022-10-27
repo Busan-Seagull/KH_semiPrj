@@ -20,15 +20,19 @@ public class ListController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
-        //로그인 검사
-        if(req.getSession().getAttribute("loginMember")==null){
-            req.setAttribute("msg", "로그인 후 이용해주세요");
-            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
-            return ;
-        }
+        
         
         //페이징 처리
         
+        //listCount 이미 선언
+        //currentPage 이미 선언
+        //pageLimit는 pv에 있음;
+        //BoardLimit는 pv에 있음;
+        
+//        int maxPage;
+//        int startPage;
+//        int endPage;
+//        
         req.setCharacterEncoding("UTF-8"); // 인코딩
         String page = req.getParameter("pno"); // pno로 값 가져오기
         int currentPage = 1;
@@ -41,8 +45,12 @@ public class ListController extends HttpServlet{
         int listCount = new RequestService().selectCount();
       
         
+        
         //글개수, 현재페이지, 페이징(5개로 고정해야), 페이지당 게시글 수
-        PageVo pv = new PageVo(listCount, currentPage, 5, 10);
+        PageVo pv = new PageVo(listCount, currentPage, 5, 10); // pageLimit=5, boardLimit=10
+        
+        
+        
         
         //디비 다녀오기
         List<RequestVo> x = new RequestService().pageList(pv);
