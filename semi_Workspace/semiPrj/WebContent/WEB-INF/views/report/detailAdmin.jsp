@@ -195,11 +195,11 @@ overflow:auto;
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><button type="submit" value="승인"></button></div>
-		<div class="i1"><button type="submit" value="반려"></button></div>
-		<div class="i1"><input id="input-btn" type="submit" value="삭제"></div>
-		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %>">수정</a></div>
-		<div class="i1"><a href="/dobby/report">글목록</a></div>
+		<div class="i1"><input class="input-btn" type="submit" value="승인" ></div>
+		<div class="i1"><a href="/dobby/detail?postNo=<%=vo.getPostNo() %>" >반려</a></div>
+		<div class="i1"><a href="/dobby/delete?postNo=<%=vo.getPostNo() %>" >삭제</a></div>
+		<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %> " >수정</a></div>
+		<div class="i1"><a href="/dobby/list">글목록</a></div>
 	</div>
 	<div id="reply-main">
 		<div id="top1">댓글 내용</div>

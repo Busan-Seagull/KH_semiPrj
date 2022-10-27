@@ -1,11 +1,8 @@
-
 <%@page import="com.kh.dobby.review.vo.ReviewVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 
-<%
-	ReviewVo vo = (ReviewVo)request.getAttribute("vo");
-%>
+<% ReviewVo vo = (ReviewVo) request.getAttribute("vo"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,19 +62,16 @@ pageEncoding="UTF-8"%>
 }
 #j{
 border-bottom: none;
+height:45px;
 }
 
 
-#t23{width: 96px;}
-#t24{width: 96px;}
-#t25{width: 528px;}
-#t26{width: 192px;}
-#t27{width: 144px;}
-#t28{width: 96px; height: 46px;}
-#t29{width: 96px;}
-#t30{width: 528px;height: 46px;}
-#t31{width: 192px;}
-#t32{ width: 144px;}
+
+.h-no2{width: 96px;}
+.h-no3{width: 528px;}
+.h-no4{width: 192px;}
+.h-no5{width: 144px;}
+
 
 
 .i1{
@@ -92,13 +86,13 @@ border-bottom: none;
 	border-radius:2.5rem;
 }
 #i{
-	width: 250px;
+	width: 200px;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
 	margin: 0 auto;
 	top: 60px;
-	left: 360px;
+	left: 380px;
 }
 #l{
 text-align:center;
@@ -115,7 +109,7 @@ overflow:auto;
 
 #first{
 	width: 960px;
-	height: 700px;
+	height: 600px;
 	margin: 0 auto;
 }
 
@@ -127,28 +121,21 @@ overflow:auto;
 	top:30px;
 	
 	
-	
 }
-#reply-main{
-	width:960px;
-	height:300px;
-	display:flex;
-	text-align:center;
-	line-height:100px;
-	position:relative;
-	top:100px;
-	
+#input-btn{
+ font-size:medium;
+ font-weight:500;
+ background-color:#EAE0D4;
+ border:none;
+ font-weight:600;
 }
-#top{
-	width:130px;
-	height:100px;
-	background-color:  #004412;
-	color: white;
+
+input{
+	border: none;
+	height:40px;
 }
-#bottom{
-	width: 830px;
-	height:98px;
-	border: 1px solid #004412;
+input, textarea{
+	font-size:larger;
 }
 
 </style>
@@ -165,35 +152,30 @@ overflow:auto;
 		<div id="a"></div>
 		<div id="b">리뷰게시판</div>
 	</div>
+	<form action="/dobby/reviewEdit" method="post">
 	<div id="main">
 		<div id="f">
-			<div class="h" id="t23">번호</div>
-			<div class="h" id="t24">서비스 번호</div>
-			<div class="h" id="t25">제목</div>
-			<div class="h" id="t26">작성자</div>
-			<div class="h" id="t27">평점</div>
+			<div class="h-no2" >서비스 번호</div>
+			<div class="h-no3" >제목</div>
+			<div class="h-no4" >작성자</div>
+			<div class="h-no5" >평점</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t28"><%=vo.getPostNo() %></div>
-			<div class="h" id="t29"><%=vo.getServiceNo() %></div>
-			<div class="h" id="t30"><%=vo.getTitle() %></div>
-			<div class="h" id="t31"><%=vo.getUserNo() %></div>
-			<div class="h" id="t32"><%=vo.getGrade() %></div>
+			<div class="h-no2" ><input type="text" name="serviceNo" value="<%=vo.getServiceNo()%>"></div>
+			<div class="h-no3" ><input type="text" name="title" value="<%=vo.getTitle()%>"></div>
+			<div class="h-no4"><input type="text" name="userNo" value="<%=vo.getUserNo()%>"></div>
+			<div class="h-no5" ><input type="text" name="grade" value="<%=vo.getGrade()%>"></div>
 		</div>
 		<div>
 			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="141" rows="18"><%=vo.getContent() %></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="115" rows="18"></textarea>
 		</div>
 	</div>
 	<div id="i">
-		<div class="i1"><a href="/dobby/reviewDelete?postNo=<%=vo.getPostNo() %>" >삭제</a></div>
-		<div class="i1"><a href="/dobby/reviewEdit?postNo=<%=vo.getPostNo() %> " >수정</a></div>
 		<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
+		<div class="i1"><input id="input-btn" type="submit" value="확인"></div>
 	</div>
-	<div id="reply-main">
-		<div id="top">집요정</div>
-		<div id="bottom">댓글 내용</div>
-	</div>
+	</form>
 </div>
 
 

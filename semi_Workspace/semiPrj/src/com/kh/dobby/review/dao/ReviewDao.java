@@ -154,4 +154,109 @@ public class ReviewDao {
         
     }
 
+    public ReviewVo selectReviewOne(Connection conn, String postNo) {
+        
+        String sql = "SELECT R.POST_NO ,S.SERVICE_NO, U.USER_NO  ,R.TITLE , R.CONTENT, R.WRITE_TIME ,R.DELETE_YN,R.MODIFY_DATE ,R.GRADE, U.NICK AS USER_NO FROM REVIEW R JOIN \"USER\" U ON R.USER_NO = U.USER_NO JOIN SERVICE_INFO S ON S.USER_NO = U.USER_NO WHERE R.POST_NO = ? ";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ReviewVo vo = null;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, postNo);
+            
+            rs = pstmt.executeQuery();
+         
+            if(rs.next()) {
+                String postNO = rs.getString("POST_NO");
+                String serviceNo = rs.getString("SERVICE_NO");
+                String userNo = rs.getString("USER_NO");
+                String title = rs.getString("TITLE");
+                String content = rs.getString("CONTENT");
+                Timestamp writeTime = rs.getTimestamp("WRITE_TIME");
+                String deleteYn = rs.getString("DELETE_YN");
+                Timestamp modifyDate = rs.getTimestamp("MODIFY_DATE");
+                String grade = rs.getString("GRADE");
+                
+                vo = new ReviewVo();
+                vo.setPostNo(postNO);
+                vo.setServiceNo(serviceNo);
+                vo.setUserNo(userNo);
+                vo.setTitle(title);
+                vo.setContent(content);
+                vo.setWriteTime(writeTime);
+                vo.setDeleteYn(deleteYn);
+                vo.setModifyDate(modifyDate);
+                vo.setGrade(grade);
+                
+                
+                
+               
+            }
+            
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        
+        return vo;
+    }
+
+    public int editOneByNo(Connection conn, ReviewVo vo) {
+
+        String sql = "UPDATE REVIEW SET SERVICE_NO = ? , TITLE = ? ,USER_NO = ?, GRADE=?, CONTENT = ? WHERE POST_NO = ?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, vo.getServiceNo());
+            pstmt.setString(2, vo.getTitle());
+            pstmt.setString(3,vo.getUserNo());
+            pstmt.setString(4, vo.getGrade());
+            pstmt.setString(5, vo.getContent());
+            pstmt.setString(6, vo.getPostNo());
+            
+            
+           
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        
+        return result;
+    
+    }
+
+    public int delete(Connection conn, String postNo) {
+
+        String sql = "UPDATE REVIEW SET DELETE_YN = 'Y' WHERE POST_NO = ?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, postNo);
+            
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+        }
+        return result;
+        
+    
+    }
+
 }

@@ -246,7 +246,7 @@ public class ReportDao {
     }
 
     public int updateReply(Connection conn, ReportVo vo) {
-        String sql = "UPDATE REPORT SET REPORT_COMMENT = '?' WHERE POST_NO = ?";
+        String sql = "UPDATE REPORT SET REPORT_COMMENT = ? WHERE POST_NO = ?";
         PreparedStatement pstmt = null;
         int result = 0;
         

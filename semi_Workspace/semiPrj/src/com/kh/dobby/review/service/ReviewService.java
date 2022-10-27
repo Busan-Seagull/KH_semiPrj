@@ -59,4 +59,46 @@ public class ReviewService {
     
     }
 
+    public ReviewVo selectReviewOne(String postNo) {
+       
+        
+        Connection conn = getConnection();
+        ReviewVo vo = dao.selectReviewOne(conn,postNo);
+        
+        close(conn);
+        return vo;
+    }
+
+    public int edit(ReviewVo vo) {
+        Connection conn = getConnection();
+        
+        int result = dao.editOneByNo(conn, vo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        
+        close(conn);
+        return result;
+    
+    }
+
+    public int delete(String postNo) {
+        
+        
+        Connection conn = getConnection();
+        
+        int result = dao.delete(conn, postNo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        return result ;
+    }
+
 }
