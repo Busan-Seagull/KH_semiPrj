@@ -1,6 +1,13 @@
 <%@page import="com.kh.dobby.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	MemberVo vo = (MemberVo)request.getAttribute("vo");
+	System.out.println(vo);
+	String msg = (String)session.getAttribute("msg");
+	session.removeAttribute("msg");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,28 +179,24 @@ margin-top: 10px;
             <div id="result-view">
 
                 <table id="rstable">
-                    <tr  >
+                    <tr>
+                    <%if(vo==null){%>
                         <td>PASSWORD</td>
                         <td id="getPwd">일치하는 비밀번호가 없습니다.</td>
-                        <td id="getEnrolldate"></td>
+                        
+                        <%}else{%>
+                        <!-- <td>PASSWORD</td> -->
+                        <td id="getPwd"><%=vo.getPhone().substring(0,3)%>-<%=vo.getPhone().substring(3,7)%>-XXXX으로 비밀번호가 전송되었습니다.</td>
+                       <%--  <td id="getEnrolldate"><%=vo.getEnrollDate()%></td> --%>
+                        <%}%>
 
-                        <!-- <input type="hidden" id="getId"name="inputId" value="">
-                        <input type="hidden" id="getEmail" name="inputEmail" value=""> -->
+                       
                     </tr> 
                 </table>
             </div>
 
-            <script>
-                const pwdresult = opener.$('#setPassWord').val();
-                const enrollDateresult=opener.$('#setEnrollDate').val();
-               
-                console.log(pwdresult);
-                console.log(enrollDateresult);
-                $('#getPwd').text(pwdresult);
-                $('#getEnrolldate').text(enrollDateresult);
-
-
-            </script>
+            
+        
 
 
 

@@ -2,17 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	MemberVo idFind = (MemberVo)session.getAttribute("idFind");
+	MemberVo vo = (MemberVo)request.getAttribute("vo");
+	System.out.println(vo);
 	String msg = (String)session.getAttribute("msg");
 	session.removeAttribute("msg");
-	session.removeAttribute("idFind");
+	
 %>
-<script>
+<%-- <script>
 <%if(msg!=null){%>
 alert('<%= msg%>');
 <%}%>
 
-</script>
+</script> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,28 +182,25 @@ margin-top: 10px;
             <div id="result-view">
                 <table id="rstable">
                     <tr>
-                        <td>ID</td>
-                        <td id="getId">일치하는 아이디가 없습니다.</td>
-                        <td id="getEnrolldate"></td>
                        
-                        <input type="hidden" id="getName"name="inputName" value="">
-                        <input type="hidden" id="getPhone" name="inputPhone" value="">
+                        <%if(vo==null){%>
+                        	 <td>ID</td>
+                        	 <td id="getId">일치하는 아이디가 없습니다.</td>
+                             <td id="getEnrolldate"></td>
+                            
+                             <%}else{%>
+                            	 <td>ID</td>
+                            	 <td id="getId"><%=vo.getId() %></td>
+                                 <td id="getEnrolldate"><%=vo.getEnrollDate() %></td>
+                             <%}%>
+                       
+                      
 
                        
                     </tr> 
                 </table>
             </div> 
         
-            <script>
-                const idresult=opener.$("#setId").val();
-                const enrollDateresult=opener.$("#setEnrollDate").val();
-                console.log(idresult);
-                console.log(enrollDateresult);
-                $('#getId').text(idresult);
-                $('#getEnrolldate').text(enrollDateresult);
-
-
-            </script>
 
             <div id="id-btn"><input type="button" value="비밀번호 찾기" onclick="opener.document.location.href='http://127.0.0.1:8888/dobby/member/findpwd'; window.close(); "></input></div>
             <div id="close-btn"> <input type="button" value="창닫기" onclick="window.close();"></input></div>
