@@ -10,7 +10,7 @@ public class ReservationVo {
     public ReservationVo(String reservation_no, String serviceNo, String userNo, String userName,
             String reservationDate, String cancelDate, String reservationAmount, String reservationYN, String comment,
             String reComment, String estimateDate, String dName, String sName, String sTitle, String charge,
-            String chargeUnit, String dNo, String address, String payNo, String status) {
+            String chargeUnit, String dNo, String address, String payNo, String status, String dProfil) {
         super();
         this.reservation_no = reservation_no;
         this.serviceNo = serviceNo;
@@ -32,6 +32,7 @@ public class ReservationVo {
         this.address = address;
         this.payNo = payNo;
         this.status = status;
+        this.dProfil = dProfil;
     }
 
     private String reservation_no;
@@ -56,16 +57,7 @@ public class ReservationVo {
 
     private String payNo;
     private String status;
-
-    @Override
-    public String toString() {
-        return "ReservationVo [reservation_no=" + reservation_no + ", serviceNo=" + serviceNo + ", userNo=" + userNo
-                + ", userName=" + userName + ", reservationDate=" + reservationDate + ", cancelDate=" + cancelDate
-                + ", reservationAmount=" + reservationAmount + ", reservationYN=" + reservationYN + ", comment="
-                + comment + ", reComment=" + reComment + ", estimateDate=" + estimateDate + ", dName=" + dName
-                + ", sName=" + sName + ", sTitle=" + sTitle + ", charge=" + charge + ", chargeUnit=" + chargeUnit
-                + ", dNo=" + dNo + ", address=" + address + ", payNo=" + payNo + ", status=" + status + "]";
-    }
+    private String dProfil;
 
     public String getReservation_no() {
         return reservation_no;
@@ -225,6 +217,25 @@ public class ReservationVo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getdProfil() {
+        return dProfil;
+    }
+
+    public void setdProfil(String dProfil) {
+        this.dProfil = dProfil;
+    }
+
+    @Override
+    public String toString() {
+        return "ReservationVo [reservation_no=" + reservation_no + ", serviceNo=" + serviceNo + ", userNo=" + userNo
+                + ", userName=" + userName + ", reservationDate=" + reservationDate + ", cancelDate=" + cancelDate
+                + ", reservationAmount=" + reservationAmount + ", reservationYN=" + reservationYN + ", comment="
+                + comment + ", reComment=" + reComment + ", estimateDate=" + estimateDate + ", dName=" + dName
+                + ", sName=" + sName + ", sTitle=" + sTitle + ", charge=" + charge + ", chargeUnit=" + chargeUnit
+                + ", dNo=" + dNo + ", address=" + address + ", payNo=" + payNo + ", status=" + status + ", dProfil="
+                + dProfil + "]";
     }
 
 }

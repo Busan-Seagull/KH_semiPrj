@@ -392,8 +392,8 @@
         <div id="header-logo-box">
             <img onclick="location.href='/dobby'" src="/dobby/resources/img/로고.png" alt="" id="header-logo">
             <%if(loginMember != null){%>
-            	<%if(!("3".equals(loginMember.getRightNo()))) {%>
             	<div id="header-quick-box">
+                <%if(!("3".equals(loginMember.getRightNo()))) {%>
 	                <a href="/dobby/member/mypage"><div class="img"></div><p>MyPage</p></a>
 	                <a href=""><div class="img"></div><p>Favorites</p></a>
 	                <a id="header-alarm">
@@ -414,8 +414,8 @@
             <%} %>
         </div>
     </header>
-   	<%if(loginMember==null||!("3".equals(loginMember.getRightNo()))) {%>
     <nav style="z-index: 100;">
+        <%if(loginMember==null||!("3".equals(loginMember.getRightNo()))) {%>
         <div id="header-nav-box">
             <div class="img"></div>
             <div id="header-service">
@@ -443,9 +443,9 @@
             </div>
             <article id="header-nav-hover"></article>
         </div>
-       
+        <%} %>
     </nav>
-    <%} %>
+
 
     <script defer>
         document.addEventListener('scroll', () => {

@@ -108,14 +108,16 @@ public class ReservationDao {
                 + "    CHARGE,\r\n"
                 + "    CHARGE_UNIT,\r\n"
                 + "    D_NO\r\n"
+                + "    IMG_LINK\r\n"
                 + "FROM RESERVATION \r\n"
                 + "JOIN \"USER\" USING(USER_NO) \r\n"
                 + "JOIN \r\n"
                 + "(\r\n"
                 + "    SELECT\r\n"
-                + "    USER_NO AS D_NO, U.NICK AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, CHARGE_UNIT, SERVICE_NO\r\n"
+                + "    USER_NO AS D_NO, U.NICK AS D_NAME, S.NAME AS S_NAME, SERVICE_TITLE ,CHARGE, IMG_LINK, CHARGE_UNIT, SERVICE_NO\r\n"
                 + "    FROM SERVICE_INFO\r\n"
                 + "    JOIN \"USER\" U USING(USER_NO)\r\n"
+                + "    JOIN DOBBY U USING(USER_NO)\r\n"
                 + "    JOIN \"SERVICE\" S USING(SERVICE_TYPE_NO) \r\n"
                 + "    JOIN CHARGE_UNIT USING(CHARGE_UNIT_NO)\r\n"
                 + ") USING(SERVICE_NO)\r\n"
@@ -153,6 +155,7 @@ public class ReservationDao {
                 rv.setChargeUnit(rs.getString("CHARGE_UNIT"));
                 rv.setdNo(rs.getString("D_NO"));
                 rv.setAddress(rs.getString("ADDRESS"));
+                rv.setdProfil(rs.getString("IMG_LINK"));
             }
             
         } catch (SQLException e) {

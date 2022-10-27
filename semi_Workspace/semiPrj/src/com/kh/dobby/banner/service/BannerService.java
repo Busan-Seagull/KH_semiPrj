@@ -20,4 +20,21 @@ public class BannerService {
         return list;
     }
 
+    public int insert(BannerVo bvo) {
+        
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int result = new BannerDao().insert(conn, bvo);
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+        }else {
+            JDBCTemplate.rollback(conn);
+        }
+        
+        JDBCTemplate.close(conn);
+        
+        return result;
+    }
+
 }

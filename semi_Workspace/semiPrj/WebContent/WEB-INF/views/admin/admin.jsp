@@ -51,8 +51,8 @@
 		border-radius: 10px;
 		background-color: white;
 		box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
-		width: 300px;
-		height: 250px;
+		width: 250px;
+		height: 200px;
 		gap: 10px;
 		margin: 25px auto;
 		flex-direction: column;
@@ -88,19 +88,25 @@
 				</span>
 			<p>통계확인</p>
 		</a>
-		<a class="mini-box">
+		<a href="/dobby/request" class="mini-box">
 			<span class="material-symbols-outlined">
 				support_agent
 				</span>
 			<p>문의답변</p>
 		</a>
-		<a class="mini-box">
+		<a href="/dobby/list" class="mini-box">
 			<span class="material-symbols-outlined">
 				report
 				</span>
 			<p>신고확인</p>
 		</a>
-		<a class="mini-box">
+		<a href="/dobby/commu/list?pno=1" class="mini-box">
+			<span class="material-symbols-outlined">
+				border_color
+				</span>
+			<p>게시판공지사항</p>
+		</a>
+		<a href="/dobby/addBanner" class="mini-box">
 			<span class="material-symbols-outlined">
 				add_photo_alternate
 				</span>

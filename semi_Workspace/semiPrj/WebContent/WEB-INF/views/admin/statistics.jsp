@@ -9,11 +9,10 @@
 	.box-1200{
 		width: 1200px;
 		margin: auto;
-		margin-top: 60px;
 	}
 
 	#title{
-		margin: 20px 0 10px 0  ;
+		margin: 60px 0 10px 0  ;
 		display: flex;
 		justify-content: start;
 		align-items: center;
@@ -86,7 +85,8 @@
 
 	#graph > div > div > div{
 		width: 50px;
-		height: 100px;
+		transition: 0.5s;
+		transition-timing-function: ease-in-out;
 	}
 
 	#graph > div > p{
@@ -96,6 +96,7 @@
 
 	#graph > div > div{
 		display: flex;
+		align-items: flex-end;
 	}
 
 	#graph > div{
@@ -119,9 +120,9 @@
 	<div id="main-container">
 		<div class="box-1200">
 			<div id="date">
-				<span class="material-symbols-outlined">chevron_left</span>
-				<div>10</div>
-				<span class="material-symbols-outlined">chevron_right</span>
+				<span id="left" class="material-symbols-outlined">chevron_left</span>
+				<div id="month"></div>
+				<span id="right" class="material-symbols-outlined">chevron_right</span>
 			</div>
 			<div id="caption">
 				<div class="box b-green"></div><p>일반회원</p>
@@ -131,35 +132,35 @@
 			<div id="graph">
 				<div class="graph-item">
 					<div>
-						<div class="b-green"></div>
-						<div class="b-brown"></div>
-						<div class="b-gray"></div>
+						<div class="b-green" style="height: 0px;"></div>
+						<div class="b-brown" style="height: 0px;"></div>
+						<div class="b-gray" style="height: 0px;"></div>
 					</div>
-					<p>7월</p>
+					<p class="month">월</p>
 				</div>
 				<div class="graph-item">
 					<div>
-						<div class="b-green"></div>
-						<div class="b-brown"></div>
-						<div class="b-gray"></div>
+						<div class="b-green" style="height: 0px;"></div>
+						<div class="b-brown" style="height: 0px;"></div>
+						<div class="b-gray" style="height: 0px;"></div>
 					</div>
-					<p>8월</p>
+					<p class="month">월</p>
 				</div>
 				<div class="graph-item">
 					<div>
-						<div class="b-green"></div>
-						<div class="b-brown"></div>
-						<div class="b-gray"></div>
+						<div class="b-green" style="height: 0px;"></div>
+						<div class="b-brown" style="height: 0px;"></div>
+						<div class="b-gray" style="height: 0px;"></div>
 					</div>
-					<p>9월</p>
+					<p class="month">월</p>
 				</div>
 				<div class="graph-item">
 					<div>
-						<div class="b-green"></div>
-						<div class="b-brown"></div>
-						<div class="b-gray"></div>
+						<div class="b-green" style="height: 0px;"></div>
+						<div class="b-brown" style="height: 0px;"></div>
+						<div class="b-gray" style="height: 0px;"></div>
 					</div>
-					<p>10월</p>
+					<p class="month">월</p>
 				</div>
 
 			</div>
@@ -167,4 +168,67 @@
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
+<script>
+	
+	const date = new Date();
+	const tMonth = date.getMonth() + 1;
+
+	const left = document.querySelector('#left');
+	const right = document.querySelector('#right');
+	const month = document.querySelector('#month');
+
+	console.log(month);
+
+	month.innerText = tMonth;
+	get(tMonth);
+
+	left.addEventListener('click', function(){
+		const mm = parseInt(month.innerText) - 1;
+		month.innerText = mm;
+		get(mm);
+	})
+
+	right.addEventListener('click', function(){
+		const mm = parseInt(month.innerText) + 1;
+		month.innerText = mm;
+		get(mm);
+	})
+
+	function get(m) {
+		var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/dobby/statistics');
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                	const result = JSON.parse(xhr.responseText);
+					const itemArr = document.querySelectorAll('.graph-item');
+
+					for (let index = 0; index < result.length; index++) {
+						const element = result[index];
+						const item = itemArr[index];
+						
+						const green = item.querySelector('.b-green');
+						const brown = item.querySelector('.b-brown');
+						const gray = item.querySelector('.b-gray');
+						const cMonth = item.querySelector('.month');
+
+						console.log(green);
+
+						green.style.height = element.userCount*5 + "px";
+						brown.style.height = element.dobbyCount*5 + "px";
+						gray.style.height = element.suerviceCount*5 + "px";
+
+						cMonth.innerText = (m-index)+"월";
+					}
+
+                }else{
+                    alert("결과가 저장되지 않음.");
+                }
+            }
+        }
+
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+        xhr.send('sDate='+m);
+	}
+</script>
 </html>

@@ -48,4 +48,28 @@ public class BannerDao {
         return list;
     }
 
+    public int insert(Connection conn, BannerVo bvo) {
+
+        String sql = "INSERT INTO BANNER VALUES (SEQ_BANNER_NO.NEXTVAL, 1, '베너이미지', ?, ?)";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, bvo.getImgLink());
+            pstmt.setString(2, bvo.getLink());
+            
+            result = pstmt.executeUpdate();
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
+        
+    }
+
 }
