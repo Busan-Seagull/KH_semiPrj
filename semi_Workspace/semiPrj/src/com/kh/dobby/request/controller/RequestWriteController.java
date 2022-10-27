@@ -13,7 +13,7 @@ import javax.servlet.http.Part;
 
 import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.request.service.RequestService;
-import com.kh.dobby.request.vo.Requestvo;
+import com.kh.dobby.request.vo.RequestVo;
 
 @WebServlet(urlPatterns = "/request/write")
 public class RequestWriteController extends HttpServlet{
@@ -50,10 +50,11 @@ public class RequestWriteController extends HttpServlet{
         //Part file = req.getPart("file");
         
         //데이터 뭉치기
-        Requestvo vo = new Requestvo();
+        RequestVo vo = new RequestVo();
+        vo.setUserNo(loginMember.getUserNo());
         vo.setTitle(title);
         vo.setContent(content);
-        vo.setPostNo(loginMember.getUserNo());
+        
         
         //디비 다녀오기
         int result = rs.write(vo);
