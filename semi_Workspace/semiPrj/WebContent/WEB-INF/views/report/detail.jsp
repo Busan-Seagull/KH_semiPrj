@@ -127,16 +127,34 @@ overflow:auto;
 	
 	
 }
+#reply-main2{
+	width:960px;
+	height:300px;
+	display:flex;
+	align-items:flex-end;
+	
+	
+	
+}
 #top{
-	width:130px;
-	height:100px;
+	width:180px;
+	height:50px;
 	background-color:  #004412;
 	color: white;
+	text-align:center;
+	line-height:50px;
+	position:relative;
+	right:145px;
 }
 #bottom{
-	width: 830px;
-	height:98px;
-	border: 1px solid #004412;
+	width:960px;
+	height:50px;
+	border-bottom: 5px solid #004412;
+	display:flex;
+	align-items:center;
+	position:relative;
+	right:145px;
+	
 }
 .input-btn{
  font-size:medium;
@@ -206,6 +224,21 @@ font-size: large;
 
 
 }
+#top2{
+width: 200px;
+height: 30px;
+display:flex;
+justify-self: center;
+justify-content:center;
+border-bottom: 5px double #004412;
+position:relative;
+bottom:100px;
+left:430px;
+text-align:center;
+font-size: large;
+
+
+}
 #bottom2{
 	width:960px;
 	height: 150px;
@@ -213,6 +246,7 @@ font-size: large;
 	display:flex;
 	justify-content:flex-end;
 	background-color:#004412;
+	
 	
 	
 
@@ -307,7 +341,7 @@ font-size: large;
 			
 		<%} %> --%>
 		<div id=reply-area-one>
-			<%if("3".equals(loginMember.getRightNo())){%>
+			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() ==){%>
 				<div id="reply-main">
 					<div id="top1">댓글쓰기</div>
 					<div id="admin-reply">관리자</div>
@@ -318,8 +352,8 @@ font-size: large;
 		
 			
 			<%if("3".equals(loginMember.getRightNo())){%>
-			<div id="reply-main">
-				<div id="top1">댓글</div>
+			<div id="reply-main2">
+				<div id="top2">댓글</div>
 				<div id="top">관리자</div>
 				<div id="bottom"><%=vo.getReportComment() %></div>
 			</div>
