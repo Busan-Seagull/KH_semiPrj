@@ -22,16 +22,18 @@
 	}
 	function doPay(){
 
+		if(!document.querySelector('input[name="payment-method"]').checked){
+			alert('결제수단을 선택해주세요');
+			return;
+		}
+
 		if(!document.querySelector('#payment-agree-checkbox').checked){
-			alert("결제 동의 해라");
+			alert("결제에 동의 해주세요");
 		}else{
 			location.href='/dobby/pay/complete';
 		}
-		
-		;
-		payment-agree-checkbox
-
 	}
+	
 
 
 </script>

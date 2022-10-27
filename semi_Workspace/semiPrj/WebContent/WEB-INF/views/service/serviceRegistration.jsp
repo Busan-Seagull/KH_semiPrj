@@ -24,9 +24,9 @@
 		<div id="registration-title">서비스 등록</div>
 		<form action="" method="post" enctype="multipart/form-data">
 			<div id="registration-form1">
-				<div id="service-name">서비스명</div>
-				<div id="service-name-input">
-					<input type="text" name="service">
+				<div id="service-name">서비스명*</div>
+				<div id="service-name-input" required>
+					<input type="text" name="service" id="name-input">
 				</div>
 				<div id="service-category">서비스 카테고리</div>
 				<div id="service-category-input">
@@ -68,9 +68,9 @@
 							value="2"><label for="c">계좌이체</label>
 					</div>
 				</div>
-				<div id="introduction">한줄소개</div>
+				<div id="introduction">한줄소개*</div>
 				<div id="introduction-input">
-					<input type="text" name="service-intro">
+					<input type="text" name="service-intro" required>
 				</div>
 				<div id="open-time">운영시작시간</div>
 				<div id="open-time-input">
@@ -333,7 +333,7 @@
 				</div>
 			</div>
 			<div id="registration-button-div">
-				<input type="submit" value="등록하기" id="registration-button">
+				<input type="submit" value="등록하기" id="registration-button" onclick="submitCheck();">
 			</div>
 
 		</form>
@@ -360,9 +360,9 @@
 	<script defer>
         $('.summernote').summernote({
             lang: 'ko-KR',
-            height: 400,               // set editor height
-            minHeight: 400,             // set minimum height of editor
-            maxHeight: 1000,             // set maximum height of editor
+            height: 300,               // set editor height
+            minHeight: 250,             // set minimum height of editor
+            maxHeight: 300,             // set maximum height of editor
             focus: true,                 // set focus to editable area after initializing summernote
             placeholder: '내용을 입력하세요',
             tabsize: 2,
@@ -381,7 +381,7 @@
 		    // 글머리 기호, 번호매기기, 문단정렬
 		    //['para', ['ul', 'ol', 'paragraph']],
 		    // 줄간격
-		    //['height', ['height']],
+		    ['height', ['height']],
 		    // 그림첨부, 링크만들기, 동영상첨부
 		    //['insert',['picture','link']],
 		    // 코드보기, 확대해서보기, 도움말
@@ -393,6 +393,16 @@
 		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
         });
       </script>
+
+<script defer>
+	function submitCheck(){
+		if(document.querySelector('#name-input').value==""||document.querySelector('#service-intro').value==""){
+			alert("필수입력란을 작성해주세요");
+			document.querySelector('#name-input').focus();
+			return false;
+		}
+	}
+</script>
 
 
 </body>

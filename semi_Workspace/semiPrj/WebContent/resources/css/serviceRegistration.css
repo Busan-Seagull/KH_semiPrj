@@ -12,7 +12,7 @@
     }
         #service-registration-wrap{
         width: 900px;
-        height: 1300px;
+        height: 1600px;
         border-radius: 10px;
         border: 1px solid var(--semi-green);
         margin: auto;
@@ -164,8 +164,8 @@
     }
     .textarea-div{
         display: inline-block;
-        width: 690px;
-        height: 230px;
+        width: 680px;
+        height: 400px;
     }
     .registration-t2{
         width: 145px;
@@ -176,17 +176,19 @@
 
     }
     textarea{
-        height: 220px;
-        width: 678px;
+        
+        width: 668px;
         text-align: top;
         border: 1px solid lightgrey;
         resize: none;
     }
     #service-detail-wrap{
         margin-top: 20px;
+        height: 400px;
     }
     #payment-detail-wrap{
         margin-top: 20px;
+        height: 400px;
     }
     #registration-button{
         border-radius: 5px;

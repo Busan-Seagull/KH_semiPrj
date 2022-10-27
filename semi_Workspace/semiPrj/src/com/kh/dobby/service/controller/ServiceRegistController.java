@@ -74,9 +74,7 @@ public class ServiceRegistController extends HttpServlet {
         System.out.println(typeNo);
 
         System.out.println(pTypeNo.length);
-        for (int i = 0; i < pTypeNo.length; i++) {
-            System.out.println(pTypeNo[i]);
-        }
+        for (int i = 0; i < pTypeNo.length; i++) {System.out.println(pTypeNo[i]);}
         // 데이터 뭉치기
         ServiceVo sv = new ServiceVo();
         sv.setTitle(title);

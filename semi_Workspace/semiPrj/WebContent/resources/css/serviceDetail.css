@@ -155,17 +155,17 @@
 /* 서비스 네비바 */
 #service-navibar{
     margin-top: 10px;
-    top: 40px;
+    top: 48px;
     position: sticky;
-    z-index: 9999;
+    z-index: 999;
     
 }
 #service-navibar>ul>li>a{
     width: 274px;
-    height: 60px;
+    height: 48px;
     border: none;
     margin: auto;
-    line-height: 60px;
+    line-height: 45px;
     text-align: center;
     font-size: 20px;
     float: left;
@@ -337,4 +337,9 @@
     border: none;
     position: absolute;
     right: 0;
+}
+.service-pic>img:hover{
+
+    transform: scale(1.05);
+    transition: 1s;
 }
