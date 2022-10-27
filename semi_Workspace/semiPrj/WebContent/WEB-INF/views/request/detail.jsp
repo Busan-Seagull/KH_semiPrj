@@ -1,5 +1,11 @@
+<%@ page import="com.kh.dobby.request.vo.RequestVo" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%
+    	RequestVo vo = (RequestVo)request.getAttribute("vo");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,6 +104,14 @@
 			<div class="content" id="t1">1</div>
 			<div class="content" id="t2">2</div>
 			<div class="content" id="t3">3</div>
+		</div>
+		
+		<div class="data1">
+		
+			<div><%= vo.getPostNo() %></div>
+			<div><%= vo.getTitle() %></div>
+			<div><%= vo.getUserNo() %></div>
+			<div><%= vo.getContent() %></div>
 		</div>
 	</div>
 	

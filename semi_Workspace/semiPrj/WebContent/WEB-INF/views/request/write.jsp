@@ -159,20 +159,22 @@
 		<div id="main">
 
 			<div id="header">
-				<div class="t" id="t1">번호</div>
-				<div class="t" id="t2">제목</div>
+				<!--  <div class="t" id="t1">번호</div>-->
 				<div class="t" id="t3">작성자</div>
+				<div class="t" id="t2">제목</div>
+				
 			</div>
 			
 			<div class="data1">
-				<div class="content" id="t1">1</div>
-				<input type="text" id="t2">
-				
+				<!-- <div class="content" id="t1">1</div> -->
 				<div class="content" id="t3"><%= loginmember.getNick() %></div>
+				
+				<input type="text" id="t2" name="title">
+				
 				
 			</div>
 			<div class="data2">
-				<input type="text" id="table-content">
+				<input type="text" id="table-content" name="content">
 			</div>
 
 	
@@ -221,7 +223,7 @@
 	</div>
 	<div id="button-box">
 		<input type="submit" value="작성하기" id="write"  class="page-button" >
-		<a href="/dobby/request/"><div class="page-button" id="rollback">돌아가기</div></a>
+		<a href="/dobby/request"><div class="page-button" id="rollback">돌아가기</div></a>
 	</div>
 	
 	

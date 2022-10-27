@@ -22,9 +22,17 @@ public class RequestWriteController extends HttpServlet{
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/request/write.jsp").forward(req, resp);
         
-        //로그인 검사
+        
+      
+        //로그인 검사 - 다른데다 옮길거임
+        if(req.getSession().getAttribute("loginMember")==null){
+            req.setAttribute("msg", "로그인 후 이용해주세요");
+            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+            return ;
+        }
+        
+        req.getRequestDispatcher("/WEB-INF/views/request/write.jsp").forward(req, resp);
     }
     
     
@@ -59,14 +67,14 @@ public class RequestWriteController extends HttpServlet{
         //디비 다녀오기
         int result = rs.write(vo);
         
-        //화면 선택
+        //화면 선택 - 자바스크립트연동
         if(result==1) {
             s.setAttribute("alertMsg", "작성 성공");
             resp.sendRedirect("/dobby/request");
         } else {
             //게시글 작성실패
             s.setAttribute("alertMsg", "작성 실패");
-            resp.sendRedirect("/views/common/error.jsp");
+            resp.sendRedirect("/WEB-INF/views/common/error.jsp");
         }
     }
     
