@@ -233,19 +233,30 @@ input[type=submit]{
     
             <div id="join-area">
                     <div id="join-title"><span class="material-symbols-outlined">magic_button</span>내 정보 수정</div>
-                    <div id="right">
-                        <label> 일반 회원
-                            <input type="radio" name="userRight" value="1">
+                    <div id="right">  
+                    <%if("2".equals(loginMember.getRightNo())){ %> 
+                    	<label> 일반 회원
+                            <input type="radio" name="userRight" value="1" onclick="return(false);">
                         </label>
         
                         <label> 집요정
-                            <input type="radio" id="userRight" name="userRight" value="2">
+                            <input type="radio" id="userRight" name="userRight" value="2" checked readonly>
                         </label> 
+                    	<%}else{ %>
+                    		<label> 일반 회원
+                            <input type="radio" name="userRight" value="1" checked readonly>
+                        </label>
+        
+                        <label> 집요정
+                            <input type="radio" id="userRight" name="userRight" value="2" onclick="return(false);">
+                        </label> 
+                    	   <%}%>
+                        
                     </div>
         
                     <div class="text">아이디</div>
                     <div id="id">
-                        <input type="text" name="memberId">
+                        <input type="text" name="memberId" value="<%=loginMember.getId() %>" readonly>
                     </div>
         
                     <div class="text">비밀번호</div>
@@ -255,37 +266,41 @@ input[type=submit]{
                     <div id="pwd"><input type="password" name="memberPwd2"></div>
         
                     <div class="text">닉네임</div>
-                    <div id="nick"><input type="text" name="memberNick"></div>
+                    <div id="nick"><input type="text" name="memberNick" value="<%=loginMember.getNick()%>" readonly></div>
         
                     <div class="text">이름</div>
-                    <div id="name"><input type="text" name="memberName"></div>
+                    <div id="name"><input type="text" name="memberName" value="<%=loginMember.getName()%>" readonly></div>
         
                     <div class="text">휴대폰 번호</div>
-                    <div id="phone">
-                        <select name="phone1">
-                            <option value=""selected>선택</option>
-                              <!-- 직접입력 밸류 값 챙기셈 -->
-                            <option value="011">011</option>
-                            <option value="010">010</option>
-           
-                           </select>
-                           <span>-</span> 
-                           <input type="text" name="phone2" size="4" />
-                           <span>-</span> 
-                           <input type="text" name="phone3" size="4" />
-                    </div>
+                     <div id="phone">
+		                <select name="phone1">
+		                    <option value="010"selected>010</option>
+		                    <option value="011">011</option>
+		                    <option value="016">016</option>
+		                    <option value="017">017</option>
+		                    <option value="018">018</option>
+		   
+		                   </select>
+		                   <span>-</span> 
+		                   <input type="text" name="phone2" maxlength="4" />
+		                   <span>-</span> 
+		                   <input type="text" name="phone3" maxlength="4" />
+		            </div>
         
                     <div class="text">이메일</div>
                     <div id="email">
-                        <input type="text" name="Email1"/>
-                        <span>@</span> 
-                        <select name="Email2">
-                            <option value=""selected>직접입력</option>
-                            <!-- 직접입력 밸류 값 챙기셈 -->
-                            <option value="naver.com" >naver.com</option>
-                            <option value="gmail.com">gmail.com</option>
-                           </select>
-                    </div>
+		                <input type="text" name="Email1"/>
+		                <span>@</span> 
+		                <select name="Email2">
+		                    <option value="naver.com" >naver.com</option>
+		                    <option value="gmail.com">gmail.com</option>
+		                    <option value="daum.net">daum.net</option>
+		                    <option value="hanmail.net">hanmail.net</option>
+		                    <option value="nate.com">nate.com</option>
+		                    <option value="outlook.com">outlook.com</option>
+		                   </select>
+		            </div>
+
         
                     <div class="text">주소</div>
                     <div id="address">
@@ -293,6 +308,8 @@ input[type=submit]{
                         <input type="text" id="addr-detail" name="addr-detail" placeholder="상세주소">
                         <input type="button" onclick="addr_execDaumPostcode()" value="주소검색">
                     </div>
+                    
+                    <%if("2".equals(loginMember.getRightNo())){%>
 
                     <div id="br_num_text" class="text">사업자 등록번호</div>
                         <div id="br_num">
@@ -316,25 +333,7 @@ input[type=submit]{
                             <input type="text" name="account2" size="14" />
         
                     </div>
-                
-                    <script>
-        
-                            $('input:radio[name="userRight"]').click(function() {
-                                if ($(this).val() != 2 ) {
-                                    $('#zip_right').css('display','none');
-                                   
-                                   
-                                }else if( $(this).val()==null){
-                                    $('#zip_right').css('display','none');
-                                } else{
-                                   
-                                    $('#zip_right').css('display','');
-                                   
-                                }
-                            });
-        
-        
-                    </script>
+                    <%} %>      
                     
                     
                     

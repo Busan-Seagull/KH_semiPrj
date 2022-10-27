@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
+<%-- <%
 List<CommuVo> volist =(List<CommuVo>)request.getAttribute("voList");
 PageVo pv=(PageVo)request.getAttribute("pv");
 String msg = (String)session.getAttribute("msg");
@@ -14,14 +14,14 @@ String root=request.getContextPath();
 <script>
 <%if(msg!=null){%>
 alert('<%= msg%>');
-<%}%>
+<%}%> --%>
 </script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
     #list-main{
         width: 1200px;
@@ -91,22 +91,29 @@ alert('<%= msg%>');
         background-color: rgb(238, 249, 232);
         
     }
-
-    #btn-group input{
-        display: block;
-        float: left;
-        width: 25%;
-        height: 100%;
-        border: none;
-        margin: 0;
+     #btn-group label{
+	     display:flex;
+	     float:left;
+	     width:25%;
+	      height: 100%;
+	     margin:0;
         background-color: rgb(238, 249, 232);
         border-radius: 30px;
         font-family: var(--sans);
         color: black;
-        font-size: 10pt; 
+        font-size: 10pt;
+         justify-content: center;
+        align-items: center;
+        
+     }
+
+    #btn-group input{
+        display:none;
+        margin:10px;
+    
     }
 
-    #btn-group input:hover{
+    #btn-group label:hover{
         font-weight: 600;
         color: var(--semi-green);
     }
@@ -240,12 +247,16 @@ alert('<%= msg%>');
                 <div><span class="material-symbols-outlined">magic_button</span>커뮤니티<span class="material-symbols-outlined">magic_button</span></div>
                 <div style="letter-spacing:10px;">자유롭게 소통해요</div>
             </div>
+            
             <div id="cate-btn">
                 <div id="btn-group">
-                    <input type="button" name="category" value="공지">
-                    <input type="button" name="category" value="전체">
-                    <input type="button" name="category" value="TIP">
-                    <input type="button" name="category" value="추천">
+                <form action="" mathod="post">
+                  <label name="category" for="category1">공지</label><input type="radio" id="category1" name="category" value="공지">
+                    <label name="category" for="category2">전체</label><input type="radio" id="category2" name="category" value="전체">
+                    <label name="category" for="category3">TIP</label><input type="radio" id="category3" name="category" value="TIP">
+                    <label name="category" for="category4">추천</label><input type="radio" id="category4" name="category" value="추천">
+                </form>
+                  
                 </div>
                 
             </div>
@@ -255,13 +266,13 @@ alert('<%= msg%>');
                <div class="first">작성자</div>
                <div class="first">일시</div>
                <div class="first">조회수</div>
-				<%for (int i =0; i <volist.size();i++){ %>
+			<%-- 	<%for (int i =0; i <volist.size();i++){ %>
                <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getPostNo() %></a></div>
                <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getTitle() %></a></div>
                <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getUserNo()%></a></div>
                <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getWriteTime()%></a></div>
                <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getViews()%></a></div>
-				<%} %>
+				<%} %> --%>
               
                
             </div>
@@ -270,7 +281,7 @@ alert('<%= msg%>');
                 <input type="button" value="작성하기" onclick="location.href='/dobby/commu/write';">
             </div>
 <!-- 페이징 -->
-          	<div id="page-area">
+          <%-- 	<div id="page-area">
 					<ul id="page-nation">
 						<li><a href="/dobby/commu/list?pno=1" class="first"><<</a></li>
 						<li><a class="arrow left"><</a></li>
@@ -282,12 +293,13 @@ alert('<%= msg%>');
 						<li><a class="arrow right">></a></li>
 						<li><a href="/dobby/commu/list?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
 					</ul>
-				</div>
+				</div> --%>
 
        </div>
     </div>
     
 				<script>
+				<%-- /* 페이징 코드 */
 					const pageNation = document.querySelector('#page-nation');
 					const numArr = pageNation.querySelectorAll('.num');
 					const left = pageNation.querySelector('.arrow.left');
@@ -321,7 +333,40 @@ alert('<%= msg%>');
 						}
 						num.innerHTML = page;
 						page++;
-					}
+					} --%>
+					
+					/*카테고리 별 조회 AJAX  */
+					  $('input[type=radio]').click(function(){
+           				const cate=$("input[type=radio]:checked").val();    
+			           $.ajax({    
+						        type: "post",
+						        url: "/dobby/commu/list?pno=1",
+						    data: {
+						    	catename:cate
+						        	}, 
+						        success: function(result) {
+						        	const list2=$('#cate-list');
+						        	const item = $('<div/>');
+						        	
+						        	 const board =JSON.parse(result);
+						        	var result2=board.list[title];
+						        	
+						        	
+						        	
+						        	console.log(result2);
+						        		
+						    	
+						        },
+						        error: function() {   
+						        	alert("실패!");
+						              
+						        }
+                      
+                                 
+           });
+        });
+					
+					
 				</script>
 
     <%@include file="/WEB-INF/views/common/footer.jsp" %>

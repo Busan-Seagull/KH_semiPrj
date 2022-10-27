@@ -82,6 +82,26 @@ public class MemberService {
 
         return pwdFind;
     }
+
+    public MemberVo edit(MemberVo vo) {
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int result = new MemberDao().updateOneByNo(conn,vo);
+        
+        MemberVo updatedMember= null;
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+            updatedMember= new MemberDao().selectOne(conn, vo);
+            
+            
+        }else {
+            JDBCTemplate.rollback(conn);
+        }
+        
+        JDBCTemplate.close(conn);
+        return updatedMember;
+    }
     
    
 
