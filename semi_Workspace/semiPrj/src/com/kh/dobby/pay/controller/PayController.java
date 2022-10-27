@@ -22,6 +22,7 @@ public class PayController extends HttpServlet{
         
         //디비
         ReservationVo rv = new ReservationService().selectOne(rno);
+        System.out.println(rv);
         
         //객체 담아 화면 넘겨주기
         req.setAttribute("rv", rv);

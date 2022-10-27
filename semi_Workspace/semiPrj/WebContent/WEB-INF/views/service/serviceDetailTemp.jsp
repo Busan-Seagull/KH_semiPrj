@@ -17,16 +17,16 @@
 	<div id="service-wrap">
 		<div id="main-content">
 			<div id="service-pic-container">
-				<div id="service-pic1">
+				<div class="service-pic" id="service-pic1">
 					<img src="/dobby/${sv.servicePic_1}" alt="">
 				</div>
-				<div id="service-pic2">
+				<div class="service-pic" id="service-pic2">
 					<img src="/dobby/${sv.servicePic_2}" alt="">
 				</div>
-				<div id="service-pic3">
+				<div class="service-pic" id="service-pic3">
 					<img src="/dobby/${sv.servicePic_3}" alt="">
 				</div>
-				<div id="service-pic4">
+				<div class="service-pic" id="service-pic4">
 					<img src="/dobby/${sv.servicePic_4}" alt="">
 				</div>
 			</div>

@@ -313,7 +313,7 @@ input[type=submit] {
 							</div>
 							<div class="helper-contents2">
 								<div id="btn1">
-									<button onclick="loction.href='/dobby/service/modify'">수정하기</button>
+									<button onclick="loction.href='/dobby/service/modify?sno=${list.serviceNo}'">수정하기</button>
 								</div>
 								<div id="btn2">
 									<button>삭제하기</button>

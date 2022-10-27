@@ -14,6 +14,13 @@
 <link rel="stylesheet"
 	href="/dobby/resources/css/serviceModification.css">
 </head>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="/dobby/resources/js/editor/lang/summernote-ko-KR.js"></script>
+ <!-- 서머노트를 위해 추가해야할 부분 -->
+<script src="${pageContext.request.contextPath}/resources/js/editor/summernote-lite.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/editor/summernote-lite.css">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
 
@@ -318,14 +325,14 @@
 			<div id="service-detail-wrap">
 				<div id="service-detail-text" class="registration-t2">서비스 상세내용</div>
 				<div id="service-detail" class="textarea-div">
-					<textarea name="service-detail" id="">${sv.serviceDetail}</textarea>
+					<textarea name="service-detail" id="" class="summernote">${sv.serviceDetail}</textarea>
 				</div>
 
 			</div>
 			<div id="payment-detail-wrap">
 				<div id="payment-detail-text" class="registration-t2">요금 상세 정보</div>
 				<div id="payment-detail" class="textarea-div">
-					<textarea name="payment-detail" id="">${sv.paymentDetail}</textarea>
+					<textarea name="payment-detail" id="" class="summernote">${sv.paymentDetail}</textarea>
 				</div>
 			</div>
 			<div id="registration-button-div">
@@ -354,9 +361,42 @@
 		})
 		
 	</script>
-	<script>
-		
-	</script>
+	<script defer>
+        $('.summernote').summernote({
+            lang: 'ko-KR',
+            height: 300,               // set editor height
+            minHeight: 250,             // set minimum height of editor
+            maxHeight: 300,             // set maximum height of editor
+            focus: true,                 // set focus to editable area after initializing summernote
+            placeholder: '내용을 입력하세요',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+		    // 글꼴 설정
+		    ['fontname', ['fontname']],
+		    // 글자 크기 설정
+		    ['fontsize', ['fontsize']],
+		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+		    // 글자색
+		    ['color', ['forecolor','color']],
+		    // 표만들기
+		    ['table', ['table']],
+		    // 글머리 기호, 번호매기기, 문단정렬
+		    //['para', ['ul', 'ol', 'paragraph']],
+		    // 줄간격
+		    ['height', ['height']],
+		    // 그림첨부, 링크만들기, 동영상첨부
+		    //['insert',['picture','link']],
+		    // 코드보기, 확대해서보기, 도움말
+		    // ['view', ['codeview','fullscreen', 'help']]
+		  ],
+		  // 추가한 글꼴
+		fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+		 // 추가한 폰트사이즈
+		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+        });
+      </script>
 
 </body>
 </html>

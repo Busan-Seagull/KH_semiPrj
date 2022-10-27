@@ -38,12 +38,5 @@ public class ServiceDeleteController extends HttpServlet{
             req.setAttribute("msg", "서비스 삭제 실패");
             req.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(req, resp);
         }
-        
-        
-        
-        
-        
-        
-        
     }
 }
