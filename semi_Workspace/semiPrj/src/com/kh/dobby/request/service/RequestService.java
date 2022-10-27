@@ -1,16 +1,18 @@
 package com.kh.dobby.request.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.kh.dobby.common.JDBCTemplate;
+import com.kh.dobby.common.PageVo;
 import com.kh.dobby.request.dao.RequestDao;
-import com.kh.dobby.request.vo.Requestvo;
+import com.kh.dobby.request.vo.RequestVo;
 
 public class RequestService {
 
     private RequestDao dao = new RequestDao();
     
-    public int write(Requestvo vo) {
+    public int write(RequestVo vo) {
         //커넥션 준비, sql, 
         //트랜잭션, 자원반납
         Connection conn = JDBCTemplate.getConnection();
@@ -28,5 +30,35 @@ public class RequestService {
         JDBCTemplate.close(conn);
         return result;
     }
+    
+    
+    public List<RequestVo> pageList(PageVo pv) {
+        
+        Connection conn = JDBCTemplate.getConnection();
+        
+        List<RequestVo> x = dao.selectList(conn);
+        
+        JDBCTemplate.close(conn);
+        
+        return x;
+        
+    }
+
+
+    public int selectCount() {
+        //커넥션준비
+        //sql
+        //트랜잭션,자원반납
+        
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int result = dao.selectCount(conn); // connection 전달하면서 연결 후 int result에 실행결과 전달->자원반납->실행결과반납
+        
+        JDBCTemplate.close(conn);
+        
+        return result;
+    }
+
+    
 
 }

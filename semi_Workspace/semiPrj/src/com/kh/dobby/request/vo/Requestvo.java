@@ -1,6 +1,6 @@
 package com.kh.dobby.request.vo;
 
-public class Requestvo {
+public class RequestVo {
     private String postNo;
     private String userNo;
     private String title;
@@ -99,7 +99,7 @@ public class Requestvo {
                 + adminNo + ", repeatReport=" + repeatReport + ", repeatContent=" + repeatContent + ", repeatTime="
                 + repeatTime + ", repeatModifyDate=" + repeatModifyDate + ", repeatDeleteYn=" + repeatDeleteYn + "]";
     }
-    public Requestvo(String postNo, String userNo, String title, String content, String writeTime, String deleteYn,
+    public RequestVo(String postNo, String userNo, String title, String content, String writeTime, String deleteYn,
             String modifyDate, String adminNo, String repeatReport, String repeatContent, String repeatTime,
             String repeatModifyDate, String repeatDeleteYn) {
         super();
@@ -117,7 +117,7 @@ public class Requestvo {
         this.repeatModifyDate = repeatModifyDate;
         this.repeatDeleteYn = repeatDeleteYn;
     }
-    public Requestvo() {
+    public RequestVo() {
         super();
     }
     

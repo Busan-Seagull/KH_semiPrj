@@ -1,12 +1,13 @@
 <%@page import="java.util.List"%>
-<%@ page import="com.kh.dobby.request.vo.Requestvo" %>
+<%@ page import="com.kh.dobby.request.vo.RequestVo" %>
+<%@ page import="com.kh.dobby.common.PageVo" %>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
-	List<Requestvo> voList = (List<Requestvo>)request.getAttribute("voList");
+    List<RequestVo> voList = (List<RequestVo>)request.getAttribute("voList");
 %>
 <!DOCTYPE html>
 <html>
@@ -120,48 +121,38 @@
 	<div id="title">문의게시판</div>
 	
 	<div id="main">
+	
+		<%if(loginMember!=null) {%>
+			<div id="write"><a href="/dobby/request/write">글쓰기</a></div>
+		<%} %>
+		
 		<div id="header">
 			<div class="t" id="t1">번호</div>
 			<div class="t" id="t2">제목</div>
 			<div class="t" id="t3">작성자</div>
 		</div>
+		
+		<div><%= voList.get(1).getPostNo() %></div>
+		<div><a href="dobby/request/detail?postNo="><%= voList.get(1).getPostNo() %></a></div>
+		<div><%= voList.get(1).getUserNo() %></div>
+		
+		
 		<div class="data1">
 			<div class="content" id="t1">1</div>
 			<div class="content" id="t2">2</div>
 			<div class="content" id="t3">3</div>
 		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
-		<div class="data1">
-			<div class="content" id="t1">1</div>
-			<div class="content" id="t2">2</div>
-			<div class="content" id="t3">3</div>
-		</div>
+		
 	
 	
 	</div>
 	
 	<div id="page-area">1 2</div>
 	
-	<div id="write"><a href="/dobby/request/write">글쓰기</a></div>
+	
+	
+	
+	
 	
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
