@@ -89,7 +89,7 @@
         font-weight: 700;
     }
     #payment-date{
-        width: 100px;
+        width: 200px;
         margin-left: 20px;
     }
     #payment-number{
@@ -235,4 +235,12 @@
         height: 100px;
         text-align: right;
         vertical-align: bottom;
+    }
+    .row-flex{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .justify-center{
+        justify-content: center;
     }

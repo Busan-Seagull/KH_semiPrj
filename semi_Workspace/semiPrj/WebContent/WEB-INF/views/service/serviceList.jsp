@@ -33,12 +33,12 @@ String root = request.getContextPath();
 			<div id="service-category-h1">서비스 목록</div>
 			<ul>
 				<li><a href="/dobby/service/list">전체보기</a></li>
-				<li><a href="/dobby/service/list?stn=1">가사도우미</a></li>
-				<li><a href="/dobby/service/list?stn=2">이사</a></li>
-				<li><a href="/dobby/service/list?stn=3">인테리어</a></li>
-				<li><a href="/dobby/service/list?stn=4">전기/수도/가스</a></li>
-				<li><a href="/dobby/service/list?stn=5">가전설치</a></li>
-				<li><a href="/dobby/service/list?stn=6">펫/식물</a></li>
+				<li><a href="/dobby/service/list?stn=1"><span class="material-symbols-outlined text-green">styler</span>가사도우미</a></li>
+				<li><a href="/dobby/service/list?stn=2"><span class="material-symbols-outlined text-green">local_shipping</span>이사</a></li>
+				<li><a href="/dobby/service/list?stn=3"><span class="material-symbols-outlined text-green">scene</span>인테리어</a></li>
+				<li><a href="/dobby/service/list?stn=4"><span class="material-symbols-outlined text-green">shower</span>전기/수도/가스</a></li>
+				<li><a href="/dobby/service/list?stn=5"><span class="material-symbols-outlined text-green">kitchen</span>가전설치</a></li>
+				<li><a href="/dobby/service/list?stn=6"><span class="material-symbols-outlined text-green">potted_plant</span>펫/식물</a></li>
 			</ul>
 		</div>
 		<div id="service-main">
@@ -114,7 +114,7 @@ String root = request.getContextPath();
 							<div class="helper-contents2">
 								<div class="favorite-btn-div">
 									<button class="favorite-btn">
-										<span class="material-symbols-outlined"> favorite </span>찜
+										<span class="material-symbols-outlined"> favorite </span>
 									</button>
 								</div>
 								<div class="service-pay">${list.chargeUnit}당
@@ -127,31 +127,6 @@ String root = request.getContextPath();
 
 				</c:forEach>
 
-				<div class="helper-list-outline">
-					<div class="helper-list">
-						<div class="helper-pic">
-							<img src="/dobby/resources/img/service/dobby3.jpg" alt="">
-						</div>
-						<div class="helper-contents">
-							<div>
-								<h2>집고치는 집요정 | 집요정</h2>
-								<p>
-									모든 집 수리 다 합니다<br> 모든 집 수리 다해요 ~
-								</p>
-							</div>
-							<div>
-								<span class="starrr">★★★★★</span> <span class="star-num">5</span>
-								<span class="comment">"이 집 청소 잘하네요~"</span>
-							</div>
-						</div>
-						<div class="helper-contents2">
-							<div class="favorite-btn-div">
-								<button class="favorite-btn">♥찜하기</button>
-							</div>
-							<div class="service-pay">평당 15,000원</div>
-						</div>
-					</div>
-				</div>
 				<div id="page-area">
 					<ul id="page-nation">
 						<li><a href="#" class="first"><<</a></li>

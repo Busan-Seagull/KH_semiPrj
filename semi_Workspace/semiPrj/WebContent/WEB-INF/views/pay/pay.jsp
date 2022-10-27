@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,18 @@
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
 </head>
 <script defer>
+
+	function checkZero(){
+	var use = document.querySelector('#use-point');
+		if(use.value<0){
+			use.value =0 ;
+		}
+		if(use.value>${rv.reservationAmount}){
+			use.value = ${rv.reservationAmount};
+		}	
+	}
+	
+
 	function pointCalculate(){
 		const usePoint = document.querySelector('#use-point').value;
 		var usePointNumber = parseInt(usePoint);
@@ -20,29 +33,37 @@
 
 		document.querySelector('#final-amount').innerText = parseInt((${rv.reservationAmount} - usePoint)).toLocaleString('ko-kr')+'원';
 	}
+
 	function doPay(){
 
-		if(!document.querySelector('input[name="payment-method"]').checked){
+		const methodCheck = document.querySelectorAll('input[name="payment-method"]');
+		var check = 0;
+
+		for(var i = 0; i<methodCheck.length; i++){
+			if(methodCheck[i].checked==true){
+				check = 1;
+			}
+		}
+		if(check ==0){
 			alert('결제수단을 선택해주세요');
-			return;
+			return false;
 		}
 
 		if(!document.querySelector('#payment-agree-checkbox').checked){
 			alert("결제에 동의 해주세요");
+			return false;
 		}else{
-			location.href='/dobby/pay/complete';
+			return true;
 		}
+
 	}
-	
 
 
 </script>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-
-	
-
-	<div id="wrap">
+	<form action="" id="wrap" method="post" onsubmit="return doPay();">
+		<input type="text" value="${rv.reservation_no}" name="reservationNo" hidden>
 		<div id="main-wrap">
 			<div id="order-history-wrap">
 				<div class="main-h1" id="order-history">주문내역</div>
@@ -53,14 +74,16 @@
 					<div id="reserv-info-helper">${rv.dName}</div>
 					<div id="reserv-info-service">${rv.sTitle}</div>
 					<div id="reserv-info-request">요청사항 : ${rv.reComment}</div>
-					<div id="reserv-info-date">예약날짜 : ${rv.reservationDate}</div>
-					<div id="reserv-info-pay">
+					<div id="reserv-info-date">예약날짜 : 
+						<c:out value="${fn:substring(rv.reservationDate, 0, 16)}"></c:out>
+					</div>
+					<div id="reserv-info-pay"><fmt:formatNumber value="${rv.charge}" pattern="#,###"/>원<br>*
 					<c:set var= "amount" value="${rv.reservationAmount/rv.charge}"/>
-						${charge}원<br>*<fmt:parseNumber value="${amount}" integerOnly="true"/>
+						<fmt:parseNumber value="${amount}" integerOnly="true"/>
 					</div>
 				</div>
 				<div id="request">
-					<div id="request-text">요청사항</div>
+					<div id="request-text">결제요청사항</div>
 					<div id="request-input">
 						<input name ="request" type="text">
 					</div>
@@ -82,7 +105,7 @@
 							<tr>
 								<td class="text-grey">사용가능 포인트</td>
 								<td class="text-green">35,000p</td>
-								<td id="point-input-div"><input id="use-point" type="number" min=0></td>
+								<td id="point-input-div"><input id="use-point" type="number" name = "point" value="0" onkeyup="checkZero()"></td>
 							</tr>
 						</table>
 					</div>
@@ -94,25 +117,25 @@
 				<div class="select-payment-div" id="payment-cash">
 					<div class="select-payment-text inline-block">현금결제</div>
 					<div class="inline-block payment-radio">
-						<input type="radio" name="payment-method" id="payment1"> <label
-							for="payment1">실시간 계좌이체</label>
+						<input type="radio" name="payment-method" id="payment1" value="2"> <label
+							for="payment1">계좌이체</label>
 					</div>
 				</div>
 				<div class="select-payment-div" id="payment-card">
 					<div class="select-payment-text inline-block">일반결제</div>
 					<div class="inline-block payment-radio">
-						<input type="radio" name="payment-method" id="payment2"> <label
+						<input type="radio" name="payment-method" id="payment2" value="1"> <label
 							for="payment2">신용카드</label>
 					</div>
 				</div>
 				<div class="select-payment-div" id="payment-easy">
 					<div class="select-payment-text inline-block">간편결제</div>
 					<div class="inline-block payment-radio">
-						<input type="radio" name="payment-method" id="payment3"> <label
+						<input type="radio" name="payment-method" id="payment3" value="3"> <label
 							for="payment3">네이버페이</label>
 					</div>
 					<div class="inline-block payment-radio">
-						<input type="radio" name="payment-method" id="payment4"> <label
+						<input type="radio" name="payment-method" id="payment4" value="4"> <label
 							for="payment4">카카오페이</label>
 					</div>
 				</div>
@@ -128,6 +151,7 @@
 					이름과 시인의 사랑과 다하지 하나에 까닭입니다. <br> 이웃 흙으로 못 하나에 이름을 파란 속의 계십니다.
 				</p>
 			</div>
+		
 		</div>
 		<div id="main-side">
 			<div id="side-payment-text">최종 결제금액</div>
@@ -156,10 +180,11 @@
 				<label for="payment-agree-checkbox">주문내역을 확인했으며 결제에
 					동의합니다(필수)</label>
 			</div>
-			<input type="submit" id="payment-btn" value="결제하기" onclick="doPay()">
+			<input type="submit" id="payment-btn" value="결제하기">
 			<div id="cancel-btn">결제취소</div>
 		</div>
-	</div>
+	
+	</form>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
 
