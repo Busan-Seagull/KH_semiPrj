@@ -224,7 +224,7 @@ input[type=submit]{
 #report-area{
 	width:960px;
 	height: 500px;
-	display:flex;
+	/* display:flex; */
 	margin: 0 auto;
 	justify-content: center;
 }
@@ -463,44 +463,40 @@ input[type=submit]{
     <div class="info-area" id="info-area08">
         8
     </div>
+    
 	<div class="info-area" id="info-area09">
-        9
-    </div>
-    <div class="info-area" id="info-area10">
-       <div id="report-area">
-		<div id="report-title">신고 내역</div>
-			<div id="report-list">
+    	<div id="report-area">
+			<div id="report-title">신고 내역</div>
 			
+			<div id="report-list">
 				<div class="list-no1">번호</div>
 				<div class="list-no1">신고할 회원</div>
 				<div class="list-no1">신고할 서비스</div>
 				<div class="list-no1">제목</div>
 				<div class="list-no1">작성자</div>
-			
-			
-			<%for(int i = 0; i< voList.size(); i++){%>
-				<div class="list-no2"><%=voList.get(i).getPostNo() %></div> 
-				<div class="list-no2"><%=voList.get(i).getUserNo() %></div>
-				<div class="list-no2"><%=voList.get(i).getServiceNo() %></div>
-				<div class="list-no2"><%=voList.get(i).getTitle() %></div>
-				<div class="list-no2"><%=voList.get(i).getWriter()%></div>
-				<div id="report-span">
-			<details>
-				<summary><div id="report-content">신고내용</div></summary>
-				<p><div id="report-content-content"><%=voList.get(i).getContent() %></div></p>
-			</details>
-			</div>
+					
+					
+				<%for(int i = 0; i< voList.size(); i++){%>
+					<div class="list-no2"><%=voList.get(i).getPostNo() %></div> 
+					<div class="list-no2"><%=voList.get(i).getUserNo() %></div>
+					<div class="list-no2"><%=voList.get(i).getServiceNo() %></div>
+					<div class="list-no2"><%=voList.get(i).getTitle() %></div>
+					<div class="list-no2"><%=voList.get(i).getWriter()%></div>
+					
+					<div id="report-span">
+						<details>
+							<summary><div id="report-content">신고내용</div></summary>
+							<p><div id="report-content-content"><%=voList.get(i).getContent() %></div></p>
+						</details>
+					</div>
+				<%} %>
 				
-			<%} %>
-			
-		</div>
-	</div>
-    </div>
-
+			</div><!-- report-list -->
+		</div><!-- report-area  -->
+    </div><!-- info-area09  -->
     
-
-
-
+</div>
+    
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 
