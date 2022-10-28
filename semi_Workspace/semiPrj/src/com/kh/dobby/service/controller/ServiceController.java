@@ -21,7 +21,22 @@ public class ServiceController extends HttpServlet {
 
         PageVo pv = new PageVo();
         String stn = req.getParameter("stn");
+        String search = req.getParameter("search");
         int stnum = 0;
+        List<ServiceVo> x = null;
+        
+        if(search == null) {
+            // 카테고리로 디비
+            x = new ServiceService().listService(pv, stn);
+        }else {
+            // 검색어로 디비
+            x = new ServiceService().listBySearch(pv, search);
+        }
+        
+        req.setAttribute("svList", x);
+        req.setAttribute("pv", pv);
+        
+        //이거 왜했지..
         if (stn != null) {
             stnum = Integer.parseInt(stn);
         }
@@ -50,11 +65,6 @@ public class ServiceController extends HttpServlet {
                 category = "전체보기";
                 break;
         }
-        // 디비
-        List<ServiceVo> x = new ServiceService().listService(pv, stn);
-
-        req.setAttribute("svList", x);
-        req.setAttribute("pv", pv);
 
         req.setAttribute("category", category);
 

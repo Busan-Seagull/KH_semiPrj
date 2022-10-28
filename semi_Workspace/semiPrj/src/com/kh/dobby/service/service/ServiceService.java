@@ -3,8 +3,6 @@ package com.kh.dobby.service.service;
 import java.sql.Connection;
 import java.util.List;
 
-import org.apache.tomcat.dbcp.dbcp2.Jdbc41Bridge;
-
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.common.PageVo;
 import com.kh.dobby.service.dao.ServiceDao;
@@ -80,6 +78,17 @@ public class ServiceService {
 
         return x;
     }
+    //검색어로 리스트 받아오기
+    public List<ServiceVo> listBySearch(PageVo pv, String search) {
+
+        Connection conn = JDBCTemplate.getConnection();
+
+        List<ServiceVo> x = sd.listBySearch(conn, pv, search);
+
+        JDBCTemplate.close(conn);
+
+        return x;
+    }
 
     // 유저 번호로 리스트 받아오기
     public List<ServiceVo> listService(int userNo) {
@@ -105,6 +114,18 @@ public class ServiceService {
         JDBCTemplate.close(conn);
 
         return sv;
+    }
+    //인기 유저 리스트 받아오기
+    public List<ServiceVo> listPopUser() {
+
+        Connection conn = JDBCTemplate.getConnection();
+
+        List<ServiceVo> x = sd.listPopUser(conn);
+
+        JDBCTemplate.close(conn);
+
+        return x;
+
     }
 
     public CodeVo changeCode(ServiceVo sv) {

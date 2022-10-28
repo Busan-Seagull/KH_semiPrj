@@ -78,12 +78,12 @@ String root = request.getContextPath();
 				</select>
 				
 				<div class="nav-select" id="helper-search">
-					<form action="">
+					<form action="/dobby/service/list" method="get" autocomplete="off">
 						<div id="textbox-wrap">
-							<input type="search" id="search-textbox" placeholder="서비스를 찾아보세요">
+							<input type="text" name="search" id="search-textbox" placeholder="서비스를 찾아보세요">
 						</div>
 						<div id="search-button-wrap">
-							<input type="submit" value="검색" id="search-button">
+							<input type="submit" id="search-button" value="검색">
 						</div>
 						<div id="search-img">
 							<span class="material-symbols-outlined"> search </span>

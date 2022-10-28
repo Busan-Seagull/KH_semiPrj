@@ -18,21 +18,40 @@
 		<div id="main-content">
 			<div id="service-pic-container">
 				<div class="service-pic" id="service-pic1">
-					<img src="/dobby/${sv.servicePic_1}" alt="">
+					<img class="img" src="/dobby/${sv.servicePic_1}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
+					<div class="modal">
+						<span class="close">&times;</span>
+						<img class="modal_content" id="img01" onerror="this.src='/dobby/resources/img/dust.png';">
+					</div>
 				</div>
 				<div class="service-pic" id="service-pic2">
-					<img src="/dobby/${sv.servicePic_2}" alt="">
+					<img src="/dobby/${sv.servicePic_2}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
+					<div class="modal" >
+						<span class="close">&times;</span>
+						<img class="modal_content" id="img02" onerror="this.src='/dobby/resources/img/dust.png';">
+					</div>
 				</div>
 				<div class="service-pic" id="service-pic3">
-					<img src="/dobby/${sv.servicePic_3}" alt="">
+					<img src="/dobby/${sv.servicePic_3}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
+					<div class="modal">
+						<span class="close">&times;</span>
+						<img class="modal_content" id="img03" onerror="this.src='/dobby/resources/img/dust.png';">
+					</div>
 				</div>
 				<div class="service-pic" id="service-pic4">
-					<img src="/dobby/${sv.servicePic_4}" alt="">
+					<img src="/dobby/${sv.servicePic_4}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
+					<div class="modal">
+						<span class="close">&times;</span>
+						<img class="modal_content" id="img04" onerror="this.src='/dobby/resources/img/dust.png';">
+					</div>
 				</div>
 			</div>
+
+			
+			
 			<div id="helper-profile">
 				<div class="inline-block" id="profile-pic-div">
-					<img src="/dobby/${sv.profileImg}" alt="">
+					<img src="/dobby/${sv.profileImg}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
 				</div>
 				<div class="inline-block" id="profile-contents">
 					<h2>${sv.serviceIntro}</h2>
@@ -210,5 +229,73 @@
   		hidden_btn[i].style.display = "block";
 		}
 	}
+</script>
+
+<!-- 이벤트버블링.. 죽어.. -->
+<script defer>
+	const modal = document.querySelectorAll(".modal");
+	const img = document.querySelectorAll(".img");
+	const modal_img = document.querySelectorAll(".modal_content");
+	const span = document.querySelectorAll(".close");
+	const img_div1 = document.querySelector("#service-pic1");
+	const img_div2 = document.querySelector("#service-pic2");
+	const img_div3 = document.querySelector("#service-pic3");
+	const img_div4 = document.querySelector("#service-pic4");
+
+	function modalDisplay(i, text){
+		modal[i].style.display = text;
+	}
+	// 클릭시 모달창 띄우기..
+	img_div1.addEventListener('click', ()=>{
+		modalDisplay(0, "block");
+		modal_img[0].src = "/dobby/${sv.servicePic_1}";
+	});
+	img_div2.addEventListener('click', ()=>{
+		modalDisplay(1, "block");
+		modal_img[1].src = "/dobby/${sv.servicePic_2}";
+	});
+	img_div3.addEventListener('click', ()=>{
+		modalDisplay(2, "block");
+		modal_img[2].src = "/dobby/${sv.servicePic_3}";
+	});
+	img_div4.addEventListener('click', ()=>{
+		modalDisplay(3, "block");
+		modal_img[3].src = "/dobby/${sv.servicePic_4}";
+	});
+
+	// 클릭시 모달창 닫아주기..
+	span[0].addEventListener('click', (e)=>{
+		modalDisplay(0, "none");
+		e.stopImmediatePropagation();
+	});
+	modal[0].addEventListener('click', (e)=>{
+		modalDisplay(0, "none");
+		e.stopImmediatePropagation();
+	});
+	span[1].addEventListener('click', (e)=>{
+		modalDisplay(1, "none");
+		e.stopImmediatePropagation();
+	});
+	modal[1].addEventListener('click', (e)=>{
+		modalDisplay(1, "none");
+		e.stopImmediatePropagation();
+	});
+	span[2].addEventListener('click', (e)=>{
+		modalDisplay(2, "none");
+		e.stopImmediatePropagation();
+	});
+	modal[2].addEventListener('click', (e)=>{
+		modalDisplay(2, "none");
+		e.stopImmediatePropagation();
+	});
+	span[3].addEventListener('click', (e)=>{
+		modalDisplay(3, "none");
+		e.stopImmediatePropagation();
+	});
+	modal[3].addEventListener('click', (e)=>{
+		modalDisplay(3, "none");
+		e.stopImmediatePropagation();
+	});
+	
 </script>
 </html>
