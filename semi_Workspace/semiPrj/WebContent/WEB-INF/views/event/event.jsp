@@ -38,6 +38,7 @@
 			</div>
 
 			<div id="game-page" class="invisible">
+				<div id="remain-box"><span>남은먼지 : </span><span id="remain">50</span></div>
 				<div id="score-box"><span>SCORE : </span><span id="score">0</span></div>
 				<div id="count-down">3</div>
 				<div id="cursor"></div>

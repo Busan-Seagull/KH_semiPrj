@@ -32,6 +32,8 @@ public class AlarmController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        resp.setContentType("text/html;charset=UTF-8");
 
         MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
         List<AlarmVo> list = new AlarmService().selectList(loginMember.getUserNo());

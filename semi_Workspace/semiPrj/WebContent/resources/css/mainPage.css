@@ -41,8 +41,7 @@
     
     /* 백그라운드이미지 각각 개별로 */
     background: black;
-    background-size: 100%;
-    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #main-search-box{

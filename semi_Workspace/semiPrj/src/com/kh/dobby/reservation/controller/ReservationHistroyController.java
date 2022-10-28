@@ -23,6 +23,8 @@ public class ReservationHistroyController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    
+	    resp.setContentType("text/html;charset=UTF-8");
+	    
 	    MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
         if(loginMember==null) {
             req.setAttribute("msg", "정상적인 접근이 아닙니다.");

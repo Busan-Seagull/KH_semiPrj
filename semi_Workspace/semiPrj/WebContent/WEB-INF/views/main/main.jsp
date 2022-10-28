@@ -20,7 +20,7 @@
 		<div id="baner-next-btn"><span class="material-symbols-outlined">chevron_right</span></div>
 		<div id="main-baner" style="left: 0;">
 			<c:forEach items="${list}" var="bvo">
-			<a href="${bvo.link}" class="baner-item" style="background: url(${bvo.imgLink});background-size: 100% 100%;"></a>
+			<a href="${bvo.link}" class="baner-item" style="background: url(${bvo.imgLink});"></a>
 			</c:forEach>
 		</div>
 	</div>
@@ -84,6 +84,7 @@
 			</div>
 			<div id="switch-service-list" class="flex-center" style="left: 0;">
 
+				<!--  -->
 				<a href="/dobby/service/detail" class="service-list-item shadow-box">
 					<div class="sl-item-img"></div>
 					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
@@ -91,6 +92,50 @@
 					<div class="sl-item-title">title</div>
 					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
 				</a>
+				<a href="/dobby/service/detail" class="service-list-item shadow-box">
+					<div class="sl-item-img"></div>
+					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
+					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+					<div class="sl-item-title">title</div>
+					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+				</a>
+				<a href="/dobby/service/detail" class="service-list-item shadow-box">
+					<div class="sl-item-img"></div>
+					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
+					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+					<div class="sl-item-title">title</div>
+					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+				</a>
+				<a href="/dobby/service/detail" class="service-list-item shadow-box">
+					<div class="sl-item-img"></div>
+					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
+					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+					<div class="sl-item-title">title</div>
+					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+				</a>
+				<a href="/dobby/service/detail" class="service-list-item shadow-box">
+					<div class="sl-item-img"></div>
+					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
+					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+					<div class="sl-item-title">title</div>
+					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+				</a>
+				<a href="/dobby/service/detail" class="service-list-item shadow-box">
+					<div class="sl-item-img"></div>
+					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
+					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+					<div class="sl-item-title">title</div>
+					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+				</a>
+				<a href="/dobby/service/detail" class="service-list-item shadow-box">
+					<div class="sl-item-img"></div>
+					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
+					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+					<div class="sl-item-title">title</div>
+					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+				</a>
+				
+				<!--  -->
 
 			</div>
 		</div>
@@ -147,6 +192,39 @@
 							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
 						</div>
 					</a>
+										<a href="" class="item flex-center shadow-box">
+						<div class="item-img"></div>
+						<div class="text-contain">
+							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+							<div class="item-title">title</div>
+							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+						</div>
+					</a>
+										<a href="" class="item flex-center shadow-box">
+						<div class="item-img"></div>
+						<div class="text-contain">
+							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+							<div class="item-title">title</div>
+							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+						</div>
+					</a>
+										<a href="" class="item flex-center shadow-box">
+						<div class="item-img"></div>
+						<div class="text-contain">
+							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+							<div class="item-title">title</div>
+							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+						</div>
+					</a>
+										<a href="" class="item flex-center shadow-box">
+						<div class="item-img"></div>
+						<div class="text-contain">
+							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+							<div class="item-title">title</div>
+							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+						</div>
+					</a>
+					<!--  -->
 
 				</div>
 			</div>
@@ -163,6 +241,7 @@
 				</div>
 				<div id="ps-contain" style="left: 0;">
 
+					<!--  -->
 					<a href="/dobby/service/detail" class="item flex-center shadow-box">
 						<div class="item-img"></div>
 						<div class="text-contain">
@@ -171,6 +250,31 @@
 							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
 						</div>
 					</a>
+										<a href="/dobby/service/detail" class="item flex-center shadow-box">
+						<div class="item-img"></div>
+						<div class="text-contain">
+							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+							<div class="item-title">title</div>
+							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+						</div>
+					</a>
+										<a href="/dobby/service/detail" class="item flex-center shadow-box">
+						<div class="item-img"></div>
+						<div class="text-contain">
+							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+							<div class="item-title">title</div>
+							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+						</div>
+					</a>
+										<a href="/dobby/service/detail" class="item flex-center shadow-box">
+						<div class="item-img"></div>
+						<div class="text-contain">
+							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+							<div class="item-title">title</div>
+							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+						</div>
+					</a>
+					<!--  -->
 
 				</div>
 			</div>
@@ -204,6 +308,27 @@
 						<td class="t-4">조회수</td>
 					</tr>
 
+					<tr>
+						<td class="t-1">비고</td>
+						<td class="t-2">제목</td>
+						<td class="t-3">작성자</td>
+						<td class="t-4">조회수</td>
+					</tr>
+					
+					<tr>
+						<td class="t-1">비고</td>
+						<td class="t-2">제목</td>
+						<td class="t-3">작성자</td>
+						<td class="t-4">조회수</td>
+					</tr>
+					
+					<tr>
+						<td class="t-1">비고</td>
+						<td class="t-2">제목</td>
+						<td class="t-3">작성자</td>
+						<td class="t-4">조회수</td>
+					</tr>
+					
 					<tr>
 						<td class="t-1">비고</td>
 						<td class="t-2">제목</td>

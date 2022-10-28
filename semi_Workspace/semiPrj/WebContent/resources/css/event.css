@@ -360,6 +360,17 @@
     font-family: var(--ghana);
 }
 
+#remain-box{
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    font-size: 2em;
+    top: 30px;
+    left: 100px;
+    color: white;
+    font-family: var(--ghana);
+}
+
 .normal-back{
     background: url(/dobby/resources/img/event/normal.png);
     background-size: cover;

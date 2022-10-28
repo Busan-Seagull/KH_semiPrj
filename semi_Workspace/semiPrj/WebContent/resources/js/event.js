@@ -1,6 +1,7 @@
 let score = 0;
 let point = 0;
 let difficult = 0;
+let dustCount = 50;
 
 const count = document.querySelector('#count-down');
 
@@ -12,6 +13,7 @@ const rp = document.querySelector('#ranck-page');
 const ep = document.querySelector('#end-page');
 
 const scoreSpan = document.querySelector('#score');
+const remainSpan = document.querySelector('#remain');
 
 const easyBtn = document.querySelector('#easy');
 easyBtn.addEventListener('click', function(e){
@@ -95,6 +97,9 @@ function game(time) {
             addPoint(e.target.style.left, e.target.style.top);
         });
         
+        dustCount--;
+        remainSpan.innerText = dustCount;
+
         gp.appendChild(div);
         div.animate([
             // keyframes
@@ -281,4 +286,6 @@ endBtn.addEventListener('click', function(){
     scoreSpan.innerHTML = 0;
     difficult = 0;
     point = 0;
+    dustCount = 50;
+    remainSpan.innerText = dustCount;
 });

@@ -572,7 +572,7 @@ input[type=submit]{
 
                             let form = $('<form/>');
                             form.append('<h2>요구사항</h2>');
-                            form.append('<textarea class="comment-text" readonly onclick="notReadOnly(this);">'+rv.comment+'</textarea>');
+                            form.append('<textarea name="c" class="comment-text" readonly onclick="notReadOnly(this);">'+rv.comment+'</textarea>');
                             form.append('<button type="button" onclick="updateComment(this, '+rv.reservation_no+')">수정</button>');
 
                             form.appendTo(detail);
@@ -584,20 +584,20 @@ input[type=submit]{
 
                             switch (rv.status) {
                                 case 'EAW':
-                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    $('<button class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</button>').appendTo(div);
                                     break;
                                 case 'EW':
-                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    $('<button class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</button>').appendTo(div);
                                     break;
                                 case 'RAW':
-                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    $('<button class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</button>').appendTo(div);
                                     break;
                                 case 'PW':
-                                    $('<div class="rh-i-h-btn" onclick="location.href=\"/dobby/pay?rno='+rv.reservation_no+'\"">결제하기</div>').appendTo(div);
-                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    $('<button class="rh-i-h-btn" onclick="location.href=\'/dobby/pay?rno='+rv.reservation_no+'\'">결제하기</button>').appendTo(div);
+                                    $('<button class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</button>').appendTo(div);
                                     break;
                                 case 'SW':
-                                    $('<div class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</div>').appendTo(div);
+                                    $('<button class="rh-i-h-btn" onclick="cancel(null, '+rv.reservation_no+');">예약취소</button>').appendTo(div);
                                     break;
                                 case 'SC':
 
@@ -635,7 +635,7 @@ input[type=submit]{
                             span.appendTo(header);
 
                             const header2 = $('<div/>');
-                            header.addClass('rh-i-header2');
+                            header2.addClass('rh-i-header2');
 
                             div = $('<div/>');
                             div.css('line-height','170%');    
@@ -654,6 +654,7 @@ input[type=submit]{
                             div.appendTo(header2);
 
                             header.appendTo(item);
+                            header2.appendTo(item);
 
                             $('<input type="checkbox" id="d-check'+i+'">').appendTo(item);
                             $('<label class="down material-symbols-outlined" for="d-check'+i+'">arrow_drop_down</label>').appendTo(item);
@@ -715,6 +716,7 @@ input[type=submit]{
                     const last = pageNation.querySelector('.last');
 
                     last.onclick = "reservationAjax("+pvo.maxPage+")";
+                    last.onclick = function(){reservationAjax(pvo.maxPage);};
 
 					if(pvo.startPage > 1){
 						left.onclick = "reservationAjax("+pvo.startPage+")";
@@ -799,7 +801,7 @@ input[type=submit]{
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-                	//location.reload();
+                	location.href = "/dobby/member/mypage03reservation?pno=3";
                 }else{
                     alert("결과가 저장되지 않음.");
                 }
@@ -820,7 +822,7 @@ input[type=submit]{
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-                	//location.reload();
+                	location.href = "/dobby/member/mypage03reservation?pno=3";
                 }else{
                     alert("결과가 저장되지 않음.");
                 }
@@ -844,7 +846,7 @@ input[type=submit]{
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-                    //location.reload;
+                	location.href = "/dobby/member/mypage03reservation?pno=3";
                 }else{
                     alert("결과가 저장되지 않음.");
                 }
@@ -862,7 +864,7 @@ input[type=submit]{
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-                	//location.reload();
+                	location.href = "/dobby/member/mypage03reservation?pno=3";
                 }else{
                     alert("결과가 저장되지 않음.");
                 }

@@ -21,6 +21,14 @@ public class ReservationController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    
+	    MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
+	    
+        if(loginMember==null) {
+            req.setAttribute("msg", "정상적인 접근이 아닙니다.");
+            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+            return;
+        }
+        
 	    resp.setContentType("text/html;charset=UTF-8");
 	    
 	    String sno = req.getParameter("sno");

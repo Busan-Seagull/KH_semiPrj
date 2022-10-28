@@ -89,6 +89,13 @@
 		transition-timing-function: cubic-bezier(0.2, 0.9, 0.95, 1);
 	}
 
+	#graph > div > div > div > p{
+		position: relative;
+		top: -20px;
+		text-align: center;
+	}
+
+
 	#graph > div > p{
 		font-family: var(--serif);
 		font-weight: 600;
@@ -137,33 +144,33 @@
 			<div id="graph">
 				<div class="graph-item">
 					<div>
-						<div class="b-green" style="height: 0px;"></div>
-						<div class="b-brown" style="height: 0px;"></div>
-						<div class="b-gray" style="height: 0px;"></div>
+						<div class="b-green" style="height: 0px;"><p></p></div>
+						<div class="b-brown" style="height: 0px;"><p></p></div>
+						<div class="b-gray" style="height: 0px;"><p></p></div>
 					</div>
 					<p class="month">월</p>
 				</div>
 				<div class="graph-item">
 					<div>
-						<div class="b-green" style="height: 0px;"></div>
-						<div class="b-brown" style="height: 0px;"></div>
-						<div class="b-gray" style="height: 0px;"></div>
+						<div class="b-green" style="height: 0px;"><p></p></div>
+						<div class="b-brown" style="height: 0px;"><p></p></div>
+						<div class="b-gray" style="height: 0px;"><p></p></div>
 					</div>
 					<p class="month">월</p>
 				</div>
 				<div class="graph-item">
 					<div>
-						<div class="b-green" style="height: 0px;"></div>
-						<div class="b-brown" style="height: 0px;"></div>
-						<div class="b-gray" style="height: 0px;"></div>
+						<div class="b-green" style="height: 0px;"><p></p></div>
+						<div class="b-brown" style="height: 0px;"><p></p></div>
+						<div class="b-gray" style="height: 0px;"><p></p></div>
 					</div>
 					<p class="month">월</p>
 				</div>
 				<div class="graph-item">
 					<div>
-						<div class="b-green" style="height: 0px;"></div>
-						<div class="b-brown" style="height: 0px;"></div>
-						<div class="b-gray" style="height: 0px;"></div>
+						<div class="b-green" style="height: 0px;"><p></p></div>
+						<div class="b-brown" style="height: 0px;"><p></p></div>
+						<div class="b-gray" style="height: 0px;"><p></p></div>
 					</div>
 					<p class="month">월</p>
 				</div>
@@ -228,6 +235,10 @@
 						green.style.height = element.userCount*5 + "px";
 						brown.style.height = element.dobbyCount*5 + "px";
 						gray.style.height = element.suerviceCount*5 + "px";
+
+						green.querySelector('p').innerText = element.userCount;
+						brown.querySelector('p').innerText = element.dobbyCount;
+						gray.querySelector('p').innerText = element.suerviceCount;
 
 						let mm = (m-index);
 						if((m-index) <= 0){
