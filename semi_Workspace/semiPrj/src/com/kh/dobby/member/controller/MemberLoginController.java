@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.dobby.member.service.MemberService;
 import com.kh.dobby.member.vo.MemberVo;
+import com.kh.dobby.member.vo.RightVo;
 
 @WebServlet (urlPatterns = "/member/login")
 public class MemberLoginController extends HttpServlet  {
@@ -31,7 +32,7 @@ public class MemberLoginController extends HttpServlet  {
         vo.setPwd(pwd);
         
         MemberVo loginMember=new MemberService().login(vo);
-
+        
         if(loginMember!=null) {
             HttpSession hs=req.getSession();
             hs.setAttribute("loginMember", loginMember);

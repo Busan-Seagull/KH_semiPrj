@@ -3,10 +3,9 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%-- <%
-List<CommuVo> volist =(List<CommuVo>)request.getAttribute("voList");
-PageVo pv=(PageVo)request.getAttribute("pv");
+    <% 
+    /*List<CommuVo> volist =(List<CommuVo>)request.getAttribute("voList");*/
+/* PageVo pv=(PageVo)request.getAttribute("pv"); */
 String msg = (String)session.getAttribute("msg");
 session.removeAttribute("msg"); 
 String root=request.getContextPath();
@@ -14,7 +13,7 @@ String root=request.getContextPath();
 <script>
 <%if(msg!=null){%>
 alert('<%= msg%>');
-<%}%> --%>
+<%}%> 
 </script>
 <!DOCTYPE html>
 <html>
@@ -251,123 +250,151 @@ alert('<%= msg%>');
             <div id="cate-btn">
                 <div id="btn-group">
                 <form action="" mathod="post">
-                  <label name="category" for="category1">공지</label><input type="radio" id="category1" name="category" value="공지">
-                    <label name="category" for="category2">전체</label><input type="radio" id="category2" name="category" value="전체">
-                    <label name="category" for="category3">TIP</label><input type="radio" id="category3" name="category" value="TIP">
-                    <label name="category" for="category4">추천</label><input type="radio" id="category4" name="category" value="추천">
+                  <label name="category" for="category1">공지</label><input type="radio" id="category1" name="category" value="200">
+                    <label name="category" for="category2">전체</label><input type="radio" id="category2" name="category" value="201">
+                    <label name="category" for="category3">TIP</label><input type="radio" id="category3" name="category" value="202">
+                    <label name="category" for="category4">추천</label><input type="radio" id="category4" name="category" value="203">
                 </form>
                   
                 </div>
                 
             </div>
             <div id="cate-list">
-               <div class="first">번호</div>
-               <div class="first">제목</div>
-               <div class="first">작성자</div>
-               <div class="first">일시</div>
-               <div class="first">조회수</div>
-			<%-- 	<%for (int i =0; i <volist.size();i++){ %>
-               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getPostNo() %></a></div>
-               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getTitle() %></a></div>
-               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getUserNo()%></a></div>
-               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getWriteTime()%></a></div>
-               <div><a href="<%=root %>/commu/detail?bno=<%=volist.get(i).getPostNo()%>"><%=volist.get(i).getViews()%></a></div>
-				<%} %> --%>
+               
               
                
             </div>
 
             <div id="write">
-                <input type="button" value="작성하기" onclick="location.href='/dobby/commu/write';">
+                <input type="button" value="작성하기" onclick="location.href='/dobby/commu/write'">
             </div>
 <!-- 페이징 -->
-          <%-- 	<div id="page-area">
-					<ul id="page-nation">
-						<li><a href="/dobby/commu/list?pno=1" class="first"><<</a></li>
-						<li><a class="arrow left"><</a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="num"></a></li>
-						<li><a class="arrow right">></a></li>
-						<li><a href="/dobby/commu/list?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
-					</ul>
-				</div> --%>
+    
+            <div id="page-area" class="page-area03">
+                <ul id="page-nation">
+                    <li><a onclick="commuPage(1)" class="first"><<</a></li>
+                    <li><a class="arrow left"><</a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="num"></a></li>
+                    <li><a class="arrow right">></a></li>
+                    <li><a class="last">>></a></li>
+                </ul>
+            </div>
 
        </div>
     </div>
     
-				<script>
-				<%-- /* 페이징 코드 */
-					const pageNation = document.querySelector('#page-nation');
-					const numArr = pageNation.querySelectorAll('.num');
-					const left = pageNation.querySelector('.arrow.left');
-					const right = pageNation.querySelector('.arrow.right');
+    <script>
+    
+    
+        /*카테고리 별 조회 AJAX  */
+        $("input[type=radio]").click(function(){commuPage(1)});
+        
+        function commuPage(pno){
+        	// alert("g3");
+            const cate=$("input[type=radio]:checked").val();  
+            $.ajax({    
+                type: "post",
+                url: "/dobby/commu/list",
+                data: {"catename":cate,
+                        "pno":pno
 
-					<%if(pv.getStartPage() > 1){%>
-						left.href = '/dobby/commu/list?pno=<%=pv.getStartPage()-1%>';
-					<%}else{%>
-						left.classList.add('none-select');
-					<%}%>
-
-					<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
-						right.href = '/dobby/commu/list?pno=<%=pv.getCurrentPage()+1%>';
-					<%}else{%>
-						right.classList.add('none-select');
-					<%}%>
-
-					let page = <%=pv.getStartPage()%>;
-
-					for (let i = 0; i < numArr.length; i++) {
-						const num = numArr[i];
-						
-						if(page==<%=pv.getCurrentPage()%>){
-							num.classList.add('current');
-						}
-						
-						if(page<1 || page><%=pv.getMaxPage()%>){
-							num.classList.add('p-none');
-						}else{
-							num.href = '/dobby/commu/list?pno='+page;
-						}
-						num.innerHTML = page;
-						page++;
-					} --%>
-					
-					/*카테고리 별 조회 AJAX  */
-					  $('input[type=radio]').click(function(){
-           				const cate=$("input[type=radio]:checked").val();    
-			           $.ajax({    
-						        type: "post",
-						        url: "/dobby/commu/list?pno=1",
-						    data: {
-						    	catename:cate
-						        	}, 
-						        success: function(result) {
-						        	const list2=$('#cate-list');
-						        	const item = $('<div/>');
-						        	
-						        	 const board =JSON.parse(result);
-						        	var result2=board.list[title];
-						        	
-						        	
-						        	
-						        	console.log(result2);
-						        		
-						    	
-						        },
-						        error: function() {   
-						        	alert("실패!");
-						              
-						        }
+            }, 
+                success: function(result) {
+                    console.log(result);
+                    const list2=$('#cate-list');
+                    const p =JSON.parse(result);
+                    
+                    const board=p.list;
+                    const pvo=p.pv;
+                    $(list2).empty();
+                    $('<div class="first">번호</div><div class="first">제목</div><div class="first">작성자</div><div class="first">일시</div><div class="first">조회수</div>').appendTo(list2);
                       
-                                 
-           });
-        });
-					
-					
-				</script>
+                    for(let i=0; i<board.length;i++){
+                        const vo = board[i];
+                        const bno = vo.postNo;
+                         let div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.postNo+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.title+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.userNo+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.writeTime+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.views+'</a>').appendTo(div);
+                        div.appendTo(list2);
+                    
+                    }
+
+                    const pageNation = document.querySelector('#page-nation');
+                    const numArr = pageNation.querySelectorAll('.num');
+                    const left = pageNation.querySelector('.arrow.left');
+                    const right = pageNation.querySelector('.arrow.right');
+                    const last = pageNation.querySelector('.last');
+                    console.log(numArr);
+                    if(pvo.startPage > 1){
+                        left.onclick =  function(){commuPage(pvo.startPage);};
+                    }else{
+                        left.classList.add('none-select');
+                    }
+                    if(pvo.currentPage != pvo.maxPage){
+                        right.onclick = function(){commuPage(pvo.maxPage);};
+                    }else{
+                        right.classList.add('none-select');
+                    }
+
+                    let page = pvo.startPage;
+
+                    
+                    for (let j = 0; j < numArr.length; j++) {
+
+                        const num = numArr[j];
+                            
+                        if(page == pvo.currentPage){
+                            num.classList.add('current');
+                        }
+                            
+                        if(page < 1 || page > pvo.maxPage){
+                            num.classList.add('p-none');
+                        }else{
+                            console.log(j,page);
+                            // num.onclick = function(){commuPage(page);};
+                            // num.addEventListener('click', function(){
+                            //     commuPage(page);
+                            // });
+                            num.classList.remove('p-none');
+                            $(num).attr('onclick','commuPage('+page+')');
+
+                        }
+                            // $(num).html(page);
+                            num.innerHTML = page;
+                            page++;
+                    }
+
+                   
+                },
+                error: function() {   
+                    alert("실패!!");
+    
+                }             
+            });
+        };
+        
+        
+    </script>
 
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

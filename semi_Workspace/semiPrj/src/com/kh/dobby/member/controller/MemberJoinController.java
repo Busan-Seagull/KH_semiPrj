@@ -50,31 +50,23 @@ public class MemberJoinController extends HttpServlet  {
         vo.setPhone(phone);
         vo.setEmail(email);
         vo.setAddress(address);
+        vo.setBr_num(br_num);
+        vo.setAccount(account);
         
-        RightVo rightvo = null;
-        
-        //집요정일 경우.
-        if(vo.getRightNo().equals("2")) {
-            rightvo = new RightVo();
-            rightvo.setBr_num(br_num);
-            rightvo.setAccount(account);
-        }
-        
-        
-
-      
+     
         
      // 디비 다녀오기
-        int result = new MemberService().join(vo,rightvo);
+        int result = new MemberService().join(vo);
         
         // 화면 선택
         if(result == 1) {
+            
             //회원가입 성공
-            req.getSession().setAttribute("alertMsg", "회원가입 성공!");
+           System.out.println("회원가입 성공!");
             resp.sendRedirect("/dobby");
         }else {
             //회원가입 실패
-            req.getSession().setAttribute("alertMsg", "회원가입 실패!");
+            
             req.getRequestDispatcher("/WEB-INF/views/member/join.jsp").forward(req, resp);
         }
 

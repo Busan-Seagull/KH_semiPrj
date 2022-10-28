@@ -13,11 +13,12 @@ public class MemberDao {
 
     public MemberVo selectOne(Connection conn, MemberVo vo) {
        
-            String sql="SELECT USER_NO,RIGHT_NO,ID,PWD,NAME,EMAIL,NICK,ADDRESS,PHONE,ENROLL_DATE,QUIT_YN,MODIFY_DATE,REPORT_CNT FROM \"USER\" WHERE ID=? AND PWD=? AND QUIT_YN='N'";
+            String sql="SELECT U.USER_NO,U.RIGHT_NO,U.ID,U.PWD,U.NAME,U.EMAIL, U.NICK,U.ADDRESS,U.PHONE,U.ENROLL_DATE,U.QUIT_YN, U.MODIFY_DATE,U.REPORT_CNT,D.BR_NUM,D.ACCOUNT FROM \"USER\" U left JOIN \"DOBBY\" D ON U.USER_NO =D.USER_NO WHERE U.ID=? AND U.PWD=? AND U.QUIT_YN='N'";
            
             PreparedStatement pstmt=null;
             ResultSet rs=null;
             MemberVo loginMember=null;
+           
 
             try {
                 pstmt=conn.prepareStatement(sql);
@@ -42,6 +43,8 @@ public class MemberDao {
                     String modifyDate=rs.getString("MODIFY_DATE");
                     String reportCnt=rs.getString("REPORT_CNT");
                     
+                    String brNum=rs.getString("BR_NUM");
+                    String account=rs.getString("ACCOUNT");
                     
                     loginMember=new MemberVo();
                     loginMember.setUserNo(userNo);
@@ -57,6 +60,9 @@ public class MemberDao {
                     loginMember.setQuitYn(quitYn);
                     loginMember.setModifyDate(modifyDate);
                     loginMember.setReportCnt(reportCnt);
+                    loginMember.setBr_num(brNum);
+                    loginMember.setAccount(account);
+                  
                     
                    
                     
@@ -73,6 +79,8 @@ public class MemberDao {
         
 
     }
+    
+    
 
     public int insertJoin(Connection conn, MemberVo vo) {
         PreparedStatement pstmt=null;
@@ -103,7 +111,7 @@ public class MemberDao {
         return result;
     }
 
-    public int insertJoinDobby(Connection conn, RightVo rightvo) {
+    public int insertJoinDobby(Connection conn, MemberVo vo) {
         String sql= "INSERT INTO DOBBY(USER_NO,BR_NUM,ACCOUNT) VALUES(SEQ_USER_NO.CURRVAL,?,?)";
         PreparedStatement pstmt=null;
         int result=0;
@@ -111,8 +119,8 @@ public class MemberDao {
             pstmt=conn.prepareStatement(sql);
             
            
-            pstmt.setString(1,rightvo.getBr_num());
-            pstmt.setString(2,rightvo.getAccount());
+            pstmt.setString(1,vo.getBr_num());
+            pstmt.setString(2,vo.getAccount());
           
             result=pstmt.executeUpdate();
            
@@ -278,16 +286,19 @@ public class MemberDao {
         PreparedStatement pstmt=null;
         int result=0;
         
-        String sql="";
+        String sql="UPDATE \"USER\" SET PWD=?,NAME=?,EMAIL=?,NICK=?,ADDRESS=?,PHONE=? WHERE USER_NO=?";
         
         try {
             pstmt=conn.prepareStatement(sql);
             pstmt.setString(1, vo.getPwd());
-            pstmt.setString(2, vo.getNick());
-            pstmt.setString(3, vo.getAddr());
-            pstmt.setString(4, vo.getHobby());
-            pstmt.setString(5, vo.getNo());
+            pstmt.setString(2, vo.getName());
+            pstmt.setString(3, vo.getEmail());
+            pstmt.setString(4, vo.getNick());
+            pstmt.setString(5, vo.getAddress());
+            pstmt.setString(6, vo.getPhone());
+            pstmt.setString(7, vo.getUserNo());
             
+           
             result=pstmt.executeUpdate();
             
         } catch (SQLException e) {
@@ -298,6 +309,32 @@ public class MemberDao {
         
         return result;
 
+    }
+
+
+
+    public int updateOneByNoDobby(Connection conn, MemberVo vo) {
+        PreparedStatement pstmt=null;
+        int result=0;
+        
+        String sql="UPDATE \"DOBBY\" SET BR_NUM=?,ACCOUNT=? WHERE USER_NO=?";
+        
+        try {
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, vo.getPwd());
+            pstmt.setString(2, vo.getName());
+            pstmt.setString(3, vo.getUserNo());
+            
+           
+            result=pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
     }
 
 }

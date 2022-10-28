@@ -39,10 +39,10 @@ public class CommuService {
         return result;
     }
 
-    public List<CommuVo> selectList(PageVo pv) {
- Connection conn = JDBCTemplate.getConnection();
-        
-        List<CommuVo>list=Commudao.selectList(conn,pv);
+    public List<CommuVo> selectList(PageVo pv,int catename) {
+     Connection conn = JDBCTemplate.getConnection();
+
+        List<CommuVo>list=Commudao.selectList(conn,pv,catename);
         
         JDBCTemplate.close(conn);
         
@@ -100,6 +100,7 @@ public class CommuService {
         
         return result;
         }
+
 
     
 
