@@ -15,8 +15,7 @@ pageEncoding="UTF-8"%>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <style type="text/css">
 
 #first{
@@ -316,11 +315,49 @@ font-size: large;
 		</div>
 		<div id="i">
 		<% if(loginMember != null && "3".equals(loginMember.getRightNo())) {%>
-			<div class="i1"><input type="submit" name="approval" value="승인"></div>
-			<div class="i1"><input type="submit" name="return" value="반려"></div>
-			
+			<div class="i1"><input  type="button" name="adminReport" value="승인" onclick="approval();"></div> 
+			<div class="i1"><input  type="button" name="adminReport" value="반려" onclick="returnReport();"></div>
 		<%} %>
-			
+			<script type="text/javascript">
+				function approval(){
+					
+					let adminReport = $('input[name="adminReport"]').val();
+					$.ajax({
+						url:"/dobby/detail",
+						type:"post",
+						data:{
+							"adminReport":adminReport
+						},
+						success: function(){
+							alert('승인되었습니다.');
+							
+						},
+						error:function(){
+							alert('에러 발생');
+						}
+					});
+				}
+				
+					function returnReport(){
+					
+					let adminReport = $('input[name="adminReport"]').val();
+					$.ajax({
+						url:"/dobby/detail",
+						type:"post",
+						data:{
+							"adminReport":adminReport
+						},
+						success: function(){
+							alert('반려되었습니다.');
+							
+						},
+						error:function(){
+							alert('에러 발생');
+						}
+					});
+				}
+				
+			</script>
 			<div class="i1"><a href="/dobby/delete?postNo=<%=vo.getPostNo() %>" >삭제</a></div>
 			<div class="i1"><a href="/dobby/edit?postNo=<%=vo.getPostNo() %> " >수정</a></div>
 			<div class="i1"><a href="/dobby/list" >글목록</a></div>
@@ -341,17 +378,17 @@ font-size: large;
 			
 		<%} %> --%>
 		<div id=reply-area-one>
-			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() ==){%>
+			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() == null){%>
 				<div id="reply-main">
 					<div id="top1">댓글쓰기</div>
 					<div id="admin-reply">관리자</div>
 					<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
-					<div id="r2"><input id="r1" type="submit" value="확인"></div> 
+					<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
 				</div>
 			<%}%>
 		
 			
-			<%if("3".equals(loginMember.getRightNo())){%>
+			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() != null){%>
 			<div id="reply-main2">
 				<div id="top2">댓글</div>
 				<div id="top">관리자</div>

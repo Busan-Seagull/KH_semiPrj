@@ -61,6 +61,9 @@ li{
     color:#fff;
     padding: 10px 20px ;
     margin: 0 10px;
+    border-radius: 1.5rem;
+    
+    
    
 }
 .controls span.prev{right:calc(100%+50px);}

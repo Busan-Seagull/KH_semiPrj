@@ -32,8 +32,8 @@ pageEncoding="UTF-8"%>
 	margin: 0 auto;
 	display:flex;
 	position:relative;
-	top:30px;
-	left: 50px;
+	bottom:50px;
+	
 	display:grid;
 	grid-template-columns: 1fr 1fr 4fr 2fr 2fr;
 	grid-template-rows:repeat(11, 45px);
@@ -65,8 +65,8 @@ pageEncoding="UTF-8"%>
 	background-color: #004412;
 	color:white;
 	position: relative;
-	top:50px;
-	left:500px;
+	top:650px;
+	left:420px;
 	text-align: center;
 	margin: 0 auto;
 	line-height :60px;
@@ -79,8 +79,9 @@ pageEncoding="UTF-8"%>
 
 
 #title{
-	display:flex;
-	justify-content:stretch;
+position:relative;
+bottom:80px;
+}
 	
 }
 #title-a{
@@ -89,7 +90,8 @@ pageEncoding="UTF-8"%>
 	height: 25px;
 	background-color: black;
 	border: 1px solid black;
-	left:50px;
+
+	
 	
 	
 	
@@ -102,7 +104,7 @@ pageEncoding="UTF-8"%>
 	font-weight: 500;
 	font-size: larger;
 	left:60px;
-	bottom:5px;
+	
 
 }
 
@@ -126,16 +128,8 @@ pageEncoding="UTF-8"%>
 	width: 192px;
 	height: 45px;
 }
-#page-area{
-	width:200px;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	position: relative;
-	left:970px;
-	top: 50px;
-	
-	
+
+
 }
 .btn{
 	width:5px;
@@ -148,13 +142,11 @@ pageEncoding="UTF-8"%>
    #page-area{
         width: 50%;
         height: 15%
-        display: flex;
+        display:flex;
         justify-content:center;
         align-items:center;
         margin: auto;
-        position:relative;
-        top:40px;
-        left:50px;
+        
         
     }
 
@@ -214,9 +206,22 @@ pageEncoding="UTF-8"%>
 border-bottom: 3px solid #004412;
 }
 
-
+fieldset{
+	position:relative;
+	left:500px;
+	bottom:20px;
+}
 
 </style>
+<!-- <script type="text/javascript">
+		function setValue(){
+		var target = document.getElementById("#z").value;
+		
+		
+			
+		
+	}
+</script> -->
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -225,9 +230,17 @@ border-bottom: 3px solid #004412;
 
 
 <div id="main-main">
-	<c:if test="${not empty loginMember}">
-		<div id="write-review"><a href="/dobby/reviewWrite">글쓰기</a></div>
-	</c:if>
+	<form action="/dobby/reviewList" method="get">
+		<c:if test="${not empty loginMember}">
+			<div id="write-review"><a href="/dobby/reviewWrite">글쓰기</a></div>
+		</c:if>
+		<select name="z" id="z" ><!-- onchange="setValue()" -->
+			<option >선택</option>
+			<option value="uptodate">최신</option>
+			<option value="serviceNo">서비스</option>
+		</select>
+		<input type="submit" name="q" value="검색">
+		<!--  onclick='javascript:setValue();' -->
 	<div id="title">
 		<div id="title-a"></div>
 		<div id="title-b">리뷰게시판</div>
@@ -264,6 +277,7 @@ border-bottom: 3px solid #004412;
 			<li><a href="/dobby/reviewList?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
 		</ul>
 	</div>
+	</form>
 </div>
 
 

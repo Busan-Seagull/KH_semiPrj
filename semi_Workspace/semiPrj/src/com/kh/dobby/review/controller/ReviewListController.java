@@ -21,6 +21,8 @@ public class ReviewListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        
+        
         String page = req.getParameter("pno");
         int currentPage = 1;
 
@@ -32,8 +34,22 @@ public class ReviewListController extends HttpServlet {
 
         req.setAttribute("pv", pv);
         
-        List<ReviewVo> x = new ReviewService().selectList(pv);
-        req.setAttribute("voList", x);
+        String z = req.getParameter("z");
+       
+        
+        
+          List<ReviewVo> x = null;
+          if(z.equals("uptodate")) {
+          x = new ReviewService().selectList(pv);
+          }else {
+          x = new ReviewService().selectList2(pv);
+          }
+        
+        
+        
+        
+       
+         req.setAttribute("voList", x);
         
         
         req.getRequestDispatcher("/WEB-INF/views/review/reviewList.jsp").forward(req, resp);

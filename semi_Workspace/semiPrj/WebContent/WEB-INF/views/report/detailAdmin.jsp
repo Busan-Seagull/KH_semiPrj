@@ -197,8 +197,8 @@ overflow:auto;
 	</div>
 	<div id="i">
 	<% if(loginMember != null && "3".equals(loginMember.getRightNo())) {%>
-		<div class="i1"><input type="submit" name="approval" value="승인"></div>
-		<div class="i1"><input type="submit" name="return" value="반려"></div>
+		<div class="i1"><input type="submit" name="adminReport" value="승인"></div>
+		<div class="i1"><input type="submit" name="adminReport" value="반려"></div>
 		
 	<%} %>
 		

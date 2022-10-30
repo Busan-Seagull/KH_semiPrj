@@ -47,33 +47,42 @@ public class DetailController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    
 	    req.setCharacterEncoding("UTF-8");
+	    HttpSession s = req.getSession(); 
+        MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");
+        
 	    String postNo = req.getParameter("postNo");
-        String approval = req.getParameter("approval");
-        String returnReport = req.getParameter("return");
+        String adminReport = req.getParameter("adminReport");
+        System.out.println(adminReport);
+        String contentReply = req.getParameter("content-reply");
         
-        
+        ReportVo vo = new ReportVo();
+        vo.setPostNo(postNo);
+        vo.setReportComment(contentReply);
+        vo.setUserNo(loginMember.getUserNo());
         
         int result =0;
         int result2 =0;
-        if(approval == "승인") {
-            result = new ReportService().approval(postNo);
-            
-        }else if(returnReport == "반려") {
-            result2 = new ReportService().returnReport(postNo);
-          
+        int result3 = 0;
+        
+        switch(adminReport) {
+            case "승인": result = new ReportService().approval(postNo);
+                        break;
+            case "반려":  result2 = new ReportService().returnReport(postNo); 
+                        break;
+            case "확인":  result3 = new ReportService().writeReply(vo); 
+                        break;
         }
         
         
         
-        
-        if(result==1 || result2 == 1) {
+        if(result==1 || result2 == 1 || result3 == 1) {
             req.getSession().setAttribute("alertMsg", "처리완료");
             resp.sendRedirect("/dobby/detail?postNo="+postNo);
            // req.getRequestDispatcher("/WEB-INF/views/report/detail.jsp").forward(req, resp);
             
         }else {
             req.setAttribute("msg", "[ERROR]오류 발생");
-            req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
+            resp.sendRedirect("/views/common/error.jsp");
         }
     
 	

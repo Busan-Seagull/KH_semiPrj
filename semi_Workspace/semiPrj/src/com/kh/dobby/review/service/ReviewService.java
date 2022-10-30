@@ -40,7 +40,20 @@ public class ReviewService {
     public List<ReviewVo> selectList(PageVo pv) {
 
         Connection conn = getConnection();
+        
         List<ReviewVo> x = dao.selectList(conn, pv);
+        
+        close(conn);
+        return x;
+        
+    
+    }
+    public List<ReviewVo> selectList2(PageVo pv) {
+
+        Connection conn = getConnection();
+        
+        List<ReviewVo> x = dao.selectList2(conn, pv);
+        
         close(conn);
         return x;
         
