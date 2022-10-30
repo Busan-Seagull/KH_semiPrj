@@ -22,7 +22,7 @@
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div id="service-registration-wrap">
 		<div id="registration-title">서비스 등록</div>
-		<form action="" method="post" enctype="multipart/form-data">
+		<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
 			<div id="registration-form1">
 				<div id="service-name">서비스명*</div>
 				<div id="service-name-input">
@@ -41,8 +41,9 @@
 				</div>
 				<div id="profile-pic">프로필 사진</div>
 				<div id="profile-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="profile-img">+</label> <input type="file"
-						name="profile-img" id="profile-img">
+						name="profile-img" id="profile-img" class="file">
 				</div>
 				<div id="payment-unit">요금단위</div>
 				<div id="payment-unit-input">
@@ -300,18 +301,22 @@
 			<div id="service-pic-wrap">
 				<div id="service-pic" class="registration-t2">서비스 사진</div>
 				<div id="service-pic-input1" class="service-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="service-img-1">+</label> <input type="file"
 						name="service-img-1" id="service-img-1">
 				</div>
 				<div id="service-pic-input2" class="service-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="service-img-2">+</label> <input type="file"
 						name="service-img-2" id="service-img-2">
 				</div>
 				<div id="service-pic-input3" class="service-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="service-img-3">+</label> <input type="file"
 						name="service-img-3" id="service-img-3">
 				</div>
 				<div id="service-pic-input4" class="service-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="service-img-4">+</label> <input type="file"
 						name="service-img-4" id="service-img-4">
 				</div>
@@ -402,6 +407,52 @@
 			return true;
 		}
 	}
+</script>
+
+<script defer>
+
+	//이미지 올리면
+	//src 주고 display 보이게 주면.. 되겟지.?
+	const fileDOM = document.querySelector('#profile-img');
+	const previews = document.querySelectorAll('.uploaded-profile');
+	// console.log(previews.length);
+
+	//url.reateObjectUrl 을 이용.,,
+	fileDOM.addEventListener('change', () => {
+	const imageSrc = URL.createObjectURL(fileDOM.files[0]);
+	previews[0].src = imageSrc;
+	previews[0].style.display="block";
+	});
+	
+	const fileDOM1 = document.querySelector('#service-img-1');
+	fileDOM1.addEventListener('change', () => {
+	const imageSrc1 = URL.createObjectURL(fileDOM1.files[0]);
+	previews[1].src = imageSrc1;
+	previews[1].style.display="block";
+	});
+
+	const fileDOM2 = document.querySelector('#service-img-2');
+	fileDOM2.addEventListener('change', () => {
+	const imageSrc2 = URL.createObjectURL(fileDOM2.files[0]);
+	previews[2].src = imageSrc2;
+	previews[2].style.display="block";
+	});
+
+	const fileDOM3 = document.querySelector('#service-img-3');
+	fileDOM3.addEventListener('change', () => {
+	const imageSrc3 = URL.createObjectURL(fileDOM3.files[0]);
+	previews[3].src = imageSrc3;
+	previews[3].style.display="block";
+	});
+
+	const fileDOM4 = document.querySelector('#service-img-4');
+	fileDOM4.addEventListener('change', () => {
+	const imageSrc4 = URL.createObjectURL(fileDOM4.files[0]);
+	previews[4].src = imageSrc4;
+	previews[4].style.display="block";
+	});
+
+	
 </script>
 
 
