@@ -24,16 +24,16 @@ public class MemberService {
 
     }
 
-    public int join(MemberVo vo, RightVo rightvo) {
+    public int join(MemberVo vo) {
         Connection conn=JDBCTemplate.getConnection();
         MemberDao dao = new MemberDao();
         int result=dao.insertJoin(conn, vo);
         
         int result2=1;
-        if(rightvo!=null){
-            result2=dao.insertJoinDobby(conn,rightvo);
+        if("2".equals(vo.getRightNo())){
+            result2=dao.insertJoinDobby(conn,vo);
         }
-        if(result*result2==1) {
+        if(result==1) {
             JDBCTemplate.commit(conn);
         }else {
             JDBCTemplate.rollback(conn);
@@ -85,16 +85,20 @@ public class MemberService {
 
     public MemberVo edit(MemberVo vo) {
         Connection conn = JDBCTemplate.getConnection();
-        
+                                       
         int result = new MemberDao().updateOneByNo(conn,vo);
-        
+        int result2=1;
+        if("2".equals( vo.getRightNo())) {
+           result2 = new MemberDao().updateOneByNoDobby(conn,vo);
+        }    
+       
         MemberVo updatedMember= null;
         
-        if(result==1) {
+        if(result*result2==1) {
             JDBCTemplate.commit(conn);
             updatedMember= new MemberDao().selectOne(conn, vo);
             
-            
+          
         }else {
             JDBCTemplate.rollback(conn);
         }

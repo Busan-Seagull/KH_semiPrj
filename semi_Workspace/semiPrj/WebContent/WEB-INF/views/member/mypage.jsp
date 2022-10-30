@@ -1,5 +1,7 @@
+<%@page import="com.kh.dobby.member.vo.RightVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,6 +165,12 @@ input[type=text],input[type=password]{
     border: 0.75px solid #DEDEDE;
 }
 
+input[name="memberId"],input[name="memberId"]{
+color:#999999;
+}
+input[name="memberId"]:focus{
+outline: none;
+}
 
 
 select{
@@ -211,7 +219,7 @@ input[type=submit]{
         <div id = profile>
             <div><img src="/dobby/resources/img/dust.png" alt="" id="logo"></div>
            
-            <div id="welcome">USER01 님 환영합니다</div>
+            <div id="welcome"><%=loginMember.getNick() %> 님 환영합니다</div>
         </div>
        
         <div id="userEdit"><span class="material-symbols-outlined">settings</span>내 정보 수정</div>
@@ -229,7 +237,7 @@ input[type=submit]{
     </div>
     <div id="info-area">
 
-        <form action="/dobby/member/join" method="post">
+        <form action="" method="post">
     
             <div id="join-area">
                     <div id="join-title"><span class="material-symbols-outlined">magic_button</span>내 정보 수정</div>
@@ -266,10 +274,10 @@ input[type=submit]{
                     <div id="pwd"><input type="password" name="memberPwd2"></div>
         
                     <div class="text">닉네임</div>
-                    <div id="nick"><input type="text" name="memberNick" value="<%=loginMember.getNick()%>" readonly></div>
+                    <div id="nick"><input type="text" name="memberNick" value="<%=loginMember.getNick()%>" ></div>
         
                     <div class="text">이름</div>
-                    <div id="name"><input type="text" name="memberName" value="<%=loginMember.getName()%>" readonly></div>
+                    <div id="name"><input type="text" name="memberName" value="<%=loginMember.getName()%>" ></div>
         
                     <div class="text">휴대폰 번호</div>
                      <div id="phone">
@@ -282,14 +290,15 @@ input[type=submit]{
 		   
 		                   </select>
 		                   <span>-</span> 
-		                   <input type="text" name="phone2" maxlength="4" />
+		                   <input type="text" name="phone2" maxlength="4" value="<%=loginMember.getPhone().substring(3,7)%>"/>
 		                   <span>-</span> 
-		                   <input type="text" name="phone3" maxlength="4" />
+		                   <input type="text" name="phone3" maxlength="4"value="<%=loginMember.getPhone().substring(7,11)%>" />
 		            </div>
         
                     <div class="text">이메일</div>
                     <div id="email">
-		                <input type="text" name="Email1"/>
+                    <%String email[] =loginMember.getEmail().split("@"); %>
+		                <input type="text" name="Email1"value="<%=email[0]%>"/>
 		                <span>@</span> 
 		                <select name="Email2">
 		                    <option value="naver.com" >naver.com</option>
@@ -304,35 +313,38 @@ input[type=submit]{
         
                     <div class="text">주소</div>
                     <div id="address">
-                        <input type="text" id="addr" name="addr" placeholder="주소">
-                        <input type="text" id="addr-detail" name="addr-detail" placeholder="상세주소">
+                    <%String address[] =loginMember.getAddress().split(","); %>
+                        <input type="text" id="addr" name="addr" placeholder="주소" value="<%=address[0]%>">
+                        <input type="text" id="addr-detail" name="addr-detail" placeholder="상세주소"  value="<%=address[1]%>">
                         <input type="button" onclick="addr_execDaumPostcode()" value="주소검색">
                     </div>
                     
                     <%if("2".equals(loginMember.getRightNo())){%>
-
+					
                     <div id="br_num_text" class="text">사업자 등록번호</div>
                         <div id="br_num">
-                            <input type="text" name="br_num1" size="3" />
+                            <input type="text" name="br_num1"maxlength="3" value="<%=loginMember.getBr_num().substring(0,3)%>"/>
                             <span>-</span> 
-                            <input type="text" name="br_num2" size="2" />
+                            <input type="text" name="br_num2" maxlength="2" value="<%=loginMember.getBr_num().substring(3,5)%>"/>
                             <span>-</span> 
-                            <input type="text" name="br_num3" size="5" />
+                            <input type="text" name="br_num3"maxlength="5" value="<%=loginMember.getBr_num().substring(5,9)%>"/>
                         </div>
         
-                    <div id="account_text" class="text">계좌번호</div>
-                    <div id="account">
-                        <select name="account1">
-                            <option value=""selected>은행명</option>
-                                <!-- 직접입력 밸류 값 챙기셈 -->
-                            <option value="011">카카오뱅크</option>
-                            <option value="010">신한은행</option>
-                            <option value="010">우리은행</option>
-            
-                        </select>
-                            <input type="text" name="account2" size="14" />
-        
-                    </div>
+                     <div id="account_text" class="text">계좌번호</div>
+                     <% String account[]=loginMember.getAccount().split(",");%>
+		                <div id="account">
+		                    <select name="account1" id="account1">
+		                        <option value="">은행명</option>
+		                        <option value="kakao">카카오뱅크</option>
+		                        <option value="shinhan">신한은행</option>
+		                        <option value="woori">우리은행</option>
+		       
+		                    </select>
+		
+		                 
+		                       <input type="text" name="account2" maxlength="14" value="<%=account[1]%>" />
+		    
+		                </div>
                     <%} %>      
                     
                     

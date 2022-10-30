@@ -65,8 +65,8 @@ public class Commudao {
         
      }
 
-    public static List<CommuVo> selectList(Connection conn, PageVo pv) {
-       String sql="SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT B.POST_NO,B.TYPE_NO,U.NICK as USER_NO,B.TITLE,B.CONTENT,B.WRITE_TIME,B.DELETE_YN,B.MODIFY_DATE,B.VIEWS FROM BOARD B JOIN \"USER\" U ON B.USER_NO=U.USER_NO WHERE B.DELETE_YN='N' ORDER BY B.POST_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+    public static List<CommuVo> selectList(Connection conn, PageVo pv, int cateNum) {
+       String sql="SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT B.POST_NO,B.TYPE_NO,U.NICK as USER_NO,B.TITLE,B.CONTENT,B.WRITE_TIME,B.DELETE_YN,B.MODIFY_DATE,B.VIEWS FROM BOARD B JOIN \"USER\" U ON B.USER_NO=U.USER_NO WHERE B.DELETE_YN='N' AND B.TYPE_NO=? ORDER BY B.POST_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
     
        PreparedStatement pstmt=null;
        ResultSet rs=null;
@@ -76,9 +76,9 @@ public class Commudao {
         pstmt=conn.prepareStatement(sql);
         int start=(pv.getCurrentPage() - 1) * pv.getBoardLimit() + 1;
         int end=start+pv.getBoardLimit()-1;
-        
-        pstmt.setInt(1, start);
-        pstmt.setInt(2, end);
+        pstmt.setInt(1,cateNum);
+        pstmt.setInt(2, start);
+        pstmt.setInt(3, end);
         rs=pstmt.executeQuery();
         
         

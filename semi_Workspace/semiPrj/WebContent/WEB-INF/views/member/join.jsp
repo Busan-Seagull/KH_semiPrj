@@ -382,7 +382,7 @@ button {
                     </select>
 
                  
-                       <input type="text" name="account2" size="14" />
+                       <input type="text" name="account2" maxlength="14" />
     
                 </div>
 
@@ -628,10 +628,7 @@ button {
                             alert("아이디를 입력하세요!!");
                             $('input[name="memberId"]').focus();
                         
-                         }
-                         
-                
-                      
+                         }               
 			        },
 			        error: function() {   
 			                alert("아이디를 입력하세요.");
