@@ -180,5 +180,52 @@ public class ReportService {
         close(conn);
         return vo;
     }
+
+
+
+    public ReportVo selectReplyList(String postNo) {
+        
+        Connection conn = getConnection();
+        ReportVo vo = dao.selectReplyList(conn,postNo);
+        
+        close(conn);
+        
+        return vo;
+    }
+
+
+
+    public int editReply(ReportVo vo) {
+        Connection conn = getConnection();
+        
+        int result = dao.editReply(conn, vo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        
+        close(conn);
+        return result;
+    
+    }
+
+
+
+    public int deleteReply(String postNo) {
+        Connection conn = getConnection();
+        
+        int result = dao.deleteReply(conn, postNo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        return result ;
+
+    }
     
 }

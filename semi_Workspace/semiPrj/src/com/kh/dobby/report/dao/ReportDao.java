@@ -378,6 +378,89 @@ public class ReportDao {
         return vo;
     
     
+    }
+
+    public ReportVo selectReplyList(Connection conn, String postNo) {
+        String sql = "SELECT REPORT_COMMENT FROM REPORT WHERE POST_NO = ?";
+        PreparedStatement pstmt =  null;
+        ResultSet rs = null;
+        ReportVo x = new ReportVo();
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,postNo);
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                String postNO = rs.getString("POST_NO");
+                String reportComment = rs.getString("REPORT_COMMENT");
+                
+                
+                ReportVo vo = new ReportVo();
+                vo.setPostNo(postNO);
+                
+                vo.setReportComment(reportComment);
+                
+               
+               
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        
+        return x;
+    
+        
+        
+    }
+
+    public int editReply(Connection conn, ReportVo vo) {
+        
+        
+        String sql = "UPDATE REPORT SET REPORT_COMMENT = ? WHERE POST_NO = ?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1,vo.getReportComment());
+            pstmt.setString(2, vo.getPostNo());
+           
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        
+        return result;
+    
+    }
+
+    public int deleteReply(Connection conn, String postNo) {
+        String sql = "UPDATE REPORT SET REPORT_COMMENT = NULL WHERE POST_NO = ?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, postNo);
+            
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+        }
+        return result;
     }     
    
 }

@@ -130,7 +130,12 @@ overflow:auto;
 	width:960px;
 	height:300px;
 	display:flex;
-	align-items:flex-end;
+	align-items: flex-end;
+    flex-direction: column;
+    position:relative;
+    top:50px;
+   
+}
 	
 	
 	
@@ -138,22 +143,34 @@ overflow:auto;
 #top{
 	width:180px;
 	height:50px;
-	background-color:  #004412;
+	background-color:#004412;
 	color: white;
 	text-align:center;
 	line-height:50px;
 	position:relative;
-	right:145px;
+	top:100px;
+	
+	
+
 }
 #bottom{
-	width:960px;
+	width:780px;
 	height:50px;
 	border-bottom: 5px solid #004412;
 	display:flex;
 	align-items:center;
 	position:relative;
-	right:145px;
+	top:150px;
 	
+	
+}
+#line{
+
+width:960px;
+height:3px;
+background-color:lightgray;
+position:relative;
+top: 80px;
 }
 .input-btn{
  font-size:medium;
@@ -223,21 +240,7 @@ font-size: large;
 
 
 }
-#top2{
-width: 200px;
-height: 30px;
-display:flex;
-justify-self: center;
-justify-content:center;
-border-bottom: 5px double #004412;
-position:relative;
-bottom:100px;
-left:430px;
-text-align:center;
-font-size: large;
 
-
-}
 #bottom2{
 	width:960px;
 	height: 150px;
@@ -274,6 +277,23 @@ font-size: large;
 	
 	
 }
+
+.r3{
+width:60px;
+height:60px;
+border-radius: 2.5rem;
+background-color:#EAE0D4;
+}
+#r4{
+	positive:relative;
+	right: 50px;
+	top: 80px;
+}
+#r5{
+	positive:relative;
+	top:50px;
+}
+
 
 </style>
 
@@ -363,24 +383,11 @@ font-size: large;
 			<div class="i1"><a href="/dobby/list" >글목록</a></div>
 		</div>
 		<br><br>
-		<%-- <% if(loginMember != null && "3".equals(loginMember.getRightNo())){%>
-			<details>
-				<summary>댓글</summary>
-				<div id="reply-reply">
-				<%if(vo.getReportComment()!= null){%>
-					<div><%=vo.getReportComment() %></div>
-				<%} else{
-					out.write("0");
-				}%>
-				<div id="write-reply"><a href="/dobby/detailAdmin" >댓글쓰기</a></div>
-				</div>
-			</details>
-			
-		<%} %> --%>
+		
 		<div id=reply-area-one>
 			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() == null){%>
 				<div id="reply-main">
-					<div id="top1">댓글쓰기</div>
+					<div id="top1">댓글</div>
 					<div id="admin-reply">관리자</div>
 					<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
 					<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
@@ -388,11 +395,13 @@ font-size: large;
 			<%}%>
 		
 			
-			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() != null){%>
+			<%if("3".equals(loginMember.getRightNo())){%>
 			<div id="reply-main2">
-				<div id="top2">댓글</div>
+				<div id="line"></div>
 				<div id="top">관리자</div>
 				<div id="bottom"><%=vo.getReportComment() %></div>
+				<div ><input class="r3" id="r4" type="button" name="adminReport" value="수정"></div> 
+				<div ><input class="r3" id="r5" type="button" name="adminReport" value="삭제"></div> 
 			</div>
 			<%}%>
 		</div>
