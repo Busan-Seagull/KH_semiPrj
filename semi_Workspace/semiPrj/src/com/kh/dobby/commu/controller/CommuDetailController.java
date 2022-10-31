@@ -32,6 +32,7 @@ public class CommuDetailController extends HttpServlet {
         
         String bno = req.getParameter("bno");
         CommuVo vo=new CommuService().selectOne(bno);
+        
        req.setAttribute("vo", vo);
 //        req.setAttribute("attachmentVo", attachmentVo);
         
@@ -41,25 +42,19 @@ public class CommuDetailController extends HttpServlet {
         cmtCount=new CommuService().selectCmtCount(bno);
 
         req.setAttribute("cmtCount",cmtCount);
-       
-        
-        
+
         
         //댓글 리스트
         List<CommuCmtVo> cmtList= new CommuService().selectCommuCmtVoList(bno);
-//       System.out.println(cmtList);
-       
-        PrintWriter out = resp.getWriter();
-        Map<Object, Object> map = new HashMap<>();
-        map.put("cmtList", cmtList);
+        req.setAttribute("cmtList",cmtList);
         
-        Gson gson=new Gson();
-        String cmtListresult=gson.toJson(map);
-        System.out.println(cmtListresult);
         
-        out.write(cmtListresult);
-       
+        
+        
         req.getRequestDispatcher("/WEB-INF/views/commu/detail.jsp").forward(req, resp);
+//       System.out.println(cmtList);
+
+    
     }
     
     

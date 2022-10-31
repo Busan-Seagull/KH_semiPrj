@@ -43,7 +43,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
             PrintWriter out = resp.getWriter();
 
             String page = req.getParameter("pno");
-            System.out.println(page);
+//            System.out.println(page);
             int currentPage = 1;
             int listCount=0;
 
@@ -70,7 +70,6 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
             Gson gson = new Gson();
             String json = gson.toJson(map);
             
-
             
             out.write(json);
            

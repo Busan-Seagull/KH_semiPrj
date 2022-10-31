@@ -1,4 +1,3 @@
-<%@page import="com.kh.dobby.member.vo.RightVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -217,8 +216,11 @@ input[type=submit]{
 <div id="mypage">
     <div id="profile-area">
         <div id = profile>
+         <div><img src="/dobby/<%=avo.%>/<%=avo.getChangd_name()%>" alt="" id="logo"></div>
+          <%if("2".equals(loginMember.getRightNo())){ %> 
+          <%}else{ %>
             <div><img src="/dobby/resources/img/dust.png" alt="" id="logo"></div>
-           
+          <%}%>
             <div id="welcome"><%=loginMember.getNick() %> 님 환영합니다</div>
         </div>
        
@@ -231,13 +233,13 @@ input[type=submit]{
         <div><span class="material-symbols-outlined"> forum </span>문의 내역</div>
         <div><span class="material-symbols-outlined"> report </span>신고 내역</div>
         <div id="bin"></div>
-        <div><span class="material-symbols-outlined"> delete_forever </span>탈퇴하기</div>
+        <div><span class="material-symbols-outlined"> delete_forever </span><a href="/dobby/member/quit">탈퇴하기</a></div>
 
         
     </div>
     <div id="info-area">
 
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
     
             <div id="join-area">
                     <div id="join-title"><span class="material-symbols-outlined">magic_button</span>내 정보 수정</div>
@@ -332,22 +334,55 @@ input[type=submit]{
         
                      <div id="account_text" class="text">계좌번호</div>
                      <% String account[]=loginMember.getAccount().split(",");%>
-		                <div id="account">
+                      <div id="account">
+                     <% if("kakao".equals(account[0])){%>
+		               
 		                    <select name="account1" id="account1">
 		                        <option value="">은행명</option>
-		                        <option value="kakao">카카오뱅크</option>
+		                        <option value="kakao" selected>카카오뱅크</option>
 		                        <option value="shinhan">신한은행</option>
 		                        <option value="woori">우리은행</option>
 		       
 		                    </select>
-		
+						<%}else if("shinhan".equals(account[0])){ %>  
+						
+		                    <select name="account1" id="account1">
+		                        <option value="">은행명</option>
+		                        <option value="kakao" >카카오뱅크</option>
+		                        <option value="shinhan" selected>신한은행</option>
+		                        <option value="woori">우리은행</option>
+		       
+		                    </select>
+		                 <%}else if("woori".equals(account[0])){ %> 
 		                 
+		                    <select name="account1" id="account1">
+		                        <option value="">은행명</option>
+		                        <option value="kakao" >카카오뱅크</option>
+		                        <option value="shinhan">신한은행</option>
+		                        <option value="woori" selected>우리은행</option>
+		       
+		                    </select>
+		                    
+		                     <%}else{ %>   
+		                     
+		                    <select name="account1" id="account1">
+		                        <option value="">은행명</option>
+		                        <option value="kakao" >카카오뱅크</option>
+		                        <option value="shinhan">신한은행</option>
+		                        <option value="woori">우리은행</option>
+		       
+		                    </select>
+		                     <%}%>     
 		                       <input type="text" name="account2" maxlength="14" value="<%=account[1]%>" />
 		    
 		                </div>
+
+                        <div class="text">프로필 사진</div>
+                        <input type="file" name="f" id="profileImg">
+                      
                     <%} %>      
                     
-                    
+                   
                     
                     <div id="sub-btn">
                         <input type="submit" value="변경하기">
