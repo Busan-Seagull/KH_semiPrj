@@ -124,7 +124,7 @@ public class RequestDao {
         return result;
     }
 
-    public int selectOne(Connection conn, String bno) {
+    /*public int selectOne(Connection conn, String bno) {
         
         String sql = "SELECT *  FROM QUESTION WHERE DELETE_YN='N' AND POST_NO=?";
         
@@ -135,7 +135,7 @@ public class RequestDao {
         try {
             pstmt = conn.prepareStatement(sql);
             /*페이지 내용은 이 안에*/
-            pstmt.setString(1, bno);
+            /*pstmt.setString(1, bno);
             rs = pstmt.executeQuery();
             
             while(rs.next()) {
@@ -181,7 +181,7 @@ public class RequestDao {
         return vo;
         
         
-    }
+    }*/
     
     
 

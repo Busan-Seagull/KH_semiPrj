@@ -12,6 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberPointController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        //데이터가져오기
+        
+        //데이터뭉치기
+        
+        //DB다녀오기
+        
+        //화면선택
+        
+        
         req.getRequestDispatcher("/WEB-INF/views/point/point.jsp").forward(req, resp);
     }
     

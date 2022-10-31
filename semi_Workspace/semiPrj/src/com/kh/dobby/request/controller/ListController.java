@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import com.kh.dobby.common.PageVo;
 import com.kh.dobby.request.service.RequestService;
@@ -56,6 +57,7 @@ public class ListController extends HttpServlet{
         List<RequestVo> x = new RequestService().pageList(pv);
         req.setAttribute("voList", x); // x를 voList에 담아 setAttribute
         req.setAttribute("pv", pv); // pv를 pv(key)에 담아 setAttribute
+        //Session
         
         
         //화면 선택
