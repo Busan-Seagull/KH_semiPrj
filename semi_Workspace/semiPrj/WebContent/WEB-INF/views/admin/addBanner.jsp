@@ -162,9 +162,16 @@
 	}
 
 	find.addEventListener('click', function(){
+		setmodeY();
 		window.open('/dobby/addBanner2', '_blank','width=1800px, height=1200px');
 
 	});
+	
+	function setmodeY() {
+		var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/dobby/setmode');
+        xhr.send();
+	}
 
 	file.addEventListener('change' , function(){
 		fileName.value = file.value;

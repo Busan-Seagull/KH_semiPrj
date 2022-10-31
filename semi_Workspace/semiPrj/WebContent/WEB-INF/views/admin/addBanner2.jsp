@@ -67,8 +67,15 @@
     });
 
     cancle.addEventListener('click', function(){
+    	setmodeN();
         window.close();
     });
+    
+	function setmodeN() {
+		var xhr = new XMLHttpRequest();
+        xhr.open("get", '/dobby/setmode');
+        xhr.send();
+	}
 
 </script>
 </html>

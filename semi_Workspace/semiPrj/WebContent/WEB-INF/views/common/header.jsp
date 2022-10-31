@@ -8,6 +8,7 @@
 
 <%
 	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+	String mode = (String)session.getAttribute("mode");
 %>
 
 <link rel="stylesheet" href="/dobby/resources/css/reset.css">
@@ -415,7 +416,7 @@
         </div>
     </header>
     <nav style="z-index: 100;">
-        <%if(loginMember==null||!("3".equals(loginMember.getRightNo()))) {%>
+        <%if(loginMember==null||!("3".equals(loginMember.getRightNo()))||mode==null) {%>
         <div id="header-nav-box">
             <div class="img"></div>
             <div id="header-service">

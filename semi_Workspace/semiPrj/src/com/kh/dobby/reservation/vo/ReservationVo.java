@@ -10,7 +10,8 @@ public class ReservationVo {
     public ReservationVo(String reservation_no, String serviceNo, String userNo, String userName,
             String reservationDate, String cancelDate, String reservationAmount, String reservationYN, String comment,
             String reComment, String estimateDate, String dName, String sName, String sTitle, String charge,
-            String chargeUnit, String dNo, String address, String payNo, String status, String dProfil) {
+            String chargeUnit, String dNo, String address, String payNo, String status, String dProfil,
+            String sProfil) {
         super();
         this.reservation_no = reservation_no;
         this.serviceNo = serviceNo;
@@ -33,6 +34,7 @@ public class ReservationVo {
         this.payNo = payNo;
         this.status = status;
         this.dProfil = dProfil;
+        this.sProfil = sProfil;
     }
 
     private String reservation_no;
@@ -58,6 +60,7 @@ public class ReservationVo {
     private String payNo;
     private String status;
     private String dProfil;
+    private String sProfil;
 
     public String getReservation_no() {
         return reservation_no;
@@ -227,6 +230,14 @@ public class ReservationVo {
         this.dProfil = dProfil;
     }
 
+    public String getsProfil() {
+        return sProfil;
+    }
+
+    public void setsProfil(String sProfil) {
+        this.sProfil = sProfil;
+    }
+
     @Override
     public String toString() {
         return "ReservationVo [reservation_no=" + reservation_no + ", serviceNo=" + serviceNo + ", userNo=" + userNo
@@ -235,7 +246,7 @@ public class ReservationVo {
                 + comment + ", reComment=" + reComment + ", estimateDate=" + estimateDate + ", dName=" + dName
                 + ", sName=" + sName + ", sTitle=" + sTitle + ", charge=" + charge + ", chargeUnit=" + chargeUnit
                 + ", dNo=" + dNo + ", address=" + address + ", payNo=" + payNo + ", status=" + status + ", dProfil="
-                + dProfil + "]";
+                + dProfil + ", sProfil=" + sProfil + "]";
     }
 
 }

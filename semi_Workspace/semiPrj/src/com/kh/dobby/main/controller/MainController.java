@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.dobby.banner.service.BannerService;
 import com.kh.dobby.banner.vo.BannerVo;
@@ -20,12 +21,15 @@ public class MainController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    
 	    List<BannerVo> list = new BannerService().selectList();
+	    HttpSession s = req.getSession();
 	    
-	    MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
+	    MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");
 	    
-	    if(loginMember!=null&&"3".equals(loginMember.getRightNo())) {
-	        req.getRequestDispatcher("WEB-INF/views/admin/admin.jsp").forward(req, resp);
-	        return;
+	    if(s.getAttribute("mode")==null) {
+	        if(loginMember!=null&&"3".equals(loginMember.getRightNo())) {
+	            req.getRequestDispatcher("WEB-INF/views/admin/admin.jsp").forward(req, resp);
+	            return;
+	        }  
 	    }
 	    
 	    if(list!=null) {
