@@ -83,8 +83,7 @@ public class Commudao {
         pstmt.setInt(2, start);
         pstmt.setInt(3, end);
         rs=pstmt.executeQuery();
-        
-        
+       
         
         while (rs.next()) {
             String postNo = rs.getString("POST_NO");
@@ -295,7 +294,7 @@ public class Commudao {
      }
 
     public static List<CommuCmtVo> selectCmtList(Connection conn, String bno) {
-        String sql="SELECT C.COMMENT_NO,C.POST_NO,U.NICK AS USER_NO,C.CONTENT,C.WRITE_TIME,C.DELETE_YN,C.MODIFY_DATE FROM \"COMMENT\" C JOIN \"USER\" U ON C.USER_NO=U.USER_NO WHERE C.DELETE_YN='N' AND C.POST_NO=? ORDER BY C.COMMENT_NO DESC";
+        String sql="SELECT C.COMMENT_NO,C.POST_NO,U.NICK,U.USER_NO,C.CONTENT,C.WRITE_TIME,C.DELETE_YN,C.MODIFY_DATE FROM \"COMMENT\" C JOIN \"USER\" U ON C.USER_NO=U.USER_NO WHERE C.DELETE_YN='N' AND C.POST_NO=? ORDER BY C.COMMENT_NO DESC";
         PreparedStatement pstmt =null;
         ResultSet rs=null;
         
@@ -310,6 +309,7 @@ public class Commudao {
                String commentNo =rs.getString("COMMENT_NO");
                String postNo =rs.getString("POST_NO");
                String userNo =rs.getString("USER_NO");
+               String nick =rs.getString("NICK");
                String content =rs.getString("CONTENT");
                String writeTime =rs.getString("WRITE_TIME");
                String deleteYn =rs.getString("DELETE_YN");
@@ -319,6 +319,7 @@ public class Commudao {
                vo.setCommentNo(commentNo);
                vo.setPostNo(postNo);
                vo.setUserNo(userNo);
+               vo.setNick(nick);
                vo.setContent(content);
                vo.setWriteTime(writeTime);
                vo.setDeleteYn(deleteYn);

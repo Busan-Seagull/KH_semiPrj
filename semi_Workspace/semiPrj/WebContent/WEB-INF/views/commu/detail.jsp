@@ -7,7 +7,7 @@
 <%
 int cmtCount=(int)request.getAttribute("cmtCount");
 CommuVo vo=(CommuVo)request.getAttribute("vo");
-/* List<CommuCmtVo>voList=(List<CommuCmtVo>)request.getAttribute("cmtList"); */
+List<CommuCmtVo>voList=(List<CommuCmtVo>)request.getAttribute("cmtList");
 String root=request.getContextPath();
 %>
 <!DOCTYPE html>
@@ -183,7 +183,7 @@ String root=request.getContextPath();
     
     }
 
-    #cmn-insert input[type=submit]{
+    #cmn-insert button{
     width: 13%;
     height: 40px;
     border: 1px solid var(--semi-green);
@@ -193,7 +193,7 @@ String root=request.getContextPath();
 
  
 
-    #cmn-btn input{
+    #cmn-btn button{
     width: 100%;
     height: 30px;
     border: 0.75px solid var(--semi-green);
@@ -205,16 +205,20 @@ String root=request.getContextPath();
     }
 
 	#cmn-list{
-	display: none;}
+	display: none;
+	
+	}
+	
     #cmn-area{
     
     font-size: 12px;
-   	height:40px;
+   	height:50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 10px;
     border-top: 0.75px solid var(--semi-green);
     border-bottom: 0.75px solid var(--semi-green);
+     
     }
     #cmn-area #writer{
         color:var(--semi-green);
@@ -231,12 +235,14 @@ String root=request.getContextPath();
     #cmn-area #btn{
        width: 100%;
        grid-column: span 2;
+       
     }
     #cmn-area #btn input{
         width: 50px;
         height: 20px;
         font-size: 12px;
-        margin-top: 5px;
+       
+       
     }
 
 </style>
@@ -282,14 +288,14 @@ String root=request.getContextPath();
                    
                 </div>
                 <div id="cmn-btn">
-                  <button id="cmn-btn2" onclick="cmtList();">댓글 보기</button> 
+                  <button id="cmn-btn1" name="cmn-btn1" >댓글 보기</button> 
                   
                 </div>
 				
                 <div id="cmn-list">
-              <%--   <%for(int i =0; i<voList.size();i++){ %>
+                 <%for(int i =0; i<voList.size();i++){ %>
                     <div id="cmn-area">
-                        <div id="writer"><%=voList.get(i).getUserNo()%></div>
+                        <div id="writer"><%=voList.get(i).getNick()%></div>
                         <div id ="date">작성일시 <%=voList.get(i).getWriteTime()%></div>
                         <div id ="content"><%=voList.get(i).getContent()%></div>
                     <% if(loginMember!=null&&loginMember.getUserNo().equals(voList.get(i).getUserNo())){ %>
@@ -300,7 +306,7 @@ String root=request.getContextPath();
                     <%} %>
                     </div>
                  
-                    <%}%> --%>   
+                    <%}%>  
                 </div>
  				
             </div>
@@ -311,30 +317,11 @@ String root=request.getContextPath();
             
 	          const cmt= $('#cmt');
 	          
-	            $('input[name="cmn-btn1"]').click(function() {
+	            $('button[name="cmn-btn1"]').click(function() {
 	                $('#cmn-list').css('display','block');
 	            });
 	            
-	            function cmtList(){
-	            	
-	            	$.ajax({
-	           		 type: "get",
-				        url: "/dobby/commu/detail?bno=<%=vo.getPostNo()%>",
-
-				        success: function(cmtListresult) {
-
-				        	   console.log(cmtListresult);
-				        	   
-				        	  const c=Json.parse(cmtListresult);
-				        	  console.log(c);
-				        },
-				        error: function() {   
-				                alert("실패.");
-				               
-				        }
-	           	});
-	            	
-	            };
+	             
 	
 	            function insert(){
 	                <%if(loginMember==null){%>
@@ -351,19 +338,28 @@ String root=request.getContextPath();
 	     			        	}, 
 	     			        success: function(result) {
 	     			        	const p =JSON.parse(result);
-	     			        	console.log(result);
-	     			        	
-	     			        	const cmtCount=p.cmtCount;
-	     			        	console.log(cmtCount);
-	     			        	
+	     			        	/* console.log(result); */
 	     			        	const cmtinsert=p.cmtinsert;
-	     			        	const cmnCnt=$('#cmn-cnt');
-		     			       //댓글 갯수 업데이트
-					        	$(cmnCnt).text('댓글 '+cmtCount+'개');
-	     			      
+	     			        	const cmtCount=p.cmtCount;
+	     			        	
+	     			        	const cmtListResult=p.cmtList;
+	     			        	/* console.log(cmtListResult); */
+	     			        	
+	     			        	
 	     			        	
 	     			        	//댓글 인설트 후, 내용 비워주기
 	     			        	 $('#cmt').val("");
+	     			        	
+	     			         	 //댓글 리스트 추가 원래 리스트엿던 흔적임..
+		     			     	 const cmnList= $('#cmn-list');
+			     			    $(cmnList).prepend('<div id="cmn-area"><div id="writer">'+cmtListResult.nick+'</div><div id ="date">작성일시 '+cmtListResult.writeTime+'</div>'
+					     			    +'<div id ="content">'+cmtListResult.content+'</div></div>');
+			     			     
+		     			       
+		     			       //댓글 갯수 업데이트
+		     			       const cmnCnt=$('#cmn-cnt');
+		     			      $(cmnCnt).text('댓글 '+cmtCount+'개');
+		     			     		
 	     			        },
 	     			        error: function() {   
 	     			                alert("실패.");
@@ -376,6 +372,8 @@ String root=request.getContextPath();
 	                <%}%>
 	                
 	
+	                
+	                
 	            };
 	          
 	            

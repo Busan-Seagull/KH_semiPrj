@@ -5,6 +5,7 @@ public class CommuCmtVo {
     private String commentNo;
     private String postNo;
     private String userNo;
+    private String nick;
     private String content;
     private String writeTime;
     private String deleteYn;
@@ -13,12 +14,13 @@ public class CommuCmtVo {
         super();
         // TODO Auto-generated constructor stub
     }
-    public CommuCmtVo(String commentNo, String postNo, String userNo, String content, String writeTime, String deleteYn,
-            String modifyDate) {
+    public CommuCmtVo(String commentNo, String postNo, String userNo, String nick, String content, String writeTime,
+            String deleteYn, String modifyDate) {
         super();
         this.commentNo = commentNo;
         this.postNo = postNo;
         this.userNo = userNo;
+        this.nick = nick;
         this.content = content;
         this.writeTime = writeTime;
         this.deleteYn = deleteYn;
@@ -41,6 +43,12 @@ public class CommuCmtVo {
     }
     public void setUserNo(String userNo) {
         this.userNo = userNo;
+    }
+    public String getNick() {
+        return nick;
+    }
+    public void setNick(String nick) {
+        this.nick = nick;
     }
     public String getContent() {
         return content;
@@ -68,9 +76,10 @@ public class CommuCmtVo {
     }
     @Override
     public String toString() {
-        return "CommuCmtVo [commentNo=" + commentNo + ", postNo=" + postNo + ", userNo=" + userNo + ", content="
-                + content + ", writeTime=" + writeTime + ", deleteYn=" + deleteYn + ", modifyDate=" + modifyDate + "]";
+        return "CommuCmtVo [commentNo=" + commentNo + ", postNo=" + postNo + ", userNo=" + userNo + ", nick=" + nick
+                + ", content=" + content + ", writeTime=" + writeTime + ", deleteYn=" + deleteYn + ", modifyDate="
+                + modifyDate + "]";
     }
     
-    
-}
+    }
+   

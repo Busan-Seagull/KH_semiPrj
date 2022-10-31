@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.kh.dobby.common.AttachmentVo;
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.member.vo.RightVo;
@@ -313,17 +314,18 @@ public class MemberDao {
 
 
 
-    public int updateOneByNoDobby(Connection conn, MemberVo vo) {
+    public int updateOneByNoDobby(Connection conn, MemberVo vo, AttachmentVo avo) {
         PreparedStatement pstmt=null;
         int result=0;
         
-        String sql="UPDATE \"DOBBY\" SET BR_NUM=?,ACCOUNT=? WHERE USER_NO=?";
+        String sql="UPDATE \"DOBBY\" SET BR_NUM=?,ACCOUNT=?, IMG_LINK=? WHERE USER_NO=?";
         
         try {
             pstmt=conn.prepareStatement(sql);
-            pstmt.setString(1, vo.getPwd());
-            pstmt.setString(2, vo.getName());
-            pstmt.setString(3, vo.getUserNo());
+            pstmt.setString(1, vo.getBr_num());
+            pstmt.setString(2, vo.getAccount());
+            pstmt.setString(3, avo.getFilePath());
+            pstmt.setString(4, vo.getUserNo());
             
            
             result=pstmt.executeUpdate();
@@ -335,6 +337,76 @@ public class MemberDao {
         }
         
         return result;
+    }
+
+
+
+    public int quit(Connection conn, String no) {
+        PreparedStatement pstmt=null;
+        int result=0;
+        String sql="UPDATE \"USER\" SET QUIT_YN='Y' WHERE USER_NO =?";
+        try {
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, no);
+            
+            result=pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+        }
+        return result;
+
+    }
+
+
+
+    public AttachmentVo selectAttachment(Connection conn, String userNo) {
+        String sql="SELECT * FROM \"DOBBY\" WHERE STATUS='O' AND BOARD_NO = ?";
+        PreparedStatement pstmt=null;
+        ResultSet rs =null;
+        AttachmentVo vo=null;
+        
+        try {
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, userNo);
+            rs=pstmt.executeQuery();
+           
+            
+            if(rs.next()) {
+                String no = rs.getString("no");
+                String board_no = rs.getString("board_no");
+                String origin_name = rs.getString("origin_name");
+                String changd_name = rs.getString("changd_name");
+                String file_path = rs.getString("file_path");
+                String enroll_date = rs.getString("enroll_date");
+                String thumb_yn = rs.getString("thumb_yn");
+                String status = rs.getString("status");
+                
+                vo=new AttachmentVo();
+                vo.setNo(no);
+                vo.setBoard_no(board_no);
+                vo.setOrigin_name(origin_name);
+                vo.setChangd_name(changd_name);
+                vo.setFile_path(file_path);
+                vo.setEnroll_date(enroll_date);
+                vo.setThumb_yn(thumb_yn);
+                vo.setStatus(status);
+                
+            }
+            
+        } catch (SQLException e) {
+           
+            e.printStackTrace();
+        }finally {
+            JDBCTemplate.close(pstmt);
+            JDBCTemplate.close(rs);
+        }
+        
+        return vo;
+    }
+
     }
 
 }

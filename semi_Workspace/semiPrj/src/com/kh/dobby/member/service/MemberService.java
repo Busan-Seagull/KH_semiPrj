@@ -2,6 +2,7 @@ package com.kh.dobby.member.service;
 
 import java.sql.Connection;
 
+import com.kh.dobby.common.AttachmentVo;
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.member.dao.MemberDao;
 import com.kh.dobby.member.vo.MemberVo;
@@ -83,13 +84,14 @@ public class MemberService {
         return pwdFind;
     }
 
-    public MemberVo edit(MemberVo vo) {
+    public MemberVo edit(MemberVo vo, AttachmentVo avo) {
         Connection conn = JDBCTemplate.getConnection();
                                        
         int result = new MemberDao().updateOneByNo(conn,vo);
         int result2=1;
+        //집요정 정보 업데이트
         if("2".equals( vo.getRightNo())) {
-           result2 = new MemberDao().updateOneByNoDobby(conn,vo);
+           result2 = new MemberDao().updateOneByNoDobby(conn,vo,avo);
         }    
        
         MemberVo updatedMember= null;
@@ -105,6 +107,30 @@ public class MemberService {
         
         JDBCTemplate.close(conn);
         return updatedMember;
+    }
+
+    public int quit(String no) {
+        Connection conn =JDBCTemplate.getConnection();
+        
+        int result = new MemberDao().quit(conn,no);
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+        }else {
+            JDBCTemplate.rollback(conn);
+        }
+        JDBCTemplate.close(conn);
+        
+            return result;
+    }
+
+    public AttachmentVo selectAttachment(String userNo) {
+        Connection conn=JDBCTemplate.getConnection();
+        AttachmentVo vo=new MemberDao().selectAttachment(conn,userNo);
+        
+        JDBCTemplate.close(conn);
+        return vo;
+
     }
     
    

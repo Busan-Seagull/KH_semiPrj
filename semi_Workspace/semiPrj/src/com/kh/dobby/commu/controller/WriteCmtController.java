@@ -20,10 +20,7 @@ import com.kh.dobby.member.vo.MemberVo;
 
 @WebServlet(urlPatterns = "/commu/detailCmt")
 public class WriteCmtController extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       
-    }
+
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,20 +39,36 @@ public class WriteCmtController extends HttpServlet {
         cmtVo.setPostNo(bno);
         cmtVo.setUserNo(loginMember.getUserNo());
         cmtVo.setContent(cmt);
-        
-        //댓글 갯수
-        int cmtCount=1;
-        cmtCount=new CommuService().selectCmtCount(bno);
-        System.out.println("에이쟉스용 :"+cmtCount);
+      
+       
         
         //댓글 인설트 
         int cmtinsert=CommuService.insertCmt(cmtVo);
         PrintWriter out = resp.getWriter();
+        System.out.println("에이쟉스용 인설트 :"+cmtinsert);
+       
+      //댓글 리스트
+        List<CommuCmtVo> cmtList= new CommuService().selectCommuCmtVoList(bno); 
+        System.out.println(cmtList);
+        
+      //댓글 갯수
+        int cmtCount=0;
+        cmtCount=new CommuService().selectCmtCount(bno);
+        System.out.println("에이쟉스용 카운트 :"+cmtCount);
         
         
-        Map<Object, Integer> map = new HashMap<>();
-        map.put("cmtCount", cmtCount);
+        
+        
+        
+       
+        
+        //댓글 갯수와 인설트 리스트 결과 보내기
+        Map<Object, Object> map = new HashMap<>();
+        
         map.put("cmtinsert", cmtinsert);
+        map.put("cmtCount", cmtCount);
+        map.put("cmtList", cmtList.get(0));
+        
        
         
         Gson gson=new Gson();
