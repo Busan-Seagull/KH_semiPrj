@@ -222,7 +222,7 @@ input[type=submit]{
 }
 /* 신고게시판 */
 #report-area{
-	width:960px;
+	width:800px;
 	height: 500px;
 	/* display:flex; */
 	margin: 0 auto;
@@ -236,7 +236,7 @@ input[type=submit]{
 	display:grid;
 	grid-template-columns: 1fr 1fr 1fr 3fr 2fr;
 	grid-template-rows: 45px 45px 610px;
-	top:100px;
+	top:50px;
 
 	
 }
@@ -258,21 +258,17 @@ input[type=submit]{
 
 	grid-column: span 5;
 }
-#report-title{
-	display: flex;
-	margin-top: 50px ;
-	position:relative;
-	left: 100px;
-	width: 100px;
 
-
-}
 #report-content-content{
 	width: 100%;
 	height: auto;
 	border-top:3px solid #004412;
 	border-bottom:3px solid #004412;
 
+}
+#report-content{
+	background-color:#004412;
+	color:white;
 }
 
 
@@ -466,7 +462,7 @@ input[type=submit]{
     
 	<div class="info-area" id="info-area09">
     	<div id="report-area">
-			<div id="report-title">신고 내역</div>
+			<div id="join-title"><span class="material-symbols-outlined">magic_button</span>신고내역</div>
 			
 			<div id="report-list">
 				<div class="list-no1">번호</div>
@@ -482,19 +478,15 @@ input[type=submit]{
 					<div class="list-no2"><%=voList.get(i).getServiceNo() %></div>
 					<div class="list-no2"><%=voList.get(i).getTitle() %></div>
 					<div class="list-no2"><%=voList.get(i).getWriter()%></div>
-					
 					<div id="report-span">
-						<details>
-							<summary><div id="report-content">신고내용</div></summary>
-							<p><div id="report-content-content"><%=voList.get(i).getContent() %></div></p>
-						</details>
+						<div id="report-content">신고내용</div>
+						<p><div id="report-content-content"><%=voList.get(i).getContent() %></div></p>
 					</div>
 				<%} %>
 				
 			</div><!-- report-list -->
 		</div><!-- report-area  -->
     </div><!-- info-area09  -->
-    
 </div>
     
     <%@include file="/WEB-INF/views/common/footer.jsp" %>

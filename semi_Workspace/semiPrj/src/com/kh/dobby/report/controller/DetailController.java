@@ -1,6 +1,7 @@
 package com.kh.dobby.report.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.dobby.member.vo.MemberVo;
+import com.kh.dobby.report.dao.ReportDao;
 import com.kh.dobby.report.service.ReportService;
 import com.kh.dobby.report.vo.ReportVo;
 import com.kh.dobby.service.vo.ServiceVo;
 
 @WebServlet(urlPatterns = "/detail")
 public class DetailController extends HttpServlet {
+    
+    private final ReportService rs = new ReportService();
 
 	
 	@Override
@@ -29,7 +33,7 @@ public class DetailController extends HttpServlet {
         if(loginMember != null ) {
             String postNo = req.getParameter("postNo");
             
-            ReportVo vo = new ReportService().selectOne(postNo);
+            ReportVo vo = rs.selectOne(postNo);
             
             req.setAttribute("vo", vo);
            
@@ -47,33 +51,62 @@ public class DetailController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    
 	    req.setCharacterEncoding("UTF-8");
-	    String postNo = req.getParameter("postNo");
-        String approval = req.getParameter("approval");
-        String returnReport = req.getParameter("return");
+	    HttpSession s = req.getSession(); 
+        MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");
         
+	    String postNo = req.getParameter("postNo");
+        String adminReport = req.getParameter("adminReport");
+        String contentReply = req.getParameter("content-reply");
+        
+        ReportVo vo = new ReportVo();
+        vo.setPostNo(postNo);
+        vo.setReportComment(contentReply);
+        vo.setUserNo(loginMember.getUserNo());
+        
+        ReportVo x = null;
+        if(vo.getReportComment()!= null) {
+            x = new ReportService().selectReplyList(postNo);
+          
+            req.setAttribute("vo", x);
+            req.getRequestDispatcher("/WEB-INF/views/report/detail.jsp").forward(req, resp);
+        }else {
+            req.setAttribute("msg", "[ERROR]오류 발생");
+            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+        }
         
         
         int result =0;
         int result2 =0;
-        if(approval == "승인") {
-            result = new ReportService().approval(postNo);
-            
-        }else if(returnReport == "반려") {
-            result2 = new ReportService().returnReport(postNo);
-          
+        int result3 = 0;
+        int result4 = 0;
+        int result5 = 0;
+        
+        switch(adminReport) {
+            case "승인": result = rs.approval(postNo);
+                        break;
+            case "반려":  result2 = rs.returnReport(postNo); 
+                        break;
+            case "확인":  result3 = rs.writeReply(vo); 
+                        break;
+            case "수정": result4 = rs.editReply(vo);
+                        break;
+            case "삭제": result5 = rs.deleteReply(postNo);  
+                        break;
         }
+       
+       
         
         
-        
-        
-        if(result==1 || result2 == 1) {
+        if(result==1 || result2 == 1 || result3 == 1) {
             req.getSession().setAttribute("alertMsg", "처리완료");
-            resp.sendRedirect("/dobby/detail?postNo="+postNo);
-           // req.getRequestDispatcher("/WEB-INF/views/report/detail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/dobby/detail?postNo="+postNo).forward(req, resp);
+            return;
+           
+            
             
         }else {
             req.setAttribute("msg", "[ERROR]오류 발생");
-            req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
+            resp.sendRedirect("/views/common/error.jsp");
         }
     
 	
