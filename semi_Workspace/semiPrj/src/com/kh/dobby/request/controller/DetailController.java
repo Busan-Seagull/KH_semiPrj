@@ -22,7 +22,7 @@ public class DetailController extends HttpServlet{
         String bno = req.getParameter("bno");
         //데이터 뭉치기
         //DB 다녀오기
-        RequestVo vo = new RequestService().selectOne(bno);
+        //RequestVo vo = new RequestService().selectOne(bno);
         //화면 선택
         req.getRequestDispatcher("/WEB-INF/views/request/detail.jsp").forward(req, resp);
         

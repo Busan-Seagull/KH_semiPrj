@@ -35,30 +35,47 @@ public class ListController extends HttpServlet{
 //        int endPage;
 //        
         req.setCharacterEncoding("UTF-8"); // 인코딩
-        String page = req.getParameter("pno"); // pno로 값 가져오기
-        int currentPage = 1;
+        //String page = req.getParameter("pno"); // pno로 값 가져오기
+        //int currentPage = 1;
         
-        if(page!=null) {
-            currentPage = Integer.parseInt(page);
-        }
+        //if(page!=null) {
+        //    currentPage = Integer.parseInt(page);
+        //}
         
         //listCount 선언
-        int listCount = new RequestService().selectCount();
+        //int listCount = new RequestService().selectCount();
       
         
         
         //글개수, 현재페이지, 페이징(5개로 고정해야), 페이지당 게시글 수
-        PageVo pv = new PageVo(listCount, currentPage, 5, 10); // pageLimit=5, boardLimit=10
+        //PageVo pv = new PageVo(listCount, currentPage, 5, 10); // pageLimit=5, boardLimit=10
         
         
+        
+        
+        
+        
+        //페이징
+        
+        String page = req.getParameter("pno");
+        int currentPage = 1;
+
+        if(page!=null) {
+            currentPage = Integer.parseInt(page);
+        }
+         //new PageVo(글갯수, 현재페이지, 5고정(페이징갯수), 한페이지에 몇개의 글);
+        PageVo pv = new PageVo(100, currentPage, 5, 10);
+
+        req.setAttribute("pv", pv);
+        System.out.println(pv);
         
         
         //디비 다녀오기
         List<RequestVo> x = new RequestService().pageList(pv);
         req.setAttribute("voList", x); // x를 voList에 담아 setAttribute
-        req.setAttribute("pv", pv); // pv를 pv(key)에 담아 setAttribute
+        //req.setAttribute("pv", pv); // pv를 pv(key)에 담아 setAttribute
         //Session
-        
+        System.out.println(x);
         
         //화면 선택
         req.getRequestDispatcher("/WEB-INF/views/request/list.jsp").forward(req, resp); // 포워딩

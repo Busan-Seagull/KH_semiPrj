@@ -108,10 +108,7 @@
 		
 		<div class="data1">
 		
-			<div><%= vo.getPostNo() %></div>
-			<div><%= vo.getTitle() %></div>
-			<div><%= vo.getUserNo() %></div>
-			<div><%= vo.getContent() %></div>
+			
 		</div>
 	</div>
 	

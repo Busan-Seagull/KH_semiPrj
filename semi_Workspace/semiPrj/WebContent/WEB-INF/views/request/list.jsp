@@ -18,7 +18,7 @@
 <style>
 #main{
 	width: 960px;
-	height: 456px;
+	height: 660px;
 	border: 1px solid black;
 	border-left:none;
 	border-right:none;
@@ -105,7 +105,7 @@
 }
 #page-area{
 	width:200px;
-	height:30px;
+	height:100px;
 	bottom:80px;
 	left:460px;
 	top:25px;
@@ -154,15 +154,12 @@
 			<% for(int i=0;i<voList.size();i++) { %>
 				<div class="data1">
 					<div class="content" id="t1"><%= voList.get(i).getPostNo() %></div>
-					<div class="content" id="t2"><a href="dobby/request/detail?bno=<%= %>"><%=  %></a></div>
-					<div class="content" id="t3"><%=  %></div>
+					<div class="content" id="t2"><a href="/dobby/request/detail?bno=<%=voList.get(i).getPostNo() %>"><%= voList.get(i).getContent() %></a></div>
+					<div class="content" id="t3"><%= voList.get(i).getUserNo() %></div>
 				</div>
 				<%} %>
 		</div>
-		<!-- voList.size() -->
-		<!-- voList.get(i).getPostNo() -->
-		<!-- voList.get(i).getPostNo() , voList.get(i).getContent()-->
-		<!-- voList.get(i).getUserNo() -->
+		
 		
 	
 	
@@ -170,57 +167,55 @@
 	
 	
 	<!-- 페이징 -->
-	<div id="page-area">
-		<ul id="page-nation">
-			<li><a href="/dobby/list?pno=1" class="first"><<</a></li>
-			<li><a class="arrow left"><</a></li>
-			<li><a class="num"></a></li>
-			<li><a class="num"></a></li>
-			<li><a class="num"></a></li>
-			<li><a class="num"></a></li>
-			<li><a class="num"></a></li>
-			<li><a class="arrow right">></a></li>
-			<li><a href="/dobby/list?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
-		</ul>
-	</div>
-	<script>
-		const pageNation = document.querySelector('#page-nation');
-		const numArr = pageNation.querySelectorAll('.num');
-		const left = pageNation.querySelector('.arrow.left');
-		const right = pageNation.querySelector('.arrow.right');
+				<div id="page-area">
+					<ul id="page-nation">
+						<li><a href="/dobby/request?pno=1" class="first"><<</a></li>
+						<li><a class="arrow left"><</a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="num"></a></li>
+						<li><a class="arrow right">></a></li>
+						<li><a href="/dobby/request?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
+					</ul>
+				</div>
+				<script>
+					const pageNation = document.querySelector('#page-nation');
+					const numArr = pageNation.querySelectorAll('.num');
+					const left = pageNation.querySelector('.arrow.left');
+					const right = pageNation.querySelector('.arrow.right');
 
-		<%if(pv.getStartPage() > 1){%>
-			left.href = '/dobby/list?pno=<%=pv.getStartPage()-1%>';
-		<%}else{%>
-			left.classList.add('none-select');
-		<%}%>
+					<%if(pv.getStartPage() > 1){%>
+						left.href = '/dobby/request?pno=<%=pv.getStartPage()-1%>';
+					<%}else{%>
+						left.classList.add('none-select');
+					<%}%>
 
-		<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
-			right.href = '/dobby/list?pno=<%=pv.getCurrentPage()+1%>';
-		<%}else{%>
-			right.classList.add('none-select');
-		<%}%>
+					<%if(pv.getCurrentPage() != pv.getMaxPage()){%>
+						right.href = '/dobby/request?pno=<%=pv.getCurrentPage()+1%>';
+					<%}else{%>
+						right.classList.add('none-select');
+					<%}%>
 
-		let page = <%=pv.getStartPage()%>;
+					let page = <%=pv.getStartPage()%>;
 
-		for (let i = 0; i < numArr.length; i++) {
-			const num = numArr[i];
-			
-			if(page==<%=pv.getCurrentPage()%>){
-				num.classList.add('current');
-			}
-			
-			if(page<1 || page><%=pv.getMaxPage()%>){
-				num.classList.add('p-none');
-			}else{
-				num.href = '/dobby/list?pno='+page;
-			}
-			num.innerHTML = page;
-			page++;
-		}
-	</script>
-
-
+					for (let i = 0; i < numArr.length; i++) {
+						const num = numArr[i];
+						
+						if(page==<%=pv.getCurrentPage()%>){
+							num.classList.add('current');
+						}
+						
+						if(page<1 || page><%=pv.getMaxPage()%>){
+							num.classList.add('p-none');
+						}else{
+							num.href = '/dobby/request?pno='+page;
+						}
+						num.innerHTML = page;
+						page++;
+					}
+				</script>
 	
 	<%if(loginMember!=null) {%>
 			<div id="write"><a href="/dobby/request/write">글쓰기</a></div>
