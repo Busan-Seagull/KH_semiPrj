@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.payVo.PayVo;
@@ -77,6 +79,41 @@ public class PayDao {
         }
         
         return pv;
+    }
+
+    //유저 번호로 결제정보(간단) 리스트 들고오기
+    public List<PayVo> listHisory(Connection conn, int userNo) {
+        //TODO
+        String sql = "";
+        
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<PayVo> pvList = new ArrayList<PayVo>();
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            
+            while(rs.next()) {
+                //sql채워주고 객체 담아주기..
+                
+                PayVo pv = new PayVo();
+                
+                
+                
+                
+                //리스트에 객체추가
+                pvList.add(pv);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return pvList;
     }
 
     

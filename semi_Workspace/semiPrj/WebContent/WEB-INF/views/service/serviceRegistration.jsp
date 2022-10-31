@@ -99,7 +99,7 @@
 						<option value="21:00">21:00</option>
 						<option value="22:00">22:00</option>
 						<option value="23:00">23:00</option>
-						<option value="00:00">00:00</option>
+						<option value="00:00" selected>00:00</option>
 					</select>
 				</div>
 				<div id="close-time">운영종료시간</div>
@@ -128,7 +128,7 @@
 						<option value="21:00">21:00</option>
 						<option value="22:00">22:00</option>
 						<option value="23:00">23:00</option>
-						<option value="00:00">00:00</option>
+						<option value="00:00" selected>00:00</option>
 					</select>
 				</div>
 				<div id="career-years">경력</div>
@@ -144,7 +144,10 @@
 						<option value="8">10년 이상</option>
 					</select>
 				</div>
-				<div id="region">관할지역</div>
+				<div id="region">
+					<div>관할지역*</div>
+					<div id="region-detail">지역을 하나 이상 선택 해주세요.</div>
+				</div>
 				<div id="region-input">
 					<div id="region-input-1">
 						<select name="area-no" id="">
