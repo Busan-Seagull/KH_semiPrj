@@ -12,6 +12,7 @@ public class RequestService {
 
     private RequestDao dao = new RequestDao();
     
+    //작성
     public int write(RequestVo vo) {
         //커넥션 준비, sql, 
         //트랜잭션, 자원반납
@@ -31,7 +32,7 @@ public class RequestService {
         return result;
     }
     
-    
+    //페이지리스트
     public List<RequestVo> pageList(PageVo pv) {
         
         Connection conn = JDBCTemplate.getConnection();
@@ -44,7 +45,7 @@ public class RequestService {
         
     }
 
-
+    //페이지세기
     public int selectCount() {
         //커넥션준비
         //sql
@@ -59,8 +60,8 @@ public class RequestService {
         return result;
     }
 
-
-    public RequestVo selectOne(String bno) {
+    //게시글 들어가기
+    /*public RequestVo selectOne(String bno) {
         
         
         //커넥션 준비
@@ -83,7 +84,7 @@ public class RequestService {
         
         
         
-    }
+    }*/
 
 
    

@@ -54,3 +54,9 @@
 	float:left;
 	margin-left:80px;
 }
+
+#whitebox{
+	border:2px solid white;
+	height:28px;
+	width:28px;
+}
