@@ -116,7 +116,7 @@ overflow:auto;
 
 #reply-main{
 	width:960px;
-	height:300px;
+	height:350px;
 	display:flex;
 	flex-direction:column;
 	text-align:right;
@@ -124,54 +124,21 @@ overflow:auto;
 	position:relative;
 	top:100px;
 	
+	border:3px double lightgray;
+	
+	
 	
 }
 #reply-main2{
 	width:960px;
 	height:300px;
-	display:flex;
-	align-items: flex-end;
-    flex-direction: column;
-    position:relative;
-    top:50px;
+  
    
 }
 	
 	
-	
-}
-#top{
-	width:180px;
-	height:50px;
-	background-color:#004412;
-	color: white;
-	text-align:center;
-	line-height:50px;
-	position:relative;
-	top:100px;
-	
-	
 
-}
-#bottom{
-	width:780px;
-	height:50px;
-	border-bottom: 5px solid #004412;
-	display:flex;
-	align-items:center;
-	position:relative;
-	top:150px;
-	
-	
-}
-#line{
 
-width:960px;
-height:3px;
-background-color:lightgray;
-position:relative;
-top: 80px;
-}
 .input-btn{
  font-size:medium;
  font-weight:500;
@@ -188,6 +155,8 @@ top: 80px;
 	border:none;
 	box-shadow: 2px 2px lightgray;
 	border-radius:2.5rem;
+	position:relative;
+	right: 40px;
 	
 	
 }
@@ -196,26 +165,10 @@ top: 80px;
 	flex-direction:row-reverse;
 	position:relative;
 	top:20px;
+	left:20px;
 	
 }
-/* #reply-reply{
-	position:relative;
-	top: 30px;
-	
-	
-} */
-/* #reply-reply{
-	postition: relative;
-	top: 100px;
-	height: 100px;
-}
-#write-reply{
-	width:60px;
-	height:60px;
-	border-radius:2.5rem;
-	background-color:004412;
-	color:white;
-} */
+
 input{
 	border:none;
 	font-size:medium;
@@ -242,12 +195,14 @@ font-size: large;
 }
 
 #bottom2{
-	width:960px;
-	height: 150px;
+	width:900px;
+	height: 100px;
 	border:3px solid #004412;
 	display:flex;
 	justify-content:flex-end;
 	background-color:#004412;
+	position:relative;
+	left:25px;
 	
 	
 	
@@ -262,20 +217,26 @@ font-size: large;
 }
 #reply-area-one{
 	margin-top: 50px;
+	display:flex;
+	align-content: stretch;
+    flex-direction: column;
+}
+	
 	
 }
 
 #admin-reply{
 	width:100px;
 	height:100px;
-	display:flex;
-	justify-content:center;
 	position:relative;
 	top:100px;
-	left:15px;
+	right:300px;
 	color:white;
 	
-	
+}
+div{
+	white-space:pre-line;
+	word-break:break-all;
 }
 
 .r3{
@@ -283,14 +244,41 @@ width:60px;
 height:60px;
 border-radius: 2.5rem;
 background-color:#EAE0D4;
+position:relative;
+left:900px;
 }
 #r4{
 	positive:relative;
-	right: 50px;
-	top: 80px;
+	right: 40px;
+	top:50px;
+	
 }
 #r5{
 	positive:relative;
+	top:20px;
+	right: 90px;
+}
+	
+}
+
+#reply-comment2{
+	width:780px;
+	height:50px;
+	border:1px solid lightgray;
+	border-bottom: 5px double #004412;
+	box-sizing:border-box;
+	
+	
+	
+}
+#reply-title2{
+	width:180px;
+	height:50px;
+	background-color:#004412;
+	color:white;
+	text-align: center;
+	position:relative;
+	line-height:50px;
 	top:50px;
 }
 
@@ -388,7 +376,7 @@ background-color:#EAE0D4;
 			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() == null){%>
 				<div id="reply-main">
 					<div id="top1">댓글</div>
-					<div id="admin-reply">관리자</div>
+					<div id="admin-reply"><label id="admin-label">관리자</label></div>
 					<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
 					<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
 				</div>
@@ -397,9 +385,8 @@ background-color:#EAE0D4;
 			
 			<%if("3".equals(loginMember.getRightNo())){%>
 			<div id="reply-main2">
-				<div id="line"></div>
-				<div id="top">관리자</div>
-				<div id="bottom"><%=vo.getReportComment() %></div>
+				<div id="reply-title2"><label>관리자</label></div>
+				<div id="reply-comment2"><%=vo.getReportComment() %></div>
 				<div ><input class="r3" id="r4" type="button" name="adminReport" value="수정"></div> 
 				<div ><input class="r3" id="r5" type="button" name="adminReport" value="삭제"></div> 
 			</div>

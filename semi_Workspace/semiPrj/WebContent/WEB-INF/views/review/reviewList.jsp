@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
 #main-main{
 	width:960px;
 	height:700px;
-	margin:auto;
+	margin: auto;
 }
 
 
@@ -32,8 +32,6 @@ pageEncoding="UTF-8"%>
 	margin: 0 auto;
 	display:flex;
 	position:relative;
-	bottom:50px;
-	
 	display:grid;
 	grid-template-columns: 1fr 1fr 4fr 2fr 2fr;
 	grid-template-rows:repeat(11, 45px);
@@ -53,10 +51,6 @@ pageEncoding="UTF-8"%>
 	border-bottom: 1px solid lightgray;
 	
 }
-
-
-
-
 
 #write-review{
 	width: 60px;
@@ -80,7 +74,7 @@ pageEncoding="UTF-8"%>
 
 #title{
 position:relative;
-bottom:80px;
+bottom:40px;
 }
 	
 }
@@ -90,6 +84,7 @@ bottom:80px;
 	height: 25px;
 	background-color: black;
 	border: 1px solid black;
+	z-index:9;
 
 	
 	
@@ -130,6 +125,10 @@ bottom:80px;
 }
 
 
+}
+#x, #z{
+	position:relative;
+	left:500px;
 }
 .btn{
 	width:5px;
@@ -206,11 +205,7 @@ bottom:80px;
 border-bottom: 3px solid #004412;
 }
 
-fieldset{
-	position:relative;
-	left:500px;
-	bottom:20px;
-}
+
 
 </style>
 <!-- <script type="text/javascript">
@@ -239,7 +234,7 @@ fieldset{
 			<option value="uptodate">최신</option>
 			<option value="serviceNo">서비스</option>
 		</select>
-		<input type="submit" name="q" value="검색">
+		<input id="x" type="submit" name="q" value="검색">
 		<!--  onclick='javascript:setValue();' -->
 	<div id="title">
 		<div id="title-a"></div>

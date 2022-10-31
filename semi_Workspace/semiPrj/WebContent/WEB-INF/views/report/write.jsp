@@ -38,8 +38,6 @@ pageEncoding="UTF-8"%>
 #b{
 	width: 200px;
 	height: 30px;
-	
-
 	font-weight: 500;
 	font-size: larger;
 
@@ -100,6 +98,7 @@ textarea{
 border:none;
 border-bottom: 3px solid black;
 overflow:auto;
+font-family: var(--sans);
 }
 #reply{
 	width:100px;
@@ -161,7 +160,7 @@ input,textarea{
 		</div>
 		<div>
 			<div id="l">신고내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="115" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="105" rows="10"></textarea>
 		</div>
 	</div>
 	<div id="i">

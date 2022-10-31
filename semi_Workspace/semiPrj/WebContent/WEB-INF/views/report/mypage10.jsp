@@ -223,7 +223,7 @@ input[type=submit]{
 /* 신고게시판 */
 #report-area{
 	width:800px;
-	height: 500px;
+	height: auto;
 	/* display:flex; */
 	margin: 0 auto;
 	justify-content: center;
@@ -232,22 +232,20 @@ input[type=submit]{
 #report-list{
 	position: relative;
 	border-top: 3px solid #004412;
-	border-bottom: 3px solid #004412;
+	/* border-bottom: 3px solid #004412; */
 	display:grid;
 	grid-template-columns: 1fr 1fr 1fr 3fr 2fr;
-	grid-template-rows: 45px 45px 610px;
+	grid-template-rows: repeat(45px);
 	top:50px;
 
 	
 }
-.list-no1{
-	border-bottom: 3px solid #004412;;
+.list-no1:not(.space){
+	border-top: 3px solid #004412;
+	border-bottom: 3px solid #004412; 
 
 }
-.list-no2{
-	border-bottom: 1px solid lightgray;
 
-}
 #report-list>div{
 	
 	text-align: center;
@@ -258,18 +256,23 @@ input[type=submit]{
 
 	grid-column: span 5;
 }
+.space{
+	
+	height:6px;
+	grid-column: span 5;
+}
 
 #report-content-content{
 	width: 100%;
 	height: auto;
-	border-top:3px solid #004412;
-	border-bottom:3px solid #004412;
+	
 
 }
 #report-content{
 	background-color:#004412;
 	color:white;
 }
+
 
 
 
@@ -463,16 +466,15 @@ input[type=submit]{
 	<div class="info-area" id="info-area09">
     	<div id="report-area">
 			<div id="join-title"><span class="material-symbols-outlined">magic_button</span>신고내역</div>
-			
-			<div id="report-list">
-				<div class="list-no1">번호</div>
-				<div class="list-no1">신고할 회원</div>
-				<div class="list-no1">신고할 서비스</div>
-				<div class="list-no1">제목</div>
-				<div class="list-no1">작성자</div>
-					
-					
+				<div id="report-list">
 				<%for(int i = 0; i< voList.size(); i++){%>
+					<div class="space"></div>
+					<div class="list-no1">번호</div>
+					<div class="list-no1">신고할 회원</div>
+					<div class="list-no1">신고할 서비스</div>
+					<div class="list-no1">제목</div>
+					<div class="list-no1">작성자</div>
+					
 					<div class="list-no2"><%=voList.get(i).getPostNo() %></div> 
 					<div class="list-no2"><%=voList.get(i).getUserNo() %></div>
 					<div class="list-no2"><%=voList.get(i).getServiceNo() %></div>
@@ -483,7 +485,6 @@ input[type=submit]{
 						<p><div id="report-content-content"><%=voList.get(i).getContent() %></div></p>
 					</div>
 				<%} %>
-				
 			</div><!-- report-list -->
 		</div><!-- report-area  -->
     </div><!-- info-area09  -->
