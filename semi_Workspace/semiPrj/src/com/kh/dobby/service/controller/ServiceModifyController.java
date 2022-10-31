@@ -81,19 +81,25 @@ public class ServiceModifyController extends HttpServlet{
         ServiceVo sv = new ServiceVo();
         sv.setTitle(title);
         sv.setChargeUnitNo(Integer.parseInt(chargeUnitNo));
-        sv.setCharge(Integer.parseInt(charge));
-        if (pTypeNo.length == 1) {
-            sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
-            sv.setpTypeNo_2(0);
-            sv.setpTypeNo_3(0);
-        } else if (pTypeNo.length == 2) {
-            sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
-            sv.setpTypeNo_2(Integer.parseInt(pTypeNo[1]));
-            sv.setpTypeNo_3(0);
+        if (charge == null) {
+            sv.setCharge(0);
         } else {
-            sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
-            sv.setpTypeNo_2(Integer.parseInt(pTypeNo[1]));
-            sv.setpTypeNo_3(Integer.parseInt(pTypeNo[2]));
+            sv.setCharge(Integer.parseInt(charge));
+        }
+        if (pTypeNo != null) {
+            if (pTypeNo.length == 1) {
+                sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
+                sv.setpTypeNo_2(0);
+                sv.setpTypeNo_3(0);
+            } else if (pTypeNo.length == 2) {
+                sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
+                sv.setpTypeNo_2(Integer.parseInt(pTypeNo[1]));
+                sv.setpTypeNo_3(0);
+            } else if (pTypeNo.length == 3) {
+                sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
+                sv.setpTypeNo_2(Integer.parseInt(pTypeNo[1]));
+                sv.setpTypeNo_3(Integer.parseInt(pTypeNo[2]));
+            }
         }
         sv.setServiceIntro(serviceIntro);
         sv.setOpenTime(openTime);

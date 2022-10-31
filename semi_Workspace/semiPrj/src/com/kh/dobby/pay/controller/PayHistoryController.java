@@ -41,10 +41,6 @@ public class PayHistoryController extends HttpServlet{
         System.out.println(myPay);
 
         req.setAttribute("myPay", myPay);
-        
-        
-        
-        
         req.getRequestDispatcher("/WEB-INF/views/pay/payHistory.jsp").forward(req, resp);
     }
 
