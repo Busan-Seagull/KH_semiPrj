@@ -25,16 +25,12 @@ pageEncoding="UTF-8"%>
 
 }
 
-
-#a, #b{
-	position: relative;
-	
-	
-}
 #title-a1{
 	width:2px;
 	height:20px;
 	background-color:black;
+	position:relative;
+	z-index:100;
 	
 }
 #title-b1{
@@ -109,7 +105,7 @@ overflow:auto;
 
 #first{
 	width: 960px;
-	height: 700px;
+	height: 1200px;
 	margin: 0 auto;
 }
 
@@ -118,20 +114,97 @@ overflow:auto;
 	display:flex;
 	margin: 0 auto;
 	position:relative;
-	right:20px;
+	top:20px;
 	
 	
 	
 }
-#reply-main{
+#reply-area2{
 	width:960px;
-	height:300px;
+	height:500px;
+	border: 5px solid lightgray;
+	position:relative;
+	top: 200px;
+}
+#reply-main{
+	
 	display:flex;
 	text-align:center;
 	line-height:100px;
 	position:relative;
 	top:100px;
+	align-items: center;
 	
+	
+}
+#top1{
+	width:200px;
+	height:40px;
+	border-bottom: 5px double #004412;
+	text-align:center;
+	line-height:40px;
+	position: relative;
+	bottom: 110px;
+	left:450px;
+
+}
+#bottom2{
+	width: 920px;
+	height: 100px;
+	background-color:#004412;
+	display:flex;
+	align-items:center;
+}
+#bottom1{
+	width: 760px;
+	height:60px;
+	border:5px solid lightgray;
+
+}
+#admin-reply{
+	width:200px;
+	height:100px;
+	text-align:center;
+	background-color:#004412;
+	color: white;
+	
+}
+#r1{
+	width:50px;
+	height:50px;
+	border-radius:2rem;
+	background-color:#EAE0D4;
+	border: none;
+	position:relative;
+	top:95px;
+	right:60px;
+}
+#r4,#r5{
+	width:50px;
+	height:50px;
+	border-radius:2rem;
+	background-color:#EAE0D4;
+	border: none;
+	position: relative;
+	
+	
+}
+#r4{
+	top:40px;
+	left:770px;
+}
+#r5{
+	bottom:10px;
+	left:840px;
+}
+
+#reply-main2{
+	position:relative;
+	top: 180px;
+	left: 15px;
+	width:920px;
+	height: 200px;
+	border: 3px solid lightgray;
 }
 #top{
 	width:130px;
@@ -144,7 +217,26 @@ overflow:auto;
 	height:98px;
 	border: 1px solid #004412;
 }
-
+#reply-title2{
+	width:120px;
+	height:50px;
+	background-color:#004412;
+	color:white;
+	position: relative;
+	left:20px;
+	top:85px;
+	text-align:center;
+	line-height:50px;
+}
+#reply-comment2{
+width:760px;
+height:50px;
+line-height:50px;
+border-bottom: 5px solid #004412;
+position: relative;
+left:120px;
+top:30px;
+}
 </style>
 </head>
 <body>
@@ -184,17 +276,23 @@ overflow:auto;
 		<div class="i1"><a href="/dobby/reviewEdit?postNo=<%=vo.getPostNo() %> " >수정</a></div>
 		<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
 	</div>
-	<div id="reply-main">
-		<div id="top1">댓글</div>
-		<div id="admin-reply"><label id="admin-label">집요정</label></div>
-		<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
-		<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
-	</div>
-	<div id="reply-main2">
-		<div id="reply-title2"><label>집요정</label></div>
-		<div id="reply-comment2"><%=vo.getZipComm() %></div>
-		<div ><input class="r3" id="r4" type="button" name="adminReport" value="수정"></div> 
-		<div ><input class="r3" id="r5" type="button" name="adminReport" value="삭제"></div> 
+	<div id="reply-area2">
+		<%-- <%if("2".equals(loginMember.getRightNo())&& vo.getZipComm() == null){%> --%>
+		<div id="reply-main">
+			<div id="top1">댓글</div>
+			<div id="admin-reply"><label id="admin-label">집요정</label></div>
+			<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
+			<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
+		</div>
+	<%-- <%}%> --%>
+	<%-- <%if("2".equals(loginMember.getRightNo())){%> --%>
+		<div id="reply-main2">
+			<div id="reply-title2"><label>집요정</label></div>
+			<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=vo.getZipComm() %></div>
+			<div ><input class="r3" id="r4" type="button" name="adminReport" value="수정"></div> 
+			<div ><input class="r3" id="r5" type="button" name="adminReport" value="삭제"></div> 
+		</div>
+	<%-- <%}%> --%>
 	</div>
 </div>
 

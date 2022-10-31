@@ -122,22 +122,19 @@ overflow:auto;
 	text-align:right;
 	line-height:100px;
 	position:relative;
-	top:100px;
-	
-	border:3px double lightgray;
-	
-	
+	bottom: 30px;
 	
 }
 #reply-main2{
-	width:960px;
-	height:300px;
+	width:920px;
+	height:150px;
+	border:5px solid lightgray;
+  	position:relative;
+  	left:15px;
+  	bottom:10px;
   
    
 }
-	
-	
-
 
 .input-btn{
  font-size:medium;
@@ -149,12 +146,12 @@ overflow:auto;
 
 
 #r1{
-	width:60px;
-	height:60px;
+	width:50px;
+	height:50px;
 	background-color: #EAE0D4;
 	border:none;
 	box-shadow: 2px 2px lightgray;
-	border-radius:2.5rem;
+	border-radius:2rem;
 	position:relative;
 	right: 40px;
 	
@@ -220,10 +217,15 @@ font-size: large;
 	display:flex;
 	align-content: stretch;
     flex-direction: column;
+    width:960px;
+    height:500px;
+    border: 5px solid lightgray;
+    
+    
 }
 	
 	
-}
+
 
 #admin-reply{
 	width:100px;
@@ -240,33 +242,39 @@ div{
 }
 
 .r3{
-width:60px;
-height:60px;
-border-radius: 2.5rem;
+width:50px;
+height:50px;
+border-radius: 2rem;
 background-color:#EAE0D4;
 position:relative;
-left:900px;
+
 }
+
 #r4{
 	positive:relative;
-	right: 40px;
-	top:50px;
-	
-}
-#r5{
-	positive:relative;
-	top:20px;
-	right: 90px;
-}
+	bottom:54px;
+	left:770px;
+
 	
 }
 
+#r5{
+	positive:relative;
+	bottom:120px;
+	left:830px;
+}
+	
+
+
 #reply-comment2{
-	width:780px;
+	width:700px;
 	height:50px;
-	border:1px solid lightgray;
-	border-bottom: 5px double #004412;
+	border-bottom: 5px solid #004412;
 	box-sizing:border-box;
+	position: relative;
+	left:181px;
+	bottom: 47px;
+	line-height:50px;
 	
 	
 	
@@ -279,7 +287,7 @@ left:900px;
 	text-align: center;
 	position:relative;
 	line-height:50px;
-	top:50px;
+	top:20px;
 }
 
 
@@ -376,7 +384,7 @@ left:900px;
 			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() == null){%>
 				<div id="reply-main">
 					<div id="top1">댓글</div>
-					<div id="admin-reply"><label id="admin-label">관리자</label></div>
+					<div id="admin-reply"><label id="admin-label"></label></div>
 					<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
 					<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
 				</div>
@@ -386,7 +394,7 @@ left:900px;
 			<%if("3".equals(loginMember.getRightNo())){%>
 			<div id="reply-main2">
 				<div id="reply-title2"><label>관리자</label></div>
-				<div id="reply-comment2"><%=vo.getReportComment() %></div>
+				<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=vo.getReportComment() %></div>
 				<div ><input class="r3" id="r4" type="button" name="adminReport" value="수정"></div> 
 				<div ><input class="r3" id="r5" type="button" name="adminReport" value="삭제"></div> 
 			</div>

@@ -130,6 +130,19 @@ bottom:40px;
 	position:relative;
 	left:500px;
 }
+
+#z{
+	width:80px;
+	height:30px;
+	
+}
+#x{
+	background-color:#004412;
+	width:40px;
+	height:40px;
+	color:white;
+	border-radius: 1.5rem;
+}
 .btn{
 	width:5px;
 	height:5px;

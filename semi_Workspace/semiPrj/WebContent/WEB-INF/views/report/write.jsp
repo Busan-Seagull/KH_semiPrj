@@ -56,15 +56,15 @@ pageEncoding="UTF-8"%>
 	text-align: center;
 	line-height: 45px;
 	border-bottom: 3px solid black;
-	height:45px;
+	
 }
 
 
-.h-no7{width: 160px;}
-.h-no8{width: 160px;}
-.h-no9{width: 480px;}
-.h-no10{width: 160px;}
-#t9{width: 144px; height: 46px;}
+.h-no7{width: 160px; height: 45px;}
+.h-no8{width: 160px;height: 45px;}
+.h-no9{width: 480px;height: 45px;}
+.h-no10{width: 160px;height: 45px;}
+#t9{width: 144px; height: 45px;}
 #t10{width: 336px;}
 #t11{width: 144px;height: 46px;}
 #t12{width: 336px;}
@@ -112,7 +112,7 @@ font-family: var(--sans);
 }
 #main{
 	position:relative;
-	top: 50px;
+	
 }
 input{
 	border:none;
