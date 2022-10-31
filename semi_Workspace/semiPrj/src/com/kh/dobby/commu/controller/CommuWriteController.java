@@ -49,6 +49,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
     cv.setTitle(title);
     cv.setContent(content);
     cv.setUserNo(loginMember.getUserNo());
+    cv.setNick(loginMember.getNick());
     
     
     //디비를 다녀와

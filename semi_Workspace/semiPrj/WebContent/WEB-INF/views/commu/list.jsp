@@ -251,7 +251,7 @@ alert('<%= msg%>');
                 <div id="btn-group">
                 <form action="" mathod="post">
                   <label name="category" for="category1">공지</label><input type="radio" id="category1" name="category" value="200">
-                    <label name="category" for="category2">전체</label><input type="radio" id="category2" name="category" value="201">
+                    <label name="category" for="category2">전체</label><input type="radio" id="category2" name="category" value="201" >
                     <label name="category" for="category3">TIP</label><input type="radio" id="category3" name="category" value="202">
                     <label name="category" for="category4">추천</label><input type="radio" id="category4" name="category" value="203">
                 </form>
@@ -288,11 +288,10 @@ alert('<%= msg%>');
     </div>
     
     <script>
-    
-    
+
         /*카테고리 별 조회 AJAX  */
         $("input[type=radio]").click(function(){commuPage(1)});
-        
+        document.querySelector('#category2').click();
         function commuPage(pno){
         	// alert("g3");
             const cate=$("input[type=radio]:checked").val();  
@@ -304,7 +303,7 @@ alert('<%= msg%>');
 
             }, 
                 success: function(result) {
-                    console.log(result);
+                    /* console.log(result); */
                     const list2=$('#cate-list');
                     const p =JSON.parse(result);
                     
@@ -392,8 +391,7 @@ alert('<%= msg%>');
                 }             
             });
         };
-        
-        
+
     </script>
 
     <%@include file="/WEB-INF/views/common/footer.jsp" %>

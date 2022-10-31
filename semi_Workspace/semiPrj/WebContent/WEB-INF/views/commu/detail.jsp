@@ -1,9 +1,13 @@
+<%@page import="com.kh.dobby.commu.vo.CommuCmtVo"%>
+<%@page import="java.util.List"%>
 <%@page import="com.kh.dobby.commu.vo.CommuVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
+int cmtCount=(int)request.getAttribute("cmtCount");
 CommuVo vo=(CommuVo)request.getAttribute("vo");
+/* List<CommuCmtVo>voList=(List<CommuCmtVo>)request.getAttribute("cmtList"); */
 String root=request.getContextPath();
 %>
 <!DOCTYPE html>
@@ -11,24 +15,25 @@ String root=request.getContextPath();
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <style>
      #detail-main{
         width: 1200px;
-        height: 70vh;
+        /* height: 100%; */
         margin:auto;
     }
 
     #detail-area{
         margin-top: 25px;
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
         display: grid;
-        grid-template-rows: 1fr 5fr 2fr;
+        grid-template-rows: 1fr auto auto;
         /* border: 1px solid red; */
     }
 
     #commu-title{
-        height: 100%;
+        /* height: 100%; */
         margin: auto;
         display: grid;
         grid-template-rows: 1fr 0.5fr;
@@ -66,8 +71,8 @@ String root=request.getContextPath();
 
     #commu-detail{
         width: 1000px;
-        height: 100%;
-        margin: auto;
+        height: auto;
+        margin: 0 auto;
         border-top: 2px solid var(--semi-green);
         border-bottom: 2px solid var(--semi-green);
 
@@ -76,7 +81,7 @@ String root=request.getContextPath();
 
     #title{
         width: 100%;
-        height: 15%;
+        /* height: 15%; */
         justify-content: center;
         align-content:center;
         
@@ -115,7 +120,7 @@ String root=request.getContextPath();
         display: grid;
         grid-template-rows: 5fr 0.5fr;
 
-        height: 85%;
+        /* height: 85%; */
        
 
 
@@ -147,7 +152,8 @@ String root=request.getContextPath();
         border-bottom: 2px solid var(--semi-green);
 
         display: grid;
-        grid-template-rows: 1.5fr 3fr 2fr;
+        grid-template-rows: 1.5fr 3fr 2fr auto;
+        grid-template-rows: 1fr 3fr 2fr;
         align-items: center;
         
     }
@@ -187,13 +193,50 @@ String root=request.getContextPath();
 
  
 
-    #cmn-list input{
+    #cmn-btn input{
     width: 100%;
     height: 30px;
     border: 0.75px solid var(--semi-green);
     background-color:white;
     color:var(--semi-green);
+    margin-top: 10px;
+    margin-bottom: 10px;
 
+    }
+
+	#cmn-list{
+	display: none;}
+    #cmn-area{
+    
+    font-size: 12px;
+   	height:40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+    border-top: 0.75px solid var(--semi-green);
+    border-bottom: 0.75px solid var(--semi-green);
+    }
+    #cmn-area #writer{
+        color:var(--semi-green);
+        font-weight: 500;
+    }
+    #cmn-area #date{
+        text-align: end;
+    }
+
+    #cmn-area #content{
+       margin-top: 5px;
+       grid-column: span 2;
+    }
+    #cmn-area #btn{
+       width: 100%;
+       grid-column: span 2;
+    }
+    #cmn-area #btn input{
+        width: 50px;
+        height: 20px;
+        font-size: 12px;
+        margin-top: 5px;
     }
 
 </style>
@@ -215,34 +258,132 @@ String root=request.getContextPath();
                         <div class="style1"><%=vo.getWriteTime() %></div>
                         <div class="style1"><%=vo.getViews()%></div>
                         <div><%=vo.getTitle() %></div>
-                        <div id="writer"><%=vo.getUserNo() %></div>
+                        <div id="writer"><%=vo.getNick()%></div>
                     </div>
                     <div id="content">
                         <div><%=vo.getContent()%></div>
                         <div id="btn">
-                        <% if(loginMember!=null&&loginMember.getNick().equals(vo.getUserNo())|| Integer.parseInt(loginMember.getRightNo())==3){ %>
+                        <% if(loginMember!=null&&loginMember.getUserNo().equals(vo.getUserNo())){ %>
                             <input type="button" value="수정하기" onclick="location.href='/dobby/commu/edit?bno=<%=vo.getPostNo()%>'">
                             <input type="button" value="삭제하기"  onclick="location.href='/dobby/commu/delete?bno=<%=vo.getPostNo()%>'"> 
                         <%} %>
                             <input type="button" value="목록으로" onclick="location.href='/dobby/commu/list'">
                         </div>
                     </div>
+                    
             </div>
 
             <div id="commu-comment">
-                <div id="cmn-cnt">댓글 15개</div>
+                <div id="cmn-cnt">댓글 <%=cmtCount %>개</div>
                 <div id="cmn-insert">
-                    <form action="">
-                        <input type="text" placeholder="내용을 입력하세요.">
-                        <input type="submit" value="댓글 등록">
-                    </form>
+                   
+                        <input id="cmt"type="text" name="cmt" placeholder="내용을 입력하세요.">
+                        <button id="cmtBtn" onclick="insert();">댓글 등록</button>                 
+                   
                 </div>
+                <div id="cmn-btn">
+                  <button id="cmn-btn2" onclick="cmtList();">댓글 보기</button> 
+                  
+                </div>
+				
                 <div id="cmn-list">
-                    <input type="button" value="댓글 더보기">
+              <%--   <%for(int i =0; i<voList.size();i++){ %>
+                    <div id="cmn-area">
+                        <div id="writer"><%=voList.get(i).getUserNo()%></div>
+                        <div id ="date">작성일시 <%=voList.get(i).getWriteTime()%></div>
+                        <div id ="content"><%=voList.get(i).getContent()%></div>
+                    <% if(loginMember!=null&&loginMember.getUserNo().equals(voList.get(i).getUserNo())){ %>
+                        <div id="btn">
+                            <input type="button" value="수정">
+                            <input type="button" value="삭제">
+                        </div>
+                    <%} %>
+                    </div>
+                 
+                    <%}%> --%>   
                 </div>
+ 				
             </div>
 
+            <script>
+             
+            
+            
+	          const cmt= $('#cmt');
+	          
+	            $('input[name="cmn-btn1"]').click(function() {
+	                $('#cmn-list').css('display','block');
+	            });
+	            
+	            function cmtList(){
+	            	
+	            	$.ajax({
+	           		 type: "get",
+				        url: "/dobby/commu/detail?bno=<%=vo.getPostNo()%>",
 
+				        success: function(cmtListresult) {
+
+				        	   console.log(cmtListresult);
+				        	   
+				        	  const c=Json.parse(cmtListresult);
+				        	  console.log(c);
+				        },
+				        error: function() {   
+				                alert("실패.");
+				               
+				        }
+	           	});
+	            	
+	            };
+	
+	            function insert(){
+	                <%if(loginMember==null){%>
+	                alert("로그인을 하세요.");
+	               	return false;
+	                
+	                <%}else{%>
+	                	$.ajax({
+	                		 type: "post",
+	     			        url: "/dobby/commu/detailCmt",
+	     			        data: {
+	     			        	"cmt" : cmt.val(),
+	     			        	"bno":<%=vo.getPostNo()%>
+	     			        	}, 
+	     			        success: function(result) {
+	     			        	const p =JSON.parse(result);
+	     			        	console.log(result);
+	     			        	
+	     			        	const cmtCount=p.cmtCount;
+	     			        	console.log(cmtCount);
+	     			        	
+	     			        	const cmtinsert=p.cmtinsert;
+	     			        	const cmnCnt=$('#cmn-cnt');
+		     			       //댓글 갯수 업데이트
+					        	$(cmnCnt).text('댓글 '+cmtCount+'개');
+	     			      
+	     			        	
+	     			        	//댓글 인설트 후, 내용 비워주기
+	     			        	 $('#cmt').val("");
+	     			        },
+	     			        error: function() {   
+	     			                alert("실패.");
+	     			               
+	     			        }
+	                	});
+	                	
+	                	
+	                
+	                <%}%>
+	                
+	
+	            };
+	          
+	            
+	            
+	            
+           
+
+            </script>
                 
         </div>
     </div>
