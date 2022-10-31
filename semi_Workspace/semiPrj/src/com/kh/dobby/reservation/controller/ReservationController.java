@@ -54,7 +54,7 @@ public class ReservationController extends HttpServlet{
         
         ReservationVo rv = new ReservationService().setEstimate(rno, date);
         
-        resp.sendRedirect("/dobby/pay?rno"+rv.getReservation_no());
+        resp.sendRedirect("/dobby/pay?rno="+rv.getReservation_no());
           
 	}
 	

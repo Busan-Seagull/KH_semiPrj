@@ -84,7 +84,7 @@ public class PayDao {
     //유저 번호로 결제정보(간단) 리스트 들고오기
     public List<PayVo> listHisory(Connection conn, int userNo) {
         //TODO
-        String sql = "";
+        String sql = "SELECT U.USER_NO, R.RESERVATION_NO, R.RESERVATION_AMOUNT, P.PAYMENT_NO, P.PAYMENT_DATE, S.SERVICE_NO, S.SERVICE_TITLE FROM \"USER\" U JOIN RESERVATION R ON U.USER_NO = R.USER_NO JOIN PAYMENT P ON R.RESERVATION_NO = P.RESERVATION_NO JOIN SERVICE_INFO S ON S.SERVICE_NO = R.SERVICE_NO WHERE U.USER_NO = ?";
         
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -92,15 +92,19 @@ public class PayDao {
         
         try {
             pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, userNo);
             rs = pstmt.executeQuery();
             
             while(rs.next()) {
+                
                 //sql채워주고 객체 담아주기..
                 
                 PayVo pv = new PayVo();
-                
-                
-                
+                pv.setReservationNo(rs.getString("RESERVATION_NO"));
+                pv.setServiceTitle(rs.getString("SERVICE_TILE"));
+                pv.setServiceCharge(rs.getString("RESERVATION_AMOUNT"));
+                pv.setPaymentNo(rs.getString("PAYMENT_NO"));
+                pv.setPaymentDate(rs.getString("PAYMENT_DATE"));
                 
                 //리스트에 객체추가
                 pvList.add(pv);

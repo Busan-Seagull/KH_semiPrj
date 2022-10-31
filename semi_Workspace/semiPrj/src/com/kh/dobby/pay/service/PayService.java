@@ -59,6 +59,8 @@ public class PayService {
         List<PayVo> x = pd.listHisory(conn, userNo);
         
         JDBCTemplate.close(conn);
+        
+        return x;
     }
 
 }

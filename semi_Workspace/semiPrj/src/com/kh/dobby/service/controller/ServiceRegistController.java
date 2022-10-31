@@ -19,10 +19,7 @@ import com.kh.dobby.service.vo.ServiceVo;
 @WebServlet(urlPatterns = "/service/regist")
 @MultipartConfig(
 //        location = "c:/upload" ,
-        fileSizeThreshold = 1024 * 1024 ,
-        maxFileSize = 1024 * 1024 * 50 ,
-        maxRequestSize = 1024 * 1024 * 50 * 5
-        )
+        fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 50, maxRequestSize = 1024 * 1024 * 50 * 5)
 public class ServiceRegistController extends HttpServlet {
 
     @Override
@@ -69,31 +66,38 @@ public class ServiceRegistController extends HttpServlet {
         String[] areaNo = req.getParameterValues("area-no");
         String serviceDetail = req.getParameter("service-detail");
         String paymentDetail = req.getParameter("payment-detail");
-        
+
         System.out.println(title);
         System.out.println(typeNo);
 
-        System.out.println(pTypeNo.length);
-        for (int i = 0; i < pTypeNo.length; i++) {System.out.println(pTypeNo[i]);}
+//        System.out.println(pTypeNo.length);
+//        for (int i = 0; i < pTypeNo.length; i++) {System.out.println(pTypeNo[i]);}
+
         // 데이터 뭉치기
         ServiceVo sv = new ServiceVo();
         sv.setTitle(title);
         sv.setTypeNo(Integer.parseInt(typeNo));
         sv.setHelperNo(Integer.parseInt(loginMember.getUserNo()));
         sv.setChargeUnitNo(Integer.parseInt(chargeUnitNo));
-        sv.setCharge(Integer.parseInt(charge));
-        if (pTypeNo.length == 1) {
-            sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
-            sv.setpTypeNo_2(0);
-            sv.setpTypeNo_3(0);
-        } else if (pTypeNo.length == 2) {
-            sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
-            sv.setpTypeNo_2(Integer.parseInt(pTypeNo[1]));
-            sv.setpTypeNo_3(0);
+        if (charge == null) {
+            sv.setCharge(0);
         } else {
-            sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
-            sv.setpTypeNo_2(Integer.parseInt(pTypeNo[1]));
-            sv.setpTypeNo_3(Integer.parseInt(pTypeNo[2]));
+            sv.setCharge(Integer.parseInt(charge));
+        }
+        if (pTypeNo != null) {
+            if (pTypeNo.length == 1) {
+                sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
+                sv.setpTypeNo_2(0);
+                sv.setpTypeNo_3(0);
+            } else if (pTypeNo.length == 2) {
+                sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
+                sv.setpTypeNo_2(Integer.parseInt(pTypeNo[1]));
+                sv.setpTypeNo_3(0);
+            } else if (pTypeNo.length == 3) {
+                sv.setpTypeNo_1(Integer.parseInt(pTypeNo[0]));
+                sv.setpTypeNo_2(Integer.parseInt(pTypeNo[1]));
+                sv.setpTypeNo_3(Integer.parseInt(pTypeNo[2]));
+            }
         }
         sv.setServiceIntro(serviceIntro);
         sv.setOpenTime(openTime);
