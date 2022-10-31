@@ -137,7 +137,9 @@ input{
 input, textarea{
 	font-size:larger;
 }
-
+textarea{
+	 font-family: var(--sans);
+}
 </style>
 </head>
 <body>
@@ -168,7 +170,7 @@ input, textarea{
 		</div>
 		<div>
 			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="115" rows="18"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="94" rows="10"></textarea>
 		</div>
 	</div>
 	<div id="i">

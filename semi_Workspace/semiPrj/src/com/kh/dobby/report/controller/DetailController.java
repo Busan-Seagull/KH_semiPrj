@@ -54,7 +54,7 @@ public class DetailController extends HttpServlet {
 	    HttpSession s = req.getSession(); 
         MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");
         
-	    String postNo = req.getParameter("postNo");
+	    String postNo = req.getParameter("PostNo");
         String adminReport = req.getParameter("adminReport");
         String contentReply = req.getParameter("content-reply");
         
@@ -63,16 +63,7 @@ public class DetailController extends HttpServlet {
         vo.setReportComment(contentReply);
         vo.setUserNo(loginMember.getUserNo());
         
-        ReportVo x = null;
-        if(vo.getReportComment()!= null) {
-            x = new ReportService().selectReplyList(postNo);
-          
-            req.setAttribute("vo", x);
-            req.getRequestDispatcher("/WEB-INF/views/report/detail.jsp").forward(req, resp);
-        }else {
-            req.setAttribute("msg", "[ERROR]오류 발생");
-            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
-        }
+       
         
         
         int result =0;
@@ -80,34 +71,48 @@ public class DetailController extends HttpServlet {
         int result3 = 0;
         int result4 = 0;
         int result5 = 0;
+        ReportVo x = null;
         
-        switch(adminReport) {
-            case "승인": result = rs.approval(postNo);
-                        break;
-            case "반려":  result2 = rs.returnReport(postNo); 
-                        break;
-            case "확인":  result3 = rs.writeReply(vo); 
-                        break;
-            case "수정": result4 = rs.editReply(vo);
-                        break;
-            case "삭제": result5 = rs.deleteReply(postNo);  
-                        break;
+        if("승인".equals(adminReport)) {
+            result = rs.approval(postNo);
+        }else if("반려".equals(adminReport)) {
+            result2 = rs.returnReport(postNo);
         }
-       
-       
-        
-        
-        if(result==1 || result2 == 1 || result3 == 1) {
-            req.getSession().setAttribute("alertMsg", "처리완료");
-            req.getRequestDispatcher("/dobby/detail?postNo="+postNo).forward(req, resp);
-            return;
-           
-            
-            
+        else if("확인".equals(adminReport)) {
+            result3 = rs.writeReply(vo);
+        }
+        else if("수정".equals(adminReport)) {
+            result4 = rs.editReply(vo);
+        }
+        else if("삭제".equals(adminReport)) {
+            result5 = rs.deleteReply(postNo); 
+        }
+        else if(vo.getReportComment()!= null) {
+            x = new ReportService().selectReplyList(postNo);
         }else {
             req.setAttribute("msg", "[ERROR]오류 발생");
-            resp.sendRedirect("/views/common/error.jsp");
+            req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
+          
+            /* resp.sendRedirect("/views/common/error.jsp"); */
         }
+        
+        /*
+         * switch(adminReport) {
+         * case "승인": result = rs.approval(postNo);
+         * break;
+         * case "반려": result2 = rs.returnReport(postNo);
+         * break;
+         * case "확인": result3 = rs.writeReply(vo);
+         * break;
+         * case "수정": result4 = rs.editReply(vo);
+         * break;
+         * case "삭제": result5 = rs.deleteReply(postNo);
+         * break;
+         * }
+         */
+       
+       
+       
     
 	
 	}

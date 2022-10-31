@@ -31,15 +31,13 @@ pageEncoding="UTF-8"%>
 	
 	
 }
-#a{
-	width: 2px;
-	height: 20px;
-	background-color: black;
-	border: 1px solid black;
-	margin-right:5px;
+#title-a1{
+	width:2px;
+	height:20px;
+	background-color:black;
 	
 }
-#b{
+#title-b1{
 	width: 200px;
 	height: 30px;
 	font-weight: 500;
@@ -68,16 +66,12 @@ border-bottom: none;
 }
 
 
-#t23{width: 96px;}
-#t24{width: 96px;}
-#t25{width: 528px;}
-#t26{width: 192px;}
-#t27{width: 144px;}
-#t28{width: 96px; height: 46px;}
-#t29{width: 96px;}
-#t30{width: 528px;height: 46px;}
-#t31{width: 192px;}
-#t32{ width: 144px;}
+.h-postNo{width: 96px; height:45px;}
+.h-serviceNo{width: 96px; height:45px;}
+.h-title{width: 528px; height:45px;}
+.h-writer{width: 192px; height:45px;}
+.h-grade{width: 144px; height:45px;}
+
 
 
 .i1{
@@ -124,7 +118,7 @@ overflow:auto;
 	display:flex;
 	margin: 0 auto;
 	position:relative;
-	top:30px;
+	right:20px;
 	
 	
 	
@@ -162,23 +156,23 @@ overflow:auto;
 
 <div id="first">
 	<div id="second">
-		<div id="a"></div>
-		<div id="b">리뷰게시판</div>
+		<div id="title-a1"></div>
+		<div id="title-b1">리뷰게시판</div>
 	</div>
 	<div id="main">
 		<div id="f">
-			<div class="h" id="t23">번호</div>
-			<div class="h" id="t24">서비스 번호</div>
-			<div class="h" id="t25">제목</div>
-			<div class="h" id="t26">작성자</div>
-			<div class="h" id="t27">평점</div>
+			<div class="h-postNo" id="t23">번호</div>
+			<div class="h-serviceNo" id="t24">서비스 번호</div>
+			<div class="h-title" id="t25">제목</div>
+			<div class="h-writer" id="t26">작성자</div>
+			<div class="h-grade" id="t27">평점</div>
 		</div>
 		<div id="j">
-			<div class="h" id="t28"><%=vo.getPostNo() %></div>
-			<div class="h" id="t29"><%=vo.getServiceNo() %></div>
-			<div class="h" id="t30"><%=vo.getTitle() %></div>
-			<div class="h" id="t31"><%=vo.getUserNo() %></div>
-			<div class="h" id="t32"><%=vo.getGrade() %></div>
+			<div class="h-postNo" id="t28"><%=vo.getPostNo() %></div>
+			<div class="h-serviceNo" id="t29"><%=vo.getServiceNo() %></div>
+			<div class="h-title" id="t30"><%=vo.getTitle() %></div>
+			<div class="h-writer" id="t31"><%=vo.getUserNo() %></div>
+			<div class="h-grade" id="t32"><%=vo.getGrade() %></div>
 		</div>
 		<div>
 			<div id="l">내용</div>
@@ -191,8 +185,16 @@ overflow:auto;
 		<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
 	</div>
 	<div id="reply-main">
-		<div id="top">집요정</div>
-		<div id="bottom">댓글 내용</div>
+		<div id="top1">댓글</div>
+		<div id="admin-reply"><label id="admin-label">집요정</label></div>
+		<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
+		<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
+	</div>
+	<div id="reply-main2">
+		<div id="reply-title2"><label>집요정</label></div>
+		<div id="reply-comment2"><%=vo.getZipComm() %></div>
+		<div ><input class="r3" id="r4" type="button" name="adminReport" value="수정"></div> 
+		<div ><input class="r3" id="r5" type="button" name="adminReport" value="삭제"></div> 
 	</div>
 </div>
 

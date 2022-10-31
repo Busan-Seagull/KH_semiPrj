@@ -40,7 +40,7 @@ public class ReviewListController extends HttpServlet {
         
         
           List<ReviewVo> x = null;
-          if(z.equals("uptodate")) {
+          if("uptodate".equals(z)) {
           x = new ReviewService().selectList(pv);
           }else {
           x = new ReviewService().selectList2(pv);
