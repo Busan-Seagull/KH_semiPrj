@@ -35,6 +35,8 @@ pageEncoding="UTF-8"%>
 	width:2px;
 	height:20px;
 	background-color:black;
+	position:relative;
+	z-index:100;
 	
 }
 #title-b1{
