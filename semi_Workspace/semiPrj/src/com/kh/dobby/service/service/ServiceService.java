@@ -68,11 +68,11 @@ public class ServiceService {
     }
 
     // 서비스 타입으로 리스트 받아오기
-    public List<ServiceVo> listService(PageVo pv, String stn) {
+    public List<ServiceVo> listService(PageVo pv, String stn, String region) {
 
         Connection conn = JDBCTemplate.getConnection();
 
-        List<ServiceVo> x = sd.listService(conn, pv, stn);
+        List<ServiceVo> x = sd.listService(conn, pv, stn, region);
 
         JDBCTemplate.close(conn);
 

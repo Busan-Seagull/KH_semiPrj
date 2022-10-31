@@ -22,6 +22,7 @@ String root = request.getContextPath();
 <link rel="stylesheet" href="/dobby/resources/css/serviceList.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
@@ -49,7 +50,7 @@ String root = request.getContextPath();
 			
 			<div id="service-main-nav">
 				<select class="nav-select" id="select-region">
-					<option value="">지역선택</option>
+					<option value="0">지역선택</option>
 					<option value="1">도봉구</option>
 					<option value="2">노원구</option>
 					<option value="3">강북구</option>
@@ -140,6 +141,8 @@ String root = request.getContextPath();
 						<li><a href="/" class="last">>></a></li>
 					</ul>
 				</div>
+
+				
 				
 				<script>
 					const pageNation = document.querySelector('#page-nation');
@@ -185,5 +188,31 @@ String root = request.getContextPath();
 	</main>
 	<div id="main-bottom"></div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+
+	<script defer>
+
+		$('#select-region').change(function(){
+			//파라미터 들고오기
+			const urlParams = new URL(location.href).searchParams;
+			const name = urlParams.get('stn');
+			const name2 = urlParams.get('region');
+			console.log(name);
+
+			//경우따라 파라미터 넣어주기..
+			if(name == null && name2 == null){
+				console.log(location.href);
+				location.href = window.location +'?region='+this.value;
+			}else if(name == null && name2 != null){
+				location.href = window.location.pathname + '?region='+this.value;
+			}else if(name != null && name2 == null){
+				location.href=window.location.search + '&region='+this.value;
+			}else if(name != null && name2 != null){
+				location.href = window.location.pathname+'?stn='+name+'&region='+this.value;
+			}
+		})
+
+		
+	</script>
+
 </body>
 </html>

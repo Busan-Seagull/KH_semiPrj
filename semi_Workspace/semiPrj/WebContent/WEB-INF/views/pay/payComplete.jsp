@@ -86,13 +86,23 @@
 						<tr>
 							<td colspan="2" width="200px" class="payment-info-row1">결제금액</td>
 							<td class="payment-input payment-info-row1">
+								<c:if test="${rv.reservationAmount == null}">
+								<fmt:formatNumber value="10000" pattern="#,###"/>원
+								</c:if>
+								<c:if test="${rv.reservationAmount != null}">
 								<fmt:formatNumber value="${rv.reservationAmount-pv.point}" pattern="#,###"/>원
+								</c:if>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2" class="payment-input payment-info-row2">${pv.paymentType}</td>
 							<td class="payment-input payment-info-row2">
+								<c:if test="${rv.reservationAmount == null}">
+								<fmt:formatNumber value="10000" pattern="#,###"/>원
+								</c:if>
+								<c:if test="${rv.reservationAmount != null}">
 								<fmt:formatNumber value="${rv.reservationAmount-pv.point}" pattern="#,###"/>원
+								</c:if>
 							</td>
 						</tr>
 						<tr>

@@ -21,14 +21,15 @@ public class ServiceController extends HttpServlet {
 
         PageVo pv = new PageVo();
         String stn = req.getParameter("stn");
+        String region = req.getParameter("region");
         String search = req.getParameter("search");
         int stnum = 0;
         List<ServiceVo> x = null;
         
         if(search == null) {
-            // 카테고리로 디비
-            x = new ServiceService().listService(pv, stn);
-        }else {
+            // 카테고리, 지역 으로 디비
+            x = new ServiceService().listService(pv, stn, region);
+        }else{
             // 검색어로 디비
             x = new ServiceService().listBySearch(pv, search);
         }
