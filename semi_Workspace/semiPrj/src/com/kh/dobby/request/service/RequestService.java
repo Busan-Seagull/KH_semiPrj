@@ -37,7 +37,7 @@ public class RequestService {
         
         Connection conn = JDBCTemplate.getConnection();
         
-        List<RequestVo> x = dao.selectList(conn);
+        List<RequestVo> x = dao.selectList(conn, pv);
         
         JDBCTemplate.close(conn);
         

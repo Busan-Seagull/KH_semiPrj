@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.dobby.common.JDBCTemplate;
+import com.kh.dobby.common.PageVo;
 import com.kh.dobby.request.vo.RequestVo;
 
 public class RequestDao {
@@ -40,16 +41,37 @@ public class RequestDao {
         return result;
     }
 
-    public List<RequestVo> selectList(Connection conn) {
+    //페이지 화면
+    public List<RequestVo> selectList(Connection conn, PageVo pv) {
         
-        String sql = "SELECT *  FROM QUESTION WHERE DELETE_YN='N'";
+        //String sql = "SELECT *  FROM QUESTION WHERE DELETE_YN='N' ORDER BY POST_NO ASC";
+        //String sql = 
+//                "SELECT TABLE.*, ROWNUM  "
+//                + " FROM (SELECT * FROM QUESTION WHERE DELETE_YN='N' ORDER BY POST_NO ASC) TABLE "
+//                + " WHERE ROWNUM BETWEEN 1 AND 10";
+        
+        String sql = "select * \r\n"
+                    + "from(\r\n"
+                    + "select t.*, rownum as rn\r\n"
+                    + "from (select * from question where delete_yn='N' order by post_no asc) t\r\n"
+                    + ")\r\n"
+                    + "where rn between ? and ?\r\n"
+                    + "";
         
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         List<RequestVo> voList = new ArrayList<RequestVo>();
         
+        
+        
         try {
             pstmt = conn.prepareStatement(sql);
+            
+            String first = Integer.toString((pv.getCurrentPage()*10)-9);
+            String last = Integer.toString((pv.getCurrentPage()*10));
+            
+            pstmt.setString(1, first);
+            pstmt.setString(2, last);
             /*페이지 내용은 이 안에*/
             rs = pstmt.executeQuery();
             
@@ -100,6 +122,7 @@ public class RequestDao {
         
     }
 
+    //페이지 개수 세는거
     public int selectCount(Connection conn) {
         //SQL
         
@@ -124,7 +147,7 @@ public class RequestDao {
         return result;
     }
 
-    /*public int selectOne(Connection conn, String bno) {
+    public RequestVo selectOne(Connection conn, String bno) {
         
         String sql = "SELECT *  FROM QUESTION WHERE DELETE_YN='N' AND POST_NO=?";
         
@@ -135,7 +158,7 @@ public class RequestDao {
         try {
             pstmt = conn.prepareStatement(sql);
             /*페이지 내용은 이 안에*/
-            /*pstmt.setString(1, bno);
+            pstmt.setString(1, bno);
             rs = pstmt.executeQuery();
             
             while(rs.next()) {
@@ -181,7 +204,7 @@ public class RequestDao {
         return vo;
         
         
-    }*/
+    }
     
     
 
