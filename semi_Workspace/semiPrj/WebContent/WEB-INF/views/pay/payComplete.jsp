@@ -25,15 +25,20 @@
 				<ion-icon name="calendar-outline"></ion-icon><span>&nbsp 예약한 서비스</span></div>
 			<div id="reserved-service-content">
 				<div class="service-content1">
-					<img src="/ryan/공통/resources/이상해씨.jpg" alt="" height="100px"
-						width="100px">
+					<img src="/dobby/${rv.sProfil}" alt="" height="100px"
+						width="100px" onerror="this.src='/dobby/resources/img/dust.png';">
 				</div>
 				<div class="service-content2">${rv.dName}&nbsp|&nbsp${rv.sTitle}</div>
 				<div class="service-content3">
 					<div id="pay-amount">
 						<fmt:formatNumber value="${rv.charge}" pattern="#,###"/>원
-						<br> *<c:set var= "amount" value="${rv.reservationAmount/rv.charge}"/>
-						<fmt:parseNumber value="${amount}" integerOnly="true"/>
+						<br> *<c:if test="${rv.reservationAmount == null}">
+							견적
+						</c:if>
+							<c:if test="${rv.reservationAmount != null}">
+							<c:set var= "amount" value="${rv.reservationAmount/rv.charge}"/>
+							<fmt:parseNumber value="${amount}" integerOnly="true"/>(단위)</td>
+						</c:if>
 					</div>
 					<div id="service-unit-text">
 						(단위요금)<br> (단위)
@@ -48,7 +53,7 @@
 			<div id="payment-info-text" class="row-flex"><ion-icon name="information-circle-outline"></ion-icon><span>&nbsp 결제정보</span></div>
 			<div id="payment-info-number">
 				<div id="payment-date-text">결제일자</div>
-				<div id="payment-date">2022-10-27</div>
+				<div id="payment-date"><c:out value="${fn:substring(pv.paymentDate, 0, 10)}"></c:out></div>
 				<div id="payment-number-text">결제번호</div>
 				<div id="payment-number">${pv.paymentNo}</div>
 			</div>
@@ -61,8 +66,14 @@
 						</tr>
 						<tr>
 							<td class="payment-info-text">단위</td>
-							<td class="payment-info-input">*<c:set var= "amount" value="${rv.reservationAmount/rv.charge}"/>
+							<td class="payment-info-input">*
+								<c:if test="${rv.reservationAmount == null}">
+								견적 서비스
+							</c:if>
+								<c:if test="${rv.reservationAmount != null}">
+								<c:set var= "amount" value="${rv.reservationAmount/rv.charge}"/>
 								<fmt:parseNumber value="${amount}" integerOnly="true"/>(단위)</td>
+							</c:if>
 						</tr>
 						<tr>
 							<td class="payment-info-text">포인트할인</td>
@@ -114,3 +125,7 @@
 
 </body>
 </html>
+<script>
+	console.log(${rv.reservationAmount});
+	console.log(${pv.paymentDate});
+</script>

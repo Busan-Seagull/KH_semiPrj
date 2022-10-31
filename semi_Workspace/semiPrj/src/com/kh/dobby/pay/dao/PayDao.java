@@ -31,7 +31,11 @@ public class PayDao {
             pstmt.setDouble(1, Double.parseDouble(paymentNo));
             pstmt.setInt(2, Integer.parseInt(pv.getReservationNo()));
             pstmt.setInt(3, Integer.parseInt(pv.getPaymentType()));
+            if(pv.getPoint()==null) {
+            pstmt.setInt(4, 0);   
+            }else {
             pstmt.setInt(4, Integer.parseInt(pv.getPoint()));
+            }
             pstmt.setString(5, pv.getRequest());
 
             result = pstmt.executeUpdate();

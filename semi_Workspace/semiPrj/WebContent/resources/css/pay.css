@@ -99,6 +99,10 @@ label{
     line-height: 73px;
     border-radius: 5px;
 }
+#payment-btn:hover{
+    background-color: rgb(153, 56, 56);
+    border: none;
+}
 #cancel-btn{
     margin: 10px auto;
     width: 330px;
@@ -109,6 +113,10 @@ label{
     text-align: center;
     line-height: 73px;
     border-radius: 5px;
+}
+#cancel-btn:hover{
+    background-color: gray;
+    
 }
 /* 사이드 내용 */
 table{

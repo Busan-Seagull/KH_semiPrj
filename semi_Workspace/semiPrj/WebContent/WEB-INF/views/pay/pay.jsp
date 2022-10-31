@@ -16,6 +16,8 @@
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<form action="" id="wrap" method="post" onsubmit="return doPay();">
+		<!-- 견적 금액 -->
+		<input type="number" value="10000" hidden>
 		<input type="text" value="${rv.reservation_no}" name="reservationNo"
 			hidden>
 		<div id="main-wrap">
@@ -27,7 +29,7 @@
 					</div>
 					<div id="reserv-info-helper">${rv.dName}</div>
 					<div id="reserv-info-service">${rv.sTitle}</div>
-					<div id="reserv-info-request">요청사항 : ${rv.reComment}</div>
+					<div id="reserv-info-request">요청사항 : ${rv.comment}</div>
 					<div id="reserv-info-date">
 						예약날짜 :
 						<c:out value="${fn:substring(rv.reservationDate, 0, 16)}"></c:out>
@@ -75,8 +77,13 @@
 							<tr>
 								<td class="text-grey">사용가능 포인트</td>
 								<td class="text-green">35,000p</td>
-								<td id="point-input-div"><input id="use-point"
-									type="number" name="point" value="0" onkeyup="checkZero()"></td>
+								<td id="point-input-div">
+									<c:if test="${empty rv.reservationAmount}">
+									<input id="use-point" type="number" name="point" value="0" disabled></td>
+								</c:if>
+									<c:if test="${rv.reservationAmount gt 0}">
+									<input id="use-point" type="number" name="point" value="0" onkeyup="checkZero()"></td>
+								</c:if>
 							</tr>
 						</table>
 					</div>
@@ -148,8 +155,11 @@
 				<table>
 					<tr>
 						<td class="payment-detail-text">총 결제 금액</td>
-						<td id="final-amount" class="payment-detail2-input"><fmt:formatNumber
-								value="${rv.reservationAmount}" pattern="#,###" />원</td>
+						<td id="final-amount" class="payment-detail2-input">
+						<c:if test="${rv.reservationAmount eq null}">
+						<fmt:formatNumber value="10000" pattern="#,###" />
+						</c:if>
+						<fmt:formatNumber value="${rv.reservationAmount}" pattern="#,###" />원</td>
 					</tr>
 				</table>
 			</div>
@@ -160,15 +170,22 @@
 			</div>
 			<input type="submit" id="payment-btn" value="결제하기">
 			<div id="cancel-btn">결제취소</div>
+			
 		</div>
 
 	</form>
+	<button onclick="check()">버튼</button>
+
+	
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
-
-</body>
-<script defer>
-
+	<script defer>
+		
+	
+	
+	
+	
+	
 	function checkZero(){
 	var use = document.querySelector('#use-point');
 		if(use.value<0){
@@ -184,16 +201,16 @@
 		const usePoint = document.querySelector('#use-point').value;
 		var usePointNumber = parseInt(usePoint);
 		
-		if(${rv.charge}!=null){
 		document.querySelector('#use-point-2').innerText = usePointNumber.toLocaleString('ko-KR') + 'p';
 		document.querySelector('#final-amount').innerText = parseInt((${rv.reservationAmount} - usePoint)).toLocaleString('ko-kr')+'원';
-		}else{
-			alert('견적 결제에 포인트를 사용할수 없습니다.');
-		}
+		
 	}
-
+	
+	
+	</script>
+	<script>
 	function doPay(){
-
+	
 		const methodCheck = document.querySelectorAll('input[name="payment-method"]');
 		var check = 0;
 
@@ -215,7 +232,14 @@
 		}
 
 	}
+	</script>
+	<script>
+		// <fmt:parseNumber value="${rv.charge}" var="charge"/>
+		// if(${empty rv.reservationAmount}){
+		// 	document.querySelector('#use-point').disabled = true;
+		// 	console.log('되고있냐.?');
+		// }
+	</script>
+</body>
 
-
-</script>
 </html>
