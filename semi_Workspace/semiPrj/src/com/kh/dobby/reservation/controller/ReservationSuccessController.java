@@ -44,10 +44,10 @@ public class ReservationSuccessController extends HttpServlet{
         
         String pay = req.getParameter("pay");
         if(pay!=null) {
-            pay.replaceAll(",", "");
+            pay = pay.replaceAll(",", "");
             rv.setReservationAmount(pay);            
         }
-        
+        System.out.println(rv);
         String rvNo = new ReservationService().insertReservation(rv);
         rv.setReservation_no(rvNo);
         

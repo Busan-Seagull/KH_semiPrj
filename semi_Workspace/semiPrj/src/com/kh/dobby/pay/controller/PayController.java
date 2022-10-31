@@ -50,6 +50,8 @@ public class PayController extends HttpServlet{
         pv.setPoint(point);
         pv.setPaymentType(paymentType);
         
+        System.out.println(pv);
+        
         int result = new PayService().insert(pv); 
         
         //화면
