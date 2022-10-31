@@ -21,6 +21,7 @@
  <!-- 서머노트를 위해 추가해야할 부분 -->
 <script src="${pageContext.request.contextPath}/resources/js/editor/summernote-lite.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/editor/summernote-lite.css">
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
 
@@ -29,7 +30,7 @@
 		<div id="registration-title">서비스 정보 수정</div>
 		<form action="/dobby/service/modify" method="post" enctype="multipart/form-data">
 			<div id="registration-form1">
-				<div id="service-name">서비스명</div>
+				<div id="service-name">서비스명*</div>
 				<div id="service-name-input">
 					<input type="text" name="service" value="${sv.title}">
 				</div>
@@ -46,16 +47,17 @@
 				</div>
 				<div id="profile-pic">프로필 사진</div>
 				<div id="profile-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="profile-img">+</label> <input type="file"
-						name="profile-img" id="profile-img">
+						name="profile-img" id="profile-img" class="file">
 				</div>
 				<div id="payment-unit">요금단위</div>
 				<div id="payment-unit-input">
 					<select name="charge-unit" id="select-charge-unit">
-						<option value="2"<c:if test="${sv.chargeUnitNo==2}">selected</c:if>>평당</option>
-						<option value="3"<c:if test="${sv.chargeUnitNo==3}">selected</c:if>>시간당</option>
-						<option value="4"<c:if test="${sv.chargeUnitNo==4}">selected</c:if>>회당</option>
-						<option value="1"<c:if test="${sv.chargeUnitNo==1}">selected</c:if>>견적필요</option>
+						<option value="2" <c:if test="${sv.chargeUnitNo==2}">selected</c:if>>평당</option>
+						<option value="3" <c:if test="${sv.chargeUnitNo==3}">selected</c:if>>시간당</option>
+						<option value="4" <c:if test="${sv.chargeUnitNo==4}">selected</c:if>>회당</option>
+						<option value="1" <c:if test="${sv.chargeUnitNo==1}">selected</c:if>>견적필요</option>
 					</select>
 				</div>
 				<div id="payment">요금</div>
@@ -73,7 +75,7 @@
 							value="2"><label for="c">계좌이체</label>
 					</div>
 				</div>
-				<div id="introduction">한줄소개</div>
+				<div id="introduction">한줄소개*</div>
 				<div id="introduction-input">
 					<input type="text" name="service-intro" value="${sv.serviceIntro}">
 				</div>
@@ -103,7 +105,7 @@
 						<option value="21:00">21:00</option>
 						<option value="22:00">22:00</option>
 						<option value="23:00">23:00</option>
-						<option value="00:00">00:00</option>
+						<option value="00:00" selected>00:00</option>
 					</select>
 				</div>
 				<div id="close-time">운영종료시간</div>
@@ -132,7 +134,7 @@
 						<option value="21:00">21:00</option>
 						<option value="22:00">22:00</option>
 						<option value="23:00">23:00</option>
-						<option value="00:00">00:00</option>
+						<option value="00:00" selected>00:00</option>
 					</select>
 				</div>
 				<div id="career-years">경력</div>
@@ -148,7 +150,10 @@
 						<option value="8">10년 이상</option>
 					</select>
 				</div>
-				<div id="region">관할지역</div>
+				<div id="region">
+					<div>관할지역*</div>
+					<div id="region-detail">지역을 하나 이상 선택 해주세요.</div>
+				</div>
 				<div id="region-input">
 					<div id="region-input-1">
 						<select name="area-no" id="">
@@ -305,18 +310,22 @@
 			<div id="service-pic-wrap">
 				<div id="service-pic" class="registration-t2">서비스 사진</div>
 				<div id="service-pic-input1" class="service-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="service-img-1">+</label> <input type="file"
 						name="service-img-1" id="service-img-1">
 				</div>
 				<div id="service-pic-input2" class="service-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="service-img-2">+</label> <input type="file"
 						name="service-img-2" id="service-img-2">
 				</div>
 				<div id="service-pic-input3" class="service-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="service-img-3">+</label> <input type="file"
 						name="service-img-3" id="service-img-3">
 				</div>
 				<div id="service-pic-input4" class="service-pic-input">
+					<img class="uploaded-profile" src="" alt="">
 					<label for="service-img-4">+</label> <input type="file"
 						name="service-img-4" id="service-img-4">
 				</div>
@@ -397,6 +406,62 @@
 		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
         });
       </script>
+
+<script defer>
+	function submitCheck(){
+		if(document.querySelector('#name-input').value==""||document.querySelector('#service-intro').value==""){
+			alert("필수입력란을 작성해주세요");
+			document.querySelector('#name-input').focus();
+			return true;
+		}
+	}
+</script>
+
+<script defer>
+
+	//이미지 올리면
+	//src 주고 display 보이게 주면.. 되겟지.?
+	const fileDOM = document.querySelector('#profile-img');
+	const previews = document.querySelectorAll('.uploaded-profile');
+	// console.log(previews.length);
+
+	//url.reateObjectUrl 을 이용.,,
+	fileDOM.addEventListener('change', () => {
+	const imageSrc = URL.createObjectURL(fileDOM.files[0]);
+	previews[0].src = imageSrc;
+	previews[0].style.display="block";
+	});
+	
+	const fileDOM1 = document.querySelector('#service-img-1');
+	fileDOM1.addEventListener('change', () => {
+	const imageSrc1 = URL.createObjectURL(fileDOM1.files[0]);
+	previews[1].src = imageSrc1;
+	previews[1].style.display="block";
+	});
+
+	const fileDOM2 = document.querySelector('#service-img-2');
+	fileDOM2.addEventListener('change', () => {
+	const imageSrc2 = URL.createObjectURL(fileDOM2.files[0]);
+	previews[2].src = imageSrc2;
+	previews[2].style.display="block";
+	});
+
+	const fileDOM3 = document.querySelector('#service-img-3');
+	fileDOM3.addEventListener('change', () => {
+	const imageSrc3 = URL.createObjectURL(fileDOM3.files[0]);
+	previews[3].src = imageSrc3;
+	previews[3].style.display="block";
+	});
+
+	const fileDOM4 = document.querySelector('#service-img-4');
+	fileDOM4.addEventListener('change', () => {
+	const imageSrc4 = URL.createObjectURL(fileDOM4.files[0]);
+	previews[4].src = imageSrc4;
+	previews[4].style.display="block";
+	});
+
+	
+</script>
 
 </body>
 </html>

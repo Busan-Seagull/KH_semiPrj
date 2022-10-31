@@ -1,6 +1,7 @@
 package com.kh.dobby.pay.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.pay.dao.PayDao;
@@ -50,6 +51,14 @@ public class PayService {
         JDBCTemplate.close(conn);
 
         return pv;
+    }
+    //유저 번호로 결제내역 받아오기
+    public List<PayVo> listHistory(int userNo) {
+        Connection conn = JDBCTemplate.getConnection();
+        
+        List<PayVo> x = pd.listHisory(conn, userNo);
+        
+        JDBCTemplate.close(conn);
     }
 
 }

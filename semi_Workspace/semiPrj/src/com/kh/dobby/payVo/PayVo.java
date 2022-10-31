@@ -11,12 +11,16 @@ public class PayVo {
     private String request;
     private String paymentDate;
     private String cancelDate;
+    private String serviceTitle;
+    private String serviceCharge;
     
     public PayVo() {
     }
     
+    
+
     public PayVo(String paymentNo, String reservationNo, String point, String paymentType, String request,
-            String paymentDate, String cancelDate) {
+            String paymentDate, String cancelDate, String serviceTitle, String serviceCharge) {
         super();
         this.paymentNo = paymentNo;
         this.reservationNo = reservationNo;
@@ -25,7 +29,36 @@ public class PayVo {
         this.request = request;
         this.paymentDate = paymentDate;
         this.cancelDate = cancelDate;
+        this.serviceTitle = serviceTitle;
+        this.serviceCharge = serviceCharge;
     }
+
+
+    
+
+    public String getServiceTitle() {
+        return serviceTitle;
+    }
+
+
+
+    public void setServiceTitle(String serviceTitle) {
+        this.serviceTitle = serviceTitle;
+    }
+
+
+
+    public String getServiceCharge() {
+        return serviceCharge;
+    }
+
+
+
+    public void setServiceCharge(String serviceCharge) {
+        this.serviceCharge = serviceCharge;
+    }
+
+
 
     public String getCancelDate() {
         return cancelDate;
@@ -79,7 +112,8 @@ public class PayVo {
     public String toString() {
         return "PayVo [paymentNo=" + paymentNo + ", reservationNo=" + reservationNo + ", point=" + point
                 + ", paymentType=" + paymentType + ", request=" + request + ", paymentDate=" + paymentDate
-                + ", cancelDate=" + cancelDate + "]";
+                + ", cancelDate=" + cancelDate + ", serviceTitle=" + serviceTitle + ", serviceCharge=" + serviceCharge
+                + "]";
     }
     
     

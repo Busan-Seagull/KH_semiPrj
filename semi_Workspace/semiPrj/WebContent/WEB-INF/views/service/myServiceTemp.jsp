@@ -10,6 +10,8 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
 <link rel="stylesheet" href="/dobby/resources/css/myService.css">
+<link rel="stylesheet" href="/dobby/resources/css/payHistory.css">
+
 
 <%
 String root = request.getContextPath();
@@ -265,7 +267,7 @@ input[type=submit] {
 							<a class="helper-list"
 							onclick="location.href='<%=root %>/service/detail?sno=${list.serviceNo}'">
 								<div class="helper-pic">
-									<img src="/dobby/${list.profileImg}" alt="">
+									<img src="/dobby/${list.profileImg}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
 								</div>
 								<div class="helper-contents">
 									<div>
@@ -280,16 +282,54 @@ input[type=submit] {
 									</div>
 								</div>
 								<div class="helper-contents2">
-									<div id="btn1">
-										<button onclick="loction.href='/dobby/service/modify?sno=${list.serviceNo}'">수정하기</button>
+									<input type="text" value="${list.serviceNo}" hidden>
+									<div class="btn1">										
+										<button>수정하기</button>
 									</div>
-									<div id="btn2">
+									<div class="btn2">
 										<button>삭제하기</button>
 									</div>
-									<div id="btn3">
+									<div class="btn3">
 										<button>리뷰보기</button>
 									</div>
 								</div>
+								<script>
+									var btn1 = document.querySelectorAll('.btn1');
+									var btn2 = document.querySelectorAll('.btn2');
+									var btn3 = document.querySelectorAll('.btn3');
+								
+
+									for(var i = 0; i<btn1.length; i ++){
+										btn1[i].addEventListener('click',function(e){
+											
+											console.log('수정하기');
+											console.log(this.parentElement.querySelector('input').value);
+											location.href='/dobby/service/modify?sno=' + this.parentElement.querySelector('input').value;
+											e.stopImmediatePropagation();
+											
+										})
+
+										btn2[i].addEventListener('click',function(e){
+											
+											console.log('삭제하기');
+											var result = confirm("모든 정보가 삭제 됩니다.\n정말로 삭제 하시겠습니까?");
+											if(result == true){
+												location.href='/dobby/service/delete?sno=' + this.parentElement.querySelector('input').value;
+											}
+											
+											e.stopImmediatePropagation();
+										})
+
+										btn3[i].addEventListener('click',function(e){
+											
+											console.log('리뷰보기');
+											location.href='/dobby/reviewList'; //+ this.parentElement.querySelector('input').value;
+											e.stopImmediatePropagation();
+											
+										})
+
+									}
+								</script>
 							</a>
 						</div>
 					</c:forEach>
@@ -313,7 +353,7 @@ input[type=submit] {
 							</div>
 							<div class="helper-contents2">
 								<div id="btn1">
-									<button onclick="loction.href='/dobby/service/modify?sno=${list.serviceNo}'">수정하기</button>
+									<button>수정하기</button>
 								</div>
 								<div id="btn2">
 									<button>삭제하기</button>
@@ -322,13 +362,112 @@ input[type=submit] {
 									<button>리뷰보기</button>
 								</div>
 							</div>
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
+		
 
-		<div class="info-area" id="info-area02">2</div>
+		<div class="info-area" id="info-area02">
+			<div id="pay-history-wrap">
+
+				<div id="pay-history-title">
+					<h1>결제 내역</h1>
+				</div>
+		
+				<div class="pay-history-list">
+					<div class="pay-month">
+						<h2>2022.10</h2>
+					</div>
+					<div class="service-list-outline">
+						<div class="service-profile">
+							<div class="helper-pic-p">
+								<img src="/dobby/resources/img/dust.png" alt="">
+							</div>
+							<div class="helper-contents">
+								<div class="content-div1">
+									<h1>전기 고치는 집요정</h1>
+									<button onclick="location.href='/dobby/mypage/payinfo'">결제 상세 정보 ></button>
+								</div>
+								<div class="content-div2">
+									<h2>128,000원</h2>
+									<br> <span>결제번호 20221008123</span> <span>결제일자
+										2022.10.10</span>
+								</div>
+							</div>
+							<div class="history-btns-div">
+								<div class="btn-div">
+									<button onclick="location.href='/dobby/reviewList';">리뷰쓰기</button>
+								</div>
+								<div class="btn-div">
+									<button>결제취소</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="pay-month">
+						<h2>2022.08</h2>
+					</div>
+					<div class="service-list-outline">
+						<div class="service-profile">
+							<div class="helper-pic-p">
+								<img src="/dobby/resources/img/dust.png" alt="">
+							</div>
+							<div class="helper-contents">
+								<div class="content-div1">
+									<h1>전기 고치는 집요정</h1>
+									<button>결제 상세 정보 ></button>
+								</div>
+								<div class="content-div2">
+									<h2>94,000원</h2>
+									<br> <span>결제번호 20221008123</span> <span>결제일자
+										2022.08.30</span>
+								</div>
+							</div>
+							<div class="history-btns-div">
+								<div class="btn-div">
+									<button onclick="location.href='/dobby/reviewList';">리뷰쓰기</button>
+								</div>
+								<div class="btn-div">
+									<button>결제취소</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="service-list-outline">
+						<div class="service-profile">
+							<div class="helper-pic-p">
+								<img src="/dobby/resources/img/dust.png" alt="">
+							</div>
+							<div class="helper-contents">
+								<div class="content-div1">
+									<h1>수도 고치는 집요정</h1>
+									<button>결제 상세 정보 ></button>
+								</div>
+								<div class="content-div2">
+									<h2>620,000원</h2>
+									<br> <span>결제번호 20221008123</span> <span>결제일자
+										2022.08.10</span>
+								</div>
+							</div>
+							<div class="history-btns-div">
+								<div class="btn-div">
+									<button onclick="location.href='/dobby/reviewList';">리뷰쓰기</button>
+								</div>
+								<div class="btn-div">
+									<button>결제취소</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+			</div>
+
+		</div>
 
 		<div class="info-area" id="info-area03">3</div>
 
@@ -391,5 +530,6 @@ input[type=submit] {
 
 
 </script>
+
 
 </html>

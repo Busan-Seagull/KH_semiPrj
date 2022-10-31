@@ -278,4 +278,11 @@
         width: 100%;
         display: none;
     }
+
+    #region-detail{
+        font-size:12px;
+        line-height:15px;
+        color:grey;
+        font-weight: lighter;
+    }
   

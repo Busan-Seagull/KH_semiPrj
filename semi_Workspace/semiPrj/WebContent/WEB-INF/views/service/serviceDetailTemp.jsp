@@ -216,8 +216,10 @@
     }
 
     function go_delete(){
-        confirm("모든 정보가 삭제 됩니다.\n정말로 삭제 하시겠습니까?");
-        location.href='/dobby/service/delete?sno=${sv.serviceNo}';
+        var result = confirm("모든 정보가 삭제 됩니다.\n정말로 삭제 하시겠습니까?");
+        if(result == true){
+			location.href='/dobby/service/delete?sno=${sv.serviceNo}';
+		}
     }
 
 </script>
