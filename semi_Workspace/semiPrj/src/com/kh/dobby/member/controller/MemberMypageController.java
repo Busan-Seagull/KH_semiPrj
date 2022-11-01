@@ -32,7 +32,8 @@ public class MemberMypageController extends HttpServlet{
         HttpSession s = req.getSession();
         MemberVo loginMember=(MemberVo) s.getAttribute("loginMember");
      
-       
+        String pno = req.getParameter("pno");
+        req.setAttribute("pno", pno);
 
         if(loginMember != null) {
             req.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(req, resp);

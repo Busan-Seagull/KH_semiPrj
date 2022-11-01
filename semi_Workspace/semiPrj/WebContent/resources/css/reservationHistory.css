@@ -227,7 +227,7 @@ form h2{
     font-weight: 600;
 }
 
-form input[type=submit]{
+/* form input[type=submit]{
     background: none;
     border: 1px solid var(--semi-green);
     cursor: pointer;
@@ -237,7 +237,7 @@ form input[type=submit]{
 form input[type=submit]:hover{
     background-color: var(--semi-green);
     color: white;
-}
+} */
 
 .comment-text{
     height: 70px;
