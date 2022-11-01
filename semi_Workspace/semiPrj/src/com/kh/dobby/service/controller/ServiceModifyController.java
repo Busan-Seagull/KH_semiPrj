@@ -46,7 +46,7 @@ public class ServiceModifyController extends HttpServlet{
             req.getRequestDispatcher("/WEB-INF/views/service/serviceModification.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("/WEB-INF/views/service/serviceModification.jsp").forward(req, resp);
-            System.out.println("정보가 없어요....!");
+            System.out.println("서비스 수정 정보가 없어요.!");
         }
 
     }
@@ -115,6 +115,15 @@ public class ServiceModifyController extends HttpServlet{
         sv.setServiceNo(svOrigin.getServiceNo());
         
         System.out.println(sv);
+        //사진 기존경로 들고오기
+        String originProfile = req.getParameter("origin-profile");
+        String originPic_1= req.getParameter("origin-pic1");
+        String originPic_2= req.getParameter("origin-pic2");
+        String originPic_3= req.getParameter("origin-pic3");
+        String originPic_4= req.getParameter("origin-pic4");
+        
+        System.out.println(originProfile);
+        
         
         //데이터 뭉치기 - 첨부파일
         Part f = req.getPart("profile-img");
@@ -131,22 +140,32 @@ public class ServiceModifyController extends HttpServlet{
         if(f.getSubmittedFileName().length()>0) {
             s_attachmentVo = ServiceFileUploader.uploadFile(f, rootPath);
             sv.setProfileImg(s_attachmentVo.getFilePath());
+        }else {
+            sv.setProfileImg(originProfile);
         }
         if(s1.getSubmittedFileName().length()>0) {
             s_attachmentVo = ServiceFileUploader.uploadFile(s1, rootPath);
             sv.setServicePic_1(s_attachmentVo.getFilePath());
+        }else {
+            sv.setServicePic_1(originPic_1);
         }
         if(s2.getSubmittedFileName().length()>0) {
             s_attachmentVo = ServiceFileUploader.uploadFile(s2, rootPath);
             sv.setServicePic_2(s_attachmentVo.getFilePath());
+        }else {
+            sv.setServicePic_2(originPic_2);
         }
         if(s3.getSubmittedFileName().length()>0) {
             s_attachmentVo = ServiceFileUploader.uploadFile(s3, rootPath);
             sv.setServicePic_3(s_attachmentVo.getFilePath());
+        }else {
+            sv.setServicePic_3(originPic_3);
         }
         if(s4.getSubmittedFileName().length()>0) {
             s_attachmentVo = ServiceFileUploader.uploadFile(s4, rootPath);
             sv.setServicePic_4(s_attachmentVo.getFilePath());
+        }else {
+            sv.setServicePic_4(originPic_4);
         }
         
         

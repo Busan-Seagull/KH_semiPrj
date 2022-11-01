@@ -47,8 +47,8 @@
 				</div>
 				<div id="profile-pic">프로필 사진</div>
 				<div id="profile-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="profile-img">+</label> <input type="file"
+					<label for="profile-img"><img class="uploaded-profile" src="/dobby/${sv.profileImg}" alt="">+</label>
+					<input type="file"
 						name="profile-img" id="profile-img" class="file">
 				</div>
 				<div id="payment-unit">요금단위</div>
@@ -62,17 +62,15 @@
 				</div>
 				<div id="payment">요금</div>
 				<div id="payment-input">
-					<input type="number" name="charge" value="10000" id="number" value="${sv.charge}">
+					<input type="number" name="charge" id="number" value="${sv.charge}">
 					원
 				</div>
 				<div id="payment-method">
 					현장 결제수단
 					<div id="checkbox-div">
-						<input type="checkbox" name="pay-type-no" id="a" value="6"><label
-							for="a">현금</label> <br> <input type="checkbox"
-							name="pay-type-no" id="b" value="5"><label for="b">카드</label>
-						<br> <input type="checkbox" name="pay-type-no" id="c"
-							value="2"><label for="c">계좌이체</label>
+						<input type="checkbox" name="pay-type-no" id="a" value="6"><label for="a">현금</label> <br> 
+						<input type="checkbox" name="pay-type-no" id="b" value="5"><label for="b">카드</label> <br> 
+						<input type="checkbox" name="pay-type-no" id="c" value="2"><label for="c">계좌이체</label>
 					</div>
 				</div>
 				<div id="introduction">한줄소개*</div>
@@ -82,59 +80,59 @@
 				<div id="open-time">운영시작시간</div>
 				<div id="open-time-input">
 					<select name="open-time" id="">
-						<option value="01:00">01:00</option>
-						<option value="02:00">02:00</option>
-						<option value="03:00">03:00</option>
-						<option value="04:00">04:00</option>
-						<option value="05:00">05:00</option>
-						<option value="06:00">06:00</option>
-						<option value="07:00">07:00</option>
-						<option value="08:00">08:00</option>
-						<option value="09:00">09:00</option>
-						<option value="10:00">10:00</option>
-						<option value="11:00">11:00</option>
-						<option value="12:00">12:00</option>
-						<option value="13:00">13:00</option>
-						<option value="14:00">14:00</option>
-						<option value="15:00">15:00</option>
-						<option value="16:00">16:00</option>
-						<option value="17:00">17:00</option>
-						<option value="18:00">18:00</option>
-						<option value="19:00">19:00</option>
-						<option value="20:00">20:00</option>
-						<option value="21:00">21:00</option>
-						<option value="22:00">22:00</option>
-						<option value="23:00">23:00</option>
-						<option value="00:00" selected>00:00</option>
+						<option value="01:00" <c:if test="${sv.openTime eq '01:00'}">selected</c:if>>01:00</option>
+						<option value="02:00" <c:if test="${sv.openTime eq '02:00'}">selected</c:if>>02:00</option>
+						<option value="03:00" <c:if test="${sv.openTime eq '03:00'}">selected</c:if>>03:00</option>
+						<option value="04:00" <c:if test="${sv.openTime eq '04:00'}">selected</c:if>>04:00</option>
+						<option value="05:00" <c:if test="${sv.openTime eq '05:00'}">selected</c:if>>05:00</option>
+						<option value="06:00" <c:if test="${sv.openTime eq '06:00'}">selected</c:if>>06:00</option>
+						<option value="07:00" <c:if test="${sv.openTime eq '07:00'}">selected</c:if>>07:00</option>
+						<option value="08:00" <c:if test="${sv.openTime eq '08:00'}">selected</c:if>>08:00</option>
+						<option value="09:00" <c:if test="${sv.openTime eq '09:00'}">selected</c:if>>09:00</option>
+						<option value="10:00" <c:if test="${sv.openTime eq '10:00'}">selected</c:if>>10:00</option>
+						<option value="11:00" <c:if test="${sv.openTime eq '11:00'}">selected</c:if>>11:00</option>
+						<option value="12:00" <c:if test="${sv.openTime eq '12:00'}">selected</c:if>>12:00</option>
+						<option value="13:00" <c:if test="${sv.openTime eq '13:00'}">selected</c:if>>13:00</option>
+						<option value="14:00" <c:if test="${sv.openTime eq '14:00'}">selected</c:if>>14:00</option>
+						<option value="15:00" <c:if test="${sv.openTime eq '15:00'}">selected</c:if>>15:00</option>
+						<option value="16:00" <c:if test="${sv.openTime eq '16:00'}">selected</c:if>>16:00</option>
+						<option value="17:00" <c:if test="${sv.openTime eq '17:00'}">selected</c:if>>17:00</option>
+						<option value="18:00" <c:if test="${sv.openTime eq '18:00'}">selected</c:if>>18:00</option>
+						<option value="19:00" <c:if test="${sv.openTime eq '19:00'}">selected</c:if>>19:00</option>
+						<option value="20:00" <c:if test="${sv.openTime eq '20:00'}">selected</c:if>>20:00</option>
+						<option value="21:00" <c:if test="${sv.openTime eq '21:00'}">selected</c:if>>21:00</option>
+						<option value="22:00" <c:if test="${sv.openTime eq '22:00'}">selected</c:if>>22:00</option>
+						<option value="23:00" <c:if test="${sv.openTime eq '23:00'}">selected</c:if>>23:00</option>
+						<option value="00:00" <c:if test="${sv.openTime eq '00:00'}">selected</c:if>>00:00</option>
 					</select>
 				</div>
 				<div id="close-time">운영종료시간</div>
 				<div id="close-time-input">
 					<select name="close-time" id="">
-						<option value="01:00">01:00</option>
-						<option value="02:00">02:00</option>
-						<option value="03:00">03:00</option>
-						<option value="04:00">04:00</option>
-						<option value="05:00">05:00</option>
-						<option value="06:00">06:00</option>
-						<option value="07:00">07:00</option>
-						<option value="08:00">08:00</option>
-						<option value="09:00">09:00</option>
-						<option value="10:00">10:00</option>
-						<option value="11:00">11:00</option>
-						<option value="12:00">12:00</option>
-						<option value="13:00">13:00</option>
-						<option value="14:00">14:00</option>
-						<option value="15:00">15:00</option>
-						<option value="16:00">16:00</option>
-						<option value="17:00">17:00</option>
-						<option value="18:00">18:00</option>
-						<option value="19:00">19:00</option>
-						<option value="20:00">20:00</option>
-						<option value="21:00">21:00</option>
-						<option value="22:00">22:00</option>
-						<option value="23:00">23:00</option>
-						<option value="00:00" selected>00:00</option>
+						<option value="01:00" <c:if test="${sv.closeTime eq '01:00'}">selected</c:if>>01:00</option>
+						<option value="02:00" <c:if test="${sv.closeTime eq '02:00'}">selected</c:if>>02:00</option>
+						<option value="03:00" <c:if test="${sv.closeTime eq '03:00'}">selected</c:if>>03:00</option>
+						<option value="04:00" <c:if test="${sv.closeTime eq '04:00'}">selected</c:if>>04:00</option>
+						<option value="05:00" <c:if test="${sv.closeTime eq '05:00'}">selected</c:if>>05:00</option>
+						<option value="06:00" <c:if test="${sv.closeTime eq '06:00'}">selected</c:if>>06:00</option>
+						<option value="07:00" <c:if test="${sv.closeTime eq '07:00'}">selected</c:if>>07:00</option>
+						<option value="08:00" <c:if test="${sv.closeTime eq '08:00'}">selected</c:if>>08:00</option>
+						<option value="09:00" <c:if test="${sv.closeTime eq '09:00'}">selected</c:if>>09:00</option>
+						<option value="10:00" <c:if test="${sv.closeTime eq '10:00'}">selected</c:if>>10:00</option>
+						<option value="11:00" <c:if test="${sv.closeTime eq '11:00'}">selected</c:if>>11:00</option>
+						<option value="12:00" <c:if test="${sv.closeTime eq '12:00'}">selected</c:if>>12:00</option>
+						<option value="13:00" <c:if test="${sv.closeTime eq '13:00'}">selected</c:if>>13:00</option>
+						<option value="14:00" <c:if test="${sv.closeTime eq '14:00'}">selected</c:if>>14:00</option>
+						<option value="15:00" <c:if test="${sv.closeTime eq '15:00'}">selected</c:if>>15:00</option>
+						<option value="16:00" <c:if test="${sv.closeTime eq '16:00'}">selected</c:if>>16:00</option>
+						<option value="17:00" <c:if test="${sv.closeTime eq '17:00'}">selected</c:if>>17:00</option>
+						<option value="18:00" <c:if test="${sv.closeTime eq '18:00'}">selected</c:if>>18:00</option>
+						<option value="19:00" <c:if test="${sv.closeTime eq '19:00'}">selected</c:if>>19:00</option>
+						<option value="20:00" <c:if test="${sv.closeTime eq '20:00'}">selected</c:if>>20:00</option>
+						<option value="21:00" <c:if test="${sv.closeTime eq '21:00'}">selected</c:if>>21:00</option>
+						<option value="22:00" <c:if test="${sv.closeTime eq '22:00'}">selected</c:if>>22:00</option>
+						<option value="23:00" <c:if test="${sv.closeTime eq '23:00'}">selected</c:if>>23:00</option>
+						<option value="00:00" <c:if test="${sv.closeTime eq '00:00'}">selected</c:if>>00:00</option>
 					</select>
 				</div>
 				<div id="career-years">경력</div>
@@ -157,152 +155,152 @@
 				<div id="region-input">
 					<div id="region-input-1">
 						<select name="area-no" id="">
-							<option value="0">지역을 선택해주세요</option>
-							<option value="1">도봉구</option>
-							<option value="2">노원구</option>
-							<option value="3">강북구</option>
-							<option value="4">은평구</option>
-							<option value="5">종로구</option>
-							<option value="6">성북구</option>
-							<option value="7">중랑구</option>
-							<option value="8">동대문구</option>
-							<option value="9">서대문구</option>
-							<option value="10">중구</option>
-							<option value="11">마포구</option>
-							<option value="12">용산구</option>
-							<option value="13">성동구</option>
-							<option value="14">광진구</option>
-							<option value="15">강서구</option>
-							<option value="16">양천구</option>
-							<option value="17">구로구</option>
-							<option value="18">영등포구</option>
-							<option value="19">금천구</option>
-							<option value="20">동작구</option>
-							<option value="21">관악구</option>
-							<option value="22">서초구</option>
-							<option value="23">강남구</option>
-							<option value="24">송파구</option>
-							<option value="25">강동구</option>
+							<option value="0"  <c:if test="${sv.areaNo_1 == 0}">selected</c:if>> 지역을 선택해주세요</option>
+							<option value="1"  <c:if test="${sv.areaNo_1 == 1}">selected</c:if>> 도봉구</option>
+							<option value="2"  <c:if test="${sv.areaNo_1 == 2}">selected</c:if>> 노원구</option>
+							<option value="3"  <c:if test="${sv.areaNo_1 == 3}">selected</c:if>> 강북구</option>
+							<option value="4"  <c:if test="${sv.areaNo_1 == 4}">selected</c:if>> 은평구</option>
+							<option value="5"  <c:if test="${sv.areaNo_1 == 5}">selected</c:if>> 종로구</option>
+							<option value="6"  <c:if test="${sv.areaNo_1 == 6}">selected</c:if>> 성북구</option>
+							<option value="7"  <c:if test="${sv.areaNo_1 == 7}">selected</c:if>> 중랑구</option>
+							<option value="8"  <c:if test="${sv.areaNo_1 == 8}">selected</c:if>> 동대문구</option>
+							<option value="9"  <c:if test="${sv.areaNo_1 == 9}">selected</c:if>> 서대문구</option>
+							<option value="10" <c:if test="${sv.areaNo_1 == 10}">selected</c:if>>중구</option>
+							<option value="11" <c:if test="${sv.areaNo_1 == 11}">selected</c:if>>마포구</option>
+							<option value="12" <c:if test="${sv.areaNo_1 == 12}">selected</c:if>>용산구</option>
+							<option value="13" <c:if test="${sv.areaNo_1 == 13}">selected</c:if>>성동구</option>
+							<option value="14" <c:if test="${sv.areaNo_1 == 14}">selected</c:if>>광진구</option>
+							<option value="15" <c:if test="${sv.areaNo_1 == 15}">selected</c:if>>강서구</option>
+							<option value="16" <c:if test="${sv.areaNo_1 == 16}">selected</c:if>>양천구</option>
+							<option value="17" <c:if test="${sv.areaNo_1 == 17}">selected</c:if>>구로구</option>
+							<option value="18" <c:if test="${sv.areaNo_1 == 18}">selected</c:if>>영등포구</option>
+							<option value="19" <c:if test="${sv.areaNo_1 == 19}">selected</c:if>>금천구</option>
+							<option value="20" <c:if test="${sv.areaNo_1 == 20}">selected</c:if>>동작구</option>
+							<option value="21" <c:if test="${sv.areaNo_1 == 21}">selected</c:if>>관악구</option>
+							<option value="22" <c:if test="${sv.areaNo_1 == 22}">selected</c:if>>서초구</option>
+							<option value="23" <c:if test="${sv.areaNo_1 == 23}">selected</c:if>>강남구</option>
+							<option value="24" <c:if test="${sv.areaNo_1 == 24}">selected</c:if>>송파구</option>
+							<option value="25" <c:if test="${sv.areaNo_1 == 25}">selected</c:if>>강동구</option>
 						</select>
 					</div>
 					<div id="region-input-2">
 						<select name="area-no" id="">
-							<option value="0">지역을 선택해주세요</option>
-							<option value="1">도봉구</option>
-							<option value="2">노원구</option>
-							<option value="3">강북구</option>
-							<option value="4">은평구</option>
-							<option value="5">종로구</option>
-							<option value="6">성북구</option>
-							<option value="7">중랑구</option>
-							<option value="8">동대문구</option>
-							<option value="9">서대문구</option>
-							<option value="10">중구</option>
-							<option value="11">마포구</option>
-							<option value="12">용산구</option>
-							<option value="13">성동구</option>
-							<option value="14">광진구</option>
-							<option value="15">강서구</option>
-							<option value="16">양천구</option>
-							<option value="17">구로구</option>
-							<option value="18">영등포구</option>
-							<option value="19">금천구</option>
-							<option value="20">동작구</option>
-							<option value="21">관악구</option>
-							<option value="22">서초구</option>
-							<option value="23">강남구</option>
-							<option value="24">송파구</option>
-							<option value="25">강동구</option>
+							<option value="0"  <c:if test="${sv.areaNo_2 == 0}">selected</c:if>>지역을 선택해주세요</option>
+							<option value="1"  <c:if test="${sv.areaNo_2 == 1}">selected</c:if>>도봉구</option>
+							<option value="2"  <c:if test="${sv.areaNo_2 == 2}">selected</c:if>>노원구</option>
+							<option value="3"  <c:if test="${sv.areaNo_2 == 3}">selected</c:if>>강북구</option>
+							<option value="4"  <c:if test="${sv.areaNo_2 == 4}">selected</c:if>>은평구</option>
+							<option value="5"  <c:if test="${sv.areaNo_2 == 5}">selected</c:if>>종로구</option>
+							<option value="6"  <c:if test="${sv.areaNo_2 == 6}">selected</c:if>>성북구</option>
+							<option value="7"  <c:if test="${sv.areaNo_2 == 7}">selected</c:if>>중랑구</option>
+							<option value="8"  <c:if test="${sv.areaNo_2 == 8}">selected</c:if>>동대문구</option>
+							<option value="9"  <c:if test="${sv.areaNo_2 == 9}">selected</c:if>>서대문구</option>
+							<option value="10" <c:if test="${sv.areaNo_2 == 10}">selected</c:if>>중구</option>
+							<option value="11" <c:if test="${sv.areaNo_2 == 11}">selected</c:if>>마포구</option>
+							<option value="12" <c:if test="${sv.areaNo_2 == 12}">selected</c:if>>용산구</option>
+							<option value="13" <c:if test="${sv.areaNo_2 == 13}">selected</c:if>>성동구</option>
+							<option value="14" <c:if test="${sv.areaNo_2 == 14}">selected</c:if>>광진구</option>
+							<option value="15" <c:if test="${sv.areaNo_2 == 15}">selected</c:if>>강서구</option>
+							<option value="16" <c:if test="${sv.areaNo_2 == 16}">selected</c:if>>양천구</option>
+							<option value="17" <c:if test="${sv.areaNo_2 == 17}">selected</c:if>>구로구</option>
+							<option value="18" <c:if test="${sv.areaNo_2 == 18}">selected</c:if>>영등포구</option>
+							<option value="19" <c:if test="${sv.areaNo_2 == 19}">selected</c:if>>금천구</option>
+							<option value="20" <c:if test="${sv.areaNo_2 == 20}">selected</c:if>>동작구</option>
+							<option value="21" <c:if test="${sv.areaNo_2 == 21}">selected</c:if>>관악구</option>
+							<option value="22" <c:if test="${sv.areaNo_2 == 22}">selected</c:if>>서초구</option>
+							<option value="23" <c:if test="${sv.areaNo_2 == 23}">selected</c:if>>강남구</option>
+							<option value="24" <c:if test="${sv.areaNo_2 == 24}">selected</c:if>>송파구</option>
+							<option value="25" <c:if test="${sv.areaNo_2 == 25}">selected</c:if>>강동구</option>
 						</select>
 					</div>
 					<div id="region-input-3">
 						<select name="area-no" id="">
-							<option value="0">지역을 선택해주세요</option>
-							<option value="1">도봉구</option>
-							<option value="2">노원구</option>
-							<option value="3">강북구</option>
-							<option value="4">은평구</option>
-							<option value="5">종로구</option>
-							<option value="6">성북구</option>
-							<option value="7">중랑구</option>
-							<option value="8">동대문구</option>
-							<option value="9">서대문구</option>
-							<option value="10">중구</option>
-							<option value="11">마포구</option>
-							<option value="12">용산구</option>
-							<option value="13">성동구</option>
-							<option value="14">광진구</option>
-							<option value="15">강서구</option>
-							<option value="16">양천구</option>
-							<option value="17">구로구</option>
-							<option value="18">영등포구</option>
-							<option value="19">금천구</option>
-							<option value="20">동작구</option>
-							<option value="21">관악구</option>
-							<option value="22">서초구</option>
-							<option value="23">강남구</option>
-							<option value="24">송파구</option>
-							<option value="25">강동구</option>
+							<option value="0"  <c:if test="${sv.areaNo_3 == 0}">selected</c:if>>지역을 선택해주세요</option>
+							<option value="1"  <c:if test="${sv.areaNo_3 == 1}">selected</c:if>>도봉구</option>
+							<option value="2"  <c:if test="${sv.areaNo_3 == 2}">selected</c:if>>노원구</option>
+							<option value="3"  <c:if test="${sv.areaNo_3 == 3}">selected</c:if>>강북구</option>
+							<option value="4"  <c:if test="${sv.areaNo_3 == 4}">selected</c:if>>은평구</option>
+							<option value="5"  <c:if test="${sv.areaNo_3 == 5}">selected</c:if>>종로구</option>
+							<option value="6"  <c:if test="${sv.areaNo_3 == 6}">selected</c:if>>성북구</option>
+							<option value="7"  <c:if test="${sv.areaNo_3 == 7}">selected</c:if>>중랑구</option>
+							<option value="8"  <c:if test="${sv.areaNo_3 == 8}">selected</c:if>>동대문구</option>
+							<option value="9"  <c:if test="${sv.areaNo_3 == 9}">selected</c:if>>서대문구</option>
+							<option value="10" <c:if test="${sv.areaNo_3 == 10}">selected</c:if>>중구</option>
+							<option value="11" <c:if test="${sv.areaNo_3 == 11}">selected</c:if>>마포구</option>
+							<option value="12" <c:if test="${sv.areaNo_3 == 12}">selected</c:if>>용산구</option>
+							<option value="13" <c:if test="${sv.areaNo_3 == 13}">selected</c:if>>성동구</option>
+							<option value="14" <c:if test="${sv.areaNo_3 == 14}">selected</c:if>>광진구</option>
+							<option value="15" <c:if test="${sv.areaNo_3 == 15}">selected</c:if>>강서구</option>
+							<option value="16" <c:if test="${sv.areaNo_3 == 16}">selected</c:if>>양천구</option>
+							<option value="17" <c:if test="${sv.areaNo_3 == 17}">selected</c:if>>구로구</option>
+							<option value="18" <c:if test="${sv.areaNo_3 == 18}">selected</c:if>>영등포구</option>
+							<option value="19" <c:if test="${sv.areaNo_3 == 19}">selected</c:if>>금천구</option>
+							<option value="20" <c:if test="${sv.areaNo_3 == 20}">selected</c:if>>동작구</option>
+							<option value="21" <c:if test="${sv.areaNo_3 == 21}">selected</c:if>>관악구</option>
+							<option value="22" <c:if test="${sv.areaNo_3 == 22}">selected</c:if>>서초구</option>
+							<option value="23" <c:if test="${sv.areaNo_3 == 23}">selected</c:if>>강남구</option>
+							<option value="24" <c:if test="${sv.areaNo_3 == 24}">selected</c:if>>송파구</option>
+							<option value="25" <c:if test="${sv.areaNo_3 == 25}">selected</c:if>>강동구</option>
 						</select>
 					</div>
 					<div id="region-input-4">
 						<select name="area-no" id="">
-							<option value="0">지역을 선택해주세요</option>
-							<option value="1">도봉구</option>
-							<option value="2">노원구</option>
-							<option value="3">강북구</option>
-							<option value="4">은평구</option>
-							<option value="5">종로구</option>
-							<option value="6">성북구</option>
-							<option value="7">중랑구</option>
-							<option value="8">동대문구</option>
-							<option value="9">서대문구</option>
-							<option value="10">중구</option>
-							<option value="11">마포구</option>
-							<option value="12">용산구</option>
-							<option value="13">성동구</option>
-							<option value="14">광진구</option>
-							<option value="15">강서구</option>
-							<option value="16">양천구</option>
-							<option value="17">구로구</option>
-							<option value="18">영등포구</option>
-							<option value="19">금천구</option>
-							<option value="20">동작구</option>
-							<option value="21">관악구</option>
-							<option value="22">서초구</option>
-							<option value="23">강남구</option>
-							<option value="24">송파구</option>
-							<option value="25">강동구</option>
+							<option value="0"  <c:if test="${sv.areaNo_4 == 0}">selected</c:if>>지역을 선택해주세요</option>
+							<option value="1"  <c:if test="${sv.areaNo_4 == 1}">selected</c:if>>도봉구</option>
+							<option value="2"  <c:if test="${sv.areaNo_4 == 2}">selected</c:if>>노원구</option>
+							<option value="3"  <c:if test="${sv.areaNo_4 == 3}">selected</c:if>>강북구</option>
+							<option value="4"  <c:if test="${sv.areaNo_4 == 4}">selected</c:if>>은평구</option>
+							<option value="5"  <c:if test="${sv.areaNo_4 == 5}">selected</c:if>>종로구</option>
+							<option value="6"  <c:if test="${sv.areaNo_4 == 6}">selected</c:if>>성북구</option>
+							<option value="7"  <c:if test="${sv.areaNo_4 == 7}">selected</c:if>>중랑구</option>
+							<option value="8"  <c:if test="${sv.areaNo_4 == 8}">selected</c:if>>동대문구</option>
+							<option value="9"  <c:if test="${sv.areaNo_4 == 9}">selected</c:if>>서대문구</option>
+							<option value="10" <c:if test="${sv.areaNo_4 == 10}">selected</c:if>>중구</option>
+							<option value="11" <c:if test="${sv.areaNo_4 == 11}">selected</c:if>>마포구</option>
+							<option value="12" <c:if test="${sv.areaNo_4 == 12}">selected</c:if>>용산구</option>
+							<option value="13" <c:if test="${sv.areaNo_4 == 13}">selected</c:if>>성동구</option>
+							<option value="14" <c:if test="${sv.areaNo_4 == 14}">selected</c:if>>광진구</option>
+							<option value="15" <c:if test="${sv.areaNo_4 == 15}">selected</c:if>>강서구</option>
+							<option value="16" <c:if test="${sv.areaNo_4 == 16}">selected</c:if>>양천구</option>
+							<option value="17" <c:if test="${sv.areaNo_4 == 17}">selected</c:if>>구로구</option>
+							<option value="18" <c:if test="${sv.areaNo_4 == 18}">selected</c:if>>영등포구</option>
+							<option value="19" <c:if test="${sv.areaNo_4 == 19}">selected</c:if>>금천구</option>
+							<option value="20" <c:if test="${sv.areaNo_4 == 20}">selected</c:if>>동작구</option>
+							<option value="21" <c:if test="${sv.areaNo_4 == 21}">selected</c:if>>관악구</option>
+							<option value="22" <c:if test="${sv.areaNo_4 == 22}">selected</c:if>>서초구</option>
+							<option value="23" <c:if test="${sv.areaNo_4 == 23}">selected</c:if>>강남구</option>
+							<option value="24" <c:if test="${sv.areaNo_4 == 24}">selected</c:if>>송파구</option>
+							<option value="25" <c:if test="${sv.areaNo_4 == 25}">selected</c:if>>강동구</option>
 						</select>
 					</div>
 					<div id="region-input-5">
 						<select name="area-no" id="">
-							<option value="0">지역을 선택해주세요</option>
-							<option value="1">도봉구</option>
-							<option value="2">노원구</option>
-							<option value="3">강북구</option>
-							<option value="4">은평구</option>
-							<option value="5">종로구</option>
-							<option value="6">성북구</option>
-							<option value="7">중랑구</option>
-							<option value="8">동대문구</option>
-							<option value="9">서대문구</option>
-							<option value="10">중구</option>
-							<option value="11">마포구</option>
-							<option value="12">용산구</option>
-							<option value="13">성동구</option>
-							<option value="14">광진구</option>
-							<option value="15">강서구</option>
-							<option value="16">양천구</option>
-							<option value="17">구로구</option>
-							<option value="18">영등포구</option>
-							<option value="19">금천구</option>
-							<option value="20">동작구</option>
-							<option value="21">관악구</option>
-							<option value="22">서초구</option>
-							<option value="23">강남구</option>
-							<option value="24">송파구</option>
-							<option value="25">강동구</option>
+							<option value="0"  <c:if test="${sv.areaNo_5 == 0}">selected</c:if>>지역을 선택해주세요</option>
+							<option value="1"  <c:if test="${sv.areaNo_5 == 1}">selected</c:if>>도봉구</option>
+							<option value="2"  <c:if test="${sv.areaNo_5 == 2}">selected</c:if>>노원구</option>
+							<option value="3"  <c:if test="${sv.areaNo_5 == 3}">selected</c:if>>강북구</option>
+							<option value="4"  <c:if test="${sv.areaNo_5 == 4}">selected</c:if>>은평구</option>
+							<option value="5"  <c:if test="${sv.areaNo_5 == 5}">selected</c:if>>종로구</option>
+							<option value="6"  <c:if test="${sv.areaNo_5 == 6}">selected</c:if>>성북구</option>
+							<option value="7"  <c:if test="${sv.areaNo_5 == 7}">selected</c:if>>중랑구</option>
+							<option value="8"  <c:if test="${sv.areaNo_5 == 8}">selected</c:if>>동대문구</option>
+							<option value="9"  <c:if test="${sv.areaNo_5 == 9}">selected</c:if>>서대문구</option>
+							<option value="10" <c:if test="${sv.areaNo_5 == 10}">selected</c:if>>중구</option>
+							<option value="11" <c:if test="${sv.areaNo_5 == 11}">selected</c:if>>마포구</option>
+							<option value="12" <c:if test="${sv.areaNo_5 == 12}">selected</c:if>>용산구</option>
+							<option value="13" <c:if test="${sv.areaNo_5 == 13}">selected</c:if>>성동구</option>
+							<option value="14" <c:if test="${sv.areaNo_5 == 14}">selected</c:if>>광진구</option>
+							<option value="15" <c:if test="${sv.areaNo_5 == 15}">selected</c:if>>강서구</option>
+							<option value="16" <c:if test="${sv.areaNo_5 == 16}">selected</c:if>>양천구</option>
+							<option value="17" <c:if test="${sv.areaNo_5 == 17}">selected</c:if>>구로구</option>
+							<option value="18" <c:if test="${sv.areaNo_5 == 18}">selected</c:if>>영등포구</option>
+							<option value="19" <c:if test="${sv.areaNo_5 == 19}">selected</c:if>>금천구</option>
+							<option value="20" <c:if test="${sv.areaNo_5 == 20}">selected</c:if>>동작구</option>
+							<option value="21" <c:if test="${sv.areaNo_5 == 21}">selected</c:if>>관악구</option>
+							<option value="22" <c:if test="${sv.areaNo_5 == 22}">selected</c:if>>서초구</option>
+							<option value="23" <c:if test="${sv.areaNo_5 == 23}">selected</c:if>>강남구</option>
+							<option value="24" <c:if test="${sv.areaNo_5 == 24}">selected</c:if>>송파구</option>
+							<option value="25" <c:if test="${sv.areaNo_5 == 25}">selected</c:if>>강동구</option>
 						</select>
 					</div>
 				</div>
@@ -310,23 +308,19 @@
 			<div id="service-pic-wrap">
 				<div id="service-pic" class="registration-t2">서비스 사진</div>
 				<div id="service-pic-input1" class="service-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="service-img-1">+</label> <input type="file"
+					<label for="service-img-1"><img class="uploaded-profile" src="/dobby/${sv.servicePic_1}" alt="">+</label> <input type="file"
 						name="service-img-1" id="service-img-1">
 				</div>
 				<div id="service-pic-input2" class="service-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="service-img-2">+</label> <input type="file"
+					<label for="service-img-2"><img class="uploaded-profile" src="/dobby/${sv.servicePic_2}" alt="">+</label> <input type="file"
 						name="service-img-2" id="service-img-2">
 				</div>
 				<div id="service-pic-input3" class="service-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="service-img-3">+</label> <input type="file"
-						name="service-img-3" id="service-img-3">
+					<label for="service-img-3"><img class="uploaded-profile" src="/dobby/${sv.servicePic_3}" alt="">+</label>
+					<input type="file" name="service-img-3" id="service-img-3">
 				</div>
 				<div id="service-pic-input4" class="service-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="service-img-4">+</label> <input type="file"
+					<label for="service-img-4"><img class="uploaded-profile" src="/dobby/${sv.servicePic_4}" alt="">+</label> <input type="file"
 						name="service-img-4" id="service-img-4">
 				</div>
 				<div id="service-pic-detail">서비스를 나타내는 사진을 1장이상 등록해주세요</div>
@@ -348,10 +342,35 @@
 				<input type="submit" value="수정하기" id="registration-button">
 			</div>
 
+			<input name="origin-profile" type="text" hidden value="${sv.profileImg}">
+			<input name="origin-pic1" type="text" hidden value="${sv.servicePic_1}">
+			<input name="origin-pic2" type="text" hidden value="${sv.servicePic_2}">
+			<input name="origin-pic3" type="text" hidden value="${sv.servicePic_3}">
+			<input name="origin-pic4" type="text" hidden value="${sv.servicePic_4}">
+
 		</form>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+	<!-- 체크박스 표시해주기 -->
+	<script>
+	var checkBox = [];
+	checkBox[0] = '${sv.pTypeNo_1}';
+	checkBox[1] = '${sv.pTypeNo_2}';
+	checkBox[2] = '${sv.pTypeNo_3}';
 
+	const paymentCheck = document.querySelectorAll('input[name=pay-type-no]');
+
+	for(let i = 0; i<checkBox.length; i ++){
+		for(let j = 0; j < paymentCheck.length; j ++){
+			if(checkBox[i] == paymentCheck[j].value){
+				paymentCheck[j].checked = true;
+			}
+		}
+	}
+
+	</script>
+
+	<!-- 견적요청일때 가격 인풋 닫기 -->
 	<script defer>
 		const select = document.querySelector('#select-charge-unit');
 		const numberInput = document.querySelector('#number');
@@ -370,6 +389,8 @@
 		})
 		
 	</script>
+
+	<!-- 서머노트 -->
 	<script defer>
         $('.summernote').summernote({
             lang: 'ko-KR',
@@ -407,6 +428,7 @@
         });
       </script>
 
+<!-- 필수입력 빈칸 확인 -->
 <script defer>
 	function submitCheck(){
 		if(document.querySelector('#name-input').value==""||document.querySelector('#service-intro').value==""){
@@ -417,13 +439,30 @@
 	}
 </script>
 
+<!-- 등록된 사진 들고오기 -->
 <script defer>
-
+	
 	//이미지 올리면
 	//src 주고 display 보이게 주면.. 되겟지.?
 	const fileDOM = document.querySelector('#profile-img');
 	const previews = document.querySelectorAll('.uploaded-profile');
 	// console.log(previews.length);
+
+	//이미지가 있으면 display block 주기
+	
+	for(var i = 0; i < previews.length; i ++){
+		if(previews[i].src != "http://127.0.0.1:8888/dobby/"){
+			console.log(previews[i].src);
+			previews[i].style.display = "block";
+		}else{
+			// console.log('경로없음');
+			previews[i].style.display = "none";
+		}
+	}
+	
+
+
+
 
 	//url.reateObjectUrl 을 이용.,,
 	fileDOM.addEventListener('change', () => {

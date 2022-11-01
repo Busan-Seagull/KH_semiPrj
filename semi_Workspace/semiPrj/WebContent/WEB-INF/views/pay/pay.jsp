@@ -21,6 +21,7 @@
 
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
+	<!-- <form action="" id="wrap" method="post" onsubmit="return doPay();"> -->
 	<form action="" id="wrap" method="post">
 		<!-- 견적 금액 -->
 		<input type="number" value="10000" hidden> <input type="text"
@@ -220,6 +221,7 @@ function pointCalculate(){
 
 
 	function requestPay() {
+		let temp = false;
 		IMP.request_pay({
 			pg: "kakaopay.TC0ONETIME",
 			pay_method: "card",
@@ -231,16 +233,16 @@ function pointCalculate(){
 			buyer_tel : '010-1234-5678',
 			buyer_addr : '서울특별시 강남구 삼성동',
 			buyer_postcode : '123-456'
-		}, 
+		},
 		function (rsp) { //callback
 			console.log(rsp);
 			if (rsp.success) {
 			var msg = '결제가 완료되었습니다.';
 			alert(msg);
-			document.querySelector('#payment-btn').form.action = '/dobby/pay';
-			document.querySelector('#payment-btn').form.method='post';
+			temp = true;
+			// document.querySelector('#payment-btn').form.action = '/dobby/pay';
+			// document.querySelector('#payment-btn').form.method='post';
 			document.querySelector('#payment-btn').form.submit();
-			location.href='';
 			} else {
 			var msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;
@@ -249,7 +251,8 @@ function pointCalculate(){
 			}
 			
 		 });
-		 return false;
+
+		 return temp;
 	}
 	
 </script>
