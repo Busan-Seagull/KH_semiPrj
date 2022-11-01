@@ -61,7 +61,7 @@ public class RequestService {
     }
 
     //게시글 들어가기
-    /*public RequestVo selectOne(String bno) {
+    public RequestVo selectOne(String bno) {
         
         
         //커넥션 준비
@@ -70,21 +70,17 @@ public class RequestService {
         
         Connection conn = JDBCTemplate.getConnection();
         
-        int result= dao.selectOne(conn, bno);
+        RequestVo result= dao.selectOne(conn, bno);
+        System.out.println(result);
+        JDBCTemplate.close(conn);
         
-        RequestVo vo = null;
-        
-        if(result==1) {
-            JDBCTemplate.commit(conn);
-            vo = dao.selectOne(conn, bno);
-        } else {
-            JDBCTemplate.rollback(conn);
-        }
+        return result;
         
         
         
         
-    }*/
+        
+    }
 
 
    

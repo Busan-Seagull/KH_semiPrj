@@ -72,7 +72,8 @@ public class MemberzzimController extends HttpServlet{
         ZzimVo zzimdata = new ZzimService().loaddata(zzimvo);
 
         session.setAttribute("zzimdata", zzimdata);
-        
+        session.setAttribute("userno", userno);
+        System.out.println("컨트롤러 넘버 : " + session.getAttribute("userno"));
             
         //화면 선택
         req.getRequestDispatcher("/WEB-INF/views/zzim/zzim.jsp").forward(req, resp);

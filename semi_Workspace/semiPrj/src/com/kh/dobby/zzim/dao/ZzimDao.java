@@ -66,7 +66,7 @@ public class ZzimDao {
             zzimMember.setServiceno(serviceno);
             zzimMember.setServicename(servicename);
             zzimMember.setProfileimg(profileimg);
-            
+            zzimMember.setUserno(zzimvo.getUserno());
             };
         } catch (SQLException e) {
             // TODO Auto-generated catch block
