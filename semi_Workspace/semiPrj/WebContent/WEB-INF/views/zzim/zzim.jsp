@@ -10,7 +10,10 @@
  -->
  
  <%
- 	List<ZzimVo> voList = (List<ZzimVo>)request.getAttribute("zzimdata");
+ 	//List<ZzimVo> voList = (List<ZzimVo>)request.getAttribute("zzimdata"); // voList:null
+ 	ZzimVo memberList = (ZzimVo)session.getAttribute("zzimdata");// -> stacktrace
+ 	//int userno = (int)session.getAttribute("userno");
+ 	
   %>
 
 
@@ -29,7 +32,7 @@
 
 <form>
 	<div id="point-box">
-		<div id="text01">찜한 목록</div>
+		<div id="text01">찜한 목록 </div>
 		
 		<div id="box-page">
 				<div class="table" id="table1">
@@ -41,11 +44,11 @@
 				<div class="table" id="table2">
 					<img src="/dobby/resources/img/로고.png" alt="이미지" width="140px" height="80px">
 						<div id = "score-box">
-							<div id="star">★</div><div id="point">5.0</div>
+							<div id="star">★</div><div id="point"><%=memberList.getUserno() %></div>
 						</div>
-					<div class="boxtext"><a href="/">벌레잡는 너굴맨</a></div>
+					<div class="boxtext"><a href="/">벌레잡는 너굴맨5.0</a></div>
 					<div id = "score-box2">
-							<div id="reviewtext">리뷰</div><div id="point">123</div>
+							<div id="reviewtext">리뷰</div><div id="point"></div>
 						</div>
 				</div>
 				
