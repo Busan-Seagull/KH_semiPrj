@@ -34,6 +34,8 @@ public class DetailController extends HttpServlet {
             String postNo = req.getParameter("postNo");
             
             ReportVo vo = rs.selectOne(postNo);
+            System.out.println(vo);
+            System.out.println(postNo);
             
             req.setAttribute("vo", vo);
            
@@ -54,9 +56,13 @@ public class DetailController extends HttpServlet {
 	    HttpSession s = req.getSession(); 
         MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");
         
-	    String postNo = req.getParameter("PostNo");
+	    String postNo = req.getParameter("postNo");
         String adminReport = req.getParameter("adminReport");
         String contentReply = req.getParameter("content-reply");
+        
+        System.out.println(postNo);
+        System.out.println(adminReport);
+        System.out.println(contentReply);
         
         ReportVo vo = new ReportVo();
         vo.setPostNo(postNo);
@@ -91,11 +97,10 @@ public class DetailController extends HttpServlet {
             x = new ReportService().selectReplyList(postNo);
         }else {
             req.setAttribute("msg", "[ERROR]오류 발생");
-            req.getRequestDispatcher("/views/common/error.jsp").forward(req, resp);
-          
-            /* resp.sendRedirect("/views/common/error.jsp"); */
+            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
         }
         
+        resp.sendRedirect("/dobby/detail?postNo="+postNo);
         /*
          * switch(adminReport) {
          * case "승인": result = rs.approval(postNo);

@@ -17,6 +17,8 @@ import com.kh.dobby.review.vo.ReviewVo;
 
 @WebServlet(urlPatterns = "/reviewDetail")
 public class ReviewDetailController extends HttpServlet {
+    
+    private final ReviewService rs = new ReviewService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +30,7 @@ public class ReviewDetailController extends HttpServlet {
         if(loginMember != null ) {
             String postNo = req.getParameter("postNo");
             
-            ReviewVo vo = new ReviewService().selectOne(postNo);
+            ReviewVo vo = rs.selectOne(postNo);
             
             req.setAttribute("vo", vo);
            
@@ -41,6 +43,53 @@ public class ReviewDetailController extends HttpServlet {
         
         
        
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        HttpSession s = req.getSession(); 
+        MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");
+        
+        String postNo = req.getParameter("postNo");
+        String adminReport = req.getParameter("adminReport");
+        String contentReply = req.getParameter("content-reply");
+        
+        System.out.println(postNo);
+        System.out.println(adminReport);
+        System.out.println(contentReply);
+        
+        ReportVo vo = new ReportVo();
+        vo.setPostNo(postNo);
+        vo.setReportComment(contentReply);
+        vo.setUserNo(loginMember.getUserNo());
+        
+       
+        
+        
+        int result =0;
+        int result2 =0;
+        int result3 = 0;
+        ReportVo x = null;
+        
+        
+        if("확인".equals(adminReport)) {
+            result = rs.writeReviewReply(vo);
+        }
+        else if("수정".equals(adminReport)) {
+            result2 = rs.editReviewReply(vo);
+        }
+        else if("삭제".equals(adminReport)) {
+            result3 = rs.deleteReviewReply(postNo); 
+        }
+        else if(vo.getReportComment()!= null) {
+            x = new ReportService().selectReplyList(postNo);
+        }else {
+            req.setAttribute("msg", "[ERROR]오류 발생");
+            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+        }
+        
+        resp.sendRedirect("/dobby/reviewDetail?postNo="+postNo);
+    
     }
     
 }
