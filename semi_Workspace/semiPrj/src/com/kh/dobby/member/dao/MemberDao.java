@@ -397,7 +397,7 @@ public class MemberDao {
         
         return vo;
     }
-
+}
     
 
 
