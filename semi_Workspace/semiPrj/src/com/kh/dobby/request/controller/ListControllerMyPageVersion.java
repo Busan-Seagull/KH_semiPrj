@@ -15,7 +15,7 @@ import com.kh.dobby.common.PageVo;
 import com.kh.dobby.request.service.RequestService;
 import com.kh.dobby.request.vo.RequestVo;
 
-@WebServlet(urlPatterns = "/request")
+@WebServlet(urlPatterns = "/mypage/request")
 public class ListControllerMyPageVersion extends HttpServlet{
 
     @Override
