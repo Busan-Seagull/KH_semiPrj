@@ -98,7 +98,7 @@ bottom:40px;
 	top:5px;
 	font-weight: 500;
 	font-size: larger;
-	left:60px;
+	left:30px;
 	
 
 }
@@ -259,7 +259,7 @@ border-bottom: 3px solid #004412;
 		
 	</form>
 	<div id="title">
-		<div id="titlea">dfdd</div>
+		<div id="titlea"></div>
 		<div id="title-b">리뷰게시판</div>
 	</div>
 	<div id="main-area">
