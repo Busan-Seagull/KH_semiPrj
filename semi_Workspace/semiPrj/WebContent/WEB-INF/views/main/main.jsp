@@ -300,41 +300,25 @@
 						<th class="t-3">작성자</th>
 						<th class="t-4">조회수</th>
 					</tr>
-
-					<tr class="notice">
-						<td class="t-1">공지</td>
-						<td class="t-2">제목</td>
-						<td class="t-3">작성자</td>
-						<td class="t-4">조회수</td>
+				
+					<c:forEach items="${cList}" var="cvo">
+					<c:if test="${cvo.typeNo != '200'}">
+						<tr onclick="location.href='/dobby/commu/detail?bno=${cvo.postNo}'">
+					</c:if>
+					<c:if test="${cvo.typeNo == '200'}">
+						<tr class="notice" onclick="location.href='/dobby/commu/detail?bno=${cvo.postNo}'">
+					</c:if>
+					<c:choose>
+						<c:when test="${cvo.typeNo == '200'}"><td class="t-1">공지</td></c:when>
+						<c:when test="${cvo.typeNo == '201'}"><td class="t-1">일반</td></c:when>
+						<c:when test="${cvo.typeNo == '202'}"><td class="t-1">TIP</td></c:when>
+						<c:when test="${cvo.typeNo == '203'}"><td class="t-1">추천</td></c:when>
+					</c:choose>
+						<td class="t-2">${cvo.title}</td>
+						<td class="t-3">${cvo.userNo}</td>
+						<td class="t-4">${cvo.views}</td>
 					</tr>
-
-					<tr>
-						<td class="t-1">비고</td>
-						<td class="t-2">제목</td>
-						<td class="t-3">작성자</td>
-						<td class="t-4">조회수</td>
-					</tr>
-					
-					<tr>
-						<td class="t-1">비고</td>
-						<td class="t-2">제목</td>
-						<td class="t-3">작성자</td>
-						<td class="t-4">조회수</td>
-					</tr>
-					
-					<tr>
-						<td class="t-1">비고</td>
-						<td class="t-2">제목</td>
-						<td class="t-3">작성자</td>
-						<td class="t-4">조회수</td>
-					</tr>
-					
-					<tr>
-						<td class="t-1">비고</td>
-						<td class="t-2">제목</td>
-						<td class="t-3">작성자</td>
-						<td class="t-4">조회수</td>
-					</tr>
+					</c:forEach>
 
 				</table>
 			</div>

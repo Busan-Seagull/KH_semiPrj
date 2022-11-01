@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.dobby.banner.service.BannerService;
 import com.kh.dobby.banner.vo.BannerVo;
+import com.kh.dobby.commu.service.CommuService;
+import com.kh.dobby.commu.vo.CommuVo;
 import com.kh.dobby.member.vo.MemberVo;
 
 @WebServlet(urlPatterns = "")
@@ -20,7 +22,6 @@ public class MainController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    
-	    List<BannerVo> list = new BannerService().selectList();
 	    HttpSession s = req.getSession();
 	    
 	    MemberVo loginMember = (MemberVo)s.getAttribute("loginMember");
@@ -32,7 +33,11 @@ public class MainController extends HttpServlet{
 	        }  
 	    }
 	    
+       List<BannerVo> list = new BannerService().selectList();
+       List<CommuVo> cList = new CommuService().selectMainList();
+	    
 	    if(list!=null) {
+	        req.setAttribute("cList", cList);
 	        req.setAttribute("list", list);
 	        req.getRequestDispatcher("/WEB-INF/views/main/main.jsp").forward(req, resp);
 	    }else {
