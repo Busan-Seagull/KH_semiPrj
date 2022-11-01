@@ -78,13 +78,13 @@ bottom:40px;
 }
 	
 }
-#title-a{
-	position:relative;
+#titlea{
+	
 	width: 2px;
 	height: 25px;
 	background-color: black;
 	border: 1px solid black;
-	z-index:9;
+	
 
 	
 	
@@ -125,15 +125,18 @@ bottom:40px;
 }
 
 
-}
-#x, #z{
-	position:relative;
-	left:500px;
+
+
+#form-area{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 #z{
 	width:80px;
 	height:30px;
+
 	
 }
 #x{
@@ -142,6 +145,7 @@ bottom:40px;
 	height:40px;
 	color:white;
 	border-radius: 1.5rem;
+	margin-left: 10px;
 }
 .btn{
 	width:5px;
@@ -153,7 +157,7 @@ bottom:40px;
 
    #page-area{
         width: 50%;
-        height: 15%
+        height: 15%;
         display:flex;
         justify-content:center;
         align-items:center;
@@ -238,19 +242,24 @@ border-bottom: 3px solid #004412;
 
 
 <div id="main-main">
-	<form action="/dobby/reviewList" method="get">
-		<c:if test="${not empty loginMember}">
+	<c:if test="${not empty loginMember}">
 			<div id="write-review"><a href="/dobby/reviewWrite">글쓰기</a></div>
 		</c:if>
-		<select name="z" id="z" ><!-- onchange="setValue()" -->
+	<form action="/dobby/reviewList" method="get">
+		<div id="form-area">
+			<select name="z" id="z" ><!-- onchange="setValue()" -->
 			<option >선택</option>
 			<option value="uptodate">최신</option>
 			<option value="serviceNo">서비스</option>
 		</select>
 		<input id="x" type="submit" name="q" value="검색">
 		<!--  onclick='javascript:setValue();' -->
+		</div>
+		
+		
+	</form>
 	<div id="title">
-		<div id="title-a"></div>
+		<div id="titlea">dfdd</div>
 		<div id="title-b">리뷰게시판</div>
 	</div>
 	<div id="main-area">
@@ -285,7 +294,7 @@ border-bottom: 3px solid #004412;
 			<li><a href="/dobby/reviewList?pno=<%=pv.getMaxPage()%>" class="last">>></a></li>
 		</ul>
 	</div>
-	</form>
+	
 </div>
 
 

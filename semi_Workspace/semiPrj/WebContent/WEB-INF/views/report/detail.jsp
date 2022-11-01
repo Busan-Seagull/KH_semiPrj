@@ -231,13 +231,12 @@ font-size: large;
 	width:100px;
 	height:100px;
 	position:relative;
-	top:100px;
-	right:300px;
+	right:25px;
 	color:white;
 	
 }
 div{
-	white-space:pre-line;
+	--white-space:pre-line;
 	word-break:break-all;
 }
 
@@ -252,7 +251,7 @@ div{
 
 #r4{
 	positive:relative;
-	bottom:54px;
+	bottom:24px;
 	left:770px;
 
 	
@@ -260,7 +259,7 @@ div{
 
 #r5{
 	positive:relative;
-	bottom:120px;
+	bottom:75px;
 	left:830px;
 }
 	
@@ -272,8 +271,8 @@ div{
 	border-bottom: 5px solid #004412;
 	box-sizing:border-box;
 	position: relative;
-	left:181px;
-	bottom: 47px;
+	left:183px;
+	bottom: 31px;
 	line-height:50px;
 	
 	
@@ -287,7 +286,11 @@ div{
 	text-align: center;
 	position:relative;
 	line-height:50px;
-	top:20px;
+	top:19px;
+	left:5px;
+}
+#admin-label{
+	float:right;
 }
 
 
@@ -307,7 +310,8 @@ div{
 		<div id="title-a"></div>
 		<div id="title-b">신고게시판</div>
 	</div>
-	<form action="/dobby/detail?postNo=<%=vo.getPostNo() %>" method="post">
+	<form action="/dobby/detail" method="post">
+	<input type="hidden" name="postNo" value="<%=vo.getPostNo()%>">
 	
 		<div id="main">
 			<div id="f">
@@ -379,27 +383,25 @@ div{
 			<div class="i1"><a href="/dobby/list" >글목록</a></div>
 		</div>
 		<br><br>
-		
-		<div id=reply-area-one>
-			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() == null){%>
-				<div id="reply-main">
-					<div id="top1">댓글</div>
-					<div id="admin-reply"><label id="admin-label">관리자</label></div>
-					<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
-					<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
-				</div>
-			<%}%>
-		
-			
-			<%if("3".equals(loginMember.getRightNo())){%>
+		<%if("3".equals(loginMember.getRightNo())){%> 
+		<div id=reply-area-one> 
+			<div id="reply-main">
+				<div id="top1">댓글</div>
+				
+				<div id="bottom2">
+				<div id="admin-reply"><label id="admin-label">관리자</label></div>
+				<textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea>
+				</div> 
+				<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
+			</div>
 			<div id="reply-main2">
 				<div id="reply-title2"><label>관리자</label></div>
-				<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=vo.getReportComment() %></div>
-				<div ><input class="r3" id="r4" type="button" name="adminReport" value="수정"></div> 
-				<div ><input class="r3" id="r5" type="button" name="adminReport" value="삭제"></div> 
+				<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${vo.reportComment}</div>
+				<div ><input class="r3" id="r4" type="submit" name="adminReport" value="수정"></div> 
+				<div ><input class="r3" id="r5" type="submit" name="adminReport" value="삭제"></div> 
 			</div>
-			<%}%>
 		</div>
+		<%}%> 
 	</form>	
 </div>
 	

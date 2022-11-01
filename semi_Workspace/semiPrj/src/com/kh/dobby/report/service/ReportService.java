@@ -162,6 +162,7 @@ public class ReportService {
     public List<ReportVo> selectReportList(String writer) {
         
         Connection conn = getConnection();
+        System.out.println(writer);
         List<ReportVo> voList = dao.selectReportList(conn,writer);
         
         close(conn);
