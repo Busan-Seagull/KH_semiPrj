@@ -242,11 +242,11 @@ div{
 }
 
 .r3{
-width:50px;
-height:50px;
-border-radius: 2rem;
-background-color:#EAE0D4;
-position:relative;
+	width:50px;
+	height:50px;
+	border-radius: 2rem;
+	background-color:#EAE0D4;
+	position:relative;
 
 }
 
@@ -384,7 +384,7 @@ position:relative;
 			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() == null){%>
 				<div id="reply-main">
 					<div id="top1">댓글</div>
-					<div id="admin-reply"><label id="admin-label"></label></div>
+					<div id="admin-reply"><label id="admin-label">관리자</label></div>
 					<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
 					<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
 				</div>
