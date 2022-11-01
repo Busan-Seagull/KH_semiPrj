@@ -24,7 +24,9 @@
 				<h1>예약이 완료되었습니다!</h1>
 			</div>
 			<div id="rs-service" class="flex-center">
-				<div id="rs-s-img"></div>
+				<div id="rs-s-img">
+					<img alt="" src="/dobby/${rv.sProfil}">
+				</div>
 				<div id="rs-s-info" class="flex-col">
 					<div id="rs-si-title"><h1>${sv.title}</h1></div>
 					<div id="rs-si-dobby">${sv.helper}</div>

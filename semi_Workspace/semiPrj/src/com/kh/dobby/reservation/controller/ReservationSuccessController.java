@@ -58,8 +58,11 @@ public class ReservationSuccessController extends HttpServlet{
             req.getRequestDispatcher("/WEB-INF/views/reservation/reservation.jsp").forward(req, resp);            
         }else {
             ReservationVo newrv = new ReservationService().selectOne(rvNo);
+            
             String msg = "'"+newrv.getsTitle()+"' 예약이 신청되었습니다.\r\n";
             new AlarmService().insertAlarm(msg, newrv.getdNo());
+            
+            req.setAttribute("rv", newrv);
             req.getRequestDispatcher("/WEB-INF/views/reservation/reservationSuccess.jsp").forward(req, resp);	                    
         }
 	    

@@ -330,6 +330,11 @@
     background-color: gray;
 }
 
+#rs-s-img img{
+    width: 100%;
+    height: 100%;
+}
+
 #rs-sc-pay-info.flex-center, h1.flex-center{
     justify-content: flex-end;
 }
