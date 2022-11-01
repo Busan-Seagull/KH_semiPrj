@@ -184,7 +184,7 @@ li>div{
                     <li>
                     	<div class="slides-li-div">
                         <div class="slides-div1">
-                            <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
+                            <div class="s6"><img width="170px" height="170px" src="<%= voList.get(i).getProfileImg()%>"></div>
                             <div class="s1"><%=voList.get(i).getTitle() %></div>
                             <div class="s2"><%=voList.get(i).getServiceIntro() %></div>
                             <div class="s5"><%=voList.get(i).getCharge() %></div>

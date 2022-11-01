@@ -59,7 +59,7 @@ pageEncoding="UTF-8"%>
 	background-color: #004412;
 	color:white;
 	position: relative;
-	top:650px;
+	top:670px;
 	left:420px;
 	text-align: center;
 	margin: 0 auto;

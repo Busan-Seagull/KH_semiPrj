@@ -271,7 +271,16 @@ input[type=submit]{
 #report-content{
 	background-color:#004412;
 	color:white;
+	height: 45px;
 }
+#list-popup{
+	color: lightgray;
+	position:relative;
+	bottom:45px;
+	left:300px;
+
+}
+
 
 
 
@@ -481,7 +490,7 @@ input[type=submit]{
 					<div class="list-no2"><%=voList.get(i).getTitle() %></div>
 					<div class="list-no2"><%=voList.get(i).getWriter()%></div>
 					<div id="report-span">
-						<div id="report-content">신고내용</div>
+						<div id="report-content">신고내용 <div id="list-popup"><a href="/dobby/detail?postNo=<%=voList.get(i).getPostNo() %>">리스트로 가기</a></div></div>
 						<p><div id="report-content-content"><%=voList.get(i).getContent() %></div></p>
 					</div>
 				<%} %>
