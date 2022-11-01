@@ -122,7 +122,7 @@ overflow:auto;
 	text-align:right;
 	line-height:100px;
 	position:relative;
-	bottom: 30px;
+	top:80px;
 	
 }
 #reply-main2{
@@ -184,7 +184,8 @@ flex-direction:column;
 border-bottom: 5px double #004412;
 position:relative;
 left: 400px;
-top: 50px;
+bottom:50px;
+
 text-align:center;
 font-size: large;
 

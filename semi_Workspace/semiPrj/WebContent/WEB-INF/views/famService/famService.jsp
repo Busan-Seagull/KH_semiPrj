@@ -102,7 +102,13 @@ li>div{
     font-size: x-large;
     position: relative;
     top: 40px;
-    left: 25px;
+    left: 80px;
+}
+.s2{
+    font-size: large;
+    position: relative;
+    top: 60px;
+    left: 95px;
 }
 
 .s3{
@@ -122,14 +128,19 @@ li>div{
 }
 .s5{
     font-size: large;
-   position: relative;
-   top:80px;
-    left: 90px;
+    position: relative;
+    top:80px;
+    left: 100px;
 }
 .s6{
     position: relative;
     top:20px;
     left: 65px;
+}
+.s7{
+    position: relative;
+    top:63px;
+    left: 160px;
 }
 .slides-li-div{
     display: flex;
@@ -174,8 +185,10 @@ li>div{
                     	<div class="slides-li-div">
                         <div class="slides-div1">
                             <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
-                            <div class="s1">집고치는 집요정 | 집요정</div>
-                            <div class="s5">평당 15,000원</div>
+                            <div class="s1"><%=voList.get(i).getTitle() %></div>
+                            <div class="s2"><%=voList.get(i).getServiceIntro() %></div>
+                            <div class="s5"><%=voList.get(i).getCharge() %></div>
+                            <div class="s7">/<%=voList.get(i).getChargeUnit() %></div>
                         </div>
                         <div class="slides-div2">
                             <div class="s3">★★★★★ </div>
