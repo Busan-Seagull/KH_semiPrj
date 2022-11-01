@@ -224,17 +224,17 @@ font-size: large;
     
 }
 	
-	
-
 
 #admin-reply{
 	width:100px;
 	height:100px;
-	position:relative;
-	top:100px;
-	right:300px;
-	color:white;
-	
+	float:left;
+
+}
+
+#admin-label{
+margin:auto;
+color:white;
 }
 div{
 	word-break:break-all;
@@ -251,7 +251,7 @@ div{
 
 #r4{
 	positive:relative;
-	bottom:54px;
+	bottom:5px;
 	left:770px;
 
 	
@@ -259,8 +259,9 @@ div{
 
 #r5{
 	positive:relative;
-	bottom:120px;
+	bottom:55px;
 	left:830px;
+	
 }
 	
 
@@ -271,8 +272,8 @@ div{
 	border-bottom: 5px solid #004412;
 	box-sizing:border-box;
 	position: relative;
-	left:181px;
-	bottom: 47px;
+	left:190px;
+	bottom:10px;
 	line-height:50px;
 	
 	
@@ -286,7 +287,8 @@ div{
 	text-align: center;
 	position:relative;
 	line-height:50px;
-	top:20px;
+	top:40px;
+	left:10px;
 }
 
 
@@ -307,6 +309,7 @@ div{
 		<div id="title-b">신고게시판</div>
 	</div>
 	<form action="/dobby/detail?postNo=<%=vo.getPostNo() %>" method="post">
+	<input type="hidden" name="postNo" value="<%=vo.getPostNo()%>">
 	
 		<div id="main">
 			<div id="f">
@@ -379,26 +382,22 @@ div{
 		</div>
 		<br><br>
 		
+		<%if("3".equals(loginMember.getRightNo())){%>
 		<div id=reply-area-one>
-			<%if("3".equals(loginMember.getRightNo())&& vo.getReportComment() == null){%>
 				<div id="reply-main">
 					<div id="top1">댓글</div>
-					<div id="admin-reply"><label id="admin-label">관리자</label></div>
-					<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
+					<!-- <div id="admin-reply"><label id="admin-label">관리자</label></div> -->
+					<div id="bottom2"><label id="admin-label">관리자</label><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
 					<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
 				</div>
-			<%}%>
-		
-			
-			<%if("3".equals(loginMember.getRightNo())){%>
 			<div id="reply-main2">
 				<div id="reply-title2"><label>관리자</label></div>
-				<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=vo.getReportComment() %></div>
-				<div ><input class="r3" id="r4" type="button" name="adminReport" value="수정"></div> 
-				<div ><input class="r3" id="r5" type="button" name="adminReport" value="삭제"></div> 
+				<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ vo.getReportComment()}</div>
+				<div ><input class="r3" id="r4" type="submit" name="adminReport" value="수정"></div> 
+				<div ><input class="r3" id="r5" type="submit" name="adminReport" value="삭제"></div> 
 			</div>
-			<%}%>
 		</div>
+		<%}%>
 	</form>	
 </div>
 	

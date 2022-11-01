@@ -72,11 +72,16 @@ pageEncoding="UTF-8"%>
 }
 
 
-#title{
-position:relative;
-bottom:40px;
+#selec-title{
+display: grid;
+grid-template-columns: 1fr 1fr;
+height:100px;
 }
 	
+#title{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
 #titlea{
 	
@@ -84,12 +89,7 @@ bottom:40px;
 	height: 25px;
 	background-color: black;
 	border: 1px solid black;
-	
 
-	
-	
-	
-	
 }
 #title-b{
 	position:relative;
@@ -245,23 +245,30 @@ border-bottom: 3px solid #004412;
 	<c:if test="${not empty loginMember}">
 			<div id="write-review"><a href="/dobby/reviewWrite">글쓰기</a></div>
 		</c:if>
-	<form action="/dobby/reviewList" method="get">
-		<div id="form-area">
-			<select name="z" id="z" ><!-- onchange="setValue()" -->
-			<option >선택</option>
-			<option value="uptodate">최신</option>
-			<option value="serviceNo">서비스</option>
-		</select>
-		<input id="x" type="submit" name="q" value="검색">
-		<!--  onclick='javascript:setValue();' -->
+	
+		<div id="selec-title">
+			<div id="title">
+				<div id="titlea"></div>
+				<div id="title-b">리뷰게시판</div>
+			</div>
+
+			<div id="form-area">
+				<form action="/dobby/reviewList" method="get">
+					<select name="z" id="z" ><!-- onchange="setValue()" -->
+					<option >선택</option>
+					<option value="uptodate">최신</option>
+					<option value="serviceNo">서비스</option>
+				</select>
+				<input id="x" type="submit" name="q" value="검색">
+				<!--  onclick='javascript:setValue();' -->
+				</form>
+				</div>
+				
+				
+			
+			
 		</div>
 		
-		
-	</form>
-	<div id="title">
-		<div id="titlea"></div>
-		<div id="title-b">리뷰게시판</div>
-	</div>
 	<div id="main-area">
 		
 			<div class="t-no1" id="t18">번호</div>

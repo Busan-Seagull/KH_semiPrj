@@ -167,9 +167,10 @@ li>div{
                 <div id="b">인기 서비스</div>
             </div>
             <div class="slide-wrapper">
+            
                 <ul class="slides">
+                <% for(int i = 0; i<voList.size(); i++){%>
                     <li>
-                    <% for(int i = 0; i<voList.size(); i++){%>
                     	<div class="slides-li-div">
                         <div class="slides-div1">
                             <div class="s6"><img width="170px" height="170px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ54K__cioe0g9epDBDMOP0S1qWRvIVOOyIww&usqp=CAU"></div>
@@ -181,10 +182,10 @@ li>div{
                             <div class="s4">(255개)  "이 집 청소 엄청 잘해요!"</div>
                         </div>
                     </div>
-                    <%}%>
-                        
                     </li>  
+                    <%}%>
                 </ul>
+                 
             </div>
             <p class="controls">
                 <span class="prev">prev</span>
