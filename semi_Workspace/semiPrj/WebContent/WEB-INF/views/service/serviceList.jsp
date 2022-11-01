@@ -27,7 +27,7 @@ String root = request.getContextPath();
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div id="main-baner-box">
-		<div id="main-baner"></div>
+		<img src="/dobby/resources/img/baner/리스트배너.png" alt="">
 	</div>
 	<main>
 		<div id="service-category">
@@ -45,7 +45,10 @@ String root = request.getContextPath();
 		<div id="service-main">
 			
 				<div id="service-main-category">
-					${category}
+					<span> ${category}</span>
+					<c:if test="${region != null}">
+						<span> > ${region}</span>
+					</c:if>
 				</div>
 			
 			<div id="service-main-nav">

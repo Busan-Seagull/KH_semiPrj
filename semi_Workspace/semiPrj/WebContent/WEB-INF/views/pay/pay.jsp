@@ -11,21 +11,59 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/dobby/resources/css/pay.css">
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- 아임포트 -->
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 
+<script>
+	var IMP = window.IMP;
+	IMP.init('imp52718328');//iamport 대신 자신의 "가맹점 식별코드"를 사용
+
+	function requestPay() {
+		IMP.request_pay({
+			pg: "kakaopay.TC0ONETIME",
+			pay_method: "card",
+			merchant_uid : 'merchant_'+new Date().getTime(),
+			name : '결제테스트',
+			amount : 10000,
+			buyer_email : 'iamport@siot.do',
+			buyer_name : '구매자',
+			buyer_tel : '010-1234-5678',
+			buyer_addr : '서울특별시 강남구 삼성동',
+			buyer_postcode : '123-456'
+		}, 
+		function (rsp) { //callback
+			console.log(rsp);
+			if (rsp.success) {
+			var msg = '결제가 완료되었습니다.';
+			alert(msg);
+			location.href='';
+			} else {
+			var msg = '결제에 실패하였습니다.';
+			msg += '에러내용 : ' + rsp.error_msg;
+			alert(msg);
+			location.href = '/dobby';
+			}
+		 });
+	}
+	
+</script>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<form action="" id="wrap" method="post" onsubmit="return doPay();">
 		<!-- 견적 금액 -->
-		<input type="number" value="10000" hidden>
-		<input type="text" value="${rv.reservation_no}" name="reservationNo"
-			hidden>
+		<input type="number" value="10000" hidden> <input type="text"
+			value="${rv.reservation_no}" name="reservationNo" hidden>
 		<div id="main-wrap">
 			<div id="order-history-wrap">
 				<div class="main-h1" id="order-history">주문내역</div>
 				<div id="reservation-info">
 					<div id="reserv-info-pic">
-						<img src="/dobby/${rv.dProfil}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
+						<img src="/dobby/${rv.dProfil}" alt=""
+							onerror="this.src='/dobby/resources/img/dust.png';">
 					</div>
 					<div id="reserv-info-helper">${rv.dName}</div>
 					<div id="reserv-info-service">${rv.sTitle}</div>
@@ -77,12 +115,15 @@
 							<tr>
 								<td class="text-grey">사용가능 포인트</td>
 								<td class="text-green">35,000p</td>
-								<td id="point-input-div">
-									<c:if test="${empty rv.reservationAmount}">
-									<input id="use-point" type="number" name="point" value="0" disabled></td>
+								<td id="point-input-div"><c:if
+										test="${empty rv.reservationAmount}">
+										<input id="use-point" type="number" name="point" value="0"
+											disabled></td>
 								</c:if>
-									<c:if test="${rv.reservationAmount gt 0}">
-									<input id="use-point" type="number" name="point" value="0" onkeyup="checkZero()"></td>
+								<c:if test="${rv.reservationAmount gt 0}">
+									<input id="use-point" type="number" name="point" value="0"
+										onkeyup="checkZero()">
+									</td>
 								</c:if>
 							</tr>
 						</table>
@@ -137,13 +178,11 @@
 				<table>
 					<tr>
 						<td class="payment-detail-text">서비스 금액</td>
-						<td class="payment-detail-input">
-						<c:if test="${rv.reservationAmount eq null}">
-						<fmt:formatNumber value="10000" pattern="#,###" />
-						</c:if>
-						<fmt:formatNumber value="${rv.reservationAmount}" pattern="#,###" />
-						원
-						</td>
+						<td class="payment-detail-input"><c:if
+								test="${rv.reservationAmount eq null}">
+								<fmt:formatNumber value="10000" pattern="#,###" />
+							</c:if> <fmt:formatNumber value="${rv.reservationAmount}"
+								pattern="#,###" /> 원</td>
 					</tr>
 					<tr>
 						<td class="payment-detail-text">포인트 사용</td>
@@ -155,11 +194,11 @@
 				<table>
 					<tr>
 						<td class="payment-detail-text">총 결제 금액</td>
-						<td id="final-amount" class="payment-detail2-input">
-						<c:if test="${rv.reservationAmount eq null}">
-						<fmt:formatNumber value="10000" pattern="#,###" />
-						</c:if>
-						<fmt:formatNumber value="${rv.reservationAmount}" pattern="#,###" />원</td>
+						<td id="final-amount" class="payment-detail2-input"><c:if
+								test="${rv.reservationAmount eq null}">
+								<fmt:formatNumber value="10000" pattern="#,###" />
+							</c:if> <fmt:formatNumber value="${rv.reservationAmount}"
+								pattern="#,###" />원</td>
 					</tr>
 				</table>
 			</div>
@@ -168,28 +207,23 @@
 				<label for="payment-agree-checkbox">주문내역을 확인했으며 결제에
 					동의합니다(필수)</label>
 			</div>
-			<input type="submit" id="payment-btn" value="결제하기">
+			<input type="submit" id="payment-btn" value="결제하기" onclick="requestPay()">
 			<div id="cancel-btn">결제취소</div>
-			
+
 		</div>
 
 	</form>
-	<button onclick="check()">버튼</button>
+	<button onclick="requestPay();">카카오페이 임시 버튼</button>
 
-	
+
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
 	<script defer>
-		
-	
-	
-	
-	
 	
 	function checkZero(){
 	var use = document.querySelector('#use-point');
 		if(use.value<0){
-			use.value =0 ;
+			use.value = 0 ;
 		}
 		if(use.value>${rv.reservationAmount}){
 			use.value = ${rv.reservationAmount};
@@ -206,8 +240,8 @@
 		
 	}
 	
-	
 	</script>
+
 	<script>
 	function doPay(){
 	
@@ -228,18 +262,13 @@
 			alert("결제에 동의 해주세요");
 			return false;
 		}else{
-			return true;
+			console.log('다통과');
+			requestPay();
 		}
 
 	}
 	</script>
-	<script>
-		// <fmt:parseNumber value="${rv.charge}" var="charge"/>
-		// if(${empty rv.reservationAmount}){
-		// 	document.querySelector('#use-point').disabled = true;
-		// 	console.log('되고있냐.?');
-		// }
-	</script>
+	
 </body>
 
 </html>
