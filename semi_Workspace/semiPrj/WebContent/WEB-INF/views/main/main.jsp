@@ -184,46 +184,19 @@
 				<div id="pd-contain" style="left: 0;">
 
 					<!-- 개인집요정 이동리읔 아직 -->
-					<a href="" class="item flex-center shadow-box">
-						<div class="item-img"></div>
+					<c:forEach items="zList" var="vo">
+					
+					<a href="/dobby/?no=${vo.userNo }" class="item flex-center shadow-box">
+						<img alt="" src="/dobby/${vo.imgLink }" class="item-img">
 						<div class="text-contain">
-							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-							<div class="item-title">title</div>
-							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>${vo.grade }</p></div>
+							<div class="item-title">${vo.nick }</div>
+							<div class="item-review flex-center"><p>리뷰</p><p>${vo.review }</p></div>
 						</div>
 					</a>
-										<a href="" class="item flex-center shadow-box">
-						<div class="item-img"></div>
-						<div class="text-contain">
-							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-							<div class="item-title">title</div>
-							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-						</div>
-					</a>
-										<a href="" class="item flex-center shadow-box">
-						<div class="item-img"></div>
-						<div class="text-contain">
-							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-							<div class="item-title">title</div>
-							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-						</div>
-					</a>
-										<a href="" class="item flex-center shadow-box">
-						<div class="item-img"></div>
-						<div class="text-contain">
-							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-							<div class="item-title">title</div>
-							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-						</div>
-					</a>
-										<a href="" class="item flex-center shadow-box">
-						<div class="item-img"></div>
-						<div class="text-contain">
-							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-							<div class="item-title">title</div>
-							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-						</div>
-					</a>
+					
+					</c:forEach>
+			
 					<!--  -->
 
 				</div>
@@ -242,38 +215,17 @@
 				<div id="ps-contain" style="left: 0;">
 
 					<!--  -->
-					<a href="/dobby/service/detail" class="item flex-center shadow-box">
-						<div class="item-img"></div>
+					<c:forEach items="${sList}" var="vo">
+					<a href="/dobby/service/detail?sno=${vo.serviceNo }" class="item flex-center shadow-box">
+						<img alt="" src="/dobby/${vo.servicePic_1 }" class="item-img">
 						<div class="text-contain">
 							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-							<div class="item-title">title</div>
+							<div class="item-title">${vo.title }</div>
 							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
 						</div>
 					</a>
-										<a href="/dobby/service/detail" class="item flex-center shadow-box">
-						<div class="item-img"></div>
-						<div class="text-contain">
-							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-							<div class="item-title">title</div>
-							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-						</div>
-					</a>
-										<a href="/dobby/service/detail" class="item flex-center shadow-box">
-						<div class="item-img"></div>
-						<div class="text-contain">
-							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-							<div class="item-title">title</div>
-							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-						</div>
-					</a>
-										<a href="/dobby/service/detail" class="item flex-center shadow-box">
-						<div class="item-img"></div>
-						<div class="text-contain">
-							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-							<div class="item-title">title</div>
-							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-						</div>
-					</a>
+					</c:forEach>
+
 					<!--  -->
 
 				</div>

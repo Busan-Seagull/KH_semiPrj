@@ -15,6 +15,10 @@ import com.kh.dobby.banner.vo.BannerVo;
 import com.kh.dobby.commu.service.CommuService;
 import com.kh.dobby.commu.vo.CommuVo;
 import com.kh.dobby.member.vo.MemberVo;
+import com.kh.dobby.service.service.ServiceService;
+import com.kh.dobby.service.vo.ServiceVo;
+import com.kh.dobby.supercleaner.service.SuperCleanerService;
+import com.kh.dobby.supercleaner.vo.ZipVo;
 
 @WebServlet(urlPatterns = "")
 public class MainController extends HttpServlet{
@@ -35,11 +39,15 @@ public class MainController extends HttpServlet{
 	    
        List<BannerVo> list = new BannerService().selectList();
        List<CommuVo> cList = new CommuService().selectMainList();
+       List<ZipVo> zList = new SuperCleanerService().getList();
+       List<ServiceVo> sList = new ServiceService().listPopUser();
 	    
 	    if(list!=null) {
-	        req.setAttribute("cList", cList);
-	        req.setAttribute("list", list);
-	        req.getRequestDispatcher("/WEB-INF/views/main/main.jsp").forward(req, resp);
+            req.setAttribute("zList", zList);
+            req.setAttribute("sList", sList);
+            req.setAttribute("cList", cList);
+            req.setAttribute("list", list);
+            req.getRequestDispatcher("/WEB-INF/views/main/main.jsp").forward(req, resp);
 	    }else {
 	        req.getRequestDispatcher("/WEB-INF/views/main/main.jsp").forward(req, resp);
 	    }

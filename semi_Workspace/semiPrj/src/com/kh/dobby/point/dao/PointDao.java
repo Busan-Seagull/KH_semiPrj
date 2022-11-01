@@ -12,7 +12,7 @@ public class PointDao {
 
     public List<PointVo> getList(Connection conn, String userNo) {
         
-        String sql = "SELECT POINT, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT POINT, \"DATE\", SCORE, '이벤트' AS TYPE, USER_NO FROM EVENTHISTORY ) UNION SELECT POINT, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT POINT, PAYMENT_DATE AS \"DATE\", RESERVATION_AMOUNT AS SCORE, '결제' AS TYPE, USER_NO FROM PAYMENT JOIN RESERVATION USING(RESERVATION_NO) ) WHERE USER_NO = ? ORDER BY \"DATE\" DESC";
+        String sql = "SELECT P, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT POINT AS P, \"DATE\", SCORE, '이벤트' AS TYPE, USER_NO FROM EVENTHISTORY ) UNION SELECT P, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT RESERVATION_AMOUNT*0.1 as \"P\", PAYMENT_DATE AS \"DATE\", RESERVATION_AMOUNT AS SCORE, '결제적립' AS TYPE, USER_NO FROM PAYMENT JOIN RESERVATION USING(RESERVATION_NO) ) UNION SELECT P, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT 0-POINT AS P, PAYMENT_DATE AS \"DATE\", RESERVATION_AMOUNT AS SCORE, '결제사용' AS TYPE, USER_NO FROM PAYMENT JOIN RESERVATION USING(RESERVATION_NO) ) WHERE USER_NO = ? ORDER BY \"DATE\" DESC";
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         
@@ -27,7 +27,7 @@ public class PointDao {
             while(rs.next()) {
                 PointVo vo = new PointVo();
                 vo.setDate(rs.getString("DATE"));
-                vo.setPoint(rs.getString("POINT"));
+                vo.setPoint(rs.getString("P"));
                 vo.setScore(rs.getString("SCORE"));
                 vo.setType(rs.getString("TYPE"));
                 vo.setUserNo(rs.getString("USER_NO"));
@@ -45,7 +45,7 @@ public class PointDao {
     
 public int getSumPoinst(Connection conn, String userNo) {
         
-        String sql = "SELECT SUM(POINT) FROM ( SELECT POINT, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT POINT, \"DATE\", SCORE, '이벤트' AS TYPE, USER_NO FROM EVENTHISTORY ) UNION SELECT POINT, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT POINT, PAYMENT_DATE AS \"DATE\", RESERVATION_AMOUNT AS SCORE, '결제' AS TYPE, USER_NO FROM PAYMENT JOIN RESERVATION USING(RESERVATION_NO) ) WHERE USER_NO = ? )";
+        String sql = "SELECT SUM(P) FROM ( SELECT P, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT POINT AS P, \"DATE\", SCORE, '이벤트' AS TYPE, USER_NO FROM EVENTHISTORY ) UNION SELECT P, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT RESERVATION_AMOUNT*0.1 as \"P\", PAYMENT_DATE AS \"DATE\", RESERVATION_AMOUNT AS SCORE, '결제적립' AS TYPE, USER_NO FROM PAYMENT JOIN RESERVATION USING(RESERVATION_NO) ) UNION SELECT P, \"DATE\", SCORE, \"TYPE\", USER_NO FROM ( SELECT 0-POINT AS P, PAYMENT_DATE AS \"DATE\", RESERVATION_AMOUNT AS SCORE, '결제사용' AS TYPE, USER_NO FROM PAYMENT JOIN RESERVATION USING(RESERVATION_NO) ) WHERE USER_NO = ? )";
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         
@@ -58,7 +58,7 @@ public int getSumPoinst(Connection conn, String userNo) {
             rs = pstmt.executeQuery();
             
             if(rs.next()) {
-                result = rs.getInt("SUM(POINT)");
+                result = rs.getInt("SUM(P)");
             }
             
         } catch (Exception e) {

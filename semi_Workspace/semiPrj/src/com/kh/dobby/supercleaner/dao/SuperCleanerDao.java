@@ -36,7 +36,8 @@ public class SuperCleanerDao {
 
             rs = pstmt.executeQuery();
             
-            while(rs.next()) {
+            int i = 0;
+            while(rs.next()&&i<10) {
                 ZipVo vo = new ZipVo();
                 vo.setGrade(rs.getString("GRADE"));
                 vo.setImgLink(rs.getString("IMG_LINK"));
@@ -45,7 +46,7 @@ public class SuperCleanerDao {
                 vo.setUserNo(rs.getString("USER_NO"));
                 
                 list.add(vo);
- 
+                i++;
             }
             
         } catch (Exception e) {
