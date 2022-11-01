@@ -237,7 +237,6 @@ font-size: large;
 	
 }
 div{
-	white-space:pre-line;
 	word-break:break-all;
 }
 
