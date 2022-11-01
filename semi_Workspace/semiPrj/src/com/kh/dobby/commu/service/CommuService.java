@@ -43,8 +43,14 @@ public class CommuService {
 
     public List<CommuVo> selectList(PageVo pv,int catename) {
      Connection conn = JDBCTemplate.getConnection();
-
-        List<CommuVo>list=Commudao.selectList(conn,pv,catename);
+     List<CommuVo>list=null;
+         if(catename==201){
+            list=Commudao.selectListALL(conn,pv);
+         }else {
+             list=Commudao.selectList(conn,pv,catename);
+        }
+            
+       
         
         JDBCTemplate.close(conn);
         
@@ -140,7 +146,19 @@ public class CommuService {
         
         return list;
     }
+    
+    
+    //메인용 게시물 조회 
+    public List<CommuVo> selectMainList() {
+        Connection conn = JDBCTemplate.getConnection();
+        List<CommuVo>mainList=Commudao.selectMainList(conn);
 
+           JDBCTemplate.close(conn);
+           
+           return mainList;
+
+       }
+    
 
     
 

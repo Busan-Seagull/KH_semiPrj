@@ -14,7 +14,7 @@ public class MemberDao {
 
     public MemberVo selectOne(Connection conn, MemberVo vo) {
        
-            String sql="SELECT U.USER_NO,U.RIGHT_NO,U.ID,U.PWD,U.NAME,U.EMAIL, U.NICK,U.ADDRESS,U.PHONE,U.ENROLL_DATE,U.QUIT_YN, U.MODIFY_DATE,U.REPORT_CNT,D.BR_NUM,D.ACCOUNT FROM \"USER\" U left JOIN \"DOBBY\" D ON U.USER_NO =D.USER_NO WHERE U.ID=? AND U.PWD=? AND U.QUIT_YN='N'";
+            String sql="SELECT U.USER_NO,U.RIGHT_NO,U.ID,U.PWD,U.NAME,U.EMAIL, U.NICK,U.ADDRESS,U.PHONE,U.ENROLL_DATE,U.QUIT_YN, U.MODIFY_DATE,U.REPORT_CNT,D.BR_NUM,D.ACCOUNT,D.IMG_LINK FROM \"USER\" U left JOIN \"DOBBY\" D ON U.USER_NO =D.USER_NO WHERE U.ID=? AND U.PWD=? AND U.QUIT_YN='N'";
            
             PreparedStatement pstmt=null;
             ResultSet rs=null;
@@ -46,6 +46,7 @@ public class MemberDao {
                     
                     String brNum=rs.getString("BR_NUM");
                     String account=rs.getString("ACCOUNT");
+                    String imgLink=rs.getString("IMG_LINK");
                     
                     loginMember=new MemberVo();
                     loginMember.setUserNo(userNo);
@@ -63,7 +64,7 @@ public class MemberDao {
                     loginMember.setReportCnt(reportCnt);
                     loginMember.setBr_num(brNum);
                     loginMember.setAccount(account);
-                  
+                    loginMember.setImg_link(imgLink);
                     
                    
                     
@@ -324,7 +325,7 @@ public class MemberDao {
             pstmt=conn.prepareStatement(sql);
             pstmt.setString(1, vo.getBr_num());
             pstmt.setString(2, vo.getAccount());
-            pstmt.setString(3, avo.getFilePath());
+            pstmt.setString(3, avo.getFilePath()+"/"+avo.getChangeName());
             pstmt.setString(4, vo.getUserNo());
             
            
@@ -363,7 +364,7 @@ public class MemberDao {
 
 
     public AttachmentVo selectAttachment(Connection conn, String userNo) {
-        String sql="SELECT * FROM \"DOBBY\" WHERE STATUS='O' AND BOARD_NO = ?";
+        String sql="SELECT D.USER_NO,D.BR_NUM,D.ACCOUNT,D.SERVICE_1,D.SERVICE_2,D.SERVICE_3,D.IMG_LINK,U.QUIT_YN FROM \"DOBBY\" D JOIN \"USER\" U ON D.USER_NO=U.USER_NO WHERE U.QUIT_YN='N' AND U.USER_NO=?";
         PreparedStatement pstmt=null;
         ResultSet rs =null;
         AttachmentVo vo=null;
@@ -375,24 +376,14 @@ public class MemberDao {
            
             
             if(rs.next()) {
-                String no = rs.getString("no");
-                String board_no = rs.getString("board_no");
-                String origin_name = rs.getString("origin_name");
-                String changd_name = rs.getString("changd_name");
-                String file_path = rs.getString("file_path");
-                String enroll_date = rs.getString("enroll_date");
-                String thumb_yn = rs.getString("thumb_yn");
-                String status = rs.getString("status");
+                String no = rs.getString("USER_NO");
+                String imgLink = rs.getString("IMG_LINK");
+  
                 
                 vo=new AttachmentVo();
                 vo.setNo(no);
-                vo.setBoard_no(board_no);
-                vo.setOrigin_name(origin_name);
-                vo.setChangd_name(changd_name);
-                vo.setFile_path(file_path);
-                vo.setEnroll_date(enroll_date);
-                vo.setThumb_yn(thumb_yn);
-                vo.setStatus(status);
+                vo.setFilePath(imgLink);
+               
                 
             }
             
@@ -407,7 +398,7 @@ public class MemberDao {
         return vo;
     }
 
-    }
+    
 
 }
 

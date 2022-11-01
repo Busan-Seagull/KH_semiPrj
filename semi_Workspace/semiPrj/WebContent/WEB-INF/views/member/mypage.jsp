@@ -1,11 +1,12 @@
+<%@page import="com.kh.dobby.common.AttachmentVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+  <%AttachmentVo avo=(AttachmentVo)request.getAttribute("attachmentVo");  %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DOBBY | 마이페이지</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <style>
@@ -24,7 +25,7 @@
     height: 100%;
     
     display: grid;
-    grid-template-rows: repeat(16,1fr);
+    grid-template-rows: repeat(15,1fr);
     border: 1px solid #999999;
     border-radius: 10px;
 
@@ -42,6 +43,12 @@
     padding-left: 70px;
 }
 
+#profile-area div:nth-child(1){
+    padding-left: 0px;
+}
+
+
+
 #profile-area div:not(#profile,#profile>div,#bin,#welcome):hover{
     background-color: rgb(215, 237, 202);
 }
@@ -54,26 +61,45 @@
 }
 
 #profile{
-    width: 200px;
-    
-    grid-row: span 4;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-row: span 3;
     display: flex;
     position: relative;
     box-sizing: border-box;
+    margin: auto;
    
 }
 
 #profile div{
-    width: 200px;
-    padding: 0;
-    
-    
+    width: 100%;
+    height:100%;
+
 }
 
 #profile #welcome{
-    position: absolute;
-    top: 120px;
+   
+    top: 30px;
     
+}
+
+#imgarea{
+    width: 100%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+   
+   
+}
+
+#profile #logo1{
+     display:flex;
+      width: 100px;
+     height: 100px;
+      border-radius: 100px;
+    
+      margin: auto;
+     
 }
 
 #profile #logo{
@@ -107,7 +133,7 @@
     display: grid;
     grid-template-rows: repeat(14,45px);
     grid-template-columns: 2fr 4fr;
-    margin-top: 20px;
+    margin: auto;
 }
 
 
@@ -216,14 +242,16 @@ input[type=submit]{
 <div id="mypage">
     <div id="profile-area">
         <div id = profile>
-         <div><img src="/dobby/<%=avo.%>/<%=avo.getChangd_name()%>" alt="" id="logo"></div>
-          <%if("2".equals(loginMember.getRightNo())){ %> 
-          <%}else{ %>
-            <div><img src="/dobby/resources/img/dust.png" alt="" id="logo"></div>
-          <%}%>
-            <div id="welcome"><%=loginMember.getNick() %> 님 환영합니다</div>
-        </div>
        
+          <%if("2".equals(loginMember.getRightNo())){ %> 
+            <div id="imgarea"><img src="/dobby/<%=loginMember.getImg_link()%>" alt="" id="logo1"></div>
+          <%}else{ %>
+            <div id="imgarea"><img src="/dobby/resources/img/dust.png" alt="" id="logo1"></div>
+          
+          <%}%>
+            
+        </div>
+        <div id="welcome"><%=loginMember.getNick() %> 님 환영합니다</div>
         <div id="userEdit"><span class="material-symbols-outlined">settings</span>내 정보 수정</div>
         <div><span class="material-symbols-outlined">list</span>예약 내역</div>
         <div><span class="material-symbols-outlined"> credit_card </span>결제 내역</div>

@@ -15,9 +15,8 @@ import javax.servlet.http.Part;
 import com.kh.dobby.common.AttachmentVo;
 import com.kh.dobby.common.FileUploader;
 import com.kh.dobby.member.service.MemberService;
-import com.kh.dobby.member.vo.DobbyAttachmentVo;
 import com.kh.dobby.member.vo.MemberVo;
-import com.kh.dobby.member.vo.RightVo;
+
 
 @WebServlet(urlPatterns = "/member/mypage")
 @MultipartConfig(
@@ -32,8 +31,8 @@ public class MemberMypageController extends HttpServlet{
       //화면
         HttpSession s = req.getSession();
         MemberVo loginMember=(MemberVo) s.getAttribute("loginMember");
-        AttachmentVo attachmentVo=new MemberService().selectAttachment(loginMember.getUserNo());
-        
+     
+       
 
         if(loginMember != null) {
             req.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(req, resp);
@@ -42,7 +41,7 @@ public class MemberMypageController extends HttpServlet{
             req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
         }
 
-        
+      
     }
   
     @Override
@@ -95,6 +94,7 @@ public class MemberMypageController extends HttpServlet{
            vo.setAddress(address);
            vo.setBr_num(br_num);
            vo.setAccount(account);
+           
          
           System.out.println(vo);
         
@@ -108,7 +108,7 @@ public class MemberMypageController extends HttpServlet{
         //화면선택
         
         if(updatedMember !=null) {
-            req.getSession().setAttribute("msg", "내 정보 수정성공!");
+//            req.getSession().setAttribute("msg", "내 정보 수정성공!");
             req.getSession().setAttribute("loginMember", updatedMember);
            req.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(req, resp);
         }else {

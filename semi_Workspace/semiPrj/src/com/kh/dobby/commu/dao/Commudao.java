@@ -67,7 +67,7 @@ public class Commudao {
         return result;
         
      }
-
+//카테고리별 리스트 조회
     public static List<CommuVo> selectList(Connection conn, PageVo pv, int cateNum) {
        String sql="SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT B.POST_NO,B.TYPE_NO,U.NICK as USER_NO,B.TITLE,B.CONTENT,B.WRITE_TIME,B.DELETE_YN,B.MODIFY_DATE,B.VIEWS FROM BOARD B JOIN \"USER\" U ON B.USER_NO=U.USER_NO WHERE B.DELETE_YN='N' AND B.TYPE_NO=? ORDER BY B.POST_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
     
@@ -82,6 +82,67 @@ public class Commudao {
         pstmt.setInt(1,cateNum);
         pstmt.setInt(2, start);
         pstmt.setInt(3, end);
+        rs=pstmt.executeQuery();
+       
+        
+        while (rs.next()) {
+            String postNo = rs.getString("POST_NO");
+            String typeNo = rs.getString("TYPE_NO");
+            String userNo = rs.getString("USER_NO");
+            String title = rs.getString("TITLE");
+            String content = rs.getString("CONTENT");
+            String writeTime = rs.getString("WRITE_TIME");
+            String deleteYn = rs.getString("DELETE_YN");
+            String modifyDate = rs.getString("MODIFY_DATE");
+            String views = rs.getString("VIEWS");
+            
+            CommuVo cv = new CommuVo();
+            cv.setPostNo(postNo);
+            cv.setTypeNo(typeNo);
+            cv.setUserNo(userNo);
+            cv.setTitle(title);
+            cv.setContent(content);
+            cv.setWriteTime(writeTime);
+            cv.setDeleteYn(deleteYn);
+            cv.setModifyDate(modifyDate);
+            cv.setViews(views);
+            
+            volist.add(cv);
+
+            
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }finally {
+        JDBCTemplate.close(pstmt);
+        JDBCTemplate.close(rs);
+    }
+    
+    return volist;
+
+
+    
+    
+    
+    }
+    
+    
+  //카테고리별 리스트 조회
+    public static List<CommuVo> selectListALL(Connection conn, PageVo pv) {
+       String sql="SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT B.POST_NO,B.TYPE_NO,U.NICK as USER_NO,B.TITLE,B.CONTENT,B.WRITE_TIME,B.DELETE_YN,B.MODIFY_DATE,B.VIEWS FROM BOARD B JOIN \"USER\" U ON B.USER_NO=U.USER_NO WHERE B.DELETE_YN='N' ORDER BY B.POST_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+    
+       PreparedStatement pstmt=null;
+       ResultSet rs=null;
+       List<CommuVo> volist=new ArrayList<CommuVo>();
+       
+       try {
+        pstmt=conn.prepareStatement(sql);
+        int start=(pv.getCurrentPage() - 1) * pv.getBoardLimit() + 1;
+        int end=start+pv.getBoardLimit()-1;
+        
+        pstmt.setInt(1, start);
+        pstmt.setInt(2, end);
         rs=pstmt.executeQuery();
        
         
@@ -339,6 +400,56 @@ public class Commudao {
             
             return voList;
         }
+
+    public static List<CommuVo> selectMainList(Connection conn) {
+        String sql="SELECT * FROM(SELECT B.POST_NO,B.TYPE_NO,U.NICK as USER_NO,B.TITLE,B.CONTENT,B.WRITE_TIME,B.DELETE_YN,B.MODIFY_DATE,B.VIEWS FROM BOARD B JOIN \"USER\" U ON B.USER_NO=U.USER_NO WHERE B.TYPE_NO=200 ORDER BY B.POST_NO DESC) WHERE ROWNUM <2 UNION ALL SELECT * FROM( SELECT B.POST_NO,B.TYPE_NO,U.NICK as USER_NO,B.TITLE,B.CONTENT,B.WRITE_TIME,B.DELETE_YN,B.MODIFY_DATE,B.VIEWS FROM BOARD B JOIN \"USER\" U ON B.USER_NO=U.USER_NO ORDER BY B.POST_NO DESC) WHERE ROWNUM <5";
+        
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        List<CommuVo> volist=new ArrayList<CommuVo>();
+        
+        try {
+         pstmt=conn.prepareStatement(sql);
+         rs=pstmt.executeQuery();
+        
+         
+         while (rs.next()) {
+             String postNo = rs.getString("POST_NO");
+             String typeNo = rs.getString("TYPE_NO");
+             String userNo = rs.getString("USER_NO");
+             String title = rs.getString("TITLE");
+             String content = rs.getString("CONTENT");
+             String writeTime = rs.getString("WRITE_TIME");
+             String deleteYn = rs.getString("DELETE_YN");
+             String modifyDate = rs.getString("MODIFY_DATE");
+             String views = rs.getString("VIEWS");
+             
+             CommuVo cv = new CommuVo();
+             cv.setPostNo(postNo);
+             cv.setTypeNo(typeNo);
+             cv.setUserNo(userNo);
+             cv.setTitle(title);
+             cv.setContent(content);
+             cv.setWriteTime(writeTime);
+             cv.setDeleteYn(deleteYn);
+             cv.setModifyDate(modifyDate);
+             cv.setViews(views);
+             
+             volist.add(cv);
+
+             
+         }
+
+     } catch (SQLException e) {
+         e.printStackTrace();
+     }finally {
+         JDBCTemplate.close(pstmt);
+         JDBCTemplate.close(rs);
+     }
+     
+     return volist;
+
+    }
 
 
 
