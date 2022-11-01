@@ -18,42 +18,10 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 
-<script>
-	var IMP = window.IMP;
-	IMP.init('imp52718328');//iamport 대신 자신의 "가맹점 식별코드"를 사용
 
-	function requestPay() {
-		IMP.request_pay({
-			pg: "kakaopay.TC0ONETIME",
-			pay_method: "card",
-			merchant_uid : 'merchant_'+new Date().getTime(),
-			name : '결제테스트',
-			amount : 10000,
-			buyer_email : 'iamport@siot.do',
-			buyer_name : '구매자',
-			buyer_tel : '010-1234-5678',
-			buyer_addr : '서울특별시 강남구 삼성동',
-			buyer_postcode : '123-456'
-		}, 
-		function (rsp) { //callback
-			console.log(rsp);
-			if (rsp.success) {
-			var msg = '결제가 완료되었습니다.';
-			alert(msg);
-			location.href='';
-			} else {
-			var msg = '결제에 실패하였습니다.';
-			msg += '에러내용 : ' + rsp.error_msg;
-			alert(msg);
-			location.href = '/dobby';
-			}
-		 });
-	}
-	
-</script>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-	<form action="" id="wrap" method="post" onsubmit="return doPay();">
+	<form action="" id="wrap" method="post">
 		<!-- 견적 금액 -->
 		<input type="number" value="10000" hidden> <input type="text"
 			value="${rv.reservation_no}" name="reservationNo" hidden>
@@ -207,7 +175,9 @@
 				<label for="payment-agree-checkbox">주문내역을 확인했으며 결제에
 					동의합니다(필수)</label>
 			</div>
-			<input type="submit" id="payment-btn" value="결제하기" onclick="requestPay()">
+			<!-- <input type="submit" id="payment-btn" value="결제하기"> -->
+			<button type="button" id ="payment-btn" onclick="doPay();">결제하기</button>
+			
 			<div id="cancel-btn">결제취소</div>
 
 		</div>
@@ -218,56 +188,99 @@
 
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
-	<script defer>
-	
-	function checkZero(){
-	var use = document.querySelector('#use-point');
-		if(use.value<0){
-			use.value = 0 ;
-		}
-		if(use.value>${rv.reservationAmount}){
-			use.value = ${rv.reservationAmount};
-		}	
+<script defer>
+
+//포인트 제로
+function checkZero(){
+var use = document.querySelector('#use-point');
+	if(use.value<0){
+		use.value = 0 ;
 	}
+	if(use.value>${rv.reservationAmount}){
+		use.value = ${rv.reservationAmount};
+	}	
+}
+
+
+function pointCalculate(){
+	const usePoint = document.querySelector('#use-point').value;
+	var usePointNumber = parseInt(usePoint);
+	
+	document.querySelector('#use-point-2').innerText = usePointNumber.toLocaleString('ko-KR') + 'p';
+	document.querySelector('#final-amount').innerText = parseInt((${rv.reservationAmount} - usePoint)).toLocaleString('ko-kr')+'원';
+	
+}
+
+</script>
+
+<script>
+	var IMP = window.IMP;
+	IMP.init('imp52718328');//가맹점 식별코드
 	
 
-	function pointCalculate(){
-		const usePoint = document.querySelector('#use-point').value;
-		var usePointNumber = parseInt(usePoint);
-		
-		document.querySelector('#use-point-2').innerText = usePointNumber.toLocaleString('ko-KR') + 'p';
-		document.querySelector('#final-amount').innerText = parseInt((${rv.reservationAmount} - usePoint)).toLocaleString('ko-kr')+'원';
-		
-	}
-	
-	</script>
 
-	<script>
-	function doPay(){
-	
-		const methodCheck = document.querySelectorAll('input[name="payment-method"]');
-		var check = 0;
-
-		for(var i = 0; i<methodCheck.length; i++){
-			if(methodCheck[i].checked==true){
-				check = 1;
+	function requestPay() {
+		IMP.request_pay({
+			pg: "kakaopay.TC0ONETIME",
+			pay_method: "card",
+			merchant_uid : 'merchant_'+new Date().getTime(),
+			name : '결제테스트',
+			amount : 10000,
+			buyer_email : 'iamport@siot.do',
+			buyer_name : '구매자',
+			buyer_tel : '010-1234-5678',
+			buyer_addr : '서울특별시 강남구 삼성동',
+			buyer_postcode : '123-456'
+		}, 
+		function (rsp) { //callback
+			console.log(rsp);
+			if (rsp.success) {
+			var msg = '결제가 완료되었습니다.';
+			alert(msg);
+			document.querySelector('#payment-btn').form.action = '/dobby/pay';
+			document.querySelector('#payment-btn').form.method='post';
+			document.querySelector('#payment-btn').form.submit();
+			location.href='';
+			} else {
+			var msg = '결제에 실패하였습니다.';
+			msg += '에러내용 : ' + rsp.error_msg;
+			alert(msg);
+			location.href = '/dobby';
 			}
-		}
-		if(check ==0){
-			alert('결제수단을 선택해주세요');
-			return false;
-		}
+			
+		 });
+		 return false;
+	}
+	
+</script>
 
-		if(!document.querySelector('#payment-agree-checkbox').checked){
-			alert("결제에 동의 해주세요");
-			return false;
-		}else{
-			console.log('다통과');
-			requestPay();
+<script>
+function doPay(){
+
+	const methodCheck = document.querySelectorAll('input[name="payment-method"]');
+	var check = 0;
+
+	for(var i = 0; i<methodCheck.length; i++){
+		if(methodCheck[i].checked==true){
+			check = 1;
 		}
+	}
+	if(check ==0){
+		alert('결제수단을 선택해주세요');
+		return false;
+	}
+
+	if(!document.querySelector('#payment-agree-checkbox').checked){
+		alert("결제에 동의 해주세요");
+		return false;
+	}else{
+		console.log('다통과');
+		return requestPay();
 
 	}
-	</script>
+
+}
+</script>
 	
 </body>
 
