@@ -2,6 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <%AttachmentVo avo=(AttachmentVo)request.getAttribute("attachmentVo");  %>
+  
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +14,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="/dobby/resources/css/reservationHistory.css">
+<link rel="stylesheet" href="/dobby/resources/css/mypoint.css">
 <style>
 #mypage{
     width: 1200px;
@@ -125,7 +130,7 @@
 
 .info-area{
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     border: 1px solid #999999;
     border-radius: 10px;
     display: flex;
@@ -521,11 +526,53 @@ input[type=submit]{
     </div>
 
     <div class="info-area" id="info-area05">
-        5
+       
+        <div id="point-box">
+            <div id="point-header">
+                <div id="r-title">
+                    <span class="material-symbols-outlined"> magic_button </span>
+                    <p>보유 포인트</p>
+                </div>
+            </div>
+            <div id="point-main">
+                <div id="my-point">
+                    <div id="point"><div>${point }</div><p>P</p></div>
+                </div>
+                <div id="point-list">
+                    <div class="point-item" id="item-head">
+                        <div>NO</div>
+                        <div>TYPE</div>
+                        <div>PAY</div>
+                        <div>POINT</div>
+                        <div>DATE</div>
+                    </div>
+                    
+                    <c:forEach items="${pList}" var="vo" varStatus="status">
+                    <div class="point-item">
+                        <div>${status.count}</div>
+                        <div>${vo.type }</div>
+                        <div>
+                        	${vo.score}
+                        	<c:if test="${vo.type=='결제' }"> 원</c:if>		
+                        	<c:if test="${vo.type=='이벤트' }"> 점</c:if>	
+                        </div>
+                        <div>+${vo.point }</div>
+                        <div>${vo.date }</div>
+                    </div>
+                    </c:forEach>
+                    
+
+                    
+                </div>
+            </div>
+
+        </div>
+        
+        
     </div>
 
     <div class="info-area" id="info-area06">
-        6
+        
     </div>
 
     <div class="info-area" id="info-area07">

@@ -2,6 +2,7 @@ package com.kh.dobby.member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,6 +17,8 @@ import com.kh.dobby.common.AttachmentVo;
 import com.kh.dobby.common.FileUploader;
 import com.kh.dobby.member.service.MemberService;
 import com.kh.dobby.member.vo.MemberVo;
+import com.kh.dobby.point.controller.PointService;
+import com.kh.dobby.point.vo.PointVo;
 
 
 @WebServlet(urlPatterns = "/member/mypage")
@@ -34,6 +37,14 @@ public class MemberMypageController extends HttpServlet{
      
         String pno = req.getParameter("pno");
         req.setAttribute("pno", pno);
+        
+        List<PointVo> pList = new PointService().getList(loginMember.getUserNo());
+        int point = new PointService().getSumPoint(loginMember.getUserNo());
+        
+        if(pList!=null) {
+            req.setAttribute("pList", pList);
+            req.setAttribute("point", point);
+        }
 
         if(loginMember != null) {
             req.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(req, resp);

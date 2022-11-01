@@ -2,57 +2,70 @@ package com.kh.dobby.point.vo;
 
 public class PointVo {
 
-    int currentpoint;
-    int spendpoint;
-    int getpoint;
-    String currentpointcontent;
-    String getpointcontent;
-    public int getCurrentpoint() {
-        return currentpoint;
+    String point;
+    String userNo;
+    String score;
+    String type;
+    String date;
+
+    public String getPoint() {
+        return point;
     }
-    public void setCurrentpoint(int currentpoint) {
-        this.currentpoint = currentpoint;
+
+    public void setPoint(String point) {
+        this.point = point;
     }
-    public int getSpendpoint() {
-        return spendpoint;
+
+    public String getUserNo() {
+        return userNo;
     }
-    public void setSpendpoint(int spendpoint) {
-        this.spendpoint = spendpoint;
+
+    public void setUserNo(String userNo) {
+        this.userNo = userNo;
     }
-    public int getGetpoint() {
-        return getpoint;
+
+    public String getScore() {
+        return score;
     }
-    public void setGetpoint(int getpoint) {
-        this.getpoint = getpoint;
+
+    public void setScore(String score) {
+        this.score = score;
     }
-    public String getCurrentpointcontent() {
-        return currentpointcontent;
+
+    public String getType() {
+        return type;
     }
-    public void setCurrentpointcontent(String currentpointcontent) {
-        this.currentpointcontent = currentpointcontent;
+
+    public void setType(String type) {
+        this.type = type;
     }
-    public String getGetpointcontent() {
-        return getpointcontent;
+
+    public String getDate() {
+        return date;
     }
-    public void setGetpointcontent(String getpointcontent) {
-        this.getpointcontent = getpointcontent;
+
+    public void setDate(String date) {
+        this.date = date;
     }
+
     @Override
     public String toString() {
-        return "PointVo [currentpoint=" + currentpoint + ", spendpoint=" + spendpoint + ", getpoint=" + getpoint
-                + ", currentpointcontent=" + currentpointcontent + ", getpointcontent=" + getpointcontent + "]";
+        return "PointVo [point=" + point + ", userNo=" + userNo + ", score=" + score + ", type=" + type + ", date="
+                + date + "]";
     }
-    public PointVo(int currentpoint, int spendpoint, int getpoint, String currentpointcontent, String getpointcontent) {
+
+    public PointVo(String point, String userNo, String score, String type, String date) {
         super();
-        this.currentpoint = currentpoint;
-        this.spendpoint = spendpoint;
-        this.getpoint = getpoint;
-        this.currentpointcontent = currentpointcontent;
-        this.getpointcontent = getpointcontent;
+        this.point = point;
+        this.userNo = userNo;
+        this.score = score;
+        this.type = type;
+        this.date = date;
     }
+
     public PointVo() {
         super();
+        // TODO Auto-generated constructor stub
     }
-    
-    
+
 }
