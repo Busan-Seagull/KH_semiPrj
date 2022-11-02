@@ -32,6 +32,28 @@ public class RequestService {
         return result;
     }
     
+  //지우기
+    public int remove(int bno, RequestVo vo) {
+        //커넥션 준비, sql, 
+        //트랜잭션, 자원반납
+        Connection conn = JDBCTemplate.getConnection();
+        
+        //게시글 insert
+        int result = dao.removeall(conn, bno, vo);
+        
+        //청무파일 insert안함
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+        } else {
+            JDBCTemplate.rollback(conn);
+        }
+        JDBCTemplate.close(conn);
+        return result;
+    }
+    
+    
+    
     //페이지리스트
     public List<RequestVo> pageList(PageVo pv) {
         
@@ -45,6 +67,8 @@ public class RequestService {
         
     }
 
+    
+    
     //페이지세기
     public int selectCount() {
         //커넥션준비
@@ -76,13 +100,25 @@ public class RequestService {
         
         return result;
         
-        
-        
-        
-        
     }
 
-
+    public int requestEdit(String bno, RequestVo vo) {
+        
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int result = dao.detailEdit(conn, bno, vo);
+        System.out.println(result);
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+        }else {
+            JDBCTemplate.rollback(conn);
+        }
+        
+        JDBCTemplate.close(conn);
+        
+        return result;
+    }
    
 
     

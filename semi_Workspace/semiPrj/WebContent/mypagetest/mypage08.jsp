@@ -16,8 +16,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<% 	//PageVo pv = (PageVo)request.getAttribute("pv"); 
-	//List<RequestVo> voList = (List<RequestVo>)request.getAttribute("voList");
+<% 	PageVo pv = (PageVo)request.getAttribute("pv"); //MYPAGE08에서 PV넣음
+	List<RequestVo> voList = (List<RequestVo>)request.getAttribute("voList");//MYPAGE08에서 PV넣음
 %>
 
 <style>
@@ -234,7 +234,7 @@ input[type=submit]{
 
 
 
-#main{
+#main_mypage08{
 	width: 960px;
 	height: 660px;
 	border: 1px solid black;
@@ -248,7 +248,7 @@ input[type=submit]{
 }
 
 
-.data1{
+.data1_mypage08{
 	height : 56px;
 	border-bottom : 1px solid black;
 	
@@ -257,7 +257,7 @@ input[type=submit]{
 	line-height: 56px;
 }
 
-#header{
+#header_mypage08{
 	background-color: #004412;
 	color : white;
 	margin:0 auto;
@@ -268,7 +268,7 @@ input[type=submit]{
 	line-height:56px;
 }
 
-#write{
+#write_mypage08{
 	width: 100px;
 	height:40px;
 	border:1px solid black;
@@ -281,7 +281,7 @@ input[type=submit]{
 	line-height:40px;
 }
 
-#title{
+#title_mypage08{
 	width:200px;
 	height:30px;
 	bottom:80px;
@@ -293,7 +293,7 @@ input[type=submit]{
 	margin:0 auto;
 }
 
-#blackline{
+#blackline_mypage08{
 	width:2px;
 	height:25px;
 	background-color: black;
@@ -305,23 +305,23 @@ input[type=submit]{
 
 
 
-#blackline, #title{
+#blackline_mypage08, #title_mypage08{
 	position:relative;
 }
 
-#t1{
+#t1_mypage08{
 	width:16%;
 	height:60px;
 }
-#t2{
+#t2_mypage08{
 	width:68%;
 	height:60px;
 }
-#t3{
+#t3_mypage08{
 	width:16%;
 	height:60px;
 }
-#page-area{
+#page-area_mypage08{
 	width:200px;
 	height:100px;
 	bottom:80px;
@@ -331,7 +331,7 @@ input[type=submit]{
 	font-size:larger;
 }
 
-#page01{
+#page01_mypage08{
 	width: 100px;
 	height:40px;
 	border:1px solid black;
@@ -343,7 +343,7 @@ input[type=submit]{
 	text-align:center;
 }
 
-#data-size-align{
+#data-size-align_mypage08{
 	width:100%;
 	height:60px;
 }
@@ -1121,22 +1121,30 @@ input[type=submit]{
     <div class="info-area" id="info-area08"><!--  8 -->
     
     
-	<div id="blackline"></div>
-	<div id="title">문의게시판</div>
+	<div id="blackline_mypage08"></div>
+	<div id="title_mypage08">문의게시판</div>
 	
-	<div id="main">
+	<div id="main_mypage08">
 	
 		
 		
-		<div id="header">
-			<div class="t" id="t1">번호</div>
-			<div class="t" id="t2">제목</div>
-			<div class="t" id="t3">작성자</div>
+		<div id="header_mypage08">
+			<div class="t_mypage08" id="t1_mypage08">번호</div>
+			<div class="t_mypage08" id="t2_mypage08">제목</div>
+			<div class="t_mypage08" id="t3_mypage08">작성자</div>
 		</div>
 		
 		
 		
-		
+		<div id="data-size-align_mypage08">
+			<% for(int i=0;i<voList.size();i++) { %>
+				<div class="data1_mypage08">
+					<div class="content" id="t1"><%= voList.get(i).getPostNo() %></div>
+					<div class="content" id="t2"><a href="/dobby/request/detail?bno=<%=voList.get(i).getPostNo() %>"><%= voList.get(i).getContent() %></a></div>
+					<div class="content" id="t3"><%= voList.get(i).getUserNo() %></div>
+				</div>
+				<%} %>
+		</div>
 		
 		
 	
@@ -1209,6 +1217,7 @@ input[type=submit]{
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 
+<!-- 해당 스크립트는 MYPAGE08전용 -->
 <script>
     const btnArr = document.querySelectorAll('.page-btn');
     const infoArr = document.querySelectorAll('.info-area');

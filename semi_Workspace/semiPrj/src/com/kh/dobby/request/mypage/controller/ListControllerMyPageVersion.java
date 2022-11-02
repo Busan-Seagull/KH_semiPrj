@@ -1,4 +1,4 @@
-package com.kh.dobby.request.controller;
+package com.kh.dobby.request.mypage.controller;
 
 import java.io.IOException;
 import java.net.http.HttpRequest;
