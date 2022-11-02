@@ -184,7 +184,7 @@
 				<div id="pd-contain" style="left: 0;">
 
 					<!-- 개인집요정 이동리읔 아직 -->
-					<c:forEach items="zList" var="vo">
+					<c:forEach items="${zList }" var="vo">
 					
 					<a href="/dobby/?no=${vo.userNo }" class="item flex-center shadow-box">
 						<img alt="" src="/dobby/${vo.imgLink }" class="item-img">
