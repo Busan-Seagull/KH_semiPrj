@@ -396,7 +396,7 @@
             	<div id="header-quick-box">
                 <%if(!("3".equals(loginMember.getRightNo()))) {%>
 	                <a href="/dobby/member/mypage"><div class="img"></div><p>MyPage</p></a>
-	                <a href="/dobby/member/mypage?pno=6"><div class="img"></div><p>Favorites</p></a>
+	                <a href=""><div class="img"></div><p>Favorites</p></a>
 	                <a id="header-alarm">
                         <p id="notice-num"></p>
                         <div id="alarm-list">
@@ -462,9 +462,9 @@
         });
         
     	<c:if test="${not empty sessionScope.loginMember}">
-        <%if(!("3".equals(loginMember.getRightNo()))) {%>
+    	<%if(!("3".equals(loginMember.getRightNo()))) {%>
         	getAlarm();
-       	<%}%>
+      	<%}%>
 		</c:if>
 
         function getAlarm() {

@@ -34,7 +34,7 @@ public class DetailController extends HttpServlet {
             String postNo = req.getParameter("postNo");
             
             ReportVo vo = rs.selectOne(postNo);
-            
+           
             
             req.setAttribute("vo", vo);
            

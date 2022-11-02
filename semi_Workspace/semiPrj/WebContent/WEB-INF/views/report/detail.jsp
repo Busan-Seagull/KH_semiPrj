@@ -334,18 +334,22 @@ div{
 		</div>
 		<div id="i">
 		<% if(loginMember != null && "3".equals(loginMember.getRightNo())) {%>
-			<div class="i1"><input  type="button" name="adminReport" value="승인" onclick="approval();"></div> 
-			<div class="i1"><input  type="button" name="adminReport" value="반려" onclick="returnReport();"></div>
+			<div class="i1"><input  type="button" name="adminReport" value="승인" onclick="approval()"></div> 
+			<div class="i1"><input  type="button" name="adminReport" value="반려" onclick="returnReport()"></div>
 		<%} %>
 			<script type="text/javascript">
 				function approval(){
 					
 					let adminReport = $('input[name="adminReport"]').val();
+					let postNo = $('input[name="postNo"]').val();
+					let contentReply = $('textarea[name="content-reply"]').val();
 					$.ajax({
 						url:"/dobby/detail",
 						type:"post",
 						data:{
-							"adminReport":adminReport
+							"adminReport":adminReport ,
+							"postNo":postNo ,
+							"content-reply":contentReply
 						},
 						success: function(){
 							alert('승인되었습니다.');
@@ -360,11 +364,15 @@ div{
 					function returnReport(){
 					
 					let adminReport = $('input[name="adminReport"]').val();
+					let postNo = $('input[name="postNo"]').val();
+					let contentReply = $('textarea[name="content-reply"]').val();
 					$.ajax({
 						url:"/dobby/detail",
 						type:"post",
 						data:{
-							"adminReport":adminReport
+							"adminReport":adminReport ,
+							"postNo":postNo ,
+							"content-reply":contentReply
 						},
 						success: function(){
 							alert('반려되었습니다.');
