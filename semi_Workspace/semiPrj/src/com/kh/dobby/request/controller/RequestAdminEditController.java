@@ -14,7 +14,7 @@ import com.kh.dobby.request.dao.RequestDao;
 import com.kh.dobby.request.service.RequestService;
 import com.kh.dobby.request.vo.RequestVo;
 
-@WebServlet(urlPatterns = "/request/detail/edit")
+@WebServlet(urlPatterns = "/request/detail/edit/admin")
 public class RequestAdminEditController extends HttpServlet{
     
     private RequestService rs = new RequestService();
