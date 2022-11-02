@@ -33,6 +33,7 @@ public class PayHistoryController extends HttpServlet{
             req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
         } else {
             userNo = Integer.parseInt(loginMember.getUserNo());
+            System.out.println(userNo);
         }
 
         // 유저 넘버로 결제 내역 받아오기
@@ -41,7 +42,7 @@ public class PayHistoryController extends HttpServlet{
         System.out.println(myPay);
 
         req.setAttribute("myPay", myPay);
-        req.getRequestDispatcher("/WEB-INF/views/pay/payHistory.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/pay/payHistoryTemp.jsp").forward(req, resp);
     }
 
 }

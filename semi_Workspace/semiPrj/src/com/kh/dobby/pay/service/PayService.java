@@ -63,4 +63,30 @@ public class PayService {
         return x;
     }
 
+    public PayVo selectOneByPayNo(String payNo) {
+        Connection conn =JDBCTemplate.getConnection();
+        
+        PayVo pv = pd.selectoneByPayNo(conn, payNo);
+        
+        switch (pv.getPaymentType()) {
+            case "1":
+                pv.setPaymentType("신용카드");
+                break;
+            case "2":
+                pv.setPaymentType("게좌이체");
+                break;
+            case "3":
+                pv.setPaymentType("네이버페이");
+                break;
+            case "4":
+                pv.setPaymentType("카카오페이");
+                break;
+            default: pv.setPaymentType(null);
+        }
+
+        JDBCTemplate.close(conn);
+
+        return pv;
+    }
+
 }

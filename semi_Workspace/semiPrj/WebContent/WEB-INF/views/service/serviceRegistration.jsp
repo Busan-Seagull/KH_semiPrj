@@ -41,8 +41,8 @@
 				</div>
 				<div id="profile-pic">프로필 사진</div>
 				<div id="profile-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="profile-img">+</label> <input type="file"
+					
+					<label for="profile-img"><img class="uploaded-profile" src="" alt="">+</label> <input type="file"
 						name="profile-img" id="profile-img" class="file">
 				</div>
 				<div id="payment-unit">요금단위</div>
@@ -304,23 +304,23 @@
 			<div id="service-pic-wrap">
 				<div id="service-pic" class="registration-t2">서비스 사진</div>
 				<div id="service-pic-input1" class="service-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="service-img-1">+</label> <input type="file"
+					
+					<label for="service-img-1"><img class="uploaded-profile" src="" alt="">+</label> <input type="file"
 						name="service-img-1" id="service-img-1">
 				</div>
 				<div id="service-pic-input2" class="service-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="service-img-2">+</label> <input type="file"
+					
+					<label for="service-img-2"><img class="uploaded-profile" src="" alt="">+</label> <input type="file"
 						name="service-img-2" id="service-img-2">
 				</div>
 				<div id="service-pic-input3" class="service-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="service-img-3">+</label> <input type="file"
+					
+					<label for="service-img-3"><img class="uploaded-profile" src="" alt="">+</label> <input type="file"
 						name="service-img-3" id="service-img-3">
 				</div>
 				<div id="service-pic-input4" class="service-pic-input">
-					<img class="uploaded-profile" src="" alt="">
-					<label for="service-img-4">+</label> <input type="file"
+					
+					<label for="service-img-4"><img class="uploaded-profile" src="" alt="">+</label> <input type="file"
 						name="service-img-4" id="service-img-4">
 				</div>
 				<div id="service-pic-detail">서비스를 나타내는 사진을 1장이상 등록해주세요</div>

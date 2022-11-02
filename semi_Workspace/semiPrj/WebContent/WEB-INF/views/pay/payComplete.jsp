@@ -63,7 +63,7 @@
 					<table width="100%" height="100%">
 						<tr>
 							<td class="payment-info-text">서비스요금</td>
-							<td class="payment-info-input">(평당)<fmt:formatNumber value="${rv.charge}" pattern="#,###"/>원</td>
+							<td class="payment-info-input">(단위 당)<fmt:formatNumber value="${rv.charge}" pattern="#,###"/>원</td>
 						</tr>
 						<tr>
 							<td class="payment-info-text">단위</td>

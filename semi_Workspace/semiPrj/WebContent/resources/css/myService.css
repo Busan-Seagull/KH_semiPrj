@@ -43,6 +43,10 @@
 	padding: 10px;
 	justify-content: space-between;
 	position: relative;
+	cursor: pointer;
+}
+.helper-list:hover{
+	background-color: rgb(237, 242, 237);
 }
 
 .helper-pic {

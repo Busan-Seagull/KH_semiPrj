@@ -51,10 +51,10 @@
 						</c:if>
 
 						<c:if test="${rv.charge eq 0}">
-					견적
-					</c:if>
+						견적
+						</c:if>
 
-						<fmt:parseNumber value="${amount}" integerOnly="true" />
+						<!-- <fmt:parseNumber value="${amount}" integerOnly="true" /> -->
 					</div>
 				</div>
 				<div id="request">
