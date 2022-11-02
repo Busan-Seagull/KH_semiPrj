@@ -15,9 +15,11 @@ public class RequestDao {
 
     public int insertBoard(Connection conn, RequestVo vo) {
 
-        String sql = "INSERT INTO QUESTION ( POST_NO, USER_NO, TITLE, CONTENT, WRITE_TIME, DELETE_YN, MODIFY_DATE, ADMIN_NO, REPEAT_REPORT,"
+        String sql = "INSERT INTO QUESTION "
+                + "( POST_NO, USER_NO, TITLE, CONTENT, WRITE_TIME, DELETE_YN, MODIFY_DATE, ADMIN_NO, REPEAT_REPORT,"
                 + " REPEAT_CONTENT, REPEAT_TIME, REPEAT_MODIFY_DATE, REPEAT_DELETE_YN) "
-                + "VALUES ( SEQ_QUESTION_NO.NEXTVAL , ? , ? , ? , SYSDATE , 'N' , SYSDATE , '3' , 'N' , '' , SYSDATE , SYSDATE , '' )";
+                + "VALUES ( SEQ_QUESTION_NO.NEXTVAL , ? , ? , ? , SYSDATE , 'N' , SYSDATE , '3' , 'N' , "
+                + " '' , SYSDATE , SYSDATE , '' )";
         
         PreparedStatement pstmt = null;
         int result = 0;
@@ -40,6 +42,8 @@ public class RequestDao {
         }
         return result;
     }
+    
+    
 
     //페이지 화면
     public List<RequestVo> selectList(Connection conn, PageVo pv) {
@@ -121,6 +125,14 @@ public class RequestDao {
         
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
 
     //페이지 개수 세는거
     public int selectCount(Connection conn) {
@@ -147,6 +159,8 @@ public class RequestDao {
         return result;
     }
 
+    
+    //게시글자세히
     public RequestVo selectOne(Connection conn, String bno) {
         
         String sql = "SELECT *  FROM QUESTION WHERE DELETE_YN='N' AND POST_NO=?";
@@ -202,6 +216,72 @@ public class RequestDao {
             JDBCTemplate.close(pstmt);
         }
         return vo;
+    }
+    
+    
+    
+    
+
+  //conn->페이지연결, bno:보드넘버, vo:RequestVo
+    public int detailEdit(Connection conn, String bno, RequestVo vo) {
+        
+        String sql = "UPDATE QUESTION SET(TITLE, CONTENT) VALUES(?,?) WHERE POST_NO=?";
+        
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        
+        try {
+            
+            pstmt = conn.prepareStatement(sql);
+            
+            //userno, title, content 얻어옴
+            pstmt.setString(1, vo.getUserNo());
+            pstmt.setString(2, vo.getTitle());
+            pstmt.setString(3, vo.getContent());
+            pstmt.setString(4, bno);
+            
+            result = pstmt.executeUpdate();
+            
+            
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return result;
+        
+        
+        
+    }
+    
+  //페이지 지우기
+    public int removeall(Connection conn, int bno, RequestVo vo) {
+        
+        String sql = "UPDATE QUESTION SET DELETE_YN='Y' WHERE POST_NO=? AND USER_NO=? AND POST_NO=?";
+        
+        PreparedStatement pstmt = null;
+        int result = 0;
+        
+        
+        try {
+            
+            pstmt = conn.prepareStatement(sql);
+            
+            //userno, title, content 얻어옴
+            pstmt.setString(1, vo.getUserNo());
+            pstmt.setString(2, vo.getTitle());
+            pstmt.setString(3, vo.getContent());
+            pstmt.setInt(4, bno);
+            
+            result = pstmt.executeUpdate();
+            
+            
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return result;
+        
         
         
     }
