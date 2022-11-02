@@ -170,7 +170,7 @@ textarea{
 		</div>
 		<div>
 			<div id="l">내용</div>
-			<textarea class="custom-textarea" name="content" id="k" cols="94" rows="10"></textarea>
+			<textarea class="custom-textarea" name="content" id="k" cols="97" rows="10"></textarea>
 		</div>
 	</div>
 	<div id="i">
