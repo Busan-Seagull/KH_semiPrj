@@ -1,7 +1,12 @@
+<%@page import="com.kh.dobby.report.vo.ReportVo"%>
+<%@page import="java.util.List"%>
 <%@page import="com.kh.dobby.common.AttachmentVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <%AttachmentVo avo=(AttachmentVo)request.getAttribute("attachmentVo");  %>
+    
+<%AttachmentVo avo=(AttachmentVo)request.getAttribute("attachmentVo");  %>
+<% List<ReportVo> voList = (List<ReportVo>)request.getAttribute("voList"); %>
+<%String root = request.getContextPath();%>
   
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -15,6 +20,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="/dobby/resources/css/reservationHistory.css">
 <link rel="stylesheet" href="/dobby/resources/css/mypoint.css">
+<link rel="stylesheet" href="/dobby/resources/css/mypage_report.css">
+<link rel="stylesheet" href="/dobby/resources/css/myService.css">
+<link rel="stylesheet" href="/dobby/resources/css/payHistory.css">
 <style>
 #mypage{
     width: 1200px;
@@ -130,7 +138,7 @@
 
 .info-area{
     width: 100%;
-    /* height: 100%; */
+    min-height: 85vh;
     border: 1px solid #999999;
     border-radius: 10px;
     display: flex;
@@ -155,7 +163,7 @@
 #join-title, #right{
     grid-column: span 2;
     display: flex;
-    margin: auto;
+    /* margin: auto; */
     justify-content: center;
 }
 
@@ -477,7 +485,88 @@ input[type=submit]{
         </div>
 
     <div class="info-area" id="info-area02">
-        2
+   			<div id="myservice-wrap">
+				<div id="myservice-title">
+					<h1>내 서비스</h1>
+					<button onclick="location.href='/dobby/service/regist'">서비스 등록</button>
+				</div>
+				<c:if test="${empty myService}">
+					<h1 id="none"><br>등록된 서비스가 없습니다.</h1>
+				</c:if>
+				<div class="helper-list-flex">
+					<c:forEach var="list" items="${myService}">
+						<div class="helper-list-outline">
+							<a class="helper-list"
+							onclick="location.href='<%=root %>/service/detail?sno=${list.serviceNo}'">
+								<div class="helper-pic">
+									<img src="/dobby/${list.profileImg}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
+								</div>
+								<div class="helper-contents">
+									<div>
+										<h2>${list.title} | ${list.helper}</h2>
+										<p>
+											${list.serviceIntro}
+										</p>
+									</div>
+									<div>
+										<span class="starrr">★★★★★</span> <span class="star-num">5</span>
+										<span class="comment">"이 집 청소 잘하네요~"</span>
+									</div>
+								</div>
+								<div class="helper-contents2">
+									<input type="text" value="${list.serviceNo}" hidden>
+									<div class="btn1">										
+										<button>수정하기</button>
+									</div>
+									<div class="btn2">
+										<button>삭제하기</button>
+									</div>
+									<div class="btn3">
+										<button>리뷰보기</button>
+									</div>
+								</div>
+								<script>
+									var btn1 = document.querySelectorAll('.btn1');
+									var btn2 = document.querySelectorAll('.btn2');
+									var btn3 = document.querySelectorAll('.btn3');
+								
+
+									for(var i = 0; i<btn1.length; i ++){
+										btn1[i].addEventListener('click',function(e){
+											
+											console.log('수정하기');
+											console.log(this.parentElement.querySelector('input').value);
+											location.href='/dobby/service/modify?sno=' + this.parentElement.querySelector('input').value;
+											e.stopImmediatePropagation();
+											
+										})
+
+										btn2[i].addEventListener('click',function(e){
+											
+											console.log('삭제하기');
+											var result = confirm("모든 정보가 삭제 됩니다.\n정말로 삭제 하시겠습니까?");
+											if(result == true){
+												location.href='/dobby/service/delete?sno=' + this.parentElement.querySelector('input').value;
+											}
+											
+											e.stopImmediatePropagation();
+										})
+
+										btn3[i].addEventListener('click',function(e){
+											
+											console.log('리뷰보기');
+											location.href='/dobby/reviewList'; //+ this.parentElement.querySelector('input').value;
+											e.stopImmediatePropagation();
+											
+										})
+
+									}
+								</script>
+							</a>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
     </div>
 
     <div class="info-area" id="info-area03">
@@ -522,7 +611,52 @@ input[type=submit]{
     </div>
 
     <div class="info-area" id="info-area04">
-        4
+        <div id="pay-history-wrap">
+
+				<div id="pay-history-title">
+					<h1>결제 내역</h1>
+				</div>
+				
+				<div class="pay-history-list">
+					<c:if test="${empty myPay}">
+						<h1 id="none2"><br>결제 내역이 없습니다.</h1>
+					</c:if>
+					<c:forEach var = "myPay" items="${myPay}">
+					<div class="pay-month">
+						<h2>${fn:substring(myPay.paymentDate, 0, 10)}</h2>
+					</div>
+					<div class="service-list-outline">
+						<div class="service-profile">
+							<div class="helper-pic-p">
+								<img src="/dobby/${myPay.profileImg}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
+							</div>
+							<div class="helper-contents">
+								<div class="content-div1">
+									<h1>${myPay.serviceTitle}</h1>
+									<button onclick="location.href='/dobby/mypage/payinfo?payno=${myPay.paymentNo}'">결제 상세 정보 ></button>
+								</div>
+								<div class="content-div2">
+									<h2><fmt:formatNumber value="${myPay.serviceCharge}" pattern="#,###" />원</h2>
+									<br> <span>결제번호 ${myPay.paymentNo}</span> <span>결제일시 
+										<c:out value="${fn:substring(myPay.paymentDate, 0, 19)}"></c:out>
+										</span>
+								</div>
+							</div>
+							<div class="history-btns-div">
+								<div class="btn-div">
+									<button onclick="location.href='/dobby/reviewList';">리뷰쓰기</button>
+								</div>
+								<div class="btn-div">
+									<button>결제취소</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					</c:forEach>
+
+				</div>
+		
+			</div>
     </div>
 
     <div class="info-area" id="info-area05">
@@ -584,7 +718,29 @@ input[type=submit]{
     </div>
 
     <div class="info-area" id="info-area09">
-        9
+    	<div id="report-area">
+			<div id="join-title"><span class="material-symbols-outlined">magic_button</span>신고내역</div>
+				<div id="report-list">
+				<%for(int i = 0; i< voList.size(); i++){%>
+					<div class="list-no1">작성자</div>
+					<div class="list-no1">번호</div>
+					<div class="list-no1">신고할 회원</div>
+					<div class="list-no1">신고할 서비스</div>
+					<div class="list-no1">제목</div>
+					
+					<div class="list-no2"><%=voList.get(i).getWriter()%></div>
+					<div class="list-no2"><%=voList.get(i).getPostNo() %></div> 
+					<div class="list-no2"><%=voList.get(i).getUserNo() %></div>
+					<div class="list-no2"><%=voList.get(i).getServiceNo() %></div>
+					<div class="list-no2"><%=voList.get(i).getTitle() %></div>
+					<div id="report-span">
+						<div id="report-content">신고내용 <div id="list-popup"><a href="/dobby/detail?postNo=<%=voList.get(i).getPostNo() %>">리스트로 가기</a></div></div>
+						<p><div id="report-content-content"><%=voList.get(i).getContent() %></div></p>
+					</div>
+				<%} %>
+			</div><!-- report-list -->
+		</div><!-- report-area  -->
+
     </div>
 
     </div>

@@ -117,7 +117,7 @@
     </div>
     <div id="IZ-box-list">
         <c:forEach items="${list}" var="vo" varStatus="status">
-        <div class="IZ-list-item" onclick="location.href='/dobby/?uno=${vo.userNo}'">
+        <div class="IZ-list-item" onclick="location.href='/dobby/superyojeong/profile?uno=${vo.userNo}'">
             <div>${status.count }</div>
             <div class="item-item  shadow-box">
                 <img src="/dobby/${vo.imgLink}" class="IZ-img">

@@ -186,7 +186,7 @@
 					<!-- 개인집요정 이동리읔 아직 -->
 					<c:forEach items="${zList }" var="vo">
 					
-					<a href="/dobby/?no=${vo.userNo }" class="item flex-center shadow-box">
+					<a href="/dobby/superyojeong/profile?uno=${vo.userNo }" class="item flex-center shadow-box">
 						<img alt="" src="/dobby/${vo.imgLink }" class="item-img">
 						<div class="text-contain">
 							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>${vo.grade }</p></div>
