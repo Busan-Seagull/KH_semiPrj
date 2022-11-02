@@ -43,15 +43,15 @@ public class MemberJoinController extends HttpServlet  {
         
         MemberVo vo = new MemberVo();
         vo.setRightNo(userRight);
-        vo.setId(memberId);
-        vo.setPwd(memberPwd);
-        vo.setNick(memberNick);
-        vo.setName(name);
-        vo.setPhone(phone);
-        vo.setEmail(email);
-        vo.setAddress(address);
-        vo.setBr_num(br_num);
-        vo.setAccount(account);
+        vo.setId(memberId.replaceAll(" ", ""));
+        vo.setPwd(memberPwd.replaceAll(" ", ""));
+        vo.setNick(memberNick.replaceAll(" ", ""));
+        vo.setName(name.replaceAll(" ", ""));
+        vo.setPhone(phone.replaceAll(" ", ""));
+        vo.setEmail(email.replaceAll(" ", ""));
+        vo.setAddress(address.replaceAll(" ", ""));
+        vo.setBr_num(br_num.replaceAll(" ", ""));
+        vo.setAccount(account.replaceAll(" ", ""));
         
      
         

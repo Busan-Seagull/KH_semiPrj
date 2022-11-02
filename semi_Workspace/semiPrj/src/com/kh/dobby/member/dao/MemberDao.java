@@ -11,7 +11,7 @@ import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.member.vo.RightVo;
 
 public class MemberDao {
-
+    //멤버 로그인 (아이디,패스워드로 조회
     public MemberVo selectOne(Connection conn, MemberVo vo) {
        
             String sql="SELECT U.USER_NO,U.RIGHT_NO,U.ID,U.PWD,U.NAME,U.EMAIL, U.NICK,U.ADDRESS,U.PHONE,U.ENROLL_DATE,U.QUIT_YN, U.MODIFY_DATE,U.REPORT_CNT,D.BR_NUM,D.ACCOUNT,D.IMG_LINK FROM \"USER\" U left JOIN \"DOBBY\" D ON U.USER_NO =D.USER_NO WHERE U.ID=? AND U.PWD=? AND U.QUIT_YN='N'";
@@ -82,8 +82,79 @@ public class MemberDao {
 
     }
     
-    
+    //USER_NO로 조회
+    public MemberVo selectOneNo(Connection conn, MemberVo vo) {
+       
+            String sql="SELECT U.USER_NO,U.RIGHT_NO,U.ID,U.PWD,U.NAME,U.EMAIL, U.NICK,U.ADDRESS,U.PHONE,U.ENROLL_DATE,U.QUIT_YN, U.MODIFY_DATE,U.REPORT_CNT,D.BR_NUM,D.ACCOUNT,D.IMG_LINK FROM \"USER\" U left JOIN \"DOBBY\" D ON U.USER_NO =D.USER_NO WHERE U.USER_NO=? AND U.QUIT_YN='N'";
+           
+            PreparedStatement pstmt=null;
+            ResultSet rs=null;
+            MemberVo loginMember=null;
+           
 
+            try {
+                pstmt=conn.prepareStatement(sql);
+                pstmt.setString(1, vo.getUserNo());
+               
+                
+                rs=pstmt.executeQuery();
+                
+                if(rs.next()) {
+
+                    String userNo=rs.getString("USER_NO");
+                    String rightNo=rs.getString("RIGHT_NO");
+                    String id=rs.getString("ID");
+                    String pwd=rs.getString("PWD");
+                    String name=rs.getString("NAME");
+                    String email=rs.getString("EMAIL");
+                    String nick=rs.getString("NICK");
+                    String address=rs.getString("ADDRESS");
+                    String phone=rs.getString("PHONE");
+                    String enrollDate=rs.getString("ENROLL_DATE");
+                    String quitYn=rs.getString("QUIT_YN");
+                    String modifyDate=rs.getString("MODIFY_DATE");
+                    String reportCnt=rs.getString("REPORT_CNT");
+                    
+                    String brNum=rs.getString("BR_NUM");
+                    String account=rs.getString("ACCOUNT");
+                    String imgLink=rs.getString("IMG_LINK");
+                    
+                    loginMember=new MemberVo();
+                    loginMember.setUserNo(userNo);
+                    loginMember.setRightNo(rightNo);//잘챙겨.
+                    loginMember.setId(id);
+                    loginMember.setPwd(pwd);
+                    loginMember.setName(name);
+                    loginMember.setEmail(email);
+                    loginMember.setNick(nick);
+                    loginMember.setAddress(address);
+                    loginMember.setPhone(phone);
+                    loginMember.setEnrollDate(enrollDate);
+                    loginMember.setQuitYn(quitYn);
+                    loginMember.setModifyDate(modifyDate);
+                    loginMember.setReportCnt(reportCnt);
+                    loginMember.setBr_num(brNum);
+                    loginMember.setAccount(account);
+                    loginMember.setImg_link(imgLink);
+                    
+                   
+                    
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                JDBCTemplate.close(rs);
+                JDBCTemplate.close(pstmt);
+            }
+            
+            return loginMember;
+        
+        
+
+    }
+    
+    
+//횐가입 일반 유저 
     public int insertJoin(Connection conn, MemberVo vo) {
         PreparedStatement pstmt=null;
         int result=0;
@@ -112,7 +183,7 @@ public class MemberDao {
         
         return result;
     }
-
+//횐가입도비 
     public int insertJoinDobby(Connection conn, MemberVo vo) {
         String sql= "INSERT INTO DOBBY(USER_NO,BR_NUM,ACCOUNT) VALUES(SEQ_USER_NO.CURRVAL,?,?)";
         PreparedStatement pstmt=null;
@@ -140,7 +211,7 @@ public class MemberDao {
         return result;
         
     }
-
+//아이디 중복확인
     public int idCheck(Connection conn, String id) {
        
         
@@ -169,7 +240,7 @@ public class MemberDao {
         
         return idCheck;
     }
-
+//아이다 찾기 
     public MemberVo idfindOne(Connection conn, MemberVo vo) {
 
         String sql="SELECT USER_NO,RIGHT_NO,ID,PWD,NAME,EMAIL,NICK,ADDRESS,PHONE,ENROLL_DATE,QUIT_YN,MODIFY_DATE,REPORT_CNT FROM \"USER\" WHERE NAME=? AND PHONE=? AND QUIT_YN='N'";
@@ -229,7 +300,7 @@ public class MemberDao {
         
         return idfind;
     }
-
+//비번찾기
     public MemberVo pwdfindOne(Connection conn, MemberVo vo) {
         String sql="SELECT USER_NO,RIGHT_NO,ID,PWD,NAME,EMAIL,NICK,ADDRESS,PHONE,ENROLL_DATE,QUIT_YN,MODIFY_DATE,REPORT_CNT FROM \"USER\" WHERE ID=? AND EMAIL=? AND QUIT_YN='N'";
         
@@ -283,7 +354,7 @@ public class MemberDao {
         return pwdfind;
         
     }
-
+//일반회원 마이페이지 업데이트
     public int updateOneByNo(Connection conn, MemberVo vo) {
         PreparedStatement pstmt=null;
         int result=0;
@@ -314,7 +385,7 @@ public class MemberDao {
     }
 
 
-
+//도비 마이페이지 업데이트
     public int updateOneByNoDobby(Connection conn, MemberVo vo, AttachmentVo avo) {
         PreparedStatement pstmt=null;
         int result=0;
@@ -341,7 +412,7 @@ public class MemberDao {
     }
 
 
-
+//탈퇴
     public int quit(Connection conn, String no) {
         PreparedStatement pstmt=null;
         int result=0;
@@ -362,7 +433,7 @@ public class MemberDao {
     }
 
 
-
+//집요정 프로필 사진 
     public AttachmentVo selectAttachment(Connection conn, String userNo) {
         String sql="SELECT D.USER_NO,D.BR_NUM,D.ACCOUNT,D.SERVICE_1,D.SERVICE_2,D.SERVICE_3,D.IMG_LINK,U.QUIT_YN FROM \"DOBBY\" D JOIN \"USER\" U ON D.USER_NO=U.USER_NO WHERE U.QUIT_YN='N' AND U.USER_NO=?";
         PreparedStatement pstmt=null;

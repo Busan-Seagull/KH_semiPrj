@@ -451,6 +451,53 @@ public class Commudao {
 
     }
 
+    public int updateCmtOneByNo(Connection conn, CommuCmtVo cmtVo) {
+        String sql="UPDATE \"COMMENT\" SET  CONTENT = ? , USER_NO=?  WHERE POST_NO=? AND COMMENT_NO= ?";
+        PreparedStatement pstmt=null;
+        int result=0;
+        try {
+         pstmt=conn.prepareStatement(sql);
+         pstmt.setString(1, cmtVo.getContent());
+         pstmt.setString(2, cmtVo.getUserNo());
+         pstmt.setString(3, cmtVo.getPostNo());
+         pstmt.setString(4, cmtVo.getCommentNo());
+         
+         result=pstmt.executeUpdate();
+         
+         
+     } catch (SQLException e) {
+         e.printStackTrace();
+     }finally {
+         JDBCTemplate.close(pstmt);
+     }
+        
+        return result;
+
+    }
+
+    public int DeleteCmtOneByNo(Connection conn, CommuCmtVo cmtVo) {
+        String sql="UPDATE \"COMMENT\" SET DELETE_YN='Y' WHERE POST_NO=? AND COMMENT_NO= ?";
+        PreparedStatement pstmt=null;
+        int result=0;
+        try {
+         pstmt=conn.prepareStatement(sql);
+         
+        
+         pstmt.setString(1, cmtVo.getPostNo());
+         pstmt.setString(2, cmtVo.getCommentNo());
+         
+         result=pstmt.executeUpdate();
+         
+         
+     } catch (SQLException e) {
+         e.printStackTrace();
+     }finally {
+         JDBCTemplate.close(pstmt);
+     }
+        
+        return result;
+    }
+
 
 
     
