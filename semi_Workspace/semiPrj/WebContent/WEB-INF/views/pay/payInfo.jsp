@@ -14,7 +14,7 @@
         <div id="payment-info">
             <div id="payment-info-text">결제정보</div>
             <div class="button">
-                <button onclick="location.href='/dobby/mypage/payhistory'" id="list-button">결제내역 목록</button>
+                <button onclick="location.href='/dobby/member/mypage'" id="list-button">결제내역 목록</button>
             </div>
             <div class="button">
                 <button id="cancel-button">결제취소</button>

@@ -651,7 +651,7 @@ input[type=submit]{
 							</div>
 							<div class="history-btns-div">
 								<div class="btn-div">
-									<button onclick="location.href='/dobby/reviewList';">리뷰쓰기</button>
+									<button onclick="location.href='/dobby/reviewWrite';">리뷰쓰기</button>
 								</div>
 								<div class="btn-div">
 									<button>결제취소</button>

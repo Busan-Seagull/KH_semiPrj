@@ -132,9 +132,7 @@ String root = request.getContextPath();
 							</div>
 							<div class="helper-contents2">
 								<div class="favorite-btn-div">
-									<button class="favorite-btn">
-										<span class="material-symbols-outlined"> favorite </span>
-									</button>
+									
 								</div>
 								<div class="service-pay">
 									<c:if test="${list.chargeUnit eq '견적필요'}">
