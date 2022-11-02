@@ -1,9 +1,11 @@
 #report-area{
 	width:960px;
-	height: 500px;
+	min-height: 85vh;
 	display:flex;
+	flex-direction: column;
 	margin: 0 auto;
 	justify-content: center;
+	padding: 50px;
 }
 
 #report-list{
@@ -12,8 +14,7 @@
 	border-bottom: 3px solid #004412;
 	display:grid;
 	grid-template-columns: 1fr 1fr 1fr 3fr 2fr;
-	grid-template-rows: 45px 45px 610px;
-	top:100px;
+	top:30px;
 
 	
 }
@@ -50,4 +51,84 @@
 	border-top:3px solid #004412;
 	border-bottom:3px solid #004412;
 
+}
+
+#list-popup > a{
+	/* color: lightgray; */
+	color: #004412;
+	font-weight: 500;
+	font-size: 13px
+}
+
+/* 신고게시판 */
+#report-area{
+	width:800px;
+	height: auto;
+	/* display:flex; */
+	margin: 0 auto;
+	justify-content: start;
+	padding-top: 80px;
+}
+
+#report-list{
+	position: relative;
+	border-top: 3px solid #004412;
+	/* border-bottom: 3px solid #004412; */
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr 3fr 2fr;
+	grid-template-rows: repeat(45px);
+	top:50px;
+
+	
+}
+.list-no1:not(.space){
+	border-top: 3px solid #004412;
+	border-bottom: 3px solid #004412; 
+
+}
+
+#report-list>div{
+	
+	text-align: center;
+	line-height: 45px;
+}
+
+#report-span{
+
+	grid-column: span 5;
+}
+.space{
+	
+	height:6px;
+	grid-column: span 5;
+}
+
+#report-content-content{
+	width: 100%;
+	height: auto;
+	
+
+}
+#report-content{
+	background-color:#004412;
+	color:white;
+	height: 45px;
+}
+#list-popup{
+	position:relative;
+	top: -36px;
+	left: 675px;
+	background-color: white;
+	border-radius: 10px;
+	padding: 3px;
+	width: 100px;
+	height: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+#list-popup:hover{
+	background-color: lightgray;
 }

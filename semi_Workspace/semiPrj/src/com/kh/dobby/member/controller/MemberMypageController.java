@@ -2,6 +2,7 @@ package com.kh.dobby.member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,8 +18,14 @@ import com.kh.dobby.common.AttachmentVo;
 import com.kh.dobby.common.FileUploader;
 import com.kh.dobby.member.service.MemberService;
 import com.kh.dobby.member.vo.MemberVo;
-import com.kh.dobby.point.controller.PointService;
+import com.kh.dobby.pay.service.PayService;
+import com.kh.dobby.payVo.PayVo;
+import com.kh.dobby.point.service.PointService;
 import com.kh.dobby.point.vo.PointVo;
+import com.kh.dobby.report.service.ReportService;
+import com.kh.dobby.report.vo.ReportVo;
+import com.kh.dobby.service.service.ServiceService;
+import com.kh.dobby.service.vo.ServiceVo;
 
 
 @WebServlet(urlPatterns = "/member/mypage")
@@ -34,10 +41,27 @@ public class MemberMypageController extends HttpServlet{
       //화면
         HttpSession s = req.getSession();
         MemberVo loginMember=(MemberVo) s.getAttribute("loginMember");
+        
+        int userNo = 0;
+        if (loginMember == null) {
+            req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
+            return;
+        } else {
+            userNo = Integer.parseInt(loginMember.getUserNo());
+//            System.out.println(userNo);
+        }
      
         String pno = req.getParameter("pno");
         req.setAttribute("pno", pno);
         
+//        하나님 신고내역 불러오기
+        String writer =loginMember.getNick();
+        List<ReportVo> voList = new ArrayList<ReportVo>();
+        
+        voList = new ReportService().selectReportList(writer);
+        req.setAttribute("voList",voList);
+        
+//        임정한 포인트 내역
         List<PointVo> pList = new PointService().getList(loginMember.getUserNo());
         int point = new PointService().getSumPoint(loginMember.getUserNo());
         
@@ -45,12 +69,26 @@ public class MemberMypageController extends HttpServlet{
             req.setAttribute("pList", pList);
             req.setAttribute("point", point);
         }
+        
+//       량우님 결제
+        // 유저 넘버로 결제 내역 받아오기
+        List<PayVo> myPay = new PayService().listHistory(userNo);
+        
+//        System.out.println(myPay);
 
+        req.setAttribute("myPay", myPay);
+        
+//        량우님 서비스
+        // 유저 넘버로 서비스 리스트 받아오기
+        List<ServiceVo> myService = new ServiceService().listService(userNo);
+        
+//        System.out.println(myService);
+
+        req.setAttribute("myService", myService);
+
+//        성공시
         if(loginMember != null) {
             req.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(req, resp);
-        }else {
-            req.setAttribute("msg","로그인 후 이용해주세요.");
-            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
         }
 
       

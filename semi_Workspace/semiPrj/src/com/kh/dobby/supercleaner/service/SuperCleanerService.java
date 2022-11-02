@@ -16,6 +16,9 @@ public class SuperCleanerService {
         
         List<ZipVo> list = new SuperCleanerDao().getList(conn);
         
+        for(ZipVo vo : list) {
+            vo.setGrade(vo.getGrade().substring(0,3));
+        }
         
         JDBCTemplate.close(conn);
         

@@ -1,4 +1,4 @@
-package com.kh.dobby.point.controller;
+package com.kh.dobby.point.service;
 
 import java.sql.Connection;
 import java.util.List;
