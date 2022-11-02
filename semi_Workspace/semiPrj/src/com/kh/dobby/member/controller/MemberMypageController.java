@@ -123,17 +123,19 @@ public class MemberMypageController extends HttpServlet{
            Part f = req.getPart("f");
            //파일 없으면 널값
            AttachmentVo avo = null;
-         
+           String rootpath=null;
         
            
          //=============== 파일 업로드 start ================
          
-           
-           //파일 정보 디비에 저장하기(파일이 있을 때)
-           String rootpath=req.getServletContext().getRealPath("/");
-            if(f.getSubmittedFileName().length() > 0) {
-                avo=FileUploader.uploadFile(f,rootpath);
-            }
+           if(f!=null) {
+             //파일 정보 디비에 저장하기(파일이 있을 때)
+              rootpath=req.getServletContext().getRealPath("/");
+                if(f.getSubmittedFileName().length() > 0) {
+                    avo=FileUploader.uploadFile(f,rootpath);
+                }
+               
+           }
            
            
            //=============== 파일 업로드 end ==================
@@ -166,7 +168,8 @@ public class MemberMypageController extends HttpServlet{
         if(updatedMember !=null) {
 //            req.getSession().setAttribute("msg", "내 정보 수정성공!");
             req.getSession().setAttribute("loginMember", updatedMember);
-           req.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(req, resp);
+//           req.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(req, resp);
+            resp.sendRedirect("/dobby/member/mypage?pno=1");
         }else {
             if(avo!=null) { 
                 String savePath =rootpath+avo.getFilePath()+"/"+avo.getChangeName();
