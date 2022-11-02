@@ -276,7 +276,7 @@ public class ReviewDao {
             
             pstmt.setString(1, vo.getServiceNo());
             pstmt.setString(2, vo.getTitle());
-            pstmt.setString(3,vo.getUserNo());
+            pstmt.setString(3, vo.getUserNo());
             pstmt.setString(4, vo.getGrade());
             pstmt.setString(5, vo.getContent());
             pstmt.setString(6, vo.getPostNo());
