@@ -33,6 +33,8 @@ public class ReviewDetailController extends HttpServlet {
             ReviewVo vo = rs.selectOne(postNo);
             
             req.setAttribute("vo", vo);
+            
+            System.out.println(vo);
            
             
             req.getRequestDispatcher("/WEB-INF/views/review/reviewDetail.jsp").forward(req, resp);
@@ -54,13 +56,10 @@ public class ReviewDetailController extends HttpServlet {
         String adminReport = req.getParameter("adminReport");
         String contentReply = req.getParameter("content-reply");
         
-        System.out.println(postNo);
-        System.out.println(adminReport);
-        System.out.println(contentReply);
-        
-        ReportVo vo = new ReportVo();
+       
+        ReviewVo vo = new ReviewVo();
         vo.setPostNo(postNo);
-        vo.setReportComment(contentReply);
+        vo.setZipComm(contentReply);
         vo.setUserNo(loginMember.getUserNo());
         
        
@@ -69,7 +68,7 @@ public class ReviewDetailController extends HttpServlet {
         int result =0;
         int result2 =0;
         int result3 = 0;
-        ReportVo x = null;
+        ReviewVo x = null;
         
         
         if("확인".equals(adminReport)) {
@@ -81,8 +80,8 @@ public class ReviewDetailController extends HttpServlet {
         else if("삭제".equals(adminReport)) {
             result3 = rs.deleteReviewReply(postNo); 
         }
-        else if(vo.getReportComment()!= null) {
-            x = new ReportService().selectReplyList(postNo);
+        else if(vo.getZipComm()!= null) {
+            x = rs.selectReplyList(postNo);
         }else {
             req.setAttribute("msg", "[ERROR]오류 발생");
             req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);

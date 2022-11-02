@@ -59,9 +59,6 @@ public class DetailController extends HttpServlet {
         String adminReport = req.getParameter("adminReport");
         String contentReply = req.getParameter("content-reply");
         
-        System.out.println(postNo);
-        System.out.println(adminReport);
-        System.out.println(contentReply);
         
         ReportVo vo = new ReportVo();
         vo.setPostNo(postNo);

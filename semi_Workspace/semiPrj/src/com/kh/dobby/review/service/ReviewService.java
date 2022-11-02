@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.kh.dobby.common.PageVo;
 import com.kh.dobby.member.vo.MemberVo;
+import com.kh.dobby.report.vo.ReportVo;
 import com.kh.dobby.review.dao.ReviewDao;
 import com.kh.dobby.review.vo.ReviewVo;
 
@@ -124,5 +125,62 @@ public class ReviewService {
         return result;
     }
 
+    public int writeReviewReply(ReviewVo vo) {
+
+        Connection conn = getConnection();
+        
+        int result = dao.updateReviewReply(conn,vo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        
+        return result;
+    }
+
+    public int editReviewReply(ReviewVo vo) {
+
+        Connection conn = getConnection();
+        
+        int result = dao.editReviewReply(conn, vo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        
+        close(conn);
+        return result;
+    }
+
+    public int deleteReviewReply(String postNo) {
+        Connection conn = getConnection();
+        
+        int result = dao.deleteReviewReply(conn, postNo);
+        
+        if(result == 1) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        return result ;
+
+        
+    }
+
+    public ReviewVo selectReplyList(String postNo) {
+
+        Connection conn = getConnection();
+        ReviewVo vo = dao.selectReplyList(conn,postNo);
+        
+        close(conn);
+        
+        return vo;
+    }    
 
 }

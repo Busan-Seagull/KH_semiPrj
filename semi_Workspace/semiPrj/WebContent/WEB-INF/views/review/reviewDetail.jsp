@@ -288,7 +288,7 @@ top:30px;
 		</div>
 		<div id="reply-main2">
 			<div id="reply-title2"><label>집요정</label></div>
-			<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${vo.getZipComm()}</div>
+			<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${vo.zipComm}</div>
 			<div ><input class="r3" id="r4" type="submit" name="adminReport" value="수정"></div> 
 			<div ><input class="r3" id="r5" type="submit" name="adminReport" value="삭제"></div> 
 		</div>
