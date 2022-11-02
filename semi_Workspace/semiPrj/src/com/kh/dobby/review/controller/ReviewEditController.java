@@ -7,7 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.report.service.ReportService;
 import com.kh.dobby.report.vo.ReportVo;
 import com.kh.dobby.review.service.ReviewService;
@@ -34,11 +36,14 @@ public class ReviewEditController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         
+        HttpSession s = req.getSession();
+
+        MemberVo loginMember = (MemberVo) s.getAttribute("loginMember");
+        
         
         String postNo = req.getParameter("postNo");
         String serviceNo = req.getParameter("serviceNo");
         String title = req.getParameter("title");
-        String userNo = req.getParameter("userNo");
         String grade = req.getParameter("grade");
         String content = req.getParameter("content");
         
@@ -47,10 +52,9 @@ public class ReviewEditController extends HttpServlet {
         vo.setPostNo(postNo);
         vo.setServiceNo(serviceNo);
         vo.setTitle(title);
-        vo.setUserNo(userNo);
+        vo.setUserNo(loginMember.getUserNo());
         vo.setGrade(grade);
         vo.setContent(content);
-        
         
         int result = new ReviewService().edit(vo);
 
