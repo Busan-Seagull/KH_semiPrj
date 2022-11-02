@@ -100,7 +100,7 @@
     background-color: gray;
     width: 250px;
     height: 150px;
-    border: 1px solid var(--semi-green);
+    border-radius: 10px;
 }
 
 </style>

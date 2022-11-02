@@ -19,6 +19,8 @@ import com.kh.dobby.service.service.ServiceService;
 import com.kh.dobby.service.vo.ServiceVo;
 import com.kh.dobby.supercleaner.service.SuperCleanerService;
 import com.kh.dobby.supercleaner.vo.ZipVo;
+import com.kh.dobby.zzim.service.ZzimService;
+import com.kh.dobby.zzim.vo.ZzimVo2;
 
 @WebServlet(urlPatterns = "")
 public class MainController extends HttpServlet{
@@ -41,6 +43,12 @@ public class MainController extends HttpServlet{
        List<CommuVo> cList = new CommuService().selectMainList();
        List<ZipVo> zList = new SuperCleanerService().getList();
        List<ServiceVo> sList = new ServiceService().listPopUser();
+       
+       if(loginMember!=null) {
+           List<ZzimVo2> zzList = new ZzimService().getZzimList(loginMember.getUserNo());     
+           req.setAttribute("zzList", zzList);
+       }
+
 	    
 	    if(list!=null) {
             req.setAttribute("zList", zList);
