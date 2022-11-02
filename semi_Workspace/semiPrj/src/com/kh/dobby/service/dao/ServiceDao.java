@@ -146,19 +146,55 @@ public class ServiceDao {
                     + "JOIN \"USER\" U ON S.USER_NO = U.USER_NO \r\n"
                     + "JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO \r\n"
                     + "JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO\r\n"
-                    + "JOIN (SELECT SERVICE_NO, COUNT(*) COUNT, AVG(GRADE) AVG FROM REVIEW  GROUP BY SERVICE_NO) R ON S.SERVICE_NO = R.SERVICE_NO\r\n"
-                    + "JOIN (SELECT SERVICE_NO, TITLE, CONTENT, WRITE_TIME FROM REVIEW WHERE WRITE_TIME IN (SELECT MAX(WRITE_TIME) AS WRITE_TIME FROM REVIEW GROUP BY SERVICE_NO)) RR\r\n"
+                    + "LEFT JOIN (SELECT SERVICE_NO, COUNT(*) COUNT, AVG(GRADE) AVG FROM REVIEW  GROUP BY SERVICE_NO) R ON S.SERVICE_NO = R.SERVICE_NO\r\n"
+                    + "LEFT JOIN (SELECT SERVICE_NO, TITLE, CONTENT, WRITE_TIME FROM REVIEW WHERE WRITE_TIME IN (SELECT MAX(WRITE_TIME) AS WRITE_TIME FROM REVIEW GROUP BY SERVICE_NO)) RR\r\n"
                     + "ON RR.SERVICE_NO = S.SERVICE_NO";
         }else if(stn == null & region != null) {
             //카테고리 없고, 지역 있을 때
-            sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK, S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 FROM SERVICE_INFO S JOIN \"USER\" U ON S.USER_NO = U.USER_NO JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO WHERE AREA_1 = "+region+"OR AREA_2 = "+region+" OR AREA_3 = "+region+" OR AREA_4 = "+region+" OR AREA_5 = "+region;
+            sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK\r\n"
+                    + ", S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL\r\n"
+                    + ", S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL\r\n"
+                    + ", S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5\r\n"
+                    + ", R.COUNT, R.AVG, RR.TITLE, RR.CONTENT, RR.WRITE_TIME\r\n"
+                    + "FROM SERVICE_INFO S \r\n"
+                    + "JOIN \"USER\" U ON S.USER_NO = U.USER_NO \r\n"
+                    + "JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO \r\n"
+                    + "JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO\r\n"
+                    + "LEFT JOIN (SELECT SERVICE_NO, COUNT(*) COUNT, AVG(GRADE) AVG FROM REVIEW  GROUP BY SERVICE_NO) R ON S.SERVICE_NO = R.SERVICE_NO\r\n"
+                    + "LEFT JOIN (SELECT SERVICE_NO, TITLE, CONTENT, WRITE_TIME FROM REVIEW WHERE WRITE_TIME IN (SELECT MAX(WRITE_TIME) AS WRITE_TIME FROM REVIEW GROUP BY SERVICE_NO)) RR\r\n"
+                    + "ON RR.SERVICE_NO = S.SERVICE_NO\r\n"
+                    + "WHERE AREA_1 = "+region+" OR AREA_2 = "+region+" OR AREA_3 = "+region+" OR AREA_4 = "+region+" OR AREA_5 = "+region;
         }else if(stn != null && region == null){
             //카테고리 있고, 지역 없을때
-            sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK, S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 FROM SERVICE_INFO S JOIN \"USER\" U ON S.USER_NO = U.USER_NO JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO WHERE S.SERVICE_TYPE_NO ="
-                    + stn;
+            sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK\r\n"
+                    + ", S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL\r\n"
+                    + ", S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL\r\n"
+                    + ", S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 \r\n"
+                    + ", R.COUNT, R.AVG, RR.TITLE, RR.CONTENT, RR.WRITE_TIME\r\n"
+                    + "FROM SERVICE_INFO S \r\n"
+                    + "JOIN \"USER\" U ON S.USER_NO = U.USER_NO \r\n"
+                    + "JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO \r\n"
+                    + "JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO\r\n"
+                    + "LEFT JOIN (SELECT SERVICE_NO, COUNT(*) COUNT, AVG(GRADE) AVG FROM REVIEW  GROUP BY SERVICE_NO) R ON S.SERVICE_NO = R.SERVICE_NO\r\n"
+                    + "LEFT JOIN (SELECT SERVICE_NO, TITLE, CONTENT, WRITE_TIME FROM REVIEW WHERE WRITE_TIME IN (SELECT MAX(WRITE_TIME) AS WRITE_TIME FROM REVIEW GROUP BY SERVICE_NO)) RR\r\n"
+                    + "ON RR.SERVICE_NO = S.SERVICE_NO\r\n"
+                    + "WHERE S.SERVICE_TYPE_NO =" + stn;
+                    
         } else {
             //카테고리 있고, 지역 있을때
-            sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK, S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 FROM SERVICE_INFO S JOIN \"USER\" U ON S.USER_NO = U.USER_NO JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO WHERE (AREA_1 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_2 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_3 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_4 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_5 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+")";
+            sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK\r\n"
+                    + ", S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL\r\n"
+                    + ", S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL\r\n"
+                    + ", S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 \r\n"
+                    + ", R.COUNT, R.AVG, RR.TITLE, RR.CONTENT, RR.WRITE_TIME\r\n"
+                    + "FROM SERVICE_INFO S \r\n"
+                    + "JOIN \"USER\" U ON S.USER_NO = U.USER_NO \r\n"
+                    + "JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO \r\n"
+                    + "JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO \r\n"
+                    + "LEFT JOIN (SELECT SERVICE_NO, COUNT(*) COUNT, AVG(GRADE) AVG FROM REVIEW  GROUP BY SERVICE_NO) R ON S.SERVICE_NO = R.SERVICE_NO\r\n"
+                    + "LEFT JOIN (SELECT SERVICE_NO, TITLE, CONTENT, WRITE_TIME FROM REVIEW WHERE WRITE_TIME IN (SELECT MAX(WRITE_TIME) AS WRITE_TIME FROM REVIEW GROUP BY SERVICE_NO)) RR\r\n"
+                    + "ON RR.SERVICE_NO = S.SERVICE_NO\r\n"
+                    + "WHERE (AREA_1 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_2 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_3 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_4 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_5 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+")";
         }
 
         PreparedStatement pstmt = null;
@@ -255,14 +291,20 @@ public class ServiceDao {
 
     public ServiceVo selectOne(Connection conn, String sno) {
 
+        //서비스 디테일
         String sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK, S.IMAGE_LINK, S.CHARGE,S.CHARGE_UNIT_NO, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 FROM SERVICE_INFO S JOIN \"USER\" U ON S.USER_NO = U.USER_NO JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO WHERE S.SERVICE_NO = ?";
-
+        //리뷰 평점
+        String reviewSql = "SELECT * FROM(SELECT SERVICE_NO, COUNT(*) COUNT, AVG(GRADE) AVG FROM REVIEW GROUP BY SERVICE_NO) WHERE SERVICE_NO = ?";
+        
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+        PreparedStatement pstmt2 = null;
+        ResultSet rs2 = null;
         ServiceVo sv = new ServiceVo();
         int serviceNumber = Integer.parseInt(sno);
 
         try {
+            //서비스 디테일
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, serviceNumber);
 
@@ -326,13 +368,28 @@ public class ServiceDao {
                 sv.setAreaNo_3(areaNo_3);
                 sv.setAreaNo_4(areaNo_4);
                 sv.setAreaNo_5(areaNo_5);
+                
+                //서비스 리뷰
+                pstmt2 = conn.prepareStatement(reviewSql);
+                pstmt2.setInt(1, serviceNumber);
+
+                rs2 = pstmt2.executeQuery();
+                
+                if(rs2.next()) {
+                sv.setReviewCnt(rs2.getInt("COUNT"));
+                sv.setReviewAvg(rs2.getInt("AVG"));
+                }
+                
+                
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             JDBCTemplate.close(rs);
+            JDBCTemplate.close(rs2);
             JDBCTemplate.close(pstmt);
+            JDBCTemplate.close(pstmt2);
         }
 
         return sv;
@@ -341,7 +398,19 @@ public class ServiceDao {
     // 유저 넘버로 리스트 받아오기
     public List<ServiceVo> listService(Connection conn, int userNo) {
 
-        String sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK, S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1, S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2, S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 FROM SERVICE_INFO S JOIN \"USER\" U ON S.USER_NO = U.USER_NO JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO WHERE S.USER_NO ="
+        String sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK\r\n"
+                + ", S.IMAGE_LINK, S.CHARGE, C.CHARGE_UNIT, S.EXP, S.OPEN_TIME, S.CLOSE_TIME, S.DETAIL, S.SERVICE_PIC_1\r\n"
+                + ", S.SERVICE_PIC_2 , S.SERVICE_PIC_3, S.SERVICE_PIC_4, S.PAYMENT_DETAIL, S.PAYMENT_ABLE_1, S.PAYMENT_ABLE_2\r\n"
+                + ", S.PAYMENT_ABLE_3 , S.AREA_1, S.AREA_2, S.AREA_3, S.AREA_4, S.AREA_5 \r\n"
+                + ", R.COUNT, R.AVG, RR.TITLE, RR.CONTENT, RR.WRITE_TIME\r\n"
+                + "FROM SERVICE_INFO S \r\n"
+                + "JOIN \"USER\" U ON S.USER_NO = U.USER_NO \r\n"
+                + "JOIN \"SERVICE\" SE ON S.SERVICE_TYPE_NO = SE.SERVICE_TYPE_NO \r\n"
+                + "JOIN CHARGE_UNIT C ON S.CHARGE_UNIT_NO = C.CHARGE_UNIT_NO \r\n"
+                + "LEFT JOIN (SELECT SERVICE_NO, COUNT(*) COUNT, AVG(GRADE) AVG FROM REVIEW  GROUP BY SERVICE_NO) R ON S.SERVICE_NO = R.SERVICE_NO\r\n"
+                + "LEFT JOIN (SELECT SERVICE_NO, TITLE, CONTENT, WRITE_TIME FROM REVIEW WHERE WRITE_TIME IN (SELECT MAX(WRITE_TIME) AS WRITE_TIME FROM REVIEW GROUP BY SERVICE_NO)) RR\r\n"
+                + "ON RR.SERVICE_NO = S.SERVICE_NO\r\n"
+                + "WHERE S.USER_NO ="
                 + userNo;
 
         PreparedStatement pstmt = null;
@@ -410,6 +479,11 @@ public class ServiceDao {
                 sv.setAreaNo_3(areaNo_3);
                 sv.setAreaNo_4(areaNo_4);
                 sv.setAreaNo_5(areaNo_5);
+                sv.setReviewAvg(rs.getInt("AVG"));
+                sv.setReviewCnt(rs.getInt("COUNT"));
+                sv.setReviewTitle(rs.getString("TITLE"));
+                sv.setReviewContent(rs.getString("CONTENT"));
+                sv.setReviewTime(rs.getString("WRITE_TIME"));
 
                 svList.add(sv);
 

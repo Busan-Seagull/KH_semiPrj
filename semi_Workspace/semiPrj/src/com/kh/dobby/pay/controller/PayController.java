@@ -12,8 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.pay.service.PayService;
 import com.kh.dobby.payVo.PayVo;
-import com.kh.dobby.point.controller.PointService;
-import com.kh.dobby.point.vo.PointVo;
+import com.kh.dobby.point.service.PointService;
 import com.kh.dobby.reservation.service.ReservationService;
 import com.kh.dobby.reservation.vo.ReservationVo;
 

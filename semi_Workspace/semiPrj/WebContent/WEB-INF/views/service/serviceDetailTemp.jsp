@@ -54,7 +54,7 @@
 					<img src="/dobby/${sv.profileImg}" alt="" onerror="this.src='/dobby/resources/img/dust.png';">
 				</div>
 				<div class="inline-block" id="profile-contents">
-					<h2>${sv.serviceIntro}</h2>
+					<h2>${sv.title}</h2>
 					<table width=100% height="50%">
 						<tr>
 							<td class="sm text-grey fixed-text">닉네임</td>
@@ -82,19 +82,25 @@
 						</tr>
 						<tr>
 							<td class="sm text-grey fixed-text">지역</td>
-							<td class="input-text">${cv.area_1}${cv.area_2} ${cv.area_3}<br>
+							<td class="input-text">${cv.area_1} ${cv.area_2} ${cv.area_3}<br>
 								${cv.area_4} ${cv.area_5}
 							</td>
 							<td class="sm text-grey fixed-text">결제수단</td>
-							<td class="input-text">${cv.payment_1}${cv.payment_2}
-								${cv.payment_3}</td>
+							<td class="input-text">${cv.payment_1} ${cv.payment_2} ${cv.payment_3}</td>
 						</tr>
 						<tr>
 							<td class="sm text-grey fixed-text" colspan="4">서비스평가</td>
 						</tr>
 						<tr>
-							<td colspan="1" id="starrr">★★★★★&nbsp&nbsp5.0</td>
-							<td>(1)</td>
+							<td colspan="1" id="starrr">
+								<c:if test="${sv.reviewAvg eq 5}">★★★★★</c:if>
+									<c:if test="${sv.reviewAvg ge 4 && sv.reviewAvg lt 5}">★★★★☆</c:if>
+									<c:if test="${sv.reviewAvg ge 3 && sv.reviewAvg lt 4}">★★★☆☆</c:if>
+									<c:if test="${sv.reviewAvg ge 2 && sv.reviewAvg lt 3}">★★☆☆☆</c:if>
+									<c:if test="${sv.reviewAvg ge 1 && sv.reviewAvg lt 2}">★☆☆☆☆</c:if>
+									<c:if test="${sv.reviewAvg ge 0 && sv.reviewAvg lt 1}">☆☆☆☆☆</c:if>
+								&nbsp&nbsp<fmt:formatNumber value="${sv.reviewAvg}" pattern="0.0"/></td>
+							<td id="review-cnt-profile">(${sv.reviewCnt})</td>
 						</tr>
 					</table>
 
