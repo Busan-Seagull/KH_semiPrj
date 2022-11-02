@@ -24,6 +24,21 @@ public class MemberService {
         
 
     }
+    
+    public MemberVo selectMemberNo(MemberVo vo) {
+        
+        
+        Connection conn=JDBCTemplate.getConnection();
+        
+        MemberDao dao=new MemberDao();
+        MemberVo selectMemberNo=new MemberDao().selectOneNo(conn,vo);
+        
+        JDBCTemplate.close(conn);
+
+        return selectMemberNo; 
+    
+
+}
 
     public int join(MemberVo vo) {
         Connection conn=JDBCTemplate.getConnection();

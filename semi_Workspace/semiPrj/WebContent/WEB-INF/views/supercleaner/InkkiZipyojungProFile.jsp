@@ -1,5 +1,17 @@
+<%@page import="com.kh.dobby.member.vo.MemberVo"%>
+<%@page import="com.kh.dobby.service.vo.ServiceVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+int reviewCnt=  (Integer)request.getAttribute("reviewsCnt");
+MemberVo zip =(MemberVo)request.getAttribute("zip");
+List<ServiceVo> list =(List<ServiceVo>)request.getAttribute("list");
+String root = request.getContextPath();
+%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +23,14 @@
         height: 100vh;
         display: grid;
         grid-template-rows: 1.5fr 3fr;
+        
         margin: auto;
+        margin-top: 10px;
     }
 
     #profile{
         width: 100%;
-        height: 90%;
+        height: 300px;
         border: 1px solid lightgrey;
         border-radius: 10px;
         margin: auto;
@@ -27,11 +41,16 @@
     }
 
     #profile #img{
+        display: flex;
+        margin: auto;
+        justify-content: center;
+    }
+    #profile #img img{
         width: 90%;
         height: 90%;
         border: 1px solid lightgrey;
-        margin: auto;
         border-radius: 10px;
+        
     }
     #text{
         margin: auto;
@@ -163,104 +182,52 @@
 <%@include file="/WEB-INF/views/common/side.jsp" %>
 <div id="profile-main">
     <div id="profile">
-        <div id="img">프로필 사진</div>
+        <div id="img"><img src="/dobby/<%=zip.getImg_link() %>" alt=""></div>
         <div id="text">
             <div id="inkki"><span class="material-symbols-outlined">magic_button</span> 화제의 인기 집요정</div>
-            <div id="name">너굴맨</div>
-            <div id="Br_num">사업자 등록 번호 123-45-67890</div>
-            <div id="reviewCnt">전체 리뷰 123개</div>
+            <div id="name"><%=zip.getNick()%></div>
+            <div id="Br_num">사업자 등록 번호 <%=zip.getBr_num().substring(0,3)%>-<%=zip.getBr_num().substring(3,5)%>-<%=zip.getBr_num().substring(5,9)%></div>
+            <div id="reviewCnt">전체 리뷰 <%=reviewCnt%>개</div>
         </div>
-        
+  
     </div>
     <div id="service">
         
-            <div class="helper-list-outline">
-                <a class="helper-list">
-                    <div class="helper-pic">
-                        <img src="/dobby/resources/img/dust.png" alt="">
-                    </div>
-                    <div class="helper-contents">
-                        <div>
-                            <h2>서비스 제목 | 서비스 제공자</h2>
-                            <p>서비스 인트로</p>
-                        </div>
-                        <div>
-                            <span class="starrr">★★★★★</span> <span class="star-num">5</span>
-                            <span class="comment">"이 집 청소 잘하네요~"</span>
-                        </div>
-                    </div>
-                    <div class="helper-contents2">
-                        <div class="favorite-btn-div">
-                            <button class="favorite-btn">
-                                <span class="material-symbols-outlined"> favorite </span>
-                            </button>
-                        </div>
-                        <div class="service-pay">
-                           가격
-                          
-                        </div>
-                    </div>
-                </a>
-            </div>
+           <div class="helper-list-flex">
+				<c:forEach var="list" items="${list}">
+					<div class="helper-list-outline">
+						<a class="helper-list"
+							onclick="location.href='<%=root %>/service/detail?sno=${list.serviceNo}'">
+							<div class="helper-pic">
+								<img src="/dobby/${list.profileImg}" alt="">
+							</div>
+							<div class="helper-contents">
+								<div>
+									<h2>${list.title} | ${list.helper}</h2>
+									<p>${list.serviceIntro}</p>
+								</div>
+								<div>
+									<span class="starrr">★★★★★</span> <span class="star-num">5</span>
+									<span class="comment">"이 집 청소 잘하네요~"</span>
+								</div>
+							</div>
+							<div class="helper-contents2">
+								<div class="favorite-btn-div">
+									<button class="favorite-btn">
+										<span class="material-symbols-outlined"> favorite </span>
+									</button>
+								</div>
+								<div class="service-pay">${list.chargeUnit}당
+									<fmt:formatNumber value="${list.charge}" pattern="#,###" />
+									원
+								</div>
+							</div>
+						</a>
+					</div>
 
-            <div class="helper-list-outline">
-                <a class="helper-list">
-                    <div class="helper-pic">
-                        <img src="/dobby/resources/img/dust.png" alt="">
-                    </div>
-                    <div class="helper-contents">
-                        <div>
-                            <h2>서비스 제목 | 서비스 제공자</h2>
-                            <p>서비스 인트로</p>
-                        </div>
-                        <div>
-                            <span class="starrr">★★★★★</span> <span class="star-num">5</span>
-                            <span class="comment">"이 집 청소 잘하네요~"</span>
-                        </div>
-                    </div>
-                    <div class="helper-contents2">
-                        <div class="favorite-btn-div">
-                            <button class="favorite-btn">
-                                <span class="material-symbols-outlined"> favorite </span>
-                            </button>
-                        </div>
-                        <div class="service-pay">
-                           가격
-                          
-                        </div>
-                    </div>
-                </a>
-            </div>
+				</c:forEach>
 
-            <div class="helper-list-outline">
-                <a class="helper-list">
-                    <div class="helper-pic">
-                        <img src="/dobby/resources/img/dust.png" alt="">
-                    </div>
-                    <div class="helper-contents">
-                        <div>
-                            <h2>서비스 제목 | 서비스 제공자</h2>
-                            <p>서비스 인트로</p>
-                        </div>
-                        <div>
-                            <span class="starrr">★★★★★</span> <span class="star-num">5</span>
-                            <span class="comment">"이 집 청소 잘하네요~"</span>
-                        </div>
-                    </div>
-                    <div class="helper-contents2">
-                        <div class="favorite-btn-div">
-                            <button class="favorite-btn">
-                                <span class="material-symbols-outlined"> favorite </span>
-                            </button>
-                        </div>
-                        <div class="service-pay">
-                           가격
-                          
-                        </div>
-                    </div>
-                </a>
-            </div>
-
+          
         
 
     </div>

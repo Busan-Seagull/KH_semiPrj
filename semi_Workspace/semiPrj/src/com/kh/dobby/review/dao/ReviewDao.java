@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.dobby.common.PageVo;
-import com.kh.dobby.report.vo.ReportVo;
+import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.review.vo.ReviewVo;
 
 public class ReviewDao {
@@ -315,6 +315,38 @@ public class ReviewDao {
         return result;
         
     
+    }
+
+    public int selectCount(Connection conn, MemberVo vo) {
+        String sql="SELECT COUNT(*) AS CNT FROM \"REVIEW\" R JOIN \"SERVICE_INFO\" S ON R.SERVICE_NO=S.SERVICE_NO WHERE R.DELETE_YN='N' AND S.USER_NO=?";
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        
+        int result=0;
+        
+        try {
+         pstmt=conn.prepareStatement(sql);
+         pstmt.setString(1, vo.getUserNo());
+         rs=pstmt.executeQuery();
+         
+         if(rs.next()) {
+             result=rs.getInt("cnt");
+         }
+         
+         
+         
+     } catch (SQLException e) {
+         e.printStackTrace();
+     }finally {
+       close(rs);
+       close(pstmt);
+     }
+        
+        return result;
+        
+     
+
+        
     }
 
 }

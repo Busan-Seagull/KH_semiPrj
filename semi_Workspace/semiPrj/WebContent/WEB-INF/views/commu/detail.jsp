@@ -130,13 +130,14 @@ String root=request.getContextPath();
         padding: 10px;
     }
 
-    #btn{
+    #btn,.btn1{
         display: flex;
         flex-direction: row-reverse;
         gap: 10px;
+            margin-bottom: 10px;
     }
 
-    #btn input{
+    #btn input, .btn1 input{
     width: 64px;
     height: 24px;
     border: 1px solid var(--semi-green);
@@ -210,14 +211,13 @@ String root=request.getContextPath();
 	}
 	
     #cmn-area{
-    
     font-size: 12px;
    	height:50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 10px;
     border-top: 0.75px solid var(--semi-green);
-    border-bottom: 0.75px solid var(--semi-green);
+   
      
     }
     #cmn-area #writer{
@@ -228,22 +228,27 @@ String root=request.getContextPath();
         text-align: end;
     }
 
-    #cmn-area #content{
+    .cmn-area .content1{
+    border: none;
+    background: transparent;
        margin-top: 5px;
        grid-column: span 2;
     }
-    #cmn-area #btn{
+    .cmn-area .btn1{
        width: 100%;
        grid-column: span 2;
        
+       
     }
-    #cmn-area #btn input{
+    .cmn-area .btn1 input{
         width: 50px;
         height: 20px;
         font-size: 12px;
        
        
     }
+    
+  
 
 </style>
 </head>
@@ -288,25 +293,12 @@ String root=request.getContextPath();
                    
                 </div>
                 <div id="cmn-btn">
-                  <button id="cmn-btn1" name="cmn-btn1" >댓글 보기</button> 
+                  <button id="cmn-btn1" name="cmn-btn1" onclick="detailCntList();">댓글 보기</button> 
                   
                 </div>
 				
                 <div id="cmn-list">
-                 <%for(int i =0; i<voList.size();i++){ %>
-                    <div id="cmn-area">
-                        <div id="writer"><%=voList.get(i).getNick()%></div>
-                        <div id ="date">작성일시 <%=voList.get(i).getWriteTime()%></div>
-                        <div id ="content"><%=voList.get(i).getContent()%></div>
-                    <% if(loginMember!=null&&loginMember.getUserNo().equals(voList.get(i).getUserNo())){ %>
-                        <div id="btn">
-                            <input type="button" value="수정">
-                            <input type="button" value="삭제">
-                        </div>
-                    <%} %>
-                    </div>
-                 
-                    <%}%>  
+            
                 </div>
  				
             </div>
@@ -320,6 +312,9 @@ String root=request.getContextPath();
 	            $('button[name="cmn-btn1"]').click(function() {
 	                $('#cmn-list').css('display','block');
 	            });
+	            
+	         
+	            
 	            
 	             
 	
@@ -342,23 +337,21 @@ String root=request.getContextPath();
 	     			        	const cmtinsert=p.cmtinsert;
 	     			        	const cmtCount=p.cmtCount;
 	     			        	
-	     			        	const cmtListResult=p.cmtList;
-	     			        	/* console.log(cmtListResult); */
-	     			        	
+	     			       
 	     			        	
 	     			        	
 	     			        	//댓글 인설트 후, 내용 비워주기
 	     			        	 $('#cmt').val("");
-	     			        	
-	     			         	 //댓글 리스트 추가 원래 리스트엿던 흔적임..
-		     			     	 const cmnList= $('#cmn-list');
-			     			    $(cmnList).prepend('<div id="cmn-area"><div id="writer">'+cmtListResult.nick+'</div><div id ="date">작성일시 '+cmtListResult.writeTime+'</div>'
-					     			    +'<div id ="content">'+cmtListResult.content+'</div></div>');
-			     			     
+	     			        		
+	     			     //여기서 덧글 조회 에이쟉스 불러옴
+	     			     detailCntList();
+	     			    
 		     			       
 		     			       //댓글 갯수 업데이트
 		     			       const cmnCnt=$('#cmn-cnt');
 		     			      $(cmnCnt).text('댓글 '+cmtCount+'개');
+		     			      
+		     			     
 		     			     		
 	     			        },
 	     			        error: function() {   
@@ -366,20 +359,184 @@ String root=request.getContextPath();
 	     			               
 	     			        }
 	                	});
-	                	
-	                	
-	                
+
 	                <%}%>
-	                
-	
-	                
-	                
+ 
 	            };
-	          
+	           
+	          // 댓글 리스트 에이젝스 
+          	  // 여기서 <div id="cmn-list">안에 어팬드 하는거임..
+          	  // 댓글 조회, 삭제, 수정 
+          	  function detailCntList() {
+          		  $.ajax({
+             		 type: "post",
+  			        url: "/dobby/commu/detailCntList",
+  			        data: {
+  			        	"cmt" : cmt.val(),
+  			        	"bno":<%=vo.getPostNo()%>
+  			        	}, 
+  			        success: function(result) {
+  			        	const p =JSON.parse(result);
+  			        	const cmtListResult=p.cmtList;
+  			        
+  			        
+  			         	 //댓글 리스트
+	     			     	 const cmnList= $('#cmn-list')
+ 							
+  			         		/* console.log(cmtListResult); */
+  			         		
+  			         		cmnList.empty();
+  			         		
+	     			     	for(let i=0; i<cmtListResult.length;i++){
+	     			     		const cmnArea= $('#cmn-area');
+	     			     		const cmtListResultJJIN=cmtListResult[i];
+	     			     		
+		     			   cmnList.append('<div id="cmn-area" class="cmn-area"><div id="writer">'+cmtListResultJJIN.nick+'</div><div id ="date">작성일시 '+cmtListResultJJIN.writeTime+'</div>'
+	     			     		    +'<input type="text" class ="content1" disabled  value="'+cmtListResultJJIN.content+'"></div>');
+		     			  <%if(loginMember!=null){%>//클래스 컨탠트로 해놓고 
+		     				 if(cmtListResultJJIN.userNo == ${loginMember.userNo}){
+		     					cmnList.append('<div class=btn1><input type="button" name="cmtEdit" onclick="cmtEdit(this);" value="수정"><input type="button" name="cmtDelete" onclick="cmtDelete('+cmtListResultJJIN.postNo+','+cmtListResultJJIN.commentNo+',this);"value="삭제"><input type="button" name="editResult" style="display:none;" onclick="cmtEditSubmit('+cmtListResultJJIN.postNo+','+cmtListResultJJIN.commentNo+',this);" value="수정 완료"></div>');
+		     				
+		     				 }else{
+		     					 cmnList.append('<div class=btn1 style="display:none;"><input type="button" name="cmtEdit" onclick="cmtEdit(this);" value="수정"><input type="button" name="cmtDelete" onclick="cmtDelete('+cmtListResultJJIN.postNo+','+cmtListResultJJIN.commentNo+',this); value="삭제"><input type="button" name="editResult" style="display:none;" onclick="cmtEditSubmit('+cmtListResultJJIN.postNo+','+cmtListResultJJIN.commentNo+',this);" value="수정 완료"></div>');
+		     					 }
+							<%}%>
+	     			     	}// 댓글 리스트 포문
+	     			     	
+	                     //댓글 삭제
+	     			     		
+
+	     			     	
+  			        },
+  			        error: function() {   
+  			                alert("댓글 조회 실패.");
+  			               
+  			        }
+          		 
+          		});
+
+	              
+
+	            };
 	            
 	            
-	            
-           
+	         
+	          //댓글 수정
+	          //몇번째 컨텐츠인지 가져와야함. 몇번째배열 인덱스에 잇는지 .. 몇번째인지 알아야댐.. 
+	        
+ 			  	 function cmtEdit(obj){
+ 			  		const rArr=$('input[name="editResult"]');
+ 			  		const cArr=$('.content1');
+ 			  		const eArr=$('input[name="cmtEdit"]'); 
+ 			  		
+ 			  		const no=$(eArr).index($(obj));
+	        	  	const cmtContent=cArr[no];
+	        	  	const result1=rArr[no];
+	       
+	        	 //여기서 안대서 확실하게 알려주려구?이친구를 기준으로 알려달라구 넣는건가? 오키오키
+
+ 			  		$(cmtContent).attr('disabled', false);
+ 			  		$(cmtContent).focus();
+ 			  		$(result1).css("display","block");
+ 			     	}; 
+ 			  
+ 			     function cmtEditSubmit(postNo,commentNo,obj){
+ 			    	const rArr=$('input[name="editResult"]');
+ 			  		const cArr=$('.content1');
+ 			  		const eArr=$('input[name="cmtEdit"]'); 
+ 			  		
+ 			  		const no=$(rArr).index($(obj));
+	        	  	const cmtContent=cArr[no];
+	        	  	const result1=rArr[no];
+	        	  	
+	        	  	console.log($(cmtContent).val());
+ 			    	
+ 			    	$.ajax({
+               		 type: "post",
+    			        url: "/dobby/commu/editCmt",
+    			        data: {
+    			        	"cmt" : $(cmtContent).val(),//두 겹한이유 i를 제대루 지정
+    			        	"bno": postNo,
+    			        	"cno": commentNo
+    			        	}, 
+    			        success: function(result) {
+    			        	if(result!=1){
+    			        		
+    			        		$(cmtContent).attr('disabled', true);
+    			        		$(result1).css('display', 'none');
+        	 			  		
+    			        	}else{
+    			        		alert("수정이 안댓어요");
+    			        	}
+    			        
+    	 			  	
+    			        },
+    			        error: function() {   
+    			                alert("실패.");
+    			               
+    			        }
+               	});
+ 			     };
+ 			     
+ 			     
+ 			     //댓글 삭제하셈
+ 			       function cmtDelete(postNo,commentNo,obj){
+ 			    	const dArr=$('input[name="cmtDelete"]');
+ 			  		const cArr=$('.content1');
+ 			  		const eArr=$('input[name="cmtEdit"]'); 
+ 			  		
+ 			  		const no=$(dArr).index($(obj));
+	        	  	const cmtContent=cArr[no];
+	        	  	const result1=dArr[no];
+	        	  	
+	        	  	const cmnArea1= $('.cmn-area');
+	        	  	const btn1=$('.btn1');
+	        	  	
+	        	  	console.log(btn1);
+	        	  	
+	        	  	/* console.log(dArr);
+	        	  	console.log(cArr);
+	        	  	console.log(eArr); */
+	        	  	
+	        	  	console.log($(cmtContent).val());
+ 			    	
+ 			    	$.ajax({
+               		 type: "post",
+    			        url: "/dobby/commu/deleteCmt",
+    			        data: {
+    			        	"cmt" : $(cmtContent).val(),
+    			        	"bno": postNo,
+    			        	"cno": commentNo
+    			        	}, 
+    			        success: function(result) {
+    			        	const p =JSON.parse(result);
+     			        	/* console.log(result); */
+     			        	const cmtDelete=p.cmtDelete;
+     			        	const cmtCount=p.cmtCount;
+    			        	
+    			        	if(cmtDelete==1){
+    			        		$(cmnArea1[no]).remove();
+    			        		$(btn1[no]).remove();
+    			        		
+    			        		  const cmnCnt=$('#cmn-cnt');
+    		     			      $(cmnCnt).text('댓글 '+cmtCount+'개');
+    			        	console.log("삭제됨");
+        	 			  		
+    			        	}else{
+    			        		alert("삭제가 안댓어요");
+    			        	}
+    			        
+    	 			  	
+    			        },
+    			        error: function() {   
+    			                alert("실패.");
+    			               
+    			        }
+               	});
+ 			     };
+          	  
+ 			     
+          	  
 
             </script>
                 

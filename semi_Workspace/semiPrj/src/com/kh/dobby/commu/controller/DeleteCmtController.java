@@ -3,7 +3,6 @@ package com.kh.dobby.commu.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -18,22 +17,21 @@ import com.kh.dobby.commu.service.CommuService;
 import com.kh.dobby.commu.vo.CommuCmtVo;
 import com.kh.dobby.member.vo.MemberVo;
 
-@WebServlet(urlPatterns = "/commu/detailCmt")
-public class WriteCmtController extends HttpServlet {
-
+@WebServlet(urlPatterns = "/commu/deleteCmt")
+public class DeleteCmtController extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8;");
-        
+        System.out.println("댓글 삭제 시작!");
         //세션 가져오기
         HttpSession hs=req.getSession();
        //로그인 멤버 가져오기 
         MemberVo loginMember=(MemberVo) hs.getAttribute("loginMember");
         String bno = req.getParameter("bno");
         String cmt= req.getParameter("cmt");
-   
+        String cno= req.getParameter("cno");
         
        
         //댓글 값 뭉치기
@@ -41,34 +39,22 @@ public class WriteCmtController extends HttpServlet {
         cmtVo.setPostNo(bno);
         cmtVo.setUserNo(loginMember.getUserNo());
         cmtVo.setContent(cmt);
-   
+        cmtVo.setCommentNo(cno);
       
-       
-        
-        //댓글 인설트 
-        int cmtinsert=CommuService.insertCmt(cmtVo);
-        PrintWriter out = resp.getWriter();
-        System.out.println("에이쟉스용 인설트 :"+cmtinsert);
-       
         //댓글 업데이트
-        int cmtUpdate=CommuService.UpdateCmt(cmtVo);
-     
+        int cmtDelete=CommuService.DeleteCmt(cmtVo);
+        System.out.println(cmtDelete);
         
-      //댓글 갯수
+        
+        //댓글 갯수
         int cmtCount=0;
         cmtCount=new CommuService().selectCmtCount(bno);
-        System.out.println("에이쟉스용 카운트 :"+cmtCount);
         
+        PrintWriter out = resp.getWriter();
         
-        
-        
-        
-       
-        
-        //댓글 갯수와 인설트 리스트 결과 보내기
         Map<Object, Object> map = new HashMap<>();
         
-        map.put("cmtinsert", cmtinsert);
+        map.put("cmtDelete", cmtDelete);
         map.put("cmtCount", cmtCount);
         
        
@@ -77,7 +63,6 @@ public class WriteCmtController extends HttpServlet {
         String cmtresult = gson.toJson(map);
 
         out.write(cmtresult);
-
         
     }
 

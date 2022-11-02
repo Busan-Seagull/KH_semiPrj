@@ -158,6 +158,41 @@ public class CommuService {
            return mainList;
 
        }
+
+    //댓글 조
+   
+    public static int UpdateCmt(CommuCmtVo cmtVo) {
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int result = new Commudao().updateCmtOneByNo(conn,cmtVo);
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+        }else {
+            JDBCTemplate.rollback(conn);
+        }
+        
+        JDBCTemplate.close(conn);
+        
+        return result;
+    }
+
+    public static int DeleteCmt(CommuCmtVo cmtVo) {
+Connection conn = JDBCTemplate.getConnection();
+        
+        int result = new Commudao().DeleteCmtOneByNo(conn,cmtVo);
+        
+        if(result==1) {
+            JDBCTemplate.commit(conn);
+        }else {
+            JDBCTemplate.rollback(conn);
+        }
+        
+        JDBCTemplate.close(conn);
+        
+        return result;
+    }
+    
     
 
     

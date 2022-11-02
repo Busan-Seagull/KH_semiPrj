@@ -9,8 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.kh.dobby.common.PageVo;
-import com.kh.dobby.report.dao.ReportDao;
-import com.kh.dobby.report.vo.ReportVo;
+import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.review.dao.ReviewDao;
 import com.kh.dobby.review.vo.ReviewVo;
 
@@ -113,5 +112,17 @@ public class ReviewService {
         close(conn);
         return result ;
     }
+    
+    //특정 집요정의 전체 리뷰 조회
+    public int selectCount(MemberVo vo) {
+        Connection conn = getConnection();
+        
+        int result=dao.selectCount(conn,vo);
+        
+        close(conn);
+        
+        return result;
+    }
+
 
 }
