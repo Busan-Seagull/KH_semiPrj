@@ -62,8 +62,16 @@
 						</tr>
 						<tr>
 							<td class="sm text-grey fixed-text">비용</td>
-							<td class="input-text" colspan="3">${sv.chargeUnit}당<fmt:formatNumber
-									value="${sv.charge}" pattern="#,###" />원
+							<td class="input-text" colspan="3">
+								<c:if test="${sv.chargeUnit eq '견적필요'}">
+										견적 필요(견적 요금 10,000원)
+								</c:if>
+									<c:if test="${sv.chargeUnit ne '견적필요'}">
+									${sv.chargeUnit}당
+									<fmt:formatNumber value="${sv.charge}" pattern="#,###" />
+									원
+								</c:if>
+								
 							</td>
 						</tr>
 						<tr>
@@ -123,18 +131,25 @@
 				</div>
 				<div id="service-review">
 					서비스 평가
-					<button id="go-board" onclick="location.href='/dobby/reviewList'">전체보기</button>
+					<button id="go-board" onclick="location.href='/dobby/reviewList'">전체보기 ></button>
+					<c:if test="${empty rvList}">
+					<h1 id="none-h1">작성된 리뷰가 없습니다.</h1>
+					</c:if>
+					<c:forEach var="list" items="${rvList}">
 					<div class="review-box" id="review1">
 						<div id="review-head">
 							<div>
-								<span id="stars">★★★★☆</span> <span id="review-writer">김**</span>
+								<span id="stars">★★★★☆${list.grade}</span> <span>${list.title}</span> <span id="review-writer">김**</span>
 							</div>
-							<div id="review-date">2022.10.10</div>
+							<div id="review-date">${list.writeTime}</div>
 						</div>
 						<div id="review-content">
-							<p>청소를 그냥 저냥 하네요...</p>
+							<p>${list.content}</p>
 						</div>
 					</div>
+					</c:forEach>
+
+					<!-- TEMP -->
 					<div class="review-box" id="review2">
 						<div id="review-head">
 							<div>

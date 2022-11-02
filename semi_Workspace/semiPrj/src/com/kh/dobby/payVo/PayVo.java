@@ -13,6 +13,7 @@ public class PayVo {
     private String cancelDate;
     private String serviceTitle;
     private String serviceCharge;
+    private String profileImg;
     
     public PayVo() {
     }
@@ -20,7 +21,7 @@ public class PayVo {
     
 
     public PayVo(String paymentNo, String reservationNo, String point, String paymentType, String request,
-            String paymentDate, String cancelDate, String serviceTitle, String serviceCharge) {
+            String paymentDate, String cancelDate, String serviceTitle, String serviceCharge, String profileImg) {
         super();
         this.paymentNo = paymentNo;
         this.reservationNo = reservationNo;
@@ -31,10 +32,24 @@ public class PayVo {
         this.cancelDate = cancelDate;
         this.serviceTitle = serviceTitle;
         this.serviceCharge = serviceCharge;
+        this.profileImg = profileImg;
     }
 
 
     
+    
+
+    public String getProfileImg() {
+        return profileImg;
+    }
+
+
+
+    public void setProfileImg(String profileImg) {
+        this.profileImg = profileImg;
+    }
+
+
 
     public String getServiceTitle() {
         return serviceTitle;
@@ -113,7 +128,7 @@ public class PayVo {
         return "PayVo [paymentNo=" + paymentNo + ", reservationNo=" + reservationNo + ", point=" + point
                 + ", paymentType=" + paymentType + ", request=" + request + ", paymentDate=" + paymentDate
                 + ", cancelDate=" + cancelDate + ", serviceTitle=" + serviceTitle + ", serviceCharge=" + serviceCharge
-                + "]";
+                + ", profileImg=" + profileImg + "]";
     }
     
     

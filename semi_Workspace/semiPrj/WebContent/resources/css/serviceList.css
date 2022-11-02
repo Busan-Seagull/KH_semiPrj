@@ -214,6 +214,11 @@ main{
     flex-direction: column;
     justify-content: space-between;
 }
+.helper-contents2{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 .favorite-btn-div{
     padding-left: 50px;
 }

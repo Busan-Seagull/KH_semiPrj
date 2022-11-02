@@ -159,6 +159,8 @@ public class ServiceController extends HttpServlet {
         req.setAttribute("region", regionName);
 
         System.out.println(x);
+        
+        //
 
         req.getRequestDispatcher("/WEB-INF/views/service/serviceList.jsp").forward(req, resp);
     }

@@ -103,7 +103,7 @@ String root = request.getContextPath();
 						<a class="helper-list"
 							onclick="location.href='<%=root %>/service/detail?sno=${list.serviceNo}'">
 							<div class="helper-pic">
-								<img src="/dobby/${list.profileImg}" alt="">
+								<img src="/dobby/${list.profileImg}" alt=""onerror="this.src='/dobby/resources/img/dust.png';">
 							</div>
 							<div class="helper-contents">
 								<div>
@@ -121,9 +121,15 @@ String root = request.getContextPath();
 										<span class="material-symbols-outlined"> favorite </span>
 									</button>
 								</div>
-								<div class="service-pay">${list.chargeUnit}당
+								<div class="service-pay">
+									<c:if test="${list.chargeUnit eq '견적필요'}">
+										견적 필요&nbsp&nbsp&nbsp<br><br>(견적 요금 10,000원)&nbsp&nbsp&nbsp
+								</c:if>
+									<c:if test="${list.chargeUnit ne '견적필요'}">
+									${list.chargeUnit}당
 									<fmt:formatNumber value="${list.charge}" pattern="#,###" />
-									원
+									원&nbsp&nbsp&nbsp
+								</c:if>
 								</div>
 							</div>
 						</a>
@@ -147,7 +153,7 @@ String root = request.getContextPath();
 
 				
 				
-				<script>
+				<!-- <script>
 					const pageNation = document.querySelector('#page-nation');
 					const numArr = pageNation.querySelectorAll('.num');
 					const left = pageNation.querySelector('.arrow.left');
@@ -183,7 +189,7 @@ String root = request.getContextPath();
 						page++;
 					}
 					
-				</script>
+				</script> -->
 			</div>
 		</div>
 

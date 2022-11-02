@@ -335,6 +335,11 @@
     border: none;
     position: absolute;
     right: 0;
+    border-radius: 3px;
+}
+#go-board:hover{
+    background-color: rgb(59, 59, 59);
+    color: white;
 }
 .service-pic>img:hover{
 
@@ -383,4 +388,9 @@
 
 .block{
     display: block;
+}
+#none-h1{
+    line-height: 100px;
+    text-align: center;
+    font-weight: lighter;
 }
