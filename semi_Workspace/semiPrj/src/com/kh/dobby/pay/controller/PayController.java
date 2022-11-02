@@ -1,7 +1,6 @@
 package com.kh.dobby.pay.controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.pay.service.PayService;
 import com.kh.dobby.payVo.PayVo;
+import com.kh.dobby.point.controller.PointService;
+import com.kh.dobby.point.vo.PointVo;
 import com.kh.dobby.reservation.service.ReservationService;
 import com.kh.dobby.reservation.vo.ReservationVo;
 
@@ -21,15 +23,23 @@ public class PayController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
+        HttpSession s = req.getSession();
         //예약 번호 받기
         String rno = req.getParameter("rno");
+        //유저 번호 받기
+        MemberVo loginMember = (MemberVo) s.getAttribute("loginMember");
+        String userNo = loginMember.getUserNo();
         
         //디비
+        //예약조회
         ReservationVo rv = new ReservationService().selectOne(rno);
         System.out.println(rv);
+        //포인트조회
+        int point = new PointService().getSumPoint(userNo);
         
         //객체 담아 화면 넘겨주기
         req.setAttribute("rv", rv);
+        req.setAttribute("point", point);
         req.getRequestDispatcher("/WEB-INF/views/pay/pay.jsp").forward(req, resp);
         
     }

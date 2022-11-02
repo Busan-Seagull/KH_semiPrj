@@ -32,16 +32,26 @@ public class ServiceVo {
     private int areaNo_3;
     private int areaNo_4;
     private int areaNo_5;
+    private String reviewTitle;
+    private String reviewContent;
+    private int reviewAvg;
+    private int reviewCnt;
+    private String reviewTime;
     
     public ServiceVo() {
         
     }
 
+    
+
+    
+    
     public ServiceVo(int serviceNo, String title, int typeNo, String serviceType, int helperNo, String helper,
             String serviceIntro, String profileImg, int charge, int chargeUnitNo, String chargeUnit, int helperExp,
             String openTime, String closeTime, String serviceDetail, String paymentDetail, String servicePic_1,
             String servicePic_2, String servicePic_3, String servicePic_4, int pTypeNo_1, int pTypeNo_2, int pTypeNo_3,
-            int areaNo_1, int areaNo_2, int areaNo_3, int areaNo_4, int areaNo_5) {
+            int areaNo_1, int areaNo_2, int areaNo_3, int areaNo_4, int areaNo_5, String reviewTitle,
+            String reviewContent, int reviewAvg, int reviewCnt, String reviewTime) {
         super();
         this.serviceNo = serviceNo;
         this.title = title;
@@ -71,6 +81,55 @@ public class ServiceVo {
         this.areaNo_3 = areaNo_3;
         this.areaNo_4 = areaNo_4;
         this.areaNo_5 = areaNo_5;
+        this.reviewTitle = reviewTitle;
+        this.reviewContent = reviewContent;
+        this.reviewAvg = reviewAvg;
+        this.reviewCnt = reviewCnt;
+        this.reviewTime = reviewTime;
+    }
+
+
+
+
+
+    public String getReviewTitle() {
+        return reviewTitle;
+    }
+
+    public void setReviewTitle(String reviewTitle) {
+        this.reviewTitle = reviewTitle;
+    }
+
+    public String getReviewContent() {
+        return reviewContent;
+    }
+
+    public void setReviewContent(String reviewContent) {
+        this.reviewContent = reviewContent;
+    }
+
+    public int getReviewAvg() {
+        return reviewAvg;
+    }
+
+    public void setReviewAvg(int reviewAvg) {
+        this.reviewAvg = reviewAvg;
+    }
+
+    public int getReviewCnt() {
+        return reviewCnt;
+    }
+
+    public void setReviewCnt(int reviewCnt) {
+        this.reviewCnt = reviewCnt;
+    }
+
+    public String getReviewTime() {
+        return reviewTime;
+    }
+
+    public void setReviewTime(String reviewTime) {
+        this.reviewTime = reviewTime;
     }
 
     public int getChargeUnitNo() {
@@ -303,6 +362,8 @@ public class ServiceVo {
                 + ", servicePic_1=" + servicePic_1 + ", servicePic_2=" + servicePic_2 + ", servicePic_3=" + servicePic_3
                 + ", servicePic_4=" + servicePic_4 + ", pTypeNo_1=" + pTypeNo_1 + ", pTypeNo_2=" + pTypeNo_2
                 + ", pTypeNo_3=" + pTypeNo_3 + ", areaNo_1=" + areaNo_1 + ", areaNo_2=" + areaNo_2 + ", areaNo_3="
-                + areaNo_3 + ", areaNo_4=" + areaNo_4 + ", areaNo_5=" + areaNo_5 + "]";
+                + areaNo_3 + ", areaNo_4=" + areaNo_4 + ", areaNo_5=" + areaNo_5 + ", reviewTitle=" + reviewTitle
+                + ", reviewContent=" + reviewContent + ", reviewAvg=" + reviewAvg + ", reviewCnt=" + reviewCnt
+                + ", reviewTime=" + reviewTime + "]";
     }
 }

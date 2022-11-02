@@ -93,7 +93,8 @@
 							<td class="sm text-grey fixed-text" colspan="4">서비스평가</td>
 						</tr>
 						<tr>
-							<td colspan="4" id="starrr">★★★★★</td>
+							<td colspan="1" id="starrr">★★★★★&nbsp&nbsp5.0</td>
+							<td>(1)</td>
 						</tr>
 					</table>
 
@@ -132,16 +133,25 @@
 				<div id="service-review">
 					서비스 평가
 					<button id="go-board" onclick="location.href='/dobby/reviewList'">전체보기 ></button>
+					
 					<c:if test="${empty rvList}">
 					<h1 id="none-h1">작성된 리뷰가 없습니다.</h1>
 					</c:if>
-					<c:forEach var="list" items="${rvList}">
+					
+					<c:forEach var="list" items="${rvList}" begin="0" end="3" step="1" varStatus="status">
 					<div class="review-box" id="review1">
 						<div id="review-head">
 							<div>
-								<span id="stars">★★★★☆${list.grade}</span> <span>${list.title}</span> <span id="review-writer">김**</span>
+								<span id="stars">
+									<c:if test="${list.grade eq 5}">★★★★★</c:if>
+									<c:if test="${list.grade eq 4}">★★★★☆</c:if>
+									<c:if test="${list.grade eq 3}">★★★☆☆</c:if>
+									<c:if test="${list.grade eq 2}">★★☆☆☆</c:if>
+									<c:if test="${list.grade eq 1}">★☆☆☆☆</c:if>
+									
+									&nbsp${list.grade}&nbsp&nbsp</span> <span id="review-title">${list.title}</span> <span id="review-writer">${list.userNick}</span>
 							</div>
-							<div id="review-date">${list.writeTime}</div>
+							<div id="review-date">${fn:substring(list.writeTime,0,16)}</div>
 						</div>
 						<div id="review-content">
 							<p>${list.content}</p>
@@ -149,29 +159,7 @@
 					</div>
 					</c:forEach>
 
-					<!-- TEMP -->
-					<div class="review-box" id="review2">
-						<div id="review-head">
-							<div>
-								<span id="stars">★★★★☆</span> <span id="review-writer">김**</span>
-							</div>
-							<div id="review-date">2022.10.10</div>
-						</div>
-						<div id="review-content">
-							<p>청소를 그냥 저냥 하네요...</p>
-						</div>
-					</div>
-					<div class="review-box" id="review3">
-						<div id="review-head">
-							<div>
-								<span id="stars">★★★★☆</span> <span id="review-writer">김**</span>
-							</div>
-							<div id="review-date">2022.10.10</div>
-						</div>
-						<div id="review-content">
-							<p>청소를 그냥 저냥 하네요...</p>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>

@@ -16,7 +16,10 @@ import com.kh.dobby.review.vo.ReviewVo;
 public class Dao {
 
     public List<ReviewVo> selectList(Connection conn, PageVo pv, String sno) {
-        String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM,T.* FROM ( SELECT R.POST_NO ,S.SERVICE_NO ,R.TITLE , R.CONTENT , R.WRITE_TIME ,R.DELETE_YN, R.MODIFY_DATE ,R.GRADE ,U.NICK AS USER_NO FROM REVIEW R JOIN \"USER\" U ON R.USER_NO = U.USER_NO JOIN SERVICE_INFO S ON S.USER_NO = U.USER_NO WHERE R.DELETE_YN = 'N' ORDER BY R.POST_NO DESC )T ) WHERE RNUM BETWEEN ? AND ? ";
+        String sql = "SELECT R.POST_NO, R.SERVICE_NO, R.TITLE, R.CONTENT, R.WRITE_TIME, R.GRADE, R.USER_NO, U.NICK\r\n"
+                + "FROM REVIEW R\r\n"
+                + "JOIN \"USER\" U ON U.USER_NO = R.USER_NO\r\n"
+                + "WHERE SERVICE_NO = ?";
         
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -31,6 +34,7 @@ public class Dao {
 //           
 //            pstmt.setInt(1,start);
 //            pstmt.setInt(2,end);
+            pstmt.setString(1, sno);
  
             rs = pstmt.executeQuery();
             
@@ -41,9 +45,8 @@ public class Dao {
                 String title = rs.getString("TITLE");
                 String content = rs.getString("CONTENT");
                 Timestamp writeTime = rs.getTimestamp("WRITE_TIME");
-                String deleteYn = rs.getString("DELETE_YN");
-                Timestamp modifyDate = rs.getTimestamp("MODIFY_DATE");
                 String grade = rs.getString("GRADE");
+                String userNick = rs.getString("NICK");
                 
                 
                 ReviewVo vo = new ReviewVo();
@@ -53,9 +56,8 @@ public class Dao {
                 vo.setTitle(title);
                 vo.setContent(content);
                 vo.setWriteTime(writeTime);
-                vo.setDeleteYn(deleteYn);
-                vo.setModifyDate(modifyDate);
                 vo.setGrade(grade);
+                vo.setUserNick(userNick);
                
                 
                 voList.add(vo);

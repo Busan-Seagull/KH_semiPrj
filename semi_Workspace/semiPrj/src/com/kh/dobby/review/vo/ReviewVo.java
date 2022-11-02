@@ -11,7 +11,7 @@ public class ReviewVo {
         super();
     }
     public ReviewVo(String postNo, String serviceNo, String userNo, String title, String content, Timestamp writeTime,
-            String deleteYn, Timestamp modifyDate, String grade, String zipComm) {
+            String deleteYn, Timestamp modifyDate, String grade, String zipComm, String userNick) {
         super();
         this.postNo = postNo;
         this.serviceNo = serviceNo;
@@ -23,6 +23,7 @@ public class ReviewVo {
         this.modifyDate = modifyDate;
         this.grade = grade;
         this.zipComm = zipComm;
+        this.userNick = userNick;
     }
     private String postNo;
     private String serviceNo;
@@ -34,6 +35,17 @@ public class ReviewVo {
     private Timestamp modifyDate;
     private String grade;
     private String zipComm;
+    private String userNick;
+    
+    
+    
+    
+    public String getUserNick() {
+        return userNick;
+    }
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
+    }
     public String getPostNo() {
         return postNo;
     }
@@ -98,7 +110,7 @@ public class ReviewVo {
     public String toString() {
         return "ReviewVo [postNo=" + postNo + ", serviceNo=" + serviceNo + ", userNo=" + userNo + ", title=" + title
                 + ", content=" + content + ", writeTime=" + writeTime + ", deleteYn=" + deleteYn + ", modifyDate="
-                + modifyDate + ", grade=" + grade + ", zipComm=" + zipComm + "]";
+                + modifyDate + ", grade=" + grade + ", zipComm=" + zipComm + ", userNick=" + userNick + "]";
     }
     
     

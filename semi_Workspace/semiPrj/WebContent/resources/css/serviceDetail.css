@@ -328,8 +328,14 @@
     padding: 5px 20px;
     color: grey;
 }
+#review-title{
+    margin-left: 20px;
+    display: inline-block;
+    width: 400px;
+}
 #review-writer{
     margin-left: 30px;
+    text-align: end;
 }
 #go-board{
     border: none;
@@ -394,3 +400,4 @@
     text-align: center;
     font-weight: lighter;
 }
+

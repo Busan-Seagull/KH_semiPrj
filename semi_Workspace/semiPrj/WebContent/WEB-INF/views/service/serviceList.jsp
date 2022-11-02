@@ -111,7 +111,14 @@ String root = request.getContextPath();
 									<p>${list.serviceIntro}</p>
 								</div>
 								<div>
-									<span class="starrr">★★★★★</span> <span class="star-num">5</span>
+									<span class="starrr">
+										<c:if test="${list.reviewAvg eq 5}">★★★★★</c:if>
+										<c:if test="${list.reviewAvg gt 4 && list.reviewAvg lt 5}">★★★★☆</c:if>
+										<c:if test="${list.reviewAvg gt 3 && list.reviewAvg lt 4}">★★★☆☆</c:if>
+										<c:if test="${list.reviewAvg gt 2 && list.reviewAvg lt 3}">★★☆☆☆</c:if>
+										<c:if test="${list.reviewAvg gt 1 && list.reviewAvg lt 2}">★☆☆☆☆</c:if>
+									</span> 
+									<span class="star-num">${list.reviewAvg}</span>
 									<span class="comment">"이 집 청소 잘하네요~"</span>
 								</div>
 							</div>

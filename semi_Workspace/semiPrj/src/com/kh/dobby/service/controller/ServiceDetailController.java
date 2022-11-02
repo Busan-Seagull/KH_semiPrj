@@ -29,10 +29,13 @@ public class ServiceDetailController extends HttpServlet {
             ServiceVo sv = new ServiceService().selectOne(sno);
             CodeVo cv = new ServiceService().changeCode(sv);
             List<ReviewVo> rvList = new Service().selectList(null, sno);
+            
+            System.out.println(rvList);
 
             req.setAttribute("cv", cv);
             req.setAttribute("sv", sv);
             req.setAttribute("rvList", rvList);
+            
             req.getRequestDispatcher("/WEB-INF/views/service/serviceDetailTemp.jsp").forward(req, resp);
         } else {
 
