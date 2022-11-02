@@ -462,7 +462,9 @@
         });
         
     	<c:if test="${not empty sessionScope.loginMember}">
+    	<%if(!("3".equals(loginMember.getRightNo()))) {%>
         	getAlarm();
+      	<%}%>
 		</c:if>
 
         function getAlarm() {
