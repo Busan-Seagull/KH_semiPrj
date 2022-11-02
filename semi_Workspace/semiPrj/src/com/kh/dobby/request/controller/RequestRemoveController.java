@@ -15,7 +15,7 @@ import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.request.service.RequestService;
 import com.kh.dobby.request.vo.RequestVo;
 
-@WebServlet(urlPatterns = "")
+@WebServlet(urlPatterns = "/request/remove")
 public class RequestRemoveController extends HttpServlet{
 
     private RequestService rs = new RequestService();
