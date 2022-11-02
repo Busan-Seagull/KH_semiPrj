@@ -322,8 +322,8 @@ div{
 			</div>
 			<div id="j">
 				<div class="h-title1" ><%=vo.getPostNo() %></div>
-				<div class="h-title2" ><%=vo.getUserNo() %></div>
-				<div class="h-title3" ><%=vo.getServiceNo() %></div>
+				<div class="h-title2" >${vo.userNo}</div>
+				<div class="h-title3" >${vo.serviceNo}</div>
 				<div class="h-title4" ><%=vo.getTitle() %></div>
 				<div class="h-title5"><%=vo.getWriter() %></div>	
 			</div>

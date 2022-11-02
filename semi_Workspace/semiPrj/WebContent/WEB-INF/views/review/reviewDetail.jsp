@@ -251,7 +251,7 @@ top:30px;
 		<div id="title-a1"></div>
 		<div id="title-b1">리뷰게시판</div>
 	</div>
-	<form action="/dobby/reviewDetail" method="post">
+	<form action="/dobby/reviewDetail?postNo=<%=vo.getPostNo() %>" method="post">
 	<input type="hidden" name="postNo" value="<%=vo.getPostNo()%>">
 		<div id="main">
 		<div id="f">

@@ -22,7 +22,7 @@ public class ReviewEditController extends HttpServlet {
         String postNo = req.getParameter("postNo");
         
         ReviewVo vo = new ReviewService().selectReviewOne(postNo);
-        
+       
        
         req.setAttribute("vo", vo);
         req.getRequestDispatcher("/WEB-INF/views/review/reviewEdit.jsp").forward(req, resp);
