@@ -20,22 +20,27 @@ public class ZipYojongProfileController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       String uno=req.getParameter("uno");
+        
         MemberVo vo=new MemberVo();
-        vo.setUserNo("10");
-        
-        MemberVo vo2=new MemberVo();
-        vo2.setUserNo("1");
-        
-        MemberVo zip= new MemberService().selectMemberNo(vo);
-        int reviewsCnt=new ReviewService().selectCount(vo2);
-        System.out.println(zip);
+        vo.setUserNo(uno);
        
-        List<ServiceVo> list=new ServiceService().listService(1);
+        MemberVo zip= new MemberService().selectMemberNo(vo);
+        
+        System.out.println(zip);
+        int reviewsCnt=new ReviewService().selectCount(vo);
+        System.out.println(zip);
+        
+       int uno2= Integer.parseInt(vo.getUserNo());
+     
+        List<ServiceVo> list=new ServiceService().listService(uno2);
         
         req.setAttribute("zip", zip);
         req.setAttribute("reviewsCnt", reviewsCnt);
        req.setAttribute("list", list);
        req.getRequestDispatcher("/WEB-INF/views/supercleaner/InkkiZipyojungProFile.jsp").forward(req, resp);
+    
     }
 }
+
 

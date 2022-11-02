@@ -259,7 +259,7 @@ input[type=submit]{
 }
 
 /* d */
-#info-area03{
+#info-area03,#info-area07{
     min-height: 1000px;
     height: auto;
     justify-content: center;
@@ -269,27 +269,28 @@ input[type=submit]{
 
 /*작성한 게시물 */
 #mypost-main{
-display:grid;
- 
-    grid-template-columns: 2fr 4fr;
-    border: 1px solid #999999;
+ display: flex;
+justify-content: center;
+    
+    
     margin:auto;
 }
 
 #list-main{
         width: 800px;
-        height: 75vh;
+       
         margin:auto;
+        
     }
 
     #list-area{
 		
-       	margin-top:25px;
-        width:600px;
-        height: 100%;
+       margin-top:20px;
+       margin-bottom:40px;
+        width:800px;
         display: grid;
         justify-content: center;
-        grid-template-rows: 1fr 1fr 5fr 0.5fr 0.5fr;
+        grid-template-rows: 1fr auto;
         /* border: 1px solid red; */
     }
 
@@ -332,12 +333,12 @@ display:grid;
 
 
     #cate-list{
-        width: 100%;
-        height: 100%;
+        width: 800px;
+       
         margin: auto;
         display: grid;
         grid-template-columns: 1fr 5fr 2fr 3fr 1fr;
-        grid-template-rows: repeat(11,40px);
+       
 
         border-bottom:1px solid var(--semi-green);
     }
@@ -348,6 +349,7 @@ display:grid;
         align-items: center;
         font-family: var(--sans);
         font-size: 14px;
+        height:40px;
 
     }
 
@@ -736,8 +738,8 @@ display:grid;
       	 <div id="list-main">
        <div id="list-area">
             <div id="commu-title">
-                <div><span class="material-symbols-outlined">magic_button</span>커뮤니티<span class="material-symbols-outlined">magic_button</span></div>
-                <div style="letter-spacing:10px;">자유롭게 소통해요</div>
+                <div><span class="material-symbols-outlined">magic_button</span>작성한 게시물<span class="material-symbols-outlined">magic_button</span></div>
+               
             </div>
             
      
@@ -747,133 +749,12 @@ display:grid;
                
             </div>
 
-          
-<!-- 페이징 -->
-    
-            <div id="page-area" class="page-area03">
-                <ul id="page-nation">
-                    <li><a onclick="commuPage(1)" class="first"><<</a></li>
-                    <li><a class="arrow left"><</a></li>
-                    <li><a class="num"></a></li>
-                    <li><a class="num"></a></li>
-                    <li><a class="num"></a></li>
-                    <li><a class="num"></a></li>
-                    <li><a class="num"></a></li>
-                    <li><a class="arrow right">></a></li>
-                    <li><a class="last">>></a></li>
-                </ul>
-            </div>
+
 
        </div>
     </div>
     
-    <script>
-
-        /*카테고리 별 조회 AJAX  */
-        $("input[type=radio]").click(function(){commuPage(1)});
-        document.querySelector('#category2').click();
-        function commuPage(pno){
-        	// alert("g3");
-            const cate=$("input[type=radio]:checked").val();  
-            $.ajax({    
-                type: "post",
-                url: "/dobby/commu/list",
-                data: {"catename":cate,
-                        "pno":pno
-
-            }, 
-                success: function(result) {
-                    /* console.log(result); */
-                    const list2=$('#cate-list');
-                    const p =JSON.parse(result);
-                    
-                    const board=p.list;
-                    const pvo=p.pv;
-                    $(list2).empty();
-                    $('<div class="first">번호</div><div class="first">제목</div><div class="first">작성자</div><div class="first">일시</div><div class="first">조회수</div>').appendTo(list2);
-                      
-                    for(let i=0; i<board.length;i++){
-                        const vo = board[i];
-                        const bno = vo.postNo;
-                         let div=$('<div/>');
-                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.postNo+'</a>').appendTo(div);
-                        div.appendTo(list2);
-
-                        div=$('<div/>');
-                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.title+'</a>').appendTo(div);
-                        div.appendTo(list2);
-
-                        div=$('<div/>');
-                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.userNo+'</a>').appendTo(div);
-                        div.appendTo(list2);
-
-                        div=$('<div/>');
-                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.writeTime+'</a>').appendTo(div);
-                        div.appendTo(list2);
-
-
-                        div=$('<div/>');
-                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.views+'</a>').appendTo(div);
-                        div.appendTo(list2);
-                    
-                    }
-
-                    const pageNation = document.querySelector('#page-nation');
-                    const numArr = pageNation.querySelectorAll('.num');
-                    const left = pageNation.querySelector('.arrow.left');
-                    const right = pageNation.querySelector('.arrow.right');
-                    const last = pageNation.querySelector('.last');
-                    console.log(numArr);
-                    if(pvo.startPage > 1){
-                        left.onclick =  function(){commuPage(pvo.startPage);};
-                    }else{
-                        left.classList.add('none-select');
-                    }
-                    if(pvo.currentPage != pvo.maxPage){
-                        right.onclick = function(){commuPage(pvo.maxPage);};
-                    }else{
-                        right.classList.add('none-select');
-                    }
-
-                    let page = pvo.startPage;
-
-                    
-                    for (let j = 0; j < numArr.length; j++) {
-
-                        const num = numArr[j];
-                            
-                        if(page == pvo.currentPage){
-                            num.classList.add('current');
-                        }
-                            
-                        if(page < 1 || page > pvo.maxPage){
-                            num.classList.add('p-none');
-                        }else{
-                            console.log(j,page);
-                            // num.onclick = function(){commuPage(page);};
-                            // num.addEventListener('click', function(){
-                            //     commuPage(page);
-                            // });
-                            num.classList.remove('p-none');
-                            $(num).attr('onclick','commuPage('+page+')');
-
-                        }
-                            // $(num).html(page);
-                            num.innerHTML = page;
-                            page++;
-                    }
-
-                   
-                },
-                error: function() {   
-                    alert("실패!!");
-    
-                }             
-            });
-        };
-
-    </script>
-
+   
     	</div>
     </div>
 
@@ -1315,4 +1196,64 @@ display:grid;
     }
 
 </script>
+<!--내게시물 확인   -->
+ <script>
+
+        /*카테고리 별 조회 AJAX  */
+       commuPage();
+        
+        function commuPage(){
+        	// alert("g3");
+        /*     const cate=$("input[type=radio]:checked").val();   */
+            $.ajax({    
+                type: "post",
+                url: "/dobby/member/mypostList", 
+           		 success: function(result){
+                    console.log(result); 
+                    const list2=$('#cate-list');
+                    const p =JSON.parse(result);             
+                    const board=p.list;
+                    
+                    $(list2).empty();
+                    $('<div class="first">번호</div><div class="first">제목</div><div class="first">작성자</div><div class="first">일시</div><div class="first">조회수</div>').appendTo(list2);
+                      
+                    for(let i=0; i<board.length;i++){
+                        const vo = board[i];
+                        const bno = vo.postNo;
+                         let div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.postNo+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.title+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.userNo+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.writeTime+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.views+'</a>').appendTo(div);
+                        div.appendTo(list2);
+                    
+                    
+
+                    }
+
+                   
+                },
+                error: function() {   
+                    alert("실패!!");
+    
+                }            
+            });
+        }
+
+    </script>
+
 </html>

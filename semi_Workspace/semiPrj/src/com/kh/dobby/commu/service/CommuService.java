@@ -192,6 +192,27 @@ Connection conn = JDBCTemplate.getConnection();
         
         return result;
     }
+
+    public List<CommuVo> selectMyList(String no) {
+        Connection conn = JDBCTemplate.getConnection();
+        List<CommuVo>list=null;
+        list=Commudao.selectMypostList(conn,no);
+          
+           
+           JDBCTemplate.close(conn);
+           
+           return list;
+    }
+
+    public int selectMypostCount(String no) {
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int result=Commudao.selectMypostCount(conn,no);
+        
+        JDBCTemplate.close(conn);
+        
+        return result;
+    }
     
     
 
