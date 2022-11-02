@@ -30,7 +30,6 @@ public class ReportMypageController extends HttpServlet{
         voList = new ReportService().selectReportList(writer);
        
         req.setAttribute("voList",voList);
-        
         req.getRequestDispatcher("/WEB-INF/views/report/mypage10.jsp").forward(req, resp);
     }
     

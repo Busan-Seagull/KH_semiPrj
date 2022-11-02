@@ -46,9 +46,6 @@ public class ReviewListController extends HttpServlet {
           x = new ReviewService().selectList2(pv);
           }
         
-        
-        
-        
        
          req.setAttribute("voList", x);
         

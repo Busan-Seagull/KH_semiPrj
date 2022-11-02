@@ -251,7 +251,9 @@ top:30px;
 		<div id="title-a1"></div>
 		<div id="title-b1">리뷰게시판</div>
 	</div>
-	<div id="main">
+	<form action="/dobby/reviewDetail" method="post">
+	<input type="hidden" name="postNo" value="<%=vo.getPostNo()%>">
+		<div id="main">
 		<div id="f">
 			<div class="h-postNo" id="t23">번호</div>
 			<div class="h-serviceNo" id="t24">서비스 번호</div>
@@ -276,24 +278,23 @@ top:30px;
 		<div class="i1"><a href="/dobby/reviewEdit?postNo=<%=vo.getPostNo() %> " >수정</a></div>
 		<div class="i1"><a href="/dobby/reviewList">글목록</a></div>
 	</div>
+	<%if("2".equals(loginMember.getRightNo())){%> 
 	<div id="reply-area2">
-		<%-- <%if("2".equals(loginMember.getRightNo())&& vo.getZipComm() == null){%> --%>
 		<div id="reply-main">
 			<div id="top1">댓글</div>
 			<div id="admin-reply"><label id="admin-label">집요정</label></div>
 			<div id="bottom2"><textarea id="bottom1" name="content-reply" rows="3" cols=""></textarea></div> 
 			<div id="r2"><input id="r1" type="submit" name="adminReport" value="확인"></div> 
 		</div>
-	<%-- <%}%> --%>
-	<%-- <%if("2".equals(loginMember.getRightNo())){%> --%>
 		<div id="reply-main2">
 			<div id="reply-title2"><label>집요정</label></div>
-			<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=vo.getZipComm() %></div>
-			<div ><input class="r3" id="r4" type="button" name="adminReport" value="수정"></div> 
-			<div ><input class="r3" id="r5" type="button" name="adminReport" value="삭제"></div> 
+			<div id="reply-comment2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${vo.getZipComm()}</div>
+			<div ><input class="r3" id="r4" type="submit" name="adminReport" value="수정"></div> 
+			<div ><input class="r3" id="r5" type="submit" name="adminReport" value="삭제"></div> 
 		</div>
-	<%-- <%}%> --%>
 	</div>
+	<%}%> 
+	</form>
 </div>
 
 

@@ -31,6 +31,7 @@ public class ListController extends HttpServlet {
 	    req.setAttribute("pv", pv);
 	    
 	    List<ReportVo> x = new ReportService().selectList(pv);
+	    
 	    req.setAttribute("voList", x);
 	    req.getRequestDispatcher("/WEB-INF/views/report/list.jsp").forward(req, resp);
 	}
