@@ -177,8 +177,8 @@ overflow:auto;
 			</div>
 			<div id="j">
 				<div class="h" id="t13"><input type="text" class="input" name="postNo" value="<%=vo.getPostNo() %>"></div>
-				<div class="h" id="t14"><input type="text" class="input" name="userNo" value="<%=vo.getUserNo() %>"></div>
-				<div class="h" id="t15"><input type="text" class="input" name="serviceNo" value="<%=vo.getServiceNo()%>"></div>
+				<div class="h" id="t14"><input type="text" class="input" name="userNo" value="${vo.userNo}"></div>
+				<div class="h" id="t15"><input type="text" class="input" name="serviceNo" value="${vo.serviceNo}"></div>
 				<div class="h" id="t16"><input type="text" class="input" name="title" value="<%=vo.getTitle() %>"></div>
 				<div class="h" id="t17"><input type="text" class="input" name="writer" value="<%=vo.getWriter() %>"></div>
 			</div>
