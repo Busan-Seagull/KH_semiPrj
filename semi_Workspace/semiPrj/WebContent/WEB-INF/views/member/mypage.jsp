@@ -760,7 +760,9 @@ justify-content: center;
 									<button onclick="location.href='/dobby/mypage/payinfo?payno=${myPay.paymentNo}'">결제 상세 정보 ></button>
 								</div>
 								<div class="content-div2">
-									<h2><fmt:formatNumber value="${myPay.serviceCharge}" pattern="#,###" />원</h2>
+									<h2>
+                                        <c:if test="${myPay.serviceCharge eq null}">(견적)10,000</c:if>
+                                        <fmt:formatNumber value="${myPay.serviceCharge}" pattern="#,###" />원</h2>
 									<br> <span>결제번호 ${myPay.paymentNo}</span> <span>결제일시 
 										<c:out value="${fn:substring(myPay.paymentDate, 0, 19)}"></c:out>
 										</span>
@@ -768,7 +770,9 @@ justify-content: center;
 							</div>
 							<div class="history-btns-div">
 								<div class="btn-div">
+                                    <c:if test="${myPay.serviceCharge ne null}">
 									<button onclick="location.href='/dobby/reviewWrite';">리뷰쓰기</button>
+                                </c:if>
 								</div>
 								<div class="btn-div">
 									<button>결제취소</button>

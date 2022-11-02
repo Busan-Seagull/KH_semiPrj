@@ -175,7 +175,7 @@
 					<div id="reservation-content-1">서비스 요금</div>
 					<div id="reservation-content-2">
 						<c:if test="${sv.chargeUnit eq '견적필요'}">
-							견적 필요(견적 요금 10,000원)
+							견적 필요<br>(견적 요금 10,000원)
 					</c:if>
 						<c:if test="${sv.chargeUnit ne '견적필요'}">
 						${sv.chargeUnit}당
