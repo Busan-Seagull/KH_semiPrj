@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import com.kh.dobby.common.PageVo;
+import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.request.service.RequestService;
 import com.kh.dobby.request.vo.RequestVo;
 
@@ -35,29 +37,17 @@ public class ListController extends HttpServlet{
 //        int endPage;
 //        
         req.setCharacterEncoding("UTF-8"); // 인코딩
-        //String page = req.getParameter("pno"); // pno로 값 가져오기
-        //int currentPage = 1;
         
-        //if(page!=null) {
-        //    currentPage = Integer.parseInt(page);
-        //}
+        HttpSession session = req.getSession();
         
-        //listCount 선언
-        //int listCount = new RequestService().selectCount();
-      
-        
-        
-        //글개수, 현재페이지, 페이징(5개로 고정해야), 페이지당 게시글 수
-        //PageVo pv = new PageVo(listCount, currentPage, 5, 10); // pageLimit=5, boardLimit=10
-        
-        
-        
-        
+        //기타
+        MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
         
         
         //페이징
         
         String page = req.getParameter("pno");
+        String bno = req.getParameter("bno");
         int currentPage = 1;
 
         if(page!=null) {
@@ -68,12 +58,15 @@ public class ListController extends HttpServlet{
 
         req.setAttribute("pv", pv);
         System.out.println(pv);
-        
+        System.out.println("로그인멤버는?");
         
         //디비 다녀오기
         List<RequestVo> x = new RequestService().pageList(pv);
         req.setAttribute("voList", x); // x를 voList에 담아 setAttribute
         //req.setAttribute("pv", pv); // pv를 pv(key)에 담아 setAttribute
+        //String username = new RequestService().getusername(bno);
+        
+        req.setAttribute("loginMember", loginMember);
         //Session
         System.out.println(x);
         

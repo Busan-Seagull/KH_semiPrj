@@ -50,40 +50,36 @@ public class DetailController extends HttpServlet{
             
             
             //데이터 뭉치기
-            //ZzimVo zzimvo = new ZzimVo();
             
-            //zzimvo.setUserno(userno);
+            
             
             
             //DB 다녀오기
             RequestVo vo = new RequestService().selectOne(bno);
             
-            //DB다녀오기-로그인멤버
-//          ZzimVo zzimdata = new ZzimService().loaddata(zzimvo);
-//          session.setAttribute("zzimdata", zzimdata);
-//            
-            //System.out.println(userno);
+            
+                //DB다녀오기-로그인멤버
+                //ZzimVo zzimvo = new ZzimVo();
+                //zzimvo.setUserno(userno);
+    //          ZzimVo zzimdata = new ZzimService().loaddata(zzimvo);
+    //          session.setAttribute("zzimdata", zzimdata);
+    //            
+                //System.out.println(userno);
             
             
             
-            //유저넘버 설정
-            String userid = nowlogindata.getId();
-            session.setAttribute("userno", userno);
+                //유저넘버 설정
+                String userid = nowlogindata.getId();
+                session.setAttribute("userno", userno);
+                
+                req.setAttribute("nowlogindata", nowlogindata);
+                System.out.println(userid);
             
-            req.setAttribute("nowlogindata", nowlogindata);
-            System.out.println(userid);
-            
-            //DB의 vo?
-            
+                
+            //화면 선택
             req.setAttribute("vo", vo);
-            
-        
-       
-        
-        
-        
-        //화면 선택
-        req.getRequestDispatcher("/WEB-INF/views/request/detail.jsp").forward(req, resp);
+            req.setAttribute("bno", bno);
+            req.getRequestDispatcher("/WEB-INF/views/request/detail.jsp").forward(req, resp);
         
         
     }

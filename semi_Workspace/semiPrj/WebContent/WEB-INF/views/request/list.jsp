@@ -9,6 +9,11 @@
 <%
     List<RequestVo> voList = (List<RequestVo>)request.getAttribute("voList");
 	PageVo pv = (PageVo)request.getAttribute("pv");
+	
+	//로그인멤버 임포트
+	
+	
+	MemberVo loginmember = (MemberVo)request.getAttribute("loginMember");
 %>
 <!DOCTYPE html>
 <html>
@@ -148,20 +153,32 @@
 			<div class="t" id="t3">작성자</div>
 		</div>
 		
-		
+		<%if(loginmember.getRightNo().equals("3")) { %>
 		
 		<div id="data-size-align">
 			<% for(int i=0;i<voList.size();i++) { %>
 				<div class="data1">
 					<div class="content" id="t1"><%= voList.get(i).getPostNo() %></div>
-					<div class="content" id="t2"><a href="/dobby/request/detail?bno=<%=voList.get(i).getPostNo() %>"><%= voList.get(i).getContent() %></a></div>
+					<div class="content" id="t2"><a href="/dobby/request/admindetail?bno=<%=voList.get(i).getPostNo() %>"><%= voList.get(i).getTitle() %></a></div>
 					<div class="content" id="t3"><%= voList.get(i).getUserNo() %></div>
 				</div>
 				<%} %>
 		</div>
+		<%} %>
+		<%if(!loginmember.getRightNo().equals("3")) { %>
+		
+		<div id="data-size-align">
+			<% for(int i=0;i<voList.size();i++) { %>
+				<div class="data1">
+					<div class="content" id="t1"><%= voList.get(i).getPostNo() %></div>
+					<div class="content" id="t2"><a href="/dobby/request/detail?bno=<%=voList.get(i).getPostNo() %>"><%= voList.get(i).getTitle() %></a></div>
+					<div class="content" id="t3"><%= voList.get(i).getUserNo() %></div>
+				</div>
+				<%} %>
+		</div>
+		<%} %>
 		
 		
-	
 	
 	</div>
 	
