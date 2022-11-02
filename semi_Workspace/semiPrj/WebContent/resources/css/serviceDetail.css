@@ -275,12 +275,12 @@
 	background-color: rgb(200,200,200);
 }
 #favorite{
-    border: 1px groove lightgrey;
+    border: 1px solid lightgrey;
     border-radius: 5px;
     color: red;
     width: 50px;
     text-align: center;
-    height: 25px;
+    height: 35px;
     line-height: 25px;
     margin-bottom: 20px;
 }
@@ -403,5 +403,35 @@
 #review-cnt-profile{
     color: grey;
     font-size: 13px;
+}
+
+.zzim-item-like{
+    position: relative;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.zzim-item-like input[type=checkbox]{
+    display: none;
+}
+
+.zzim-item-like label{
+    width: 50px;
+    height: 50px;
+}
+
+
+.zzim-item-like span{
+    color: lightgray;
+    font-size: 35px;
+    font-variation-settings: 'FILL' 1;
+    -webkit-text-stroke: 4px rgb(255, 255, 255);
+}
+
+.zzim-item-like label input[type=checkbox]:checked ~ span{
+    color: red;
+    -webkit-text-stroke: 4px rgb(255, 255, 255);
 }
 

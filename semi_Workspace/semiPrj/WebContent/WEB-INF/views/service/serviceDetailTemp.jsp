@@ -106,9 +106,14 @@
 
 				</div>
 				<div class="inline-block" id="profile-btns">
-					<div id="favorite">
-						♥ <span id="favor-num">50</span>
+					
+					<div id="favorite" class="zzim-item-like" onchange="clickZzim(this, ${sv.serviceNo})">
+						<label>
+							<input type="checkbox" checked>
+							<span class="material-symbols-outlined">favorite</span>
+						</label>
 					</div>
+					
 					<button class="hidden-btn1"
 						onclick="location.href='/dobby/service/modify?sno=${sv.serviceNo}';">수정하기</button>
 
@@ -308,5 +313,63 @@
 		e.stopImmediatePropagation();
 	});
 	
+</script>
+<script>
+
+// const zzimList = document.querySelector("#zzim-list");
+const zzimCheck = document.querySelector("input[type=checkbox]");
+const zzimItem = document.querySelector(".zzim-item-like");
+
+function clickZzim(obj, n){
+	// const index = [...zzimItem].indexOf(obj);
+	if(${empty loginMember}){
+		alert('로그인이 필요 합니다.');
+		return;
+	}else{
+	console.log(zzimCheck.checked);
+
+		if(zzimCheck.checked){
+			console.log(2);
+			zzimAjaxCancle(n);
+			return;
+		}else{
+			console.log(1);
+			zzimAjax(n);
+			return;
+		}
+	}
+}
+
+function zzimAjax(sno){
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", '/dobby/zzim/check');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			if(xhr.status == 200){
+				
+			}else{
+				alert("결과가 저장되지 않음.");
+			}
+		}
+	}
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+	xhr.send('sno='+sno);	
+}
+
+function zzimAjaxCancle(sno){
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", '/dobby/zzim/check?sno='+sno);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			if(xhr.status == 200){
+				
+			}else{
+				alert("결과가 저장되지 않음.");
+			}
+		}
+	}
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+	xhr.send();
+}
 </script>
 </html>
