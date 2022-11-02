@@ -83,7 +83,7 @@
 						<table>
 							<tr>
 								<td class="text-grey">사용가능 포인트</td>
-								<td class="text-green">35,000p</td>
+								<td class="text-green">${point}p</td>
 								<td id="point-input-div"><c:if
 										test="${empty rv.reservationAmount}">
 										<input id="use-point" type="number" name="point" value="0"
@@ -199,6 +199,9 @@ var use = document.querySelector('#use-point');
 	}
 	if(use.value>${rv.reservationAmount}){
 		use.value = ${rv.reservationAmount};
+	}
+	if(use.value>${point}){
+		use.value = ${point};
 	}	
 }
 
