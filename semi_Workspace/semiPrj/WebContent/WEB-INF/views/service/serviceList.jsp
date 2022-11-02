@@ -96,7 +96,7 @@ String root = request.getContextPath();
 				</div>
 
 			</div>
-			<div id="helper-number">1,150명의 집요정</div>
+			<div id="helper-number">${dobbyCnt}명의 집요정</div>
 			<div class="helper-list-flex">
 				<c:forEach var="list" items="${svList}">
 					<div class="helper-list-outline">

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.dobby.admin.service.StatisticsService;
 import com.kh.dobby.common.PageVo;
 import com.kh.dobby.service.service.ServiceService;
 import com.kh.dobby.service.vo.ServiceVo;
@@ -158,6 +159,10 @@ public class ServiceController extends HttpServlet {
         req.setAttribute("category", category);
         req.setAttribute("region", regionName);
 
+        //유저수 들고오기..
+        int dobbyCnt = new StatisticsService().getUserCount(2);
+        req.setAttribute("dobbyCnt", dobbyCnt);
+        
         System.out.println(x);
         
         //
