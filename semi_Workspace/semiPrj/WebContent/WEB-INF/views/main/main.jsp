@@ -82,63 +82,76 @@
 					<span id="sl-next-btn" class="material-symbols-outlined">chevron_right</span>
 				</div>
 			</div>
-			<div id="switch-service-list" class="flex-center" style="left: 0;">
+			<div id="switch-service-list" class="flex-center" style="left: 0; height: 270px;">
 
+				<c:forEach items="${zzList}" var="vo">
 				<!--  -->
-				<a href="/dobby/service/detail" class="service-list-item shadow-box">
-					<div class="sl-item-img"></div>
-					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
-					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-					<div class="sl-item-title">title</div>
-					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-				</a>
-				<a href="/dobby/service/detail" class="service-list-item shadow-box">
-					<div class="sl-item-img"></div>
-					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
-					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-					<div class="sl-item-title">title</div>
-					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-				</a>
-				<a href="/dobby/service/detail" class="service-list-item shadow-box">
-					<div class="sl-item-img"></div>
-					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
-					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-					<div class="sl-item-title">title</div>
-					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-				</a>
-				<a href="/dobby/service/detail" class="service-list-item shadow-box">
-					<div class="sl-item-img"></div>
-					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
-					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-					<div class="sl-item-title">title</div>
-					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-				</a>
-				<a href="/dobby/service/detail" class="service-list-item shadow-box">
-					<div class="sl-item-img"></div>
-					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
-					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-					<div class="sl-item-title">title</div>
-					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-				</a>
-				<a href="/dobby/service/detail" class="service-list-item shadow-box">
-					<div class="sl-item-img"></div>
-					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
-					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-					<div class="sl-item-title">title</div>
-					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-				</a>
-				<a href="/dobby/service/detail" class="service-list-item shadow-box">
-					<div class="sl-item-img"></div>
-					<div class="sl-item-like"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
-					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
-					<div class="sl-item-title">title</div>
-					<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
-				</a>
-				
+				<a href="/dobby/service/detail?sno=${vo.dNo}" class="service-list-item shadow-box">
+					<img alt="" src="/dobby/${vo.imgLink }" class="sl-item-img">
+					<div class="sl-item-like" onchange="clickZzim(this, ${vo.dNo})"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
+					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>${vo.grade }</p></div>
+					<div class="sl-item-title">${vo.title }</div>
+					<div class="item-review flex-center"><p>리뷰</p><p>${vo.review }</p></div>
+				</a>				
 				<!--  -->
+				</c:forEach>
 
 			</div>
 		</div>
+		<script>
+			const zzimList = document.querySelector("#switch-service-list");
+			const zzimCheckArr = zzimList.querySelectorAll("input[type=checkbox]");
+			const zzimItemArr = zzimList.querySelectorAll(".sl-item-like");
+	
+			function clickZzim(obj, n){
+				const index = [...zzimItemArr].indexOf(obj);
+				
+				console.log(zzimCheckArr[index].checked);
+	
+					if(zzimCheckArr[index].checked){
+						console.log(2);
+						zzimAjaxCancle(n);
+						return;
+					}else{
+						console.log(1);
+						zzimAjax(n);
+						return;
+					}
+			}
+	
+			function zzimAjax(sno){
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", '/dobby/zzim/check');
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4){
+						if(xhr.status == 200){
+							
+						}else{
+							alert("결과가 저장되지 않음.");
+						}
+					}
+				}
+				xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+				xhr.send('sno='+sno);	
+			}
+	
+			function zzimAjaxCancle(sno){
+				var xhr = new XMLHttpRequest();
+				xhr.open("GET", '/dobby/zzim/check?sno='+sno);
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4){
+						if(xhr.status == 200){
+							
+						}else{
+							alert("결과가 저장되지 않음.");
+						}
+					}
+				}
+				xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+				xhr.send();
+			}
+	
+		</script>
 		<%}else{%>
 		<!-- 로그인안했을 때 -->
 		<div id="switching-sub">

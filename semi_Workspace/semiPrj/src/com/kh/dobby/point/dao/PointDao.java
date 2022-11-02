@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.point.vo.PointVo;
 
 public class PointDao {
@@ -38,6 +39,9 @@ public class PointDao {
             
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
         }
         
         return list;
@@ -63,6 +67,9 @@ public int getSumPoinst(Connection conn, String userNo) {
             
         } catch (Exception e) {
             e.printStackTrace();
+        }   finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
         }
         
         return result;

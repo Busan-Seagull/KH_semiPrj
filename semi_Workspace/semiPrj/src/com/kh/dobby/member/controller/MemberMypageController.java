@@ -26,6 +26,8 @@ import com.kh.dobby.report.service.ReportService;
 import com.kh.dobby.report.vo.ReportVo;
 import com.kh.dobby.service.service.ServiceService;
 import com.kh.dobby.service.vo.ServiceVo;
+import com.kh.dobby.zzim.service.ZzimService;
+import com.kh.dobby.zzim.vo.ZzimVo2;
 
 
 @WebServlet(urlPatterns = "/member/mypage")
@@ -69,6 +71,10 @@ public class MemberMypageController extends HttpServlet{
             req.setAttribute("pList", pList);
             req.setAttribute("point", point);
         }
+        
+//        임정한 찜목록
+        List<ZzimVo2> zList = new ZzimService().getZzimList(loginMember.getUserNo());
+        req.setAttribute("zList", zList);
         
 //       량우님 결제
         // 유저 넘버로 결제 내역 받아오기

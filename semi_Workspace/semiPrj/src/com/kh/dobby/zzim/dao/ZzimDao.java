@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import javax.websocket.Session;
 import com.kh.dobby.common.JDBCTemplate;
 import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.zzim.vo.ZzimVo;
+import com.kh.dobby.zzim.vo.ZzimVo2;
 
 public class ZzimDao {
 
@@ -82,6 +85,95 @@ public class ZzimDao {
         //System.out.println();
         
         return zzimMember;
+    }
+
+    public List<ZzimVo2> getZzimList(Connection conn, String userNo) {
+        
+        String sql = "SELECT SERVICE_TITLE, s.service_no, GRADE, REVIEW, SERVICE_PIC_1 FROM ZZIM Z JOIN SERVICE_INFO S ON Z.SERVICE_NO = S.SERVICE_NO JOIN ( SELECT AVG(GRADE) AS GRADE, SERVICE_NO, COUNT(GRADE) AS REVIEW FROM REVIEW GROUP BY SERVICE_NO ) R ON Z.SERVICE_NO = R.SERVICE_NO WHERE Z.USER_NO = ?";
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        
+        List<ZzimVo2> list = new ArrayList<>();
+        
+        try {
+            
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userNo);
+            
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                ZzimVo2 vo = new ZzimVo2();
+                vo.setdNo(rs.getString("service_no"));
+                vo.setGrade(rs.getString("GRADE"));
+                vo.setImgLink(rs.getString("SERVICE_PIC_1"));
+                vo.setReview(rs.getString("REVIEW"));
+                vo.setTitle(rs.getString("SERVICE_TITLE"));
+                                
+                list.add(vo);
+            }
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+        
+        
+        return list;
+    }
+
+    public int insert(Connection conn, String sno, String userNo) {
+        System.out.println("insert");
+        System.out.println(sno);
+        System.out.println(userNo);
+        String sql = "INSERT INTO ZZIM VALUES(?, ?)";
+        
+        PreparedStatement pstmt = null;
+        int result = 0;
+                
+        try {
+            
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userNo);
+            pstmt.setString(2, sno);
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
+    }
+
+    public int cancle(Connection conn, String sno, String userNo) {
+        System.out.println("cancle");
+        System.out.println(sno);
+        System.out.println(userNo);
+        String sql = "DELETE ZZIM where user_no = ? and service_no = ?";
+        
+        PreparedStatement pstmt = null;
+        int result = 0;
+                
+        try {
+            
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userNo);
+            pstmt.setString(2, sno);
+            
+            result = pstmt.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return result;
     }
 
 }

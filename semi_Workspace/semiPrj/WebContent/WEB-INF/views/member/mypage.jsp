@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/dobby/resources/css/mypage_report.css">
 <link rel="stylesheet" href="/dobby/resources/css/myService.css">
 <link rel="stylesheet" href="/dobby/resources/css/payHistory.css">
+<link rel="stylesheet" href="/dobby/resources/css/zzimPage.css">
 <style>
 #mypage{
     width: 1200px;
@@ -509,8 +510,23 @@ input[type=submit]{
 										</p>
 									</div>
 									<div>
-										<span class="starrr">★★★★★</span> <span class="star-num">5</span>
-										<span class="comment">"이 집 청소 잘하네요~"</span>
+										<span class="starrr">
+											<c:if test="${list.reviewAvg eq 5}">★★★★★</c:if>
+											<c:if test="${list.reviewAvg ge 4 && list.reviewAvg lt 5}">★★★★☆</c:if>
+											<c:if test="${list.reviewAvg ge 3 && list.reviewAvg lt 4}">★★★☆☆</c:if>
+											<c:if test="${list.reviewAvg ge 2 && list.reviewAvg lt 3}">★★☆☆☆</c:if>
+											<c:if test="${list.reviewAvg ge 1 && list.reviewAvg lt 2}">★☆☆☆☆</c:if>
+											<c:if test="${list.reviewAvg ge 0 && list.reviewAvg lt 1}">☆☆☆☆☆</c:if>
+										</span> 
+										<span class="star-num">
+											<c:if test=""></c:if>
+											<fmt:formatNumber value="${list.reviewAvg}" pattern="0.0"/>
+											</span>
+											<span class="review-cnt">(${list.reviewCnt})</span>
+										<span class="comment">
+											<c:if test="${empty list.reviewContent}">작성된 리뷰가 없습니다.</c:if>
+											<c:if test="${not empty list.reviewContent}">"${list.reviewContent}"</c:if>
+										</span>
 									</div>
 								</div>
 								<div class="helper-contents2">
@@ -576,15 +592,6 @@ input[type=submit]{
                     <span class="material-symbols-outlined"> magic_button </span>
                     <p>예약내역</p>
                 </div>
-                <form action="">
-                    <select name="status" id="" onchange="this.form.submit()">
-                        <option value="none">==선택==</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </form>
             </div>
 
 
@@ -706,8 +713,88 @@ input[type=submit]{
     </div>
 
     <div class="info-area" id="info-area06">
-        
+        <div id="zzim-box">
+            <div id="zzim-title">
+                <div id="r-title">
+                    <span class="material-symbols-outlined"> magic_button </span>
+                    <p>찜 목록</p>
+                </div>
+            </div>
+            <div id="zzim-list">
+            	<c:forEach items="${zList }" var="vo">
+                <a href="/dobby/service/detail?sno=${vo.dNo}" class="zzim-item shadow-box">
+                    <img alt="" src="/dobby/${vo.imgLink }" class="zzim-item-img">
+                    <div class="zzim-item-title">${vo.title }</div>
+                    <div class="zzim-item-like" onchange="clickZzim(this, ${vo.dNo})">
+	                    <label>
+		                    <input type="checkbox" checked>
+		                    <span class="material-symbols-outlined">favorite</span>
+	                    </label>
+                    </div>
+                    <div class="zzim-item-body">
+                        <div class="zzim-item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>${vo.grade }</p></div>
+                        <div   div class="zzim-item-review flex-center"><p>리뷰&nbsp;</p><p>${vo.review }</p></div>
+                    </div>
+                </a>
+            	</c:forEach>
+            </div>
+        </div>
     </div>
+
+    <script>
+        const zzimList = document.querySelector("#zzim-list");
+        const zzimCheckArr = zzimList.querySelectorAll("input[type=checkbox]");
+        const zzimItemArr = zzimList.querySelectorAll(".zzim-item-like");
+
+        function clickZzim(obj, n){
+            const index = [...zzimItemArr].indexOf(obj);
+            
+            console.log(zzimCheckArr[index].checked);
+
+                if(zzimCheckArr[index].checked){
+                    console.log(2);
+                    zzimAjaxCancle(n);
+                    return;
+                }else{
+                    console.log(1);
+                    zzimAjax(n);
+                    return;
+                }
+        }
+
+        function zzimAjax(sno){
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/dobby/zzim/check');
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+                        
+                    }else{
+                        alert("결과가 저장되지 않음.");
+                    }
+                }
+            }
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.send('sno='+sno);	
+        }
+
+        function zzimAjaxCancle(sno){
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", '/dobby/zzim/check?sno='+sno);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+                        
+                    }else{
+                        alert("결과가 저장되지 않음.");
+                    }
+                }
+            }
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.send();
+        }
+
+    </script>
 
     <div class="info-area" id="info-area07">
         7
@@ -998,18 +1085,16 @@ input[type=submit]{
 					const right = pageNation.querySelector('.arrow.right');
                     const last = pageNation.querySelector('.last');
 
-                    last.onclick = "reservationAjax("+pvo.maxPage+")";
                     last.onclick = function(){reservationAjax(pvo.maxPage);};
 
 					if(pvo.startPage > 1){
-						left.onclick = "reservationAjax("+pvo.startPage+")";
+						left.onclick = function(){reservationAjax(pvo.startPage);};
 					}else{
 						left.classList.add('none-select');
 					}
 
 					if(pvo.currentPage != pvo.maxPage){
-						right.onclick = "reservationAjax("+(pvo.currentPage + 1)+")";
-					}else{
+						right.onclick = function(){reservationAjax((pvo.currentPage + 1));};
 						right.classList.add('none-select');
 					}
 
@@ -1025,7 +1110,7 @@ input[type=submit]{
 						if(page < 1 || page > pvo.maxPage){
 							num.classList.add('p-none');
 						}else{
-							num.onclick = "reservationAjax("+page+")";
+							num.onclick = function(){reservationAjax(page);};
 						}
 						num.innerHTML = page;
 						page++;
