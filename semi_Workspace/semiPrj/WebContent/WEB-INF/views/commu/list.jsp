@@ -359,7 +359,7 @@ alert('<%= msg%>');
 
                     
                     for (let j = 0; j < numArr.length; j++) {
-
+							console.log(numArr.length);
                         const num = numArr[j];
                             
                         if(page == pvo.currentPage){

@@ -85,7 +85,7 @@ public class MemberDao {
     //USER_NO로 조회
     public MemberVo selectOneNo(Connection conn, MemberVo vo) {
        
-            String sql="SELECT U.USER_NO,U.RIGHT_NO,U.ID,U.PWD,U.NAME,U.EMAIL, U.NICK,U.ADDRESS,U.PHONE,U.ENROLL_DATE,U.QUIT_YN, U.MODIFY_DATE,U.REPORT_CNT,D.BR_NUM,D.ACCOUNT,D.IMG_LINK FROM \"USER\" U left JOIN \"DOBBY\" D ON U.USER_NO =D.USER_NO WHERE U.USER_NO=? AND U.QUIT_YN='N'";
+            String sql="SELECT U.USER_NO,U.RIGHT_NO,U.ID,U.PWD,U.NAME,U.EMAIL, U.NICK,U.ADDRESS,U.PHONE,U.ENROLL_DATE,U.QUIT_YN, U.MODIFY_DATE,U.REPORT_CNT,D.BR_NUM,D.ACCOUNT,D.IMG_LINK FROM \"USER\" U left JOIN \"DOBBY\" D ON U.USER_NO =D.USER_NO WHERE U.USER_NO=? AND U.RIGHT_NO=2 AND U.QUIT_YN='N'";
            
             PreparedStatement pstmt=null;
             ResultSet rs=null;

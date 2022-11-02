@@ -42,7 +42,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 //           System.out.println(cateNum);
             PrintWriter out = resp.getWriter();
 
-            String page = req.getParameter("pno");
+            String page = "1";
 //            System.out.println(page);
             int currentPage = 1;
             int listCount=0;

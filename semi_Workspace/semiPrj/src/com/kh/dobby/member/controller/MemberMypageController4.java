@@ -1,6 +1,5 @@
 package com.kh.dobby.member.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -15,9 +14,8 @@ import javax.servlet.http.Part;
 
 import com.kh.dobby.common.AttachmentVo;
 import com.kh.dobby.common.FileUploader;
-import com.kh.dobby.member.service.MemberService;
 import com.kh.dobby.member.vo.MemberVo;
-import com.kh.dobby.point.controller.PointService;
+import com.kh.dobby.point.service.PointService;
 import com.kh.dobby.point.vo.PointVo;
 
 
