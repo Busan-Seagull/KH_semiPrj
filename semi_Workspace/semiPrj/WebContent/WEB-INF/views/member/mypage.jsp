@@ -948,7 +948,7 @@ justify-content: center;
     	<div id="report-area">
 			<div id="join-title"><span class="material-symbols-outlined">magic_button</span>신고내역</div>
 				<div id="report-list">
-				<%for(int i = 0; i< voList.size(); i++){%>
+<%-- 				<%for(int i = 0; i< voList.size(); i++){%>
 					<div class="list-no1">작성자</div>
 					<div class="list-no1">번호</div>
 					<div class="list-no1">신고할 회원</div>
@@ -964,7 +964,24 @@ justify-content: center;
 						<div id="report-content">신고내용 <div id="list-popup"><a href="/dobby/detail?postNo=<%=voList.get(i).getPostNo() %>">리스트로 가기</a></div></div>
 						<p><div id="report-content-content"><%=voList.get(i).getContent() %></div></p>
 					</div>
-				<%} %>
+				<%} %> --%>
+				<c:forEach items="${voList }" var="vo">
+					<div class="list-no1">작성자</div>
+					<div class="list-no1">번호</div>
+					<div class="list-no1">신고할 회원</div>
+					<div class="list-no1">신고할 서비스</div>
+					<div class="list-no1">제목</div>
+										
+					<div class="list-no2">${vo.writer }</div>
+					<div class="list-no2">${vo.postNo }</div> 
+					<div class="list-no2">${vo.userNo }</div>
+					<div class="list-no2">${vo.serviceNo }</div>
+					<div class="list-no2">${vo.title }</div>
+					<div id="report-span">
+						<div id="report-content">신고내용 <div id="list-popup"><a href="/dobby/detail?postNo=${vo.postNo }">리스트로 가기</a></div></div>
+						<p><div id="report-content-content">${vo.content }</div></p>
+					</div>
+				</c:forEach>
 			</div><!-- report-list -->
 		</div><!-- report-area  -->
 
