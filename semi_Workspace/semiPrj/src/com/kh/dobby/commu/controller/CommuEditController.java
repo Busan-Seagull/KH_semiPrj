@@ -41,11 +41,13 @@ public class CommuEditController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         
+        String typeNo=req.getParameter("category");
         String title=req.getParameter("title");
         String content=req.getParameter("editordata");
         String bno = req.getParameter("bno");
         
         CommuVo vo= new CommuVo();
+        vo.setTypeNo(typeNo);
         vo.setTitle(title);
         vo.setContent(content);
         vo.setPostNo(bno);

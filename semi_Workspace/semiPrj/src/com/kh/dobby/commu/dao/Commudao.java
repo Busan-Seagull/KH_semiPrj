@@ -259,14 +259,15 @@ public class Commudao {
     }
 
     public int updateOneByNo(Connection conn, CommuVo vo) {
-        String sql="UPDATE BOARD SET TITLE = ? , CONTENT=? ,MODIFY_DATE= SYSDATE WHERE POST_NO=?";
+        String sql="UPDATE BOARD SET TITLE = ? , CONTENT=? ,  TYPE_NO=?, MODIFY_DATE= SYSDATE WHERE POST_NO=?";
         PreparedStatement pstmt=null;
         int result=0;
         try {
          pstmt=conn.prepareStatement(sql);
          pstmt.setString(1, vo.getTitle());
          pstmt.setString(2, vo.getContent());
-         pstmt.setString(3, vo.getPostNo());
+         pstmt.setString(3, vo.getTypeNo());
+         pstmt.setString(4, vo.getPostNo());
          
          result=pstmt.executeUpdate();
          
