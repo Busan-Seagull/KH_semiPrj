@@ -34,7 +34,7 @@ public class ReviewDetailController extends HttpServlet {
             
             req.setAttribute("vo", vo);
             
-            System.out.println(vo);
+           
            
             
             req.getRequestDispatcher("/WEB-INF/views/review/reviewDetail.jsp").forward(req, resp);
