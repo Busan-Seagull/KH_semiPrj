@@ -182,7 +182,7 @@ li>div{
                 <ul class="slides">
                 <% for(int i = 0; i<voList.size(); i++){%>
                     <li>
-                    	<div class="slides-li-div">
+                    	<div class="slides-li-div" onclick="location.href='/dobby/service/detail?sno=<%=voList.get(i).getServiceNo() %>'">
                         <div class="slides-div1">
                             <div class="s6"><img width="170px" height="170px" src="<%= voList.get(i).getProfileImg()%>"></div>
                             <div class="s1"><%=voList.get(i).getTitle() %></div>

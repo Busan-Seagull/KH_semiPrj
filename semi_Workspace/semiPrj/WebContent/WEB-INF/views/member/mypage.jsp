@@ -268,12 +268,129 @@ input[type=submit]{
 }
 
 /* d */
-#info-area03{
+#info-area03 ,#info-area07{
     min-height: 1000px;
     height: auto;
     justify-content: center;
     align-items: flex-start;
 }
+
+/*작성한 게시물 */
+#mypost-main{
+ display: flex;
+justify-content: center;
+    
+    
+    margin:auto;
+}
+
+#list-main{
+        width: 800px;
+       
+        margin:auto;
+        
+    }
+
+    #list-area{
+       margin-top:20px;
+       margin-bottom:40px;
+        width:800px;
+        min-height:85vh;
+/*         display: grid; */
+        justify-content: center;
+        /* grid-template-rows: 1fr auto; */
+        /* border: 1px solid red; */
+    }
+
+    #commu-title{
+        height: 100%;
+        margin: auto;
+        display: grid;
+        grid-template-rows: 1fr 0.5fr;
+    }
+
+
+    #commu-title div{
+        font-family: var(--sans);
+        color: var(--semi-green);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+     
+    }
+
+    #commu-title div span{
+        margin: 10px;
+    }
+
+
+
+    #commu-title div:nth-child(1){
+        width: 100%;
+        font-size: 14pt;
+        font-weight: 600;  
+        
+    }
+
+    #commu-title div:nth-child(2){
+        width: 100%;
+        font-size: 10pt;
+        font-weight: 300;  
+    }
+
+
+    #cate-list{
+        width: 800px;
+       
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr 5fr 2fr 3fr 1fr;
+       
+
+        border-bottom:1px solid var(--semi-green);
+    }
+
+    #cate-list div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--sans);
+        font-size: 14px;
+        height:40px;
+
+    }
+
+    #cate-list .first{
+        letter-spacing:5px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--semi-green);
+        border-bottom: 1px solid var(--semi-green)
+    }
+
+    #page-area{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        
+    }
+
+    #page-nation{
+        list-style: none;
+        display: inline-block;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    #page-nation li{
+        display: inline;
+        text-align: center;
+        margin:0 10px;
+      
+    }
 
 
 
@@ -797,7 +914,26 @@ input[type=submit]{
     </script>
 
     <div class="info-area" id="info-area07">
-        7
+    <div id="mypost-main">
+    <div id="list-main">
+    <div id="list-area">
+    <div id="commu-title">
+                <div><span class="material-symbols-outlined">magic_button</span>작성한 게시물<span class="material-symbols-outlined">magic_button</span></div>
+               
+            </div>
+            
+     
+            <div id="cate-list">
+               
+              
+               
+            </div>
+
+
+
+       </div>
+              </div>
+    </div>
     </div>
 
     <div class="info-area" id="info-area08">
@@ -1258,4 +1394,64 @@ input[type=submit]{
     }
 
 </script>
+<!--내게시물 확인   -->
+<script>
+
+        /*카테고리 별 조회 AJAX  */
+       commuPage();
+        
+        function commuPage(){
+        	// alert("g3");
+        /*     const cate=$("input[type=radio]:checked").val();   */
+            $.ajax({    
+                type: "post",
+                url: "/dobby/member/mypostList", 
+           		 success: function(result){
+                    console.log(result); 
+                    const list2=$('#cate-list');
+                    const p =JSON.parse(result);             
+                    const board=p.list;
+                    
+                    $(list2).empty();
+                    $('<div class="first">번호</div><div class="first">제목</div><div class="first">작성자</div><div class="first">일시</div><div class="first">조회수</div>').appendTo(list2);
+                      
+                    for(let i=0; i<board.length;i++){
+                        const vo = board[i];
+                        const bno = vo.postNo;
+                         let div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.postNo+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.title+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.userNo+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.writeTime+'</a>').appendTo(div);
+                        div.appendTo(list2);
+
+
+                        div=$('<div/>');
+                        $('<a href="/dobby/commu/detail?bno='+vo.postNo+'">'+vo.views+'</a>').appendTo(div);
+                        div.appendTo(list2);
+                    
+                    
+
+                    }
+
+                   
+                },
+                error: function() {   
+                    alert("실패!!");
+    
+                }            
+            });
+        }
+
+</script>
+
 </html>

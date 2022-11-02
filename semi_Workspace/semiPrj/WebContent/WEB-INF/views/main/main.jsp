@@ -230,11 +230,11 @@
 					<!--  -->
 					<c:forEach items="${sList}" var="vo">
 					<a href="/dobby/service/detail?sno=${vo.serviceNo }" class="item flex-center shadow-box">
-						<img alt="" src="/dobby/${vo.servicePic_1 }" class="item-img">
+						<img alt="" src="/dobby/${vo.profileImg }" class="item-img">
 						<div class="text-contain">
-							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>5.0</p></div>
+							<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">${vo.reviewAvg }</span><p>5.0</p></div>
 							<div class="item-title">${vo.title }</div>
-							<div class="item-review flex-center"><p>리뷰</p><p>123</p></div>
+							<div class="item-review flex-center"><p>리뷰</p><p>${vo.reviewCnt }</p></div>
 						</div>
 					</a>
 					</c:forEach>
