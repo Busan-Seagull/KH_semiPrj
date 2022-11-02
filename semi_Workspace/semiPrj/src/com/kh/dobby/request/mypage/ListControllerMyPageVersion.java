@@ -1,4 +1,4 @@
-package com.kh.dobby.request.mypage.controller;
+package com.kh.dobby.request.mypage;
 
 import java.io.IOException;
 import java.net.http.HttpRequest;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 
 import com.kh.dobby.common.PageVo;
+import com.kh.dobby.member.vo.MemberVo;
 import com.kh.dobby.request.service.RequestService;
 import com.kh.dobby.request.vo.RequestVo;
 
@@ -52,9 +53,6 @@ public class ListControllerMyPageVersion extends HttpServlet{
         
         
         
-        
-        
-        
         //페이징
         
         String page = req.getParameter("pno");
@@ -71,9 +69,10 @@ public class ListControllerMyPageVersion extends HttpServlet{
         
         
         //디비 다녀오기
-        List<RequestVo> x = new RequestService().pageList(pv);
+        List<RequestVo> x = new RequestService().pageList2(pv);
         req.setAttribute("voList", x); // x를 voList에 담아 setAttribute
         //req.setAttribute("pv", pv); // pv를 pv(key)에 담아 setAttribute
+        
         //Session
         System.out.println(x);
         

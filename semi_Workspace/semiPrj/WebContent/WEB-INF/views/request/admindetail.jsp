@@ -103,7 +103,7 @@
 	height:260px;
 	margin:100px auto;
 	position : relative;
-	margin-top:160px;
+	margin-top:60px;
 }
 
 #submain-text{
@@ -144,12 +144,11 @@
 	font-size:20px;
 }
 
-#bigtext{
 
-font-size:40px;
-}
-#smalltext{
-font-size:20px;
+#white2box{
+	width:100px;
+	height:200px;
+	border:2px;
 }
 </style>
 <body>
@@ -177,7 +176,7 @@ font-size:20px;
 			<div class="data1">
 				<div class="content" id="t1"><%=vo.getPostNo() %></div> <!-- bno 물어보고.. -->
 				<div class="title" id="t2"><%=vo.getTitle() %></div>
-				<div class="writer" id="t3"><%=vo.getUserNo() %></div>
+				<div class="writer" id="t3">몰라!</div>
 			</div>
 			<!--  내용 -->
 			<div class="texttext"><%=vo.getContent() %></div>
@@ -193,46 +192,46 @@ font-size:20px;
 		</div>
 		
 		<%} else if(loginvoList!=null){ %>
-		
-		
-			<%if(!loginvoList.getRightNo().equals("3")) { %>
-			<div id="button-box">
+		<%if(!loginvoList.getRightNo().equals("3")) { %>
+		<div id="button-box">
 					<a href="/dobby/request/detail/edit?bno=<%=vo.getPostNo()%>" id="write"  class="page-button" >수정하기</a>
 					<a href="/dobby/request"><div class="page-button" id="rollback">돌아가기</div></a>
-					<a href="/dobby/request/delete?bno=<%=vo.getPostNo()%>"><div class="page-button" id="rollback">삭제하기</div></a>
 			</div>
 			<%} %>
 			
 			
 			
 			
-			
-			<!--  관리자 작성칸 전용 -->
+			<% if(loginvoList.getRightNo().equals("3")){%>
+			<!--  관리자 계정 전용 -->
 			
 				<div id ="submain">
-					<div id="bigtext">문의작성 답변내용</div>
-					<div id="smalltext">${vo.repeatContent}</div>
 					<%if(vo.getRepeatContent()==null) { %>
 					<div id = "submain-text">관리자 문의작성란</div>
+					<input type="textarea" id="subtext01" name="repeatcontent">
 					
-						
-							<% if(loginvoList.getRightNo().equals("3")){%>
-							<input type="textarea" id="subtext01" name="repeatcontent">
-							<div id="button-box">
-								<input type="submit" value="작성하기" id="write" name="adminwrite"  class="page-button" >
-								<a href="/dobby/request"><div class="page-button" id="rollback">돌아가기</div></a>
-							</div>
-							
-							<%} %>
+					<div id="button-box">
+						<input type="submit" value="작성하기" id="write" name="adminwrite"  class="page-button" >
+						<a href="/dobby/request"><div class="page-button" id="rollback">돌아가기</div></a>
+					</div>
 					
+					<%} else if(vo.getRepeatContent()!=null) {%>
+						<div id = "submain-text">관리자 문의작성란</div>
+						<input type="textarea" id="subtext01" name="repeatcontent" values="<%=vo.getRepeatContent()%>">
+						<div><%="현재 내용 : " + vo.getRepeatContent()%></div>
+						<div id="button-box">
+							<input type="submit" value="작성하기" id="write" name="adminwrite"  class="page-button" >
+							<a href="/dobby/request"><div class="page-button" id="rollback">돌아가기</div></a>
+						</div>
 					
-			<%} %>
+					<%} %>
 				</div>
+			<%} 
 			
 			
 			
 			
-		<%}%>
+		}%>
 		
 	</form>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
