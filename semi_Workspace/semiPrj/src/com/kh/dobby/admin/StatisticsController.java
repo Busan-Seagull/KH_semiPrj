@@ -44,17 +44,17 @@ public class StatisticsController extends HttpServlet {
             int suerviceCount = ss.getServiceCount(setDate(m), setDate(m+1));
             
             Map<String, Integer> map = new HashMap<String, Integer>();
-//            map.put("userCount", userCount);
-//            map.put("dobbyCount", dobbyCount);
-//            map.put("suerviceCount", suerviceCount);
+            map.put("userCount", userCount);
+            map.put("dobbyCount", dobbyCount);
+            map.put("suerviceCount", suerviceCount);
             
-            int random = (int)(Math.random()*5) + 1;
-            int random2 = (int)(Math.random()*5) + 1;
-            int random3 = (int)(Math.random()*5) + 1;
-            
-            map.put("userCount", month*random+i);
-            map.put("dobbyCount", month*random2+i);
-            map.put("suerviceCount", month*random3+i);
+//            int random = (int)(Math.random()*5) + 1;
+//            int random2 = (int)(Math.random()*5) + 1;
+//            int random3 = (int)(Math.random()*5) + 1;
+//            
+//            map.put("userCount", month*random+i);
+//            map.put("dobbyCount", month*random2+i);
+//            map.put("suerviceCount", month*random3+i);
             
             list.add(map);
         }

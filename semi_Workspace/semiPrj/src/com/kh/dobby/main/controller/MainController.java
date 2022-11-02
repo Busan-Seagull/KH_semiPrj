@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.dobby.admin.service.StatisticsService;
 import com.kh.dobby.banner.service.BannerService;
 import com.kh.dobby.banner.vo.BannerVo;
 import com.kh.dobby.commu.service.CommuService;
@@ -44,12 +45,23 @@ public class MainController extends HttpServlet{
        List<ZipVo> zList = new SuperCleanerService().getList();
        List<ServiceVo> sList = new ServiceService().listPopUser();
        
+       StatisticsService as = new StatisticsService();
+       
+       int userCount = as.getUserCount(1);
+       int dobbyCount = as.getUserCount(2);
+       int serviceCount = as.getServiceCount();
+       int successCount = as.getSuccessServiceCount();
+       
+       req.setAttribute("userCount", userCount);
+       req.setAttribute("dobbyCount", dobbyCount);
+       req.setAttribute("serviceCount", serviceCount);
+       req.setAttribute("successCount", successCount);
+       
        if(loginMember!=null) {
            List<ZzimVo2> zzList = new ZzimService().getZzimList(loginMember.getUserNo());     
            req.setAttribute("zzList", zzList);
        }
 
-	    
 	    if(list!=null) {
             req.setAttribute("zList", zList);
             req.setAttribute("sList", sList);

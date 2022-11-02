@@ -33,5 +33,41 @@ public class StatisticsService {
         return count;
         
     }
+    
+    public int getUserCount(int right) {
+
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int count = new StatisticsDao().getUserCount(conn, right);
+        
+        JDBCTemplate.close(conn);
+        
+        return count;
+        
+    }
+    
+    public int getServiceCount() {
+
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int count = new StatisticsDao().getServiceCount(conn);
+        
+        JDBCTemplate.close(conn);
+        
+        return count;
+        
+    }
+    
+    public int getSuccessServiceCount() {
+
+        Connection conn = JDBCTemplate.getConnection();
+        
+        int count = new StatisticsDao().getSuccessServiceCount(conn);
+        
+        JDBCTemplate.close(conn);
+        
+        return count;
+        
+    }
 
 }

@@ -139,7 +139,7 @@
 
 .info-area{
     width: 100%;
-    min-height: 85vh;
+    min-height: 825px;
     border: 1px solid #999999;
     border-radius: 10px;
     display: flex;
@@ -798,7 +798,7 @@ justify-content: center;
             </div>
             <div id="point-main">
                 <div id="my-point">
-                    <div id="point"><div>${point }</div><p>P</p></div>
+                    <div id="point"><div><fmt:formatNumber value="${point}" pattern="#,###"/></div><p>P</p></div>
                 </div>
                 <div id="point-list">
                     <div class="point-item" id="item-head">
@@ -1066,7 +1066,7 @@ justify-content: center;
 
                             let span = $('<span/>');
                             span.addClass('btn-list');
-                            $('<div class="rh-i-h-btn">신고하기</div>').appendTo(span);
+                            $('<div onclick="location.href=\'/dobby/write\'" class="rh-i-h-btn">신고하기</div>').appendTo(span);
                             $('<div class="rh-i-h-btn">문의하기</div>').appendTo(span);
                             $('<div class="rh-i-h-btn">리뷰하기</div>').appendTo(span);
                             span.appendTo(header);

@@ -503,7 +503,7 @@
 
                                 div.addEventListener('click', function(){
                                     updateCheck(element.alarmNo);
-                                    location.href = "/dobby/member/mypage03reservation?pno=3";
+                                    location.href = "/dobby/member/mypage?pno=3";
                                 });
 
                                 list.appendChild(div);

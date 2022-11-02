@@ -71,4 +71,86 @@ public class StatisticsDao {
         return cout;
     }
 
+    public int getUserCount(Connection conn, int right) {
+        
+        String sql = "SELECT COUNT(*) FROM \"USER\" WHERE RIGHT_NO = ?";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int cout = -1;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, right);
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                cout = rs.getInt("COUNT(*)");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return cout;
+    }
+
+    public int getSuccessServiceCount(Connection conn) {
+        String sql = "SELECT COUNT(*) FROM RESERVATION R JOIN PAYMENT P USING(RESERVATION_NO)";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int cout = -1;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                cout = rs.getInt("COUNT(*)");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return cout;
+    }
+    
+    public int getServiceCount(Connection conn) {
+        String sql = "SELECT COUNT(*) FROM RESERVATION";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int cout = -1;
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+
+            
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
+                cout = rs.getInt("COUNT(*)");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTemplate.close(rs);
+            JDBCTemplate.close(pstmt);
+        }
+        
+        return cout;
+    }
+
 }

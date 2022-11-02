@@ -181,6 +181,48 @@
 				</div>
 			</div>
 		</div>
+		
+		<script type="text/javascript">
+		const user = document.querySelector('#user-count');
+		const dobby = document.querySelector('#dobby-count');
+		const service = document.querySelector('#service-count');
+		const reservation = document.querySelector('#reservation-count');
+
+		if(user!=null){
+		    document.addEventListener('scroll', counting());
+
+		    function counting (){
+		        let timer01 = setInterval(() => {
+		        	if(${userCount} == 0){clearTimeout(timer04)};
+		            user.innerHTML = parseInt(user.innerHTML) + 1;
+		            if(parseInt(user.innerHTML) == ${userCount}){clearTimeout(timer01)};
+		        }, 0.5);
+		    
+		        let timer02 = setInterval(() => {
+		        	if(${dobbyCount} == 0){clearTimeout(timer04)};
+		            dobby.innerHTML = parseInt(dobby.innerHTML) + 1;
+		            if(parseInt(dobby.innerHTML) == ${dobbyCount}){clearTimeout(timer02)};
+		        }, 0.5);
+		    
+		        let timer03 = setInterval(() => {
+		        	if(${serviceCount} == 0){clearTimeout(timer04)};
+		            service.innerHTML = parseInt(service.innerHTML) + 1;
+		            if(parseInt(service.innerHTML) == ${serviceCount}){clearTimeout(timer03)};
+		        }, 0.5);
+		    
+		        let timer04 = setInterval(() => {
+		        	if(${successCount} == 0){clearTimeout(timer04)};
+		            reservation.innerHTML = parseInt(reservation.innerHTML) + 1;
+		            if(parseInt(reservation.innerHTML) == ${successCount}){clearTimeout(timer04)};
+		        }, 0.5);
+		    
+		        if(window.scrollY >= 400){
+		            document.removeEventListener('scroll', conting());
+		        }
+		    }
+		}
+		</script>
+		
 		<%}%>
 		<div id="popularity">
 			<div id="popularity-dobby">
