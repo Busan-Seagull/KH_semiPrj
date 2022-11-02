@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/dobby/resources/css/main.css">
 <link rel="stylesheet" href="/dobby/resources/css/serviceDetail.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <body>
 
@@ -61,18 +62,8 @@
 							<td class="input-text" colspan="3">${sv.helper}</td>
 						</tr>
 						<tr>
-							<td class="sm text-grey fixed-text">비용</td>
-							<td class="input-text" colspan="3">
-								<c:if test="${sv.chargeUnit eq '견적필요'}">
-										견적 필요(견적 요금 10,000원)
-								</c:if>
-									<c:if test="${sv.chargeUnit ne '견적필요'}">
-									${sv.chargeUnit}당
-									<fmt:formatNumber value="${sv.charge}" pattern="#,###" />
-									원
-								</c:if>
-								
-							</td>
+							<td class="sm text-grey fixed-text">&nbsp; </td>
+							<td class="input-text" colspan="3">&nbsp; </td>
 						</tr>
 						<tr>
 							<td class="sm text-grey fixed-text">분야</td>
@@ -109,7 +100,10 @@
 					
 					<div id="favorite" class="zzim-item-like" onchange="clickZzim(this, ${sv.serviceNo})">
 						<label>
-							<input type="checkbox" checked>
+							<input type="checkbox" 
+							<c:if test ="${zzim.userNo != null}">checked</c:if>
+							<c:if test ="${empty loginMember}">disabled</c:if>
+							>
 							<span class="material-symbols-outlined">favorite</span>
 						</label>
 					</div>
@@ -176,12 +170,26 @@
 		</div>
 		<div id="side-content">
 			<div id="reservation-box">
-				<div id="reservation-content"></div>
+				<div id="service-title">${sv.title}</div>
+				<div id="reservation-content">
+					<div id="reservation-content-1">서비스 요금</div>
+					<div id="reservation-content-2">
+						<c:if test="${sv.chargeUnit eq '견적필요'}">
+							견적 필요(견적 요금 10,000원)
+					</c:if>
+						<c:if test="${sv.chargeUnit ne '견적필요'}">
+						${sv.chargeUnit}당
+						<fmt:formatNumber value="${sv.charge}" pattern="#,###" />
+						원
+					</c:if>
+					</div>
+					<div id="reservation-content-3">${sv.serviceIntro}</div>
+				</div>
 				<div class="back-brown text-white" id="reservation-btn"
 					onclick="location.href='/dobby/reservation?sno=${sv.serviceNo}'">예약하기</div>
 			</div>
-			<div class="back-light" id="reserve-info">서비스 완료후에 집요정에게 결제대금이
-				전달됩니다.</div>
+			<div class="back-light" id="reserve-info"><i class="bi bi-info-square-fill"></i> &nbsp서비스 완료후에 집요정에게 결제<br> 
+				&nbsp&nbsp&nbsp&nbsp 대금이 전달됩니다.</div>
 
 		</div>
 
@@ -315,6 +323,8 @@
 	
 </script>
 <script>
+//
+
 
 // const zzimList = document.querySelector("#zzim-list");
 const zzimCheck = document.querySelector("input[type=checkbox]");
