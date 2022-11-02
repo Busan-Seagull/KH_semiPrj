@@ -130,7 +130,7 @@ li>div{
     font-size: large;
     position: relative;
     top:80px;
-    left: 82px;
+    left: 97px;
 }
 .s6{
     position: relative;
@@ -140,7 +140,7 @@ li>div{
 .s7{
     position: relative;
     top:63px;
-    left: 162px;
+    left: 165px;
 }
 .slides-li-div{
     display: flex;
