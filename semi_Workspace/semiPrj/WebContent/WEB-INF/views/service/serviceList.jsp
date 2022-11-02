@@ -113,13 +113,21 @@ String root = request.getContextPath();
 								<div>
 									<span class="starrr">
 										<c:if test="${list.reviewAvg eq 5}">★★★★★</c:if>
-										<c:if test="${list.reviewAvg gt 4 && list.reviewAvg lt 5}">★★★★☆</c:if>
-										<c:if test="${list.reviewAvg gt 3 && list.reviewAvg lt 4}">★★★☆☆</c:if>
-										<c:if test="${list.reviewAvg gt 2 && list.reviewAvg lt 3}">★★☆☆☆</c:if>
-										<c:if test="${list.reviewAvg gt 1 && list.reviewAvg lt 2}">★☆☆☆☆</c:if>
+										<c:if test="${list.reviewAvg ge 4 && list.reviewAvg lt 5}">★★★★☆</c:if>
+										<c:if test="${list.reviewAvg ge 3 && list.reviewAvg lt 4}">★★★☆☆</c:if>
+										<c:if test="${list.reviewAvg ge 2 && list.reviewAvg lt 3}">★★☆☆☆</c:if>
+										<c:if test="${list.reviewAvg ge 1 && list.reviewAvg lt 2}">★☆☆☆☆</c:if>
+										<c:if test="${list.reviewAvg ge 0 && list.reviewAvg lt 1}">☆☆☆☆☆</c:if>
 									</span> 
-									<span class="star-num">${list.reviewAvg}</span>
-									<span class="comment">"이 집 청소 잘하네요~"</span>
+									<span class="star-num">
+										<c:if test=""></c:if>
+										<fmt:formatNumber value="${list.reviewAvg}" pattern="0.0"/>
+										</span>
+										<span id="review-cnt">(${list.reviewCnt})</span>
+									<span class="comment">
+										<c:if test="${empty list.reviewContent}">작성된 리뷰가 없습니다.</c:if>
+										<c:if test="${not empty list.reviewContent}">"${list.reviewContent}"</c:if>
+										</span>
 								</div>
 							</div>
 							<div class="helper-contents2">
@@ -149,12 +157,12 @@ String root = request.getContextPath();
 						<li><a href="#" class="first"><<</a></li>
 						<li><a href="#" class="arrow left"><</a></li>
 						<li><a href="#" class="num">1</a></li>
-						<li><a href="/" class="num">2</a></li>
-						<li><a href="/" class="num">3</a></li>
-						<li><a href="/" class="num">4</a></li>
-						<li><a href="/" class="num">5</a></li>
-						<li><a href="/" class="arrow right">></a></li>
-						<li><a href="/" class="last">>></a></li>
+						<li><a href="#" class="num">2</a></li>
+						<li><a href="#" class="num">3</a></li>
+						<li><a href="#" class="num">4</a></li>
+						<li><a href="#" class="num">5</a></li>
+						<li><a href="#" class="arrow right">></a></li>
+						<li><a href="#" class="last">>></a></li>
 					</ul>
 				</div>
 
@@ -206,6 +214,7 @@ String root = request.getContextPath();
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
 	<script defer>
+		
 
 		$('#select-region').change(function(){
 			//파라미터 들고오기

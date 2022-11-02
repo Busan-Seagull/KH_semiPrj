@@ -280,8 +280,23 @@ input[type=submit] {
 										</p>
 									</div>
 									<div>
-										<span class="starrr">★★★★★</span> <span class="star-num">5</span>
-										<span class="comment">"이 집 청소 잘하네요~"</span>
+										<span class="starrr">
+											<c:if test="${list.reviewAvg eq 5}">★★★★★</c:if>
+											<c:if test="${list.reviewAvg ge 4 && list.reviewAvg lt 5}">★★★★☆</c:if>
+											<c:if test="${list.reviewAvg ge 3 && list.reviewAvg lt 4}">★★★☆☆</c:if>
+											<c:if test="${list.reviewAvg ge 2 && list.reviewAvg lt 3}">★★☆☆☆</c:if>
+											<c:if test="${list.reviewAvg ge 1 && list.reviewAvg lt 2}">★☆☆☆☆</c:if>
+											<c:if test="${list.reviewAvg ge 0 && list.reviewAvg lt 1}">☆☆☆☆☆</c:if>
+										</span> 
+										<span class="star-num">
+											<c:if test=""></c:if>
+											<fmt:formatNumber value="${list.reviewAvg}" pattern="0.0"/>
+											</span>
+											<span class="review-cnt">(${list.reviewCnt})</span>
+										<span class="comment">
+											<c:if test="${empty list.reviewContent}">작성된 리뷰가 없습니다.</c:if>
+											<c:if test="${not empty list.reviewContent}">"${list.reviewContent}"</c:if>
+											</span>
 									</div>
 								</div>
 								<div class="helper-contents2">

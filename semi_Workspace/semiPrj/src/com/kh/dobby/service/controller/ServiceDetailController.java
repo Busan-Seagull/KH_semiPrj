@@ -30,6 +30,7 @@ public class ServiceDetailController extends HttpServlet {
             CodeVo cv = new ServiceService().changeCode(sv);
             List<ReviewVo> rvList = new Service().selectList(null, sno);
             
+            
             System.out.println(rvList);
 
             req.setAttribute("cv", cv);

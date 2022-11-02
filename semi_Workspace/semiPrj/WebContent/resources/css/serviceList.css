@@ -148,6 +148,9 @@ main{
     border: none;
     margin-left: 0;
 }
+#search-textbox:focus{
+    outline: #999999;
+}
 
 #search-button-wrap{
     float: left;
@@ -328,4 +331,8 @@ main{
     #page-nation .num:active{
         background-color: var(--semi-green);
         cursor: pointer;
+    }
+    #review-cnt{
+        font-size: 13px;
+        color: grey;
     }
