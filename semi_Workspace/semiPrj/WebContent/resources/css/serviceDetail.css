@@ -82,7 +82,7 @@
     padding: 10px;
 }
 #reservation-content{
-    width: 260px;
+    width: 256px;
     height: 170px;
     background-color: white;
     border: 2px solid var(--semi-brown);
