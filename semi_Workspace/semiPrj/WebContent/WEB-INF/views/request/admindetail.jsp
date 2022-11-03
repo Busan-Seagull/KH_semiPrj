@@ -44,7 +44,7 @@
 	height:60px;
 }
 #t2{
-	width:100px;
+	width:1000px;
 	height:60px;
 }
 #t3{

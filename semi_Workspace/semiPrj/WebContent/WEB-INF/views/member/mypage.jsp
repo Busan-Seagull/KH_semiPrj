@@ -818,7 +818,7 @@ justify-content: center;
                         	<c:if test="${vo.type=='결제' }"> 원</c:if>		
                         	<c:if test="${vo.type=='이벤트' }"> 점</c:if>	
                         </div>
-                        <div>+${vo.point }</div>
+                        <div>${vo.point }</div>
                         <div>${vo.date }</div>
                     </div>
                     </c:forEach>
@@ -1158,7 +1158,7 @@ justify-content: center;
                             span = $('<span/>');
                             span.addClass('btn-list');
 
-                            $('<div class="rh-i-h-btn">신고하기</div>').appendTo(span);
+                            $('<div onclick="location.href=\'/dobby/write\'" class="rh-i-h-btn">신고하기</div>').appendTo(span);
                             span.appendTo(header);
 
                             const header2 = $('<div/>');

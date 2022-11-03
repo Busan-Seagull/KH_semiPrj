@@ -59,7 +59,9 @@
     const select = document.querySelector('#select');
     const cancle = document.querySelector('#cancle');
 
+	
     select.addEventListener('click', function(){
+    	setmodeN();
         let link = iframe.contentWindow.location.href;
         link = link.substring(link.indexOf('/dobby'));
         opener.document.querySelector('#link-name').value = link;
@@ -73,8 +75,8 @@
     
 	function setmodeN() {
 		var xhr = new XMLHttpRequest();
-        xhr.open("get", '/dobby/setmode');
-        xhr.send();
+		xhr.open("get", '/dobby/setmode');
+		xhr.send();
 	}
 
 </script>
