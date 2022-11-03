@@ -163,7 +163,7 @@ public class ServiceDao {
                     + "LEFT JOIN (SELECT SERVICE_NO, COUNT(*) COUNT, AVG(GRADE) AVG FROM REVIEW  GROUP BY SERVICE_NO) R ON S.SERVICE_NO = R.SERVICE_NO\r\n"
                     + "LEFT JOIN (SELECT SERVICE_NO, TITLE, CONTENT, WRITE_TIME FROM REVIEW WHERE WRITE_TIME IN (SELECT MAX(WRITE_TIME) AS WRITE_TIME FROM REVIEW GROUP BY SERVICE_NO)) RR\r\n"
                     + "ON RR.SERVICE_NO = S.SERVICE_NO\r\n"
-                    + "WHERE AREA_1 = "+region+" OR AREA_2 = "+region+" OR AREA_3 = "+region+" OR AREA_4 = "+region+" OR AREA_5 = "+region+"ORDER BY S.SERVICE_NO DESC";
+                    + "WHERE AREA_1 = "+region+" OR AREA_2 = "+region+" OR AREA_3 = "+region+" OR AREA_4 = "+region+" OR AREA_5 = "+region+" ORDER BY S.SERVICE_NO DESC";
         }else if(stn != null && region == null){
             //카테고리 있고, 지역 없을때
             sql = "SELECT S.SERVICE_NO, S.SERVICE_TYPE_NO, SE.NAME, S.SERVICE_TITLE, S.SERVICE_INTRO , S.USER_NO, U.NICK\r\n"
@@ -194,7 +194,7 @@ public class ServiceDao {
                     + "LEFT JOIN (SELECT SERVICE_NO, COUNT(*) COUNT, AVG(GRADE) AVG FROM REVIEW  GROUP BY SERVICE_NO) R ON S.SERVICE_NO = R.SERVICE_NO\r\n"
                     + "LEFT JOIN (SELECT SERVICE_NO, TITLE, CONTENT, WRITE_TIME FROM REVIEW WHERE WRITE_TIME IN (SELECT MAX(WRITE_TIME) AS WRITE_TIME FROM REVIEW GROUP BY SERVICE_NO)) RR\r\n"
                     + "ON RR.SERVICE_NO = S.SERVICE_NO\r\n"
-                    + "WHERE (AREA_1 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_2 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_3 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_4 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_5 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+" ORDER BY S.SERVICE_NO DESC\")";
+                    + "WHERE (AREA_1 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_2 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_3 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_4 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") OR (AREA_5 = "+region+" AND S.SERVICE_TYPE_NO = "+stn+") ORDER BY S.SERVICE_NO DESC";
         }
 
         PreparedStatement pstmt = null;
@@ -411,7 +411,7 @@ public class ServiceDao {
                 + "LEFT JOIN (SELECT SERVICE_NO, TITLE, CONTENT, WRITE_TIME FROM REVIEW WHERE WRITE_TIME IN (SELECT MAX(WRITE_TIME) AS WRITE_TIME FROM REVIEW GROUP BY SERVICE_NO)) RR\r\n"
                 + "ON RR.SERVICE_NO = S.SERVICE_NO\r\n"
                 + "WHERE S.USER_NO ="
-                + userNo +"ORDER BY S.SERVICE_NO DESC";
+                + userNo +" ORDER BY S.SERVICE_NO DESC";
 
         PreparedStatement pstmt = null;
         ResultSet rs = null;
