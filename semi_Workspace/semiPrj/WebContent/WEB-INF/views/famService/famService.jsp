@@ -102,13 +102,11 @@ li>div{
     font-size: x-large;
     position: relative;
     top: 40px;
-    left: 80px;
 }
 .s2{
     font-size: large;
     position: relative;
     top: 60px;
-    left: 95px;
 }
 
 .s3{
@@ -130,17 +128,16 @@ li>div{
     font-size: large;
     position: relative;
     top:80px;
-    left: 97px;
+    left: -20px;
 }
 .s6{
     position: relative;
     top:20px;
-    left: 65px;
 }
 .s7{
     position: relative;
     top:63px;
-    left: 165px;
+    left: 50px;
 }
 .slides-li-div{
     display: flex;
@@ -153,6 +150,9 @@ li>div{
     background-color:#004412;
     color:white;
     box-shadow: 2px 2px lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .slides-div2{
@@ -187,8 +187,10 @@ li>div{
                             <div class="s6"><img width="170px" height="170px" src="<%= voList.get(i).getProfileImg()%>"></div>
                             <div class="s1"><%=voList.get(i).getTitle() %></div>
                             <div class="s2"><%=voList.get(i).getServiceIntro() %></div>
-                            <div class="s5"><%=voList.get(i).getCharge() %></div>
-                            <div class="s7">/<%=voList.get(i).getChargeUnit() %></div>
+                            <div>
+								<div class="s5"><%=voList.get(i).getCharge() %></div>
+								<div class="s7">/<%=voList.get(i).getChargeUnit() %></div>
+                            </div>
                         </div>
                         <div class="slides-div2">
                             <div class="s3">★★★★★ </div>

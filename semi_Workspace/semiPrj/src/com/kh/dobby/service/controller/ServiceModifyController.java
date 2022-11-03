@@ -77,6 +77,8 @@ public class ServiceModifyController extends HttpServlet{
         String serviceDetail =req.getParameter("service-detail");
         String paymentDetail = req.getParameter("payment-detail");
         
+        System.out.println(chargeUnitNo);
+        
         //데이터 뭉치기
         ServiceVo sv = new ServiceVo();
         sv.setTitle(title);

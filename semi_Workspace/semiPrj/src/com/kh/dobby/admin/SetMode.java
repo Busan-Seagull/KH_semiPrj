@@ -13,12 +13,18 @@ public class SetMode extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("removeMode");
         req.getSession().removeAttribute("mode");
     }
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().setAttribute("mode", "Y");
+        
+
+            System.out.println("setMode");
+            req.getSession().setAttribute("mode", "Y");
+        
+
     }
     
 }
