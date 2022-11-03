@@ -226,7 +226,7 @@ select{
     border: 0.75px solid #DEDEDE;
 }
 
-input[type=button]{
+input[type=button],input[type=reset]{
     width: 100px;
     height: 24px;
     border: 0.75px solid var(--semi-green);
@@ -591,7 +591,7 @@ justify-content: center;
                     
                     <div id="sub-btn">
                         <input type="submit" value="변경하기">
-                        <input type="button" value="변경취소">
+                        <input type="reset" value="변경취소">
                     </div>
 
         
