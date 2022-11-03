@@ -36,13 +36,14 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
             req.setCharacterEncoding("UTF-8");
             resp.setContentType("text/plain; charset=UTF-8;");
             String catename= req.getParameter("catename");
+            String pno= req.getParameter("pno");
          
            int cateNum=Integer.parseInt(catename);
 //           System.out.println(catename);
 //           System.out.println(cateNum);
             PrintWriter out = resp.getWriter();
 
-            String page = "1";
+            String page = pno;
 //            System.out.println(page);
             int currentPage = 1;
             int listCount=0;
