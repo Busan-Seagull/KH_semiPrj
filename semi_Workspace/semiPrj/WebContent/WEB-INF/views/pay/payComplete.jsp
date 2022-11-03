@@ -36,7 +36,7 @@
 						<br> *<c:if test="${rv.reservationAmount == null}">
 							견적
 						</c:if>
-							<c:if test="${rv.reservationAmount != null}">
+							<c:if test="${rv.reservationAmount != null and rv.charge!=0}">
 							<c:set var= "amount" value="${rv.reservationAmount/rv.charge}"/>
 							<fmt:parseNumber value="${amount}" integerOnly="true"/>(단위)</td>
 						</c:if>
@@ -71,7 +71,7 @@
 								<c:if test="${rv.reservationAmount == null}">
 								견적 서비스
 							</c:if>
-								<c:if test="${rv.reservationAmount != null}">
+								<c:if test="${rv.reservationAmount != null and rv.charge!=0}">
 								<c:set var= "amount" value="${rv.reservationAmount/rv.charge}"/>
 								<fmt:parseNumber value="${amount}" integerOnly="true"/>(단위)</td>
 							</c:if>

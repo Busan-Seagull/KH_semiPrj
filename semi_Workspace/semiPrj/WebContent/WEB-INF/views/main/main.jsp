@@ -88,7 +88,7 @@
 				<!--  -->
 				<a href="/dobby/service/detail?sno=${vo.dNo}" class="service-list-item shadow-box">
 					<img alt="" src="/dobby/${vo.imgLink }" class="sl-item-img">
-					<div class="sl-item-like" onchange="clickZzim(this, ${vo.dNo})"><label><input type="checkbox"><span class="material-symbols-outlined">favorite</span> </label></div>
+					<div class="sl-item-like" onchange="clickZzim(this, ${vo.dNo})"><label><input type="checkbox" checked><span class="material-symbols-outlined">favorite</span> </label></div>
 					<div class="item-grade flex-center"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">grade</span><p>${vo.grade }</p></div>
 					<div class="sl-item-title">${vo.title }</div>
 					<div class="item-review flex-center"><p>리뷰</p><p>${vo.review }</p></div>

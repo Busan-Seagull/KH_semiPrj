@@ -17,8 +17,9 @@ import com.kh.dobby.service.vo.ServiceAttachmentVo;
 import com.kh.dobby.service.vo.ServiceVo;
 
 @WebServlet(urlPatterns = "/service/modify")
-@MultipartConfig(location = "c:/upload", fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024
-        * 50, maxRequestSize = 1024 * 1024 * 50 * 5)
+@MultipartConfig(
+//      location = "c:/upload" ,
+      fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 50, maxRequestSize = 1024 * 1024 * 50 * 5)
 public class ServiceModifyController extends HttpServlet {
 
     @Override

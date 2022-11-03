@@ -116,7 +116,7 @@
             <p>메인화면 배너 추가</p>
         </div>
 	</div>
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="" method="post" enctype="multipart/form-data" onsubmit="setmodeN();">
 		<div id="main-container">
 			<div>
 				<img id="free-view">
@@ -171,6 +171,12 @@
 		var xhr = new XMLHttpRequest();
         xhr.open("POST", '/dobby/setmode');
         xhr.send();
+	}
+	
+	function setmodeN() {
+		var xhr = new XMLHttpRequest();
+		xhr.open("get", '/dobby/setmode');
+		xhr.send();
 	}
 
 	file.addEventListener('change' , function(){
