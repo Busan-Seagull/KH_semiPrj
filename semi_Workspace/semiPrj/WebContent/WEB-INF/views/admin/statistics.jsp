@@ -232,9 +232,9 @@
 
 						console.log(green);
 
-						green.style.height = element.userCount*5 + "px";
-						brown.style.height = element.dobbyCount*5 + "px";
-						gray.style.height = element.suerviceCount*5 + "px";
+						green.style.height = element.userCount*0.4 + "px";
+						brown.style.height = element.dobbyCount*0.4 + "px";
+						gray.style.height = element.suerviceCount + "px";
 
 						green.querySelector('p').innerText = element.userCount;
 						brown.querySelector('p').innerText = element.dobbyCount;
