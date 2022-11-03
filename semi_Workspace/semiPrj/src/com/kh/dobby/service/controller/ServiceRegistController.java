@@ -155,7 +155,7 @@ public class ServiceRegistController extends HttpServlet {
 
         if (result == 1) {
             s.setAttribute("alertmsg", "서비스 등록 완료");
-            resp.sendRedirect("/dobby/mypage/service");
+            resp.sendRedirect("/dobby/member/mypage");
         } else {
             req.setAttribute("msg", "서비스 등록 실패");
             req.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(req, resp);
