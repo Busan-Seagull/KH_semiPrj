@@ -20,7 +20,7 @@
 		<div id="baner-next-btn"><span class="material-symbols-outlined">chevron_right</span></div>
 		<div id="main-baner" style="left: 0;">
 			<c:forEach items="${list}" var="bvo">
-			<a href="${bvo.link}" class="baner-item" style="background: url(${bvo.imgLink});"></a>
+			<a href="${bvo.link}" class="baner-item" style="background: url(${bvo.imgLink}); background-size:cover"></a>
 			</c:forEach>
 		</div>
 	</div>
